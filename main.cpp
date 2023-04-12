@@ -34,6 +34,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	fps = 0;
 	fpsCounter = 0;
 
+	int nextTime;
+
 	//ƒQ[ƒ€ƒ‹[ƒv
 	while (ProcessMessage() == 0)
 	{
@@ -56,10 +58,17 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		//@‚P•bŠÔ‚ÌFPS‚ðŒv‘ª‚·‚éA‚P•b‚²‚Æ‚É‰Šú‰»‚·‚é
 		fpsCounter++;
-		if (nowTime - fpsCheckTime > 250000){ //1000000(240FPS) 500000(120FPS) 250000(60FPS)
+		if (nowTime - fpsCheckTime > 1000000){ //1000000(240FPS) 500000(120FPS) 250000(60FPS)
 			fps = fpsCounter;
 			fpsCounter = 0;
 			fpsCheckTime = nowTime;
+		}
+
+		//FPSŒÅ’è
+		nextTime = GetNowCount();
+		nextTime += 16;
+		if (nextTime > GetNowCount()) {
+			WaitTimer(nextTime - GetNowCount());
 		}
 	}
 
