@@ -1,0 +1,72 @@
+#include "DxLib.h"
+
+//プログラムの開始
+int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
+{
+	//　FPSの計測と表示を行うローカル変数の宣言
+	LONGLONG nowTime = GetNowHiPerformanceCount();
+	LONGLONG oldTime = nowTime;
+	LONGLONG fpsCheckTime;
+	double deltaTime = 0;
+	int fpsCounter = 0;
+	int fps = 0;
+
+	//タイトルを設定
+	SetMainWindowText("りんごおとし");
+
+	//他のDxLibと競合しないように
+	SetMainWindowClassName("りんごおとし");
+
+	//ウインドウモードで起動
+	ChangeWindowMode(TRUE);
+
+	//ウインドウのサイズ
+	SetGraphMode(1280, 720, 32);
+
+	//DXライブラリの初期化処理
+	if (DxLib_Init() == -1)return -1;
+
+	//描画先画面を裏にする　（ダブルバッファリング）
+	SetDrawScreen(DX_SCREEN_BACK);
+
+	//　ループ前にFPS計測を初期化
+	fpsCheckTime = GetNowHiPerformanceCount();
+	fps = 0;
+	fpsCounter = 0;
+
+	//ゲームループ
+	while (ProcessMessage() == 0)
+	{
+		//画面の初期化
+		ClearDrawScreen();
+
+		//　FPSの表示
+		SetFontSize(16);
+		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec", fps, deltaTime);
+
+		//裏画面の内容を表画面に反映する
+		ScreenFlip();
+
+		//　１ループ時点のシステム時間を取得
+		oldTime = nowTime;
+		nowTime = GetNowHiPerformanceCount();
+
+		//　１ループの時間経過を求める
+		deltaTime = (nowTime - oldTime) / 1000000.0F;
+
+		//　１秒間のFPSを計測する、１秒ごとに初期化する
+		fpsCounter++;
+		if (nowTime - fpsCheckTime > 250000) { //1000000(240FPS) 500000(120FPS) 250000(60FPS)
+			fps = fpsCounter;
+			fpsCounter = 0;
+			fpsCheckTime = nowTime;
+		}
+	}
+
+	//DXライブラリ使用の終了処理
+	DxLib_End();
+
+	//プログラムの終了
+	return 0;
+
+}
