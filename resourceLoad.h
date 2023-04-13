@@ -24,7 +24,7 @@ class Font {
 public:
 	int s;
 	int state;
-	int handle;
+	int handle_1;
 };
 
 int ResourceLoad(void);

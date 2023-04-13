@@ -30,7 +30,8 @@ int LoadFonts(void)
 		MessageBox(NULL, "フォント読込失敗", "", MB_OK);
 	}
 	if (font.state == 0) {
-		font.handle = CreateFontToHandle("しょかきうたげ（無料版）", 128, 9, DX_FONTTYPE_EDGE);
+		font.handle_1 = CreateFontToHandle("しょかきうたげ（無料版）", 128, 9, DX_FONTTYPE_EDGE);
+		//font.handle_2 = 追加フォントのパス
 		font.state = 1;
 	}
 	//if ((font.s = LoadFont("Resources/Fonts/syokakiutage.ttf")) == -1) return -1;

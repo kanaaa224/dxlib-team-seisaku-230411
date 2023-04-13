@@ -1,7 +1,7 @@
 // çÏÅFìáë‹
 
 #include "DxLib.h"
-#include "ResourceLoad.h"
+#include "resourceLoad.h"
 
 extern Image image;
 extern Font font;
@@ -10,7 +10,7 @@ extern Font font;
 void drawTest() {
     DrawGraph(0, 0, image.title, TRUE);
 	
-	DrawStringToHandle(340, 140, "ÇËÇÒÇ≤Ç®Ç∆Çµ", 0x000000, font.handle, 0xffffff);
+	DrawStringToHandle(340, 140, "ÇËÇÒÇ≤Ç®Ç∆Çµ", 0x000000, font.handle_1, 0xffffff);
 
 	/*
 	ChangeFont("ÇµÇÂÇ©Ç´Ç§ÇΩÇ∞Åiñ≥óøî≈Åj");

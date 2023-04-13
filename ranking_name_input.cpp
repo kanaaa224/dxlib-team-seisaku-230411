@@ -6,7 +6,7 @@
 #define RANKING_DATA 5
 #include <stdio.h>
 //#include "image.h"
-#include "ResourceLoad.h"
+#include "resourceLoad.h"
 #include "ranking_name_input.h"
 
 extern Image image;
