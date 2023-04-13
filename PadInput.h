@@ -6,3 +6,4 @@ static XINPUT_STATE KeyFlg;
 
 void InputController();
 int JudgeButton(unsigned char data);
+int GetStick();

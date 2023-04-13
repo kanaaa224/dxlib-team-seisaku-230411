@@ -23,3 +23,8 @@ int JudgeButton(unsigned char data) {
 		return 0;
 	}
 }
+
+
+int GetStick() {
+	return NowKey.ThumbLX;
+}
