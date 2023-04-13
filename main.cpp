@@ -34,7 +34,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	if (DxLib_Init() == -1)return -1;
 
 	//画像読み込み関数を呼び出し
-	if (LoadImages() == -1)return -1;
+	//if (LoadImages() == -1)return -1;
 
 	//サウンド読み込み関数を呼び出し
 	//if (LoadSounds() == -1)return -1;
