@@ -23,6 +23,8 @@ public:
 class Font {
 public:
 	int s;
+	int state;
+	int handle;
 };
 
 int ResourceLoad(void);
