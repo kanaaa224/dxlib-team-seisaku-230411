@@ -2,6 +2,11 @@
 
 #pragma once
 
+class Resourceload {
+public:
+	int state;
+};
+
 class Image {
 public:
 	int title;

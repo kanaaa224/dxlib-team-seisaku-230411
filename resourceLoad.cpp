@@ -3,6 +3,7 @@
 #include "resourceLoad.h"
 #include "DxLib.h"
 
+Resourceload resourceload;
 Image image;
 Sound sound;
 Font font;
@@ -29,8 +30,11 @@ int LoadFonts(void)
 
 int ResourceLoad(void)
 {
-	if (LoadImages() == -1) return -1;
-	if (LoadSounds() == -1) return -1;
-	if (LoadFonts() == -1) return -1;
+	if (resourceload.state == 0) {
+		if (LoadImages() == -1) return -1;
+		if (LoadSounds() == -1) return -1;
+		if (LoadFonts() == -1) return -1;
+		resourceload.state = 1;
+	}
 	return 0;
 }
