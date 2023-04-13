@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include"Title.h"
 #include "main.h"
 #include "PadInput.h"
 #include "player.h"
@@ -32,6 +33,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	// DXライブラリの初期化処理
 	if (DxLib_Init() == -1)return -1;
 
+	//画像読み込み関数を呼び出し
+	if (LoadImages() == -1)return -1;
+
+	//サウンド読み込み関数を呼び出し
+	//if (LoadSounds() == -1)return -1;
+
 	// 描画先画面を裏にする（ダブルバッファリング）
 	SetDrawScreen(DX_SCREEN_BACK);
 
@@ -57,6 +64,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		if (ResourceLoad() == -1) return -1;
 		// テストで、他のcppファイルで宣言された画像表示の関数を実行(test.cpp
 		drawTest();
+
+		DrawTitle();	//タイトル仮
 
 		// FPSの表示
 		SetFontSize(16);
