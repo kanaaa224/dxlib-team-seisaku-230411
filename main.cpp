@@ -41,15 +41,16 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	// ゲームループ
 	while (ProcessMessage() == 0 && gGameMode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))
 	{
-		//コントローラーの入力を取得
-		InputController();
-
 		// 画面の初期化
 		ClearDrawScreen();
 
+		//コントローラーの入力を取得
+		//コントローラーのMODEを押すと左スティックと十字ボタンの入力が逆になる
+		InputController();
+
 		// FPSの表示
 		SetFontSize(16);
-		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec", fps, deltaTime);
+		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, NowKey.ThumbLX);
 
 		// 裏画面の内容を表画面に反映する
 		ScreenFlip();

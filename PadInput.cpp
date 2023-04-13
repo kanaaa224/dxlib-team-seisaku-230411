@@ -10,8 +10,11 @@ void InputController() {
 	for (int i = 0; i < 16; i++) {
 		KeyFlg.Buttons[i] = NowKey.Buttons[i] & ~OldKey.Buttons[i];     //XINPUT‚Í\‘¢‘Ì‚ÅŠÇ—‚³‚ê‚Ä‚¢‚é
 	}
+	SetFontSize(16);
+	DrawFormatString(390, 100, 0xffffff, "%d",  NowKey.ThumbLX);
 }
 
+//ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ì”»’è
 int JudgeButton(unsigned char data) {
 	if (KeyFlg.Buttons[data]) {
 		return 1;
