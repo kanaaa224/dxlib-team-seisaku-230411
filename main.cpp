@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include"Title.h"
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -26,6 +27,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	// DXライブラリの初期化処理
 	if (DxLib_Init() == -1)return -1;
 
+	//画像読み込み関数を呼び出し
+	if (LoadImages() == -1)return -1;
+
+	//サウンド読み込み関数を呼び出し
+	//if (LoadSounds() == -1)return -1;
+
 	// 描画先画面を裏にする（ダブルバッファリング）
 	SetDrawScreen(DX_SCREEN_BACK);
 
@@ -41,6 +48,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	{
 		// 画面の初期化
 		ClearDrawScreen();
+
+		DrawTitle();	//タイトル仮
 
 		// FPSの表示
 		SetFontSize(16);
