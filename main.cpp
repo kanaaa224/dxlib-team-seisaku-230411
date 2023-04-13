@@ -61,9 +61,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		// testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 		// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数
-		if (ResourceLoad() == -1) return -1;
+		//if (ResourceLoad() == -1) return -1;
 		// テストで、他のcppファイルで宣言された画像表示の関数を実行(test.cpp
-		drawTest();
+		//drawTest();
 
 		DrawTitle();	//タイトル仮
 

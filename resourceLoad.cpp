@@ -9,7 +9,7 @@ Font font;
 
 int LoadImages(void)
 {
-	//if ((image.title = LoadGraph("Resources/Images/title.png")) == -1) return -1;
+	if ((image.title = LoadGraph("Resources/Images/title.png")) == -1) return -1;
 	//if ((image.apple = LoadGraph("Resources/Images/apple.png")) == -1) return -1;
 	return 0;
 }
