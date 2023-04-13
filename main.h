@@ -1,5 +1,6 @@
 #pragma once
 
+//ƒQ[ƒ€ƒ‚[ƒhŠÇ—
 enum MODE{
 	TITLE,
 	INIT,

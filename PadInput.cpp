@@ -24,7 +24,20 @@ int JudgeButton(unsigned char data) {
 	}
 }
 
+//ボタンを離した時の判定
+int JudgeReleaseButton(unsigned char data) {
+	if (OldKey.Buttons[data] == 1 && NowKey.Buttons[data] == 0) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
 
-int GetStick() {
+//左スティックの状態の取得
+int GetStickX() {
 	return NowKey.ThumbLX;
+}
+int GetStickY() {
+	return NowKey.ThumbLY;
 }
