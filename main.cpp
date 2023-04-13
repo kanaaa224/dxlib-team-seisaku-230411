@@ -1,4 +1,6 @@
 #include "DxLib.h"
+#include "main.h"
+#include "PadInput.h"
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -37,8 +39,11 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	int nextTime;
 
 	// ゲームループ
-	while (ProcessMessage() == 0)
+	while (ProcessMessage() == 0 && gGameMode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))
 	{
+		//コントローラーの入力を取得
+		InputController();
+
 		// 画面の初期化
 		ClearDrawScreen();
 
@@ -69,6 +74,26 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		nextTime += 16;
 		if (nextTime > GetNowCount()) {
 			WaitTimer(nextTime - GetNowCount());
+		}
+
+		//ゲームモードと画面遷移
+		switch (gGameMode){
+		case TITLE:
+			break;
+		case INIT:
+			break;
+		case MAIN:
+			break;
+		case HELP:
+			break;
+		case RESULT:
+			break;
+		case INPUTNAME:
+			break;
+		case RANKING:
+			break;
+		case END:
+			break;
 		}
 	}
 
