@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FallApple.cpp" />
-    <ClCompile Include="image.cpp" />
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -148,7 +147,7 @@
     <ClCompile Include="resourceLoad.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Title.cpp" />
-    <ClCompile Include="リンゴ生成.cpp" />
+    <ClCompile Include="AppleGn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
