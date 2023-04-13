@@ -1,4 +1,7 @@
 #include "DxLib.h"
+#include "resourceLoad.h"
+#include "test.h"
+#include "ranking_name_input.h"
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -45,6 +48,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		// FPSの表示
 		SetFontSize(16);
 		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec", fps, deltaTime);
+
+		// testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+		// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数
+		if(ResourceLoad() == -1) return -1;
+		// テストで、他のcppファイルで宣言された画像表示の関数を実行(test.cpp
+		drawTest();
 
 		// 裏画面の内容を表画面に反映する
 		ScreenFlip();

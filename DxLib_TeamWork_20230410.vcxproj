@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="image.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ranking_name_input.cpp" />
+    <ClCompile Include="resourceLoad.cpp" />
+    <ClCompile Include="test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="image.h" />
+    <ClInclude Include="ranking_name_input.h" />
+    <ClInclude Include="resourceLoad.h" />
+    <ClInclude Include="test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
