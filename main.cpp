@@ -1,4 +1,7 @@
 #include "DxLib.h"
+#include "resourceLoad.h"
+#include "test.h"
+#include "ranking_name_input.h"
 #include "main.h"
 #include "PadInput.h"
 #include "player.h"
@@ -44,6 +47,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	{
 		// 画面の初期化
 		ClearDrawScreen();
+
+		// testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+		// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数
+		if (ResourceLoad() == -1) return -1;
+		// テストで、他のcppファイルで宣言された画像表示の関数を実行(test.cpp
+		drawTest();
 
 		//コントローラーの入力を取得
 		//コントローラーのMODEを押すと左スティックと十字ボタンの入力が逆になる
