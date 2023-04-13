@@ -16,14 +16,14 @@ int LoadImages(void)
 
 int LoadSounds(void)
 {
-	//if ((sound.bgm = LoadGraph("Resources/Fonts/syokakiutage.ttf")) == -1) return -1;
-	//if ((sound.se = LoadGraph("Resources/Fonts/syokakiutage.ttf")) == -1) return -1;
+	//if ((sound.bgm = LoadSound("Resources/Sounds/bgm.mp3")) == -1) return -1;
+	//if ((sound.se = LoadSound("Resources/Sounds/se_1.mp3")) == -1) return -1;
 	return 0;
 }
 
 int LoadFonts(void)
 {
-	//if ((font.s = LoadGraph("Resources/Fonts/syokakiutage.ttf")) == -1) return -1;
+	//if ((font.s = LoadFont("Resources/Fonts/syokakiutage.ttf")) == -1) return -1;
 	return 0;
 }
 
