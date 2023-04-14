@@ -6,7 +6,9 @@
 extern Image image;
 extern Font font;
 
-// タイトル画像表示
+/********************************
+* テスト
+********************************/
 void drawTest() {
     DrawGraph(0, 0, image.title, TRUE);
 	
