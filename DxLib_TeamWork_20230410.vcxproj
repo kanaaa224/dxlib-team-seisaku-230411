@@ -148,7 +148,7 @@
     <ClCompile Include="resourceLoad.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Title.cpp" />
-    <ClCompile Include="リンゴ生成.cpp" />
+    <ClCompile Include="AppleGn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
