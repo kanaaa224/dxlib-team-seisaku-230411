@@ -18,7 +18,7 @@ extern Font font;
 void drawRanking() {
     DrawGraph(0, 0, image.title, TRUE);
 
-    DrawStringToHandle(340, 140, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, font.handle_1, 0xffffff);
+    DrawStringToHandle(340, 140, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, font.handle_1_32, 0xffffff);
 };
 
 
