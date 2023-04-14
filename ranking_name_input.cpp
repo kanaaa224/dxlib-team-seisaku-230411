@@ -6,17 +6,19 @@
 #define RANKING_DATA 5
 #include <stdio.h>
 //#include "image.h"
-#include "ResourceLoad.h"
+#include "resourceLoad.h"
 #include "ranking_name_input.h"
 
 extern Image image;
+extern Font font;
 
 /********************************
 * ƒ‰ƒ“ƒLƒ“ƒO“ü—Íˆ—
 ********************************/
 void drawRanking() {
-    // ‰æ‘œ‚Ì“Ç‚İ‚İ
     DrawGraph(0, 0, image.title, TRUE);
+
+    DrawStringToHandle(340, 140, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, font.handle_1, 0xffffff);
 };
 
 

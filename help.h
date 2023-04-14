@@ -2,4 +2,4 @@
 
 #pragma once
 
-void DrawTitle();
+void drawHelp();

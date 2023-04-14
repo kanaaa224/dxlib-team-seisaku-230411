@@ -5,6 +5,7 @@
 #include "player.h"
 #include "resourceLoad.h"
 #include "test.h"
+#include "help.h"
 #include "ranking_name_input.h"
 
 // プログラムの開始
@@ -34,7 +35,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	if (DxLib_Init() == -1)return -1;
 
 	//画像読み込み関数を呼び出し
-	if (LoadImages() == -1)return -1;
+	//if (LoadImages() == -1)return -1;
 
 	//サウンド読み込み関数を呼び出し
 	//if (LoadSounds() == -1)return -1;
@@ -63,9 +64,10 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数
 		if (ResourceLoad() == -1) return -1;
 		// テストで、他のcppファイルで宣言された画像表示の関数を実行(test.cpp
-		drawTest();
+		//drawTest();
+		drawHelp();
 
-		DrawTitle();	//タイトル仮
+		//DrawTitle();	//タイトル仮
 
 		// FPSの表示
 		SetFontSize(16);
