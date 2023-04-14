@@ -7,12 +7,12 @@
 extern Image image;
 extern Font font;
 
-Help help;
+extern Help help;
 
 /********************************
 * ヘルプ画面描画
 ********************************/
-void DrawHelp() {
+void drawHelp() {
 	// 背景表示
 	DrawGraph(0, 0, image.title, TRUE);
 
@@ -26,13 +26,12 @@ void DrawHelp() {
 	// タイトル表示
 	DrawStringToHandle(340, 140, "操作説明", 0x000000, font.handle_1_64, 0xffffff);
 
-	help.state = 0;
 	if (help.state == 0) {
 		// コントローラーのヘルプ表示
 
 
 	}
-	else if (help.state == 1) {
+	else if (help.state) {
 		// ゲーム内容のヘルプ表示
 		
 

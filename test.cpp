@@ -9,7 +9,7 @@ extern Font font;
 /********************************
 * ƒeƒXƒg
 ********************************/
-void DrawTest() {
+void drawTest() {
     DrawGraph(0, 0, image.title, TRUE);
 	
 	DrawStringToHandle(400, 40, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, font.handle_1_32, 0xffffff);
