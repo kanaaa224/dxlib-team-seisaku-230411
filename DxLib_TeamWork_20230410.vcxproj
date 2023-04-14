@@ -140,14 +140,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FallApple.cpp" />
+    <ClCompile Include="image.cpp" />
+    <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="main_2.cpp" />
-    <ClCompile Include="Title.cpp" />
-    <ClCompile Include="リンゴ生成.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ranking_name_input.cpp" />
+    <ClCompile Include="resourceLoad.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Apple.h" />
-    <ClInclude Include="Title.h" />
+    <ClInclude Include="image.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="PadInput.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="ranking_name_input.h" />
+    <ClInclude Include="resourceLoad.h" />
+    <ClInclude Include="test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
