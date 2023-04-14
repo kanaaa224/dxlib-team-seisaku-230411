@@ -5,6 +5,7 @@
 #include "player.h"
 #include "resourceLoad.h"
 #include "test.h"
+#include "help.h"
 #include "ranking_name_input.h"
 
 // プログラムの開始
@@ -64,6 +65,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		if (ResourceLoad() == -1) return -1;
 		// テストで、他のcppファイルで宣言された画像表示の関数を実行(test.cpp
 		//drawTest();
+		drawHelp();
 
 		DrawTitle();	//タイトル仮
 

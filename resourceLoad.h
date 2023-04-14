@@ -12,6 +12,8 @@ public:
 	int title;
 	int apple;
 	int end;
+	int controller;
+	int controller_s;
 };
 
 class Sound {
@@ -24,7 +26,7 @@ class Font {
 public:
 	int s;
 	int state;
-	int handle;
+	int handle_1;
 };
 
 int ResourceLoad(void);

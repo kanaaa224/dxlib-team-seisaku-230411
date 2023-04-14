@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="help.cpp" />
     <ClCompile Include="FallApple.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="PadInput.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="PadInput.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="help.h" />
     <ClInclude Include="ranking_name_input.h" />
     <ClInclude Include="resourceLoad.h" />
     <ClInclude Include="test.h" />
