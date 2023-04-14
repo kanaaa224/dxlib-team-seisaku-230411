@@ -1,4 +1,8 @@
 #include "DxLib.h"
+#include"Title.h"
+#include "main.h"
+#include "PadInput.h"
+#include "player.h"
 #include "resourceLoad.h"
 #include "test.h"
 #include "help.h"
@@ -30,6 +34,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	// DXライブラリの初期化処理
 	if (DxLib_Init() == -1)return -1;
 
+	//画像読み込み関数を呼び出し
+	//if (LoadImages() == -1)return -1;
+
+	//サウンド読み込み関数を呼び出し
+	//if (LoadSounds() == -1)return -1;
+
 	// 描画先画面を裏にする（ダブルバッファリング）
 	SetDrawScreen(DX_SCREEN_BACK);
 
@@ -39,12 +49,17 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	fpsCounter = 0;
 
 	int nextTime;
+	gGameMode = TITLE;
 
 	// ゲームループ
-	while (ProcessMessage() == 0)
+	while (ProcessMessage() == 0 && gGameMode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))
 	{
 		// 画面の初期化
 		ClearDrawScreen();
+
+		//コントローラーの入力を取得
+		//コントローラーのMODEを押すと左スティックと十字ボタンの入力が逆になる
+		InputController();
 
 		// testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 		// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数
@@ -53,9 +68,13 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		drawTest();
 		//drawHelp();
 
+		//DrawTitle();	//タイトル仮
+
 		// FPSの表示
 		SetFontSize(16);
-		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec", fps, deltaTime);
+		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());
+
+		PlayerControll();
 
 		// 裏画面の内容を表画面に反映する
 		ScreenFlip();
@@ -80,6 +99,26 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		nextTime += 16;
 		if (nextTime > GetNowCount()) {
 			WaitTimer(nextTime - GetNowCount());
+		}
+
+		//ゲームモードと画面遷移
+		switch (gGameMode){
+		case TITLE:
+			break;
+		case INIT:
+			break;
+		case MAIN:
+			break;
+		case HELP:
+			break;
+		case RESULT:
+			break;
+		case INPUTNAME:
+			break;
+		case RANKING:
+			break;
+		case END:
+			break;
 		}
 	}
 
