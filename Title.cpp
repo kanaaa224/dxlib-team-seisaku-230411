@@ -1,8 +1,19 @@
-#include"Title.h"
+// 作：島袋、玉城
+
+#include "DxLib.h"
+#include <stdlib.h>
+#include"title.h"
 #include"resourceLoad.h"
+#include "PadInput.h"
 
 extern Image image;
 extern Font font;
+
+Title title;
+
+int state = 0;
+int selector_prev_value = 0;
+int selector_current_value = 0;
 
 /********************************
 * タイトル
@@ -20,14 +31,73 @@ void DrawTitle() {
 	DrawStringToHandle(630, 450, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
 	DrawStringToHandle(630, 500, "終わる", 0x000000, font.handle_1_32, 0xffffff);
 
-	// ゲームモードセレクトのカーソル
-	DrawStringToHandle(570, 350, "→", 0x000000, font.handle_1_32, 0xffffff);
+	// ゲームモードセレクトのカーソル処理
+	if (title.state == 0) {
+		DrawStringToHandle(570, 350, "→", 0x000000, font.handle_1_32, 0xffffff);
+	}
+	else if (title.state == 1) {
+		DrawStringToHandle(570, 400, "→", 0x000000, font.handle_1_32, 0xffffff);
+	}
+	else if (title.state == 2) {
+		DrawStringToHandle(570, 450, "→", 0x000000, font.handle_1_32, 0xffffff);
+	}
+	else if (title.state == 3) {
+		DrawStringToHandle(570, 500, "→", 0x000000, font.handle_1_32, 0xffffff);
+	};
 
-	// ゲームモードセレクト処理追加予定
+
+	//if ((selector_current_value = GetStickY()) <= -32000) { //CheckHitKey(KEY_INPUT_M) != 0
+	//	
+
+	//	if (selector_current_value >= 1) {
+	//		if (title.state >= 3) {
+	//			title.state = 0;
+	//		}
+	//		else {
+	//			title.state += 1;
+	//		};
+	//	};
+	//};
+
+	if ((selector_current_value = GetStickY()) <= -32000) { //CheckHitKey(KEY_INPUT_M) != 0
+		selector_current_value = abs(selector_current_value);
+
+		if (selector_current_value - selector_prev_value > 1) {
+			
+
+			if (title.state >= 3) {
+				title.state = 0;
+			}
+			else {
+				title.state += 1;
+			};
+		};
+		selector_prev_value = abs(GetStickY());
+	};
+
+	// ゲームモードセレクト処理
 
 	// BGM SE ここに書くか、bgm.cppで画面別に制御させる？
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // らいやごめん、、
 
