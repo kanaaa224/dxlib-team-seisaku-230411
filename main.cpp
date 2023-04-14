@@ -1,12 +1,4 @@
 #include "DxLib.h"
-#include"Title.h"
-#include "main.h"
-#include "PadInput.h"
-#include "player.h"
-#include "resourceLoad.h"
-#include "test.h"
-#include "help.h"
-#include "ranking_name_input.h"
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -34,12 +26,6 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	// DXライブラリの初期化処理
 	if (DxLib_Init() == -1)return -1;
 
-	//画像読み込み関数を呼び出し
-	//if (LoadImages() == -1)return -1;
-
-	//サウンド読み込み関数を呼び出し
-	//if (LoadSounds() == -1)return -1;
-
 	// 描画先画面を裏にする（ダブルバッファリング）
 	SetDrawScreen(DX_SCREEN_BACK);
 
@@ -52,7 +38,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	gGameMode = TITLE;
 
 	// ゲームループ
-	while (ProcessMessage() == 0 && gGameMode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))
+	while (ProcessMessage() == 0)
 	{
 		// 画面の初期化
 		ClearDrawScreen();
@@ -78,7 +64,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		// FPSの表示
 		SetFontSize(16);
-		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());
+		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec", fps, deltaTime);
 
 		// 裏画面の内容を表画面に反映する
 		ScreenFlip();
@@ -103,26 +89,6 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		nextTime += 16;
 		if (nextTime > GetNowCount()) {
 			WaitTimer(nextTime - GetNowCount());
-		}
-
-		//ゲームモードと画面遷移
-		switch (gGameMode){
-		case TITLE:
-			break;
-		case INIT:
-			break;
-		case MAIN:
-			break;
-		case HELP:
-			break;
-		case RESULT:
-			break;
-		case INPUTNAME:
-			break;
-		case RANKING:
-			break;
-		case END:
-			break;
 		}
 	}
 
