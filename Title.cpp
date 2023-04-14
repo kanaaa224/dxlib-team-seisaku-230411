@@ -12,9 +12,18 @@ void DrawTitle() {
 	DrawGraph(0, 0, image.title, TRUE);
 
 	// タイトル表示
-	DrawStringToHandle(400, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
+	DrawStringToHandle(350, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
 
-	// ゲームモードセレクト追加予定
+	// ゲームモードセレクトの項目
+	DrawStringToHandle(630, 350, "スタート", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 400, "ヘルプ", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 450, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 500, "終わる", 0x000000, font.handle_1_32, 0xffffff);
+
+	// ゲームモードセレクトのカーソル
+	DrawStringToHandle(570, 350, "→", 0x000000, font.handle_1_32, 0xffffff);
+
+	// ゲームモードセレクト処理追加予定
 
 	// BGM SE ここに書くか、bgm.cppで画面別に制御させる？
 
