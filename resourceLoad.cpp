@@ -11,6 +11,8 @@ Font font;
 int LoadImages(void)
 {
 	if ((image.title = LoadGraph("Resources/Images/title.png")) == -1) return -1;
+	if ((image.controller = LoadGraph("Resources/Images/controller.png")) == -1) return -1;
+	if ((image.controller_s = LoadGraph("Resources/Images/controller_sokumen.png")) == -1) return -1;
 	//if ((image.apple = LoadGraph("Resources/Images/apple.png")) == -1) return -1;
 	return 0;
 }
@@ -48,3 +50,60 @@ int ResourceLoad(void)
 	}
 	return 0;
 }
+
+
+
+/* old - image.h
+// 作：島袋
+
+
+#pragma once
+#include "DxLib.h"
+
+// 画像用の構造体
+class Image {
+public:
+	int handle;
+	char* filename;
+};
+
+// 画像を読み込む関数のプロトタイプ宣言
+int LoadImage(Image& image, const char* filename);
+
+// 画像を描画する関数のプロトタイプ宣言
+void DrawImage(Image& image, int x, int y);
+
+
+class IMAGE {
+public:
+
+	int Title;
+
+	void print();
+};
+
+// メンバー関数（メソッド）の定義と処理
+// :: はスコープ演算子
+void IMAGE::print() {
+	printf("x : %lf y : %lf\n", x, y);
+};
+*/
+
+/* old - image.cpp
+// 作：島袋
+
+
+#include "image.h"
+
+// 画像を読み込む関数
+int LoadImage(Image& image, const char* filename) {
+	if ((image.handle = LoadGraph(filename)) == -1) return -1;
+	return 0;
+}
+
+// 画像を描画する関数
+void DrawImage(Image& image, int x, int y) {
+	DrawGraph(x, y, image.handle, TRUE);
+}
+
+*/

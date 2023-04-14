@@ -139,14 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="image.cpp" />
+    <ClCompile Include="help.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ranking_name_input.cpp" />
     <ClCompile Include="resourceLoad.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="image.h" />
+    <ClInclude Include="help.h" />
     <ClInclude Include="ranking_name_input.h" />
     <ClInclude Include="resourceLoad.h" />
     <ClInclude Include="test.h" />

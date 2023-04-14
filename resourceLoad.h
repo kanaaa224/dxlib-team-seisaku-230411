@@ -12,6 +12,8 @@ public:
 	int title;
 	int apple;
 	int end;
+	int controller;
+	int controller_s;
 };
 
 class Sound {
