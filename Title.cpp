@@ -2,6 +2,31 @@
 #include"resourceLoad.h"
 
 extern Image image;
+extern Font font;
+
+/********************************
+* タイトル
+********************************/
+void DrawTitle() {
+	// 背景表示
+	DrawGraph(0, 0, image.title, TRUE);
+
+	// タイトル表示
+	DrawStringToHandle(400, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
+
+	// ゲームモードセレクト追加予定
+
+	// BGM SE ここに書くか、bgm.cppで画面別に制御させる？
+
+};
+
+// らいやごめん、、
+
+
+
+
+
+
 
 //int Image;				//背景画像
 
