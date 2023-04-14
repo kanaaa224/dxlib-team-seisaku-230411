@@ -1,7 +1,7 @@
 #pragma once
 
 //ƒQ[ƒ€ƒ‚[ƒhŠÇ—
-enum MODE{
+static enum MODE{
 	TITLE,
 	INIT,
 	MAIN,

@@ -8,26 +8,26 @@ int FPScount = 0;
 void PlayerControll() {
 	Stick = GetStickX();	//スティックの状態取得
 	//右歩き
-	if (Stick > 2000 && Stick < 25000) {
-		player.speed = 5;
+	if (Stick > WALK_RIGHT && Stick < RUN_RIGHT) {
+		player.speed = WALK_SPEED;
 		FPScount = 0;
 	}
 	//左歩き
-	else if (Stick < -2000 && Stick > -25000) {
-		player.speed = -5;
+	else if (Stick < WALK_LEFT && Stick > RUN_LEFT) {
+		player.speed = WALK_SPEED * -1;
 		FPScount = 0;
 	}
 	//右ダッシュ
-	else if (Stick >= 25000) {
+	else if (Stick >= RUN_RIGHT) {
 		if (FPScount < 30) {
-			player.speed += 1;
+			player.speed += SPEED_UP;
 			FPScount++;
 		}
 	}
 	//左ダッシュ
-	else if(Stick <= -25000) {
+	else if(Stick <= RUN_LEFT) {
 		if (FPScount < 30) {
-			player.speed -= 1;
+			player.speed -= SPEED_UP;
 			FPScount++;
 		}
 	}
@@ -37,6 +37,16 @@ void PlayerControll() {
 		FPScount = 0;
 	}
 
-	player.x += player.speed;
+	//プレイヤーの移動制限
+	if (player.x <= MOVE_LEFT_LIMIT) {
+		player.x = MOVE_LEFT_LIMIT;
+	}
+	else if (player.x >= MOVE_RIGHT_LIMIT) {
+		player.x = MOVE_RIGHT_LIMIT;
+	}
+	else{
+		player.x += player.speed;
+	}
+	
 	DrawCircle(player.x, player.y, 15, 0xffffff, TRUE);//(仮)
 }
