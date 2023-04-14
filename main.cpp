@@ -67,7 +67,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		//drawTest();
 		drawHelp();
 
-		DrawTitle();	//タイトル仮
+		//DrawTitle();	//タイトル仮
 
 		// FPSの表示
 		SetFontSize(16);
