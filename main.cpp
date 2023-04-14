@@ -49,6 +49,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	fpsCounter = 0;
 
 	int nextTime;
+	gGameMode = TITLE;
 
 	// ÉQÅ[ÉÄÉãÅ[Év
 	while (ProcessMessage() == 0 && gGameMode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))

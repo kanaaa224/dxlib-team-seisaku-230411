@@ -13,4 +13,4 @@ static enum MODE{
 	EXIT = 99
 };
 
-MODE gGameMode = TITLE;
+MODE gGameMode;
