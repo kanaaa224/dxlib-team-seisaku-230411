@@ -14,6 +14,9 @@ int LoadImages(void)
 	if ((image.controller = LoadGraph("Resources/Images/controller.png")) == -1) return -1;
 	if ((image.controller_s = LoadGraph("Resources/Images/controller_sokumen.png")) == -1) return -1;
 	//if ((image.apple = LoadGraph("Resources/Images/apple.png")) == -1) return -1;
+	//if ((image.player = LoadGraph("Resources/Images/player.png")) == -1) return -1;
+	LoadDivGraph("Resources/Images/apple.png", 20, 5, 4, 700, 620, image.apple);
+	LoadDivGraph("Resources/Images/player.png", 15, 5, 3, 515, 612, image.player);
 	return 0;
 }
 
@@ -32,7 +35,9 @@ int LoadFonts(void)
 		MessageBox(NULL, "フォント読込失敗", "", MB_OK);
 	}
 	if (font.state == 0) {
-		font.handle_1 = CreateFontToHandle("しょかきうたげ（無料版）", 128, 9, DX_FONTTYPE_EDGE);
+		font.handle_1_128 = CreateFontToHandle("しょかきうたげ（無料版）", 128, 9, DX_FONTTYPE_EDGE);
+		font.handle_1_64 = CreateFontToHandle("しょかきうたげ（無料版）", 64, 9, DX_FONTTYPE_EDGE);
+		font.handle_1_32 = CreateFontToHandle("しょかきうたげ（無料版）", 32, 9, DX_FONTTYPE_EDGE);
 		//font.handle_2 = 追加フォントのパス
 		font.state = 1;
 	}

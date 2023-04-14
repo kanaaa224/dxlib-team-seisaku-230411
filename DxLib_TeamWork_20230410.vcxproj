@@ -147,7 +147,7 @@
     <ClCompile Include="ranking_name_input.cpp" />
     <ClCompile Include="resourceLoad.cpp" />
     <ClCompile Include="test.cpp" />
-    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="title.cpp" />
     <ClCompile Include="AppleGn.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +159,7 @@
     <ClInclude Include="ranking_name_input.h" />
     <ClInclude Include="resourceLoad.h" />
     <ClInclude Include="test.h" />
-    <ClInclude Include="Title.h" />
+    <ClInclude Include="title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,4 +2,9 @@
 
 #pragma once
 
-void drawHelp();
+class Help {
+public:
+	int state;
+};
+
+void DrawHelp();

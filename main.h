@@ -1,7 +1,7 @@
 #pragma once
 
 //ÉQÅ[ÉÄÉÇÅ[Éhä«óù
-enum MODE{
+static enum MODE{
 	TITLE,
 	INIT,
 	MAIN,
@@ -13,4 +13,4 @@ enum MODE{
 	EXIT = 99
 };
 
-MODE gGameMode = TITLE;
+MODE gGameMode;
