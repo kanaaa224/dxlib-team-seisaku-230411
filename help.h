@@ -4,7 +4,7 @@
 
 class Help {
 public:
-	int state = 0;
+	int state;
 };
 
-void drawHelp();
+void DrawHelp();
