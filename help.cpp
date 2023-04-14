@@ -7,7 +7,7 @@
 extern Image image;
 extern Font font;
 
-extern Help help;
+Help help;
 
 /********************************
 * ƒwƒ‹ƒv‰æ–Ê•`‰æ
