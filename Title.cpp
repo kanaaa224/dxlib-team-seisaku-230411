@@ -1,48 +1,46 @@
-// ìF“‡‘ÜA‹Êé
+// ä½œï¼šå³¶è¢‹ã€ç‰åŸ
 
 #include "DxLib.h"
 #include <stdlib.h>
-#include"title.h"
-#include"resourceLoad.h"
+#include "title.h"
+#include "resourceLoad.h"
 #include "PadInput.h"
 
 extern Image image;
 extern Font font;
-
-Title title;
 
 int state = 0;
 int selector_prev_value = 0;
 int selector_current_value = 0;
 
 /********************************
-* ƒ^ƒCƒgƒ‹
+* ã‚¿ã‚¤ãƒˆãƒ«
 ********************************/
 void DrawTitle() {
-	// ”wŒi•\¦
+	// èƒŒæ™¯è¡¨ç¤º
 	DrawGraph(0, 0, image.title, TRUE);
 
-	// ƒ^ƒCƒgƒ‹•\¦
-	DrawStringToHandle(350, 150, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, font.handle_1_128, 0xffffff);
+	// ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+	DrawStringToHandle(350, 150, "ã‚Šã‚“ã”ãŠã¨ã—", 0x000000, font.handle_1_128, 0xffffff);
 
-	// ƒQ[ƒ€ƒ‚[ƒhƒZƒŒƒNƒg‚Ì€–Ú
-	DrawStringToHandle(630, 350, "ƒXƒ^[ƒg", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 400, "ƒwƒ‹ƒv", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 450, "ƒ‰ƒ“ƒLƒ“ƒO", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 500, "I‚í‚é", 0x000000, font.handle_1_32, 0xffffff);
+	// ã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒ¬ã‚¯ãƒˆã®é …ç›®
+	DrawStringToHandle(630, 350, "ã‚¹ã‚¿ãƒ¼ãƒˆ", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 400, "ãƒ˜ãƒ«ãƒ—", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 450, "ãƒ©ãƒ³ã‚­ãƒ³ã‚°", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 500, "çµ‚ã‚ã‚‹", 0x000000, font.handle_1_32, 0xffffff);
 
-	// ƒQ[ƒ€ƒ‚[ƒhƒZƒŒƒNƒg‚ÌƒJ[ƒ\ƒ‹ˆ—
+	// ã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒ¬ã‚¯ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«å‡¦ç†
 	if (title.state == 0) {
-		DrawStringToHandle(570, 350, "¨", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(570, 350, "â†’", 0x000000, font.handle_1_32, 0xffffff);
 	}
 	else if (title.state == 1) {
-		DrawStringToHandle(570, 400, "¨", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(570, 400, "â†’", 0x000000, font.handle_1_32, 0xffffff);
 	}
 	else if (title.state == 2) {
-		DrawStringToHandle(570, 450, "¨", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(570, 450, "â†’", 0x000000, font.handle_1_32, 0xffffff);
 	}
 	else if (title.state == 3) {
-		DrawStringToHandle(570, 500, "¨", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(570, 500, "â†’", 0x000000, font.handle_1_32, 0xffffff);
 	};
 
 
@@ -75,9 +73,9 @@ void DrawTitle() {
 		selector_prev_value = abs(GetStickY());
 	};
 
-	// ƒQ[ƒ€ƒ‚[ƒhƒZƒŒƒNƒgˆ—
+	// ã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒ¬ã‚¯ãƒˆå‡¦ç†
 
-	// BGM SE ‚±‚±‚É‘‚­‚©Abgm.cpp‚Å‰æ–Ê•Ê‚É§Œä‚³‚¹‚éH
+	// BGM SE ã“ã“ã«æ›¸ãã‹ã€bgm.cppã§ç”»é¢åˆ¥ã«åˆ¶å¾¡ã•ã›ã‚‹ï¼Ÿ
 
 };
 
@@ -99,7 +97,7 @@ void DrawTitle() {
 
 
 
-// ‚ç‚¢‚â‚²‚ß‚ñAA
+// ã‚‰ã„ã‚„ã”ã‚ã‚“ã€ã€
 
 
 
@@ -107,27 +105,27 @@ void DrawTitle() {
 
 
 
-//int Image;				//”wŒi‰æ‘œ
+//int Image;				//èƒŒæ™¯ç”»åƒ
 
-int SoundTitle;			//ƒ^ƒCƒgƒ‹‚Ì‰¹Šy
-int SoundMoveCorsor;	//ƒJ[ƒ\ƒ‹ˆÚ“®‚ÌŒø‰Ê‰¹
-int	SoundDecision;		//Œˆ’è‚ÌŒø‰Ê‰¹
+//int SoundTitle;			//ã‚¿ã‚¤ãƒˆãƒ«ã®éŸ³æ¥½
+//int SoundMoveCorsor;	//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã®åŠ¹æœéŸ³
+//int	SoundDecision;		//æ±ºå®šã®åŠ¹æœéŸ³
 
 //int LoadImages(void)
 //{
 //	if ((Image = LoadGraph("images/TitleImage.png")) == -1)return -1;
 //}
-int FontHandle;
+//int FontHandle;
 
 //int LoadImages(void)
 //{
-//	LPCSTR font_path = "Resources/font/‚µ‚å‚©‚«‚¤‚½‚°i–³—¿”Åj.ttf"; // “Ç‚İ‚ŞƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹‚ÌƒpƒX
+//	LPCSTR font_path = "Resources/font/ã—ã‚‡ã‹ãã†ãŸã’ï¼ˆç„¡æ–™ç‰ˆï¼‰.ttf"; // èª­ã¿è¾¼ã‚€ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
 //
 //	if (AddFontResourceEx(font_path, FR_PRIVATE, NULL) > 0) {
 //	}
 //	else {
-//		// ƒtƒHƒ“ƒg“ÇƒGƒ‰[ˆ—
-//		MessageBox(NULL, "ƒtƒHƒ“ƒg“Ç¸”s", "", MB_OK);
+//		// ãƒ•ã‚©ãƒ³ãƒˆèª­è¾¼ã‚¨ãƒ©ãƒ¼å‡¦ç†
+//		MessageBox(NULL, "ãƒ•ã‚©ãƒ³ãƒˆèª­è¾¼å¤±æ•—", "", MB_OK);
 //	}
 //
 //	//if ((Image = LoadGraph("images/TitleImage.png")) == -1)return -1;
@@ -143,16 +141,16 @@ int FontHandle;
 //void DrawTitle(void)
 //{
 //
-//	//FontHandle= CreateFontToHandle("‚µ‚å‚©‚«‚¤‚½‚°i–³—¿”Åj", 128,9 , DX_FONTTYPE_EDGE);
+//	//FontHandle= CreateFontToHandle("ã—ã‚‡ã‹ãã†ãŸã’ï¼ˆç„¡æ–™ç‰ˆï¼‰", 128,9 , DX_FONTTYPE_EDGE);
 //
 //	//DrawGraph(0, 0, Image, TRUE);
 //
-//	///*ChangeFont("‚µ‚å‚©‚«‚¤‚½‚°i–³—¿”Åj");
+//	///*ChangeFont("ã—ã‚‡ã‹ãã†ãŸã’ï¼ˆç„¡æ–™ç‰ˆï¼‰");
 //	//ChangeFontType(DX_FONTTYPE_EDGE);
 //	//SetFontSize(128);
-//	//DrawString(340, 140, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, 0xffffff);*/
+//	//DrawString(340, 140, "ã‚Šã‚“ã”ãŠã¨ã—", 0x000000, 0xffffff);*/
 //
-//	//DrawStringToHandle(340, 140, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, FontHandle, 0xffffff);
+//	//DrawStringToHandle(340, 140, "ã‚Šã‚“ã”ãŠã¨ã—", 0x000000, FontHandle, 0xffffff);
 //	//	
 //
 //	//DrawGraph(0, 0, image.title, FALSE);
