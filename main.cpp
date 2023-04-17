@@ -8,6 +8,7 @@
 #include "help.h"
 #include "ranking.h"
 #include "ranking_name_input.h"
+#include"End.h"
 
 Game game;
 
