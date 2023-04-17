@@ -1,9 +1,9 @@
 #include "DxLib.h"
-#include"Title.h"
+#include "resourceLoad.h"
 #include "main.h"
 #include "PadInput.h"
 #include "player.h"
-#include "resourceLoad.h"
+#include "title.h"
 #include "test.h"
 #include "help.h"
 #include "ranking_name_input.h"
@@ -65,13 +65,16 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		if (ResourceLoad() == -1) return -1;
 
 		// テストで、画像やフォント表示（島袋）
-		//DrawTest();
+		DrawTest();
 
 		// ヘルプ画面（島袋）
 		//DrawHelp();
 
+		// ranking画面（島袋）
+		//DrawRankingNameInput();
+
 		// タイトル
-		DrawTitle();	//仮
+		//DrawTitle();	//仮
 
 		// プレイヤー開始
 		//PlayerControll();
