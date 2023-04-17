@@ -31,5 +31,8 @@ void DrawRanking() {
     if (CheckHitKey(KEY_INPUT_ESCAPE)) {
         game.mode = TITLE;
     };
+
+    // ファイル読み込み対応
+    // パッド対応
 };
 
