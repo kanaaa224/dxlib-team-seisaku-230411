@@ -1,9 +1,13 @@
 #include"DxLib.h"
+#include"resourceLoad.h"
 #include"PadInput.h"
 #include"player.h"
 
+
 int Stick;
 int FPScount = 0;
+extern Image image;
+int FPS = 0;
 
 void PlayerControll() {
 	Stick = GetStickX();	//スティックの状態取得
@@ -13,22 +17,38 @@ void PlayerControll() {
 	//右歩き
 	if (Stick > WALK_RIGHT && Stick < RUN_RIGHT) {
 		if (PlayerLimit(player.x) == 0) {
-			player.speed = WALK_SPEED;
+			if (player.speed != WALK_SPEED) {
+				player.speed += 1;
+			}
+			else{
+				player.speed = WALK_SPEED;
+			}
 		}
 		FPScount = 0;
 	}
 	//左歩き
 	else if (Stick < WALK_LEFT && Stick > RUN_LEFT) {
 		if (PlayerLimit(player.x) == 0) {
-			player.speed = WALK_SPEED * -1;
+			if (player.speed != WALK_SPEED * -1) {
+				player.speed -= 1;
+			}
+			else {
+				player.speed = WALK_SPEED * -1;
+			}
+			
 		}
 		FPScount = 0;
 	}
 	//右ダッシュ
 	else if (Stick >= RUN_RIGHT) {
 		if (PlayerLimit(player.x) == 0) {
-			if (FPScount < 30) {
-				player.speed += SPEED_UP;
+			if (player.speed < 5) {
+				player.speed += 1;
+			}
+			else {
+				if (FPScount < 20 && FPScount % 2 == 0) {
+					player.speed += SPEED_UP;
+				}
 				FPScount++;
 			}
 		}
@@ -42,10 +62,16 @@ void PlayerControll() {
 	//左ダッシュ
 	else if(Stick <= RUN_LEFT) {
 		if (PlayerLimit(player.x) == 0) {
-			if (FPScount < 30) {
-				player.speed -= SPEED_UP;
+			if (player.speed > -5 ) {
+				player.speed -= 1;
+			}
+			else {
+				if (FPScount < 20 && FPScount % 2 == 0) {
+					player.speed -= SPEED_UP;
+				}
 				FPScount++;
 			}
+			
 		}
 	}
 	//立ち止まり
@@ -68,6 +94,9 @@ void PlayerControll() {
 	
 	DrawFormatString(100, 200, 0xffffff, "%d", player.x);
 	DrawCircle(player.x, player.y, 15, 0xffffff, TRUE);//(仮)
+	//DrawRotaGraph(player.x, player.y, 0.45f, 0,image.player[5] , TRUE, FALSE);
+	DrawFormatString(390, 30, 0xffffff, "%d", player.x);
+	DrawFormatString(390, 60, 0xffffff, "%f", player.speed);
 }
 
 int PlayerLimit(int x) {
@@ -84,6 +113,35 @@ int PlayerLimit(int x) {
 	}
 	else {
 		player.x += player.speed;
+		
 		return 0;
 	}
+}
+
+void DrawPlayer() {
+	if (player.speed > 0 && player.speed < 11 && player.x != 1000) {
+		//DrawGraph(player.x, player.y, image.player[5],TRUE);
+		if ((FPS / 20) % 2 == 0) {
+			DrawRotaGraph(player.x - 8, player.y, 0.45f, 0, image.player[5], TRUE, FALSE);
+		}
+		else{
+			DrawRotaGraph(player.x - 8, player.y, 0.45f, 0, image.player[6], TRUE, FALSE);
+		}
+	}
+	else if (player.speed > 10 && player.x != 1000) {
+		//DrawGraph(player.x, player.y, image.player[8], TRUE);
+		DrawRotaGraph(player.x + 40, player.y, 0.45f, 0, image.player[8], TRUE, FALSE);
+	}
+	else if (player.speed < 0 && player.speed > -11 && player.x != 10) {
+		//DrawGraph(player.x, player.y, image.player[5],TRUE);
+		DrawRotaGraph(player.x + 8, player.y, 0.45f, 0, image.player[5], TRUE, TRUE);
+	}
+	else if (player.speed < -10 && player.x != 10) {
+		//DrawGraph(player.x, player.y, image.player[8], TRUE);
+		DrawRotaGraph(player.x - 40, player.y, 0.45f, 0, image.player[8], TRUE, TRUE);
+	}
+	else {
+		DrawRotaGraph(player.x, player.y - 30, 0.45f, 0, image.player[1], TRUE, FALSE);
+	}
+	FPS++;
 }

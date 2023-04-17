@@ -6,7 +6,7 @@
 #define RUN_LEFT -25000
 #define MOVE_LEFT_LIMIT 10
 #define MOVE_RIGHT_LIMIT 1000
-#define WALK_SPEED 5
+#define WALK_SPEED 2
 #define SPEED_UP 1
 
 struct PLAYER
@@ -14,10 +14,11 @@ struct PLAYER
 	int flg;
 	int x=600;
 	int y=600;
-	int speed=0;
+	float speed = 0;
 };
 
 static struct PLAYER player;
 
 void PlayerControll(void);
 int PlayerLimit(int x);
+void DrawPlayer();
