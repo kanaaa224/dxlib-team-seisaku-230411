@@ -2,9 +2,12 @@
 
 #include "DxLib.h"
 #include "resourceLoad.h"
+#include "main.h"
 
 extern Image image;
 extern Font font;
+
+extern Game game;
 
 /********************************
 * テスト
@@ -18,6 +21,10 @@ void DrawTest() {
 
 	DrawRotaGraph(100, 150, 0.5f, 0, image.player[0], TRUE);
 	DrawRotaGraph(150, 400, 0.5f, 0, image.apple[0], TRUE);
+
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		game.mode = TITLE;
+	};
 
 	/*
 	ChangeFont("しょかきうたげ（無料版）");

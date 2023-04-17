@@ -7,4 +7,4 @@ public:
 	int state = 0;
 };
 
-void drawHelp();
+void DrawHelp();

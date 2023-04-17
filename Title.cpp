@@ -2,18 +2,17 @@
 
 #include "DxLib.h"
 #include <stdlib.h>
-#include"title.h"
-#include"resourceLoad.h"
+#include "title.h"
+#include "resourceLoad.h"
 #include "PadInput.h"
+#include "main.h"
 
 extern Image image;
 extern Font font;
 
-Title title;
+extern Game game;
 
-int state = 0;
-int selector_prev_value = 0;
-int selector_current_value = 0;
+Title title;
 
 /********************************
 * タイトル
@@ -31,6 +30,9 @@ void DrawTitle() {
 	DrawStringToHandle(630, 450, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
 	DrawStringToHandle(630, 500, "終わる", 0x000000, font.handle_1_32, 0xffffff);
 
+	DrawStringToHandle(300, 600, "スティック操作対応に修正予定・スペースで決定", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(500, 640, "Tキーでりそーすテスト", 0x000000, font.handle_1_32, 0xffffff);
+
 	// ゲームモードセレクトのカーソル処理
 	if (title.state == 0) {
 		DrawStringToHandle(570, 350, "→", 0x000000, font.handle_1_32, 0xffffff);
@@ -46,6 +48,43 @@ void DrawTitle() {
 	};
 
 
+	if (CheckHitKey(KEY_INPUT_DOWN)) {
+		if (title.state >= 3) {
+			title.state = 0;
+		}
+		else {
+			title.state += 1;
+		};
+	};
+
+	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		if (title.state == 0) {
+			// スタート選択
+			game.mode = MAIN;
+		}
+		else if (title.state == 1) {
+			// ヘルプ選択
+			game.mode = HELP;
+		}
+		else if (title.state == 2) {
+			// ランキング選択
+			game.mode = RANKING;
+		}
+		else if (title.state == 3) {
+			// 終わる選択
+			game.mode = END;
+		};
+	};
+
+	if (CheckHitKey(KEY_INPUT_T)) {
+		game.mode = TEST;
+	};
+
+
+
+
+
+
 	//if ((selector_current_value = GetStickY()) <= -32000) { //CheckHitKey(KEY_INPUT_M) != 0
 	//	
 
@@ -59,21 +98,21 @@ void DrawTitle() {
 	//	};
 	//};
 
-	if ((selector_current_value = GetStickY()) <= -32000) { //CheckHitKey(KEY_INPUT_M) != 0
-		selector_current_value = abs(selector_current_value);
+	//if ((title.selector_current_value = GetStickY()) <= -32000) { //CheckHitKey(KEY_INPUT_M) != 0
+	//	title.selector_current_value = abs(title.selector_current_value);
 
-		if (selector_current_value - selector_prev_value > 1) {
-			
+	//	if (title.selector_current_value - title.selector_prev_value > 1) {
+	//		
 
-			if (title.state >= 3) {
-				title.state = 0;
-			}
-			else {
-				title.state += 1;
-			};
-		};
-		selector_prev_value = abs(GetStickY());
-	};
+	//		if (title.state >= 3) {
+	//			title.state = 0;
+	//		}
+	//		else {
+	//			title.state += 1;
+	//		};
+	//	};
+	//	title.selector_prev_value = abs(GetStickY());
+	//};
 
 	// ゲームモードセレクト処理
 
@@ -109,15 +148,15 @@ void DrawTitle() {
 
 //int Image;				//背景画像
 
-int SoundTitle;			//タイトルの音楽
-int SoundMoveCorsor;	//カーソル移動の効果音
-int	SoundDecision;		//決定の効果音
+//int SoundTitle;			//タイトルの音楽
+//int SoundMoveCorsor;	//カーソル移動の効果音
+//int	SoundDecision;		//決定の効果音
 
 //int LoadImages(void)
 //{
 //	if ((Image = LoadGraph("images/TitleImage.png")) == -1)return -1;
 //}
-int FontHandle;
+//int FontHandle;
 
 //int LoadImages(void)
 //{

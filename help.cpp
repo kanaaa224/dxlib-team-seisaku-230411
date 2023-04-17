@@ -3,16 +3,19 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
 #include "help.h"
+#include "main.h"
 
 extern Image image;
 extern Font font;
+
+extern Game game;
 
 Help help;
 
 /********************************
 * ヘルプ画面描画
 ********************************/
-void drawHelp() {
+void DrawHelp() {
 	// 背景表示
 	DrawGraph(0, 0, image.title, TRUE);
 
@@ -25,6 +28,7 @@ void drawHelp() {
 
 	// タイトル表示
 	DrawStringToHandle(340, 140, "操作説明", 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(340, 200, "esc de title", 0x000000, font.handle_1_32, 0xffffff);
 
 	if (help.state == 0) {
 		// コントローラーのヘルプ表示
@@ -39,5 +43,7 @@ void drawHelp() {
 		SetFontSize(10);
 	}
 
-	
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		game.mode = TITLE;
+	};
 };
