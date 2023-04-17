@@ -128,7 +128,10 @@ void DrawPlayer() {
 			}
 		}
 		if (i == 7) {
-			DrawRotaGraph(player.x +30, player.y, 0.45f, 0, image.player[i], TRUE, FALSE);
+			DrawRotaGraph(player.x - 8, player.y, 0.13f, 0, image.player[15], TRUE, FALSE);
+		}
+		else if (i == 6) {
+			DrawRotaGraph(player.x + 30, player.y, 0.45f, 0, image.player[i], TRUE, FALSE);
 		}
 		else {
 			DrawRotaGraph(player.x - 8, player.y, 0.45f, 0, image.player[i], TRUE, FALSE);

@@ -17,6 +17,7 @@ int LoadImages(void)
 	//if ((image.player = LoadGraph("Resources/Images/player.png")) == -1) return -1;
 	LoadDivGraph("Resources/Images/apple.png", 20, 5, 4, 700, 620, image.apple);
 	LoadDivGraph("Resources/Images/player.png", 15, 5, 3, 515, 612, image.player);
+	image.player[15] = LoadGraph("Resources/Images/human.png");
 	return 0;
 }
 
