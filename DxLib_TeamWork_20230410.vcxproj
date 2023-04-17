@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="End.cpp" />
     <ClCompile Include="help.cpp" />
     <ClCompile Include="FallApple.cpp" />
     <ClCompile Include="PadInput.cpp" />
@@ -152,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
+    <ClInclude Include="End.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="PadInput.h" />
     <ClInclude Include="player.h" />

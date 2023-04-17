@@ -7,6 +7,7 @@
 #include "test.h"
 #include "help.h"
 #include "ranking_name_input.h"
+#include"End.h"
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -65,9 +66,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数
 		if (ResourceLoad() == -1) return -1;
 		// テストで、他のcppファイルで宣言された画像表示の関数を実行(test.cpp
-		DrawTest();
+		//DrawTest();
 		//drawHelp();
-
+		//DrawEnd();
 		//DrawTitle();	//タイトル仮
 
 		// FPSの表示
