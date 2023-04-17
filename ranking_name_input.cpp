@@ -8,9 +8,12 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
 #include "ranking_name_input.h"
+#include "main.h"
 
 extern Image image;
 extern Font font;
+
+extern Game game;
 
 /********************************
 * ランキング入力処理
@@ -19,6 +22,10 @@ void DrawRankingNameInput() {
     DrawGraph(0, 0, image.title, TRUE);
 
     DrawStringToHandle(340, 140, "ランキング入力", 0x000000, font.handle_1_32, 0xffffff);
+
+    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+        game.mode = TITLE;
+    };
 };
 
 
