@@ -25,10 +25,10 @@ void DrawTitle() {
 	DrawStringToHandle(350, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
 
 	// ゲームモードセレクトの項目
-	DrawStringToHandle(630, 350, "スタート", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 400, "ヘルプ", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 450, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 500, "終わる", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 350, "1.スタート", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 400, "2.ヘルプ", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 450, "3.ランキング", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 500, "4.終わる", 0x000000, font.handle_1_32, 0xffffff);
 
 	DrawStringToHandle(300, 600, "スティック操作対応に修正予定・スペースで決定", 0x000000, font.handle_1_32, 0xffffff);
 	DrawStringToHandle(500, 640, "Tキーでりそーすテスト", 0x000000, font.handle_1_32, 0xffffff);
@@ -48,13 +48,23 @@ void DrawTitle() {
 	};
 
 
-	if (CheckHitKey(KEY_INPUT_DOWN)) {
-		if (title.state >= 3) {
-			title.state = 0;
-		}
-		else {
-			title.state += 1;
-		};
+	//if (CheckHitKey(KEY_INPUT_DOWN)) {
+	//	if (title.state >= 3) {
+	//		title.state = 0;
+	//	}
+	//	else {
+	//		title.state += 1;
+	//	};
+	//};
+
+	if (CheckHitKey(KEY_INPUT_1)) {
+		title.state = 0;
+	} else if (CheckHitKey(KEY_INPUT_2)) {
+		title.state = 1;
+	} else if (CheckHitKey(KEY_INPUT_3)) {
+		title.state = 2;
+	} else if (CheckHitKey(KEY_INPUT_4)) {
+		title.state = 3;
 	};
 
 	if (CheckHitKey(KEY_INPUT_SPACE)) {

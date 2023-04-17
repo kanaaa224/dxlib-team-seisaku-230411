@@ -12,6 +12,7 @@
     <ClCompile Include="title.cpp" />
     <ClCompile Include="AppleGn.cpp" />
     <ClCompile Include="ranking.cpp" />
+    <ClCompile Include="end.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
@@ -33,6 +34,7 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClInclude Include="ranking.h" />
+    <ClInclude Include="end.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PadInput.cpp">

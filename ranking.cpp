@@ -19,15 +19,19 @@ extern Game game;
 * ランキング
 ********************************/
 void DrawRanking() {
+    // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
+
     DrawStringToHandle(340, 140, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
     DrawStringToHandle(340, 180, "rでランキング入力画面へ", 0x000000, font.handle_1_32, 0xffffff);
     DrawStringToHandle(340, 220, "escでtitleへ", 0x000000, font.handle_1_32, 0xffffff);
 
+    // 仮
     if (CheckHitKey(KEY_INPUT_R)) {
         game.mode = INPUTNAME;
     };
 
+    // 仮
     if (CheckHitKey(KEY_INPUT_ESCAPE)) {
         game.mode = TITLE;
     };
