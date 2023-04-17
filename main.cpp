@@ -1,9 +1,9 @@
 #include "DxLib.h"
+#include "resourceLoad.h"
 #include"Title.h"
 #include "main.h"
 #include "PadInput.h"
 #include "player.h"
-#include "resourceLoad.h"
 #include "test.h"
 #include "help.h"
 #include "ranking_name_input.h"
@@ -76,7 +76,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());
 
 		PlayerControll();
-
+		DrawPlayer();
+		
 		// — ‰æ–Ê‚Ì“à—e‚ð•\‰æ–Ê‚É”½‰f‚·‚é
 		ScreenFlip();
 
