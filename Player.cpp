@@ -32,6 +32,12 @@ void PlayerControll() {
 				FPScount++;
 			}
 		}
+		if (player.x > MOVE_RIGHT_LIMIT) {
+			//立ち止まりのアニメーション
+		}
+		else {
+			//走るアニメーション
+		}
 	}
 	//左ダッシュ
 	else if(Stick <= RUN_LEFT) {
@@ -44,8 +50,19 @@ void PlayerControll() {
 	}
 	//立ち止まり
 	else{
-		player.speed = 0;
-		FPScount = 0;
+		if (PlayerLimit(player.x) == 0) {
+			//慣性
+			if (player.speed != 0 && player.speed > 0) {
+				player.speed--;
+			}
+			else if (player.speed != 0 && player.speed < 0) {
+				player.speed++;
+			}
+			else {
+				player.speed = 0;
+				FPScount = 0;
+			}
+		}
 	}
 
 	
@@ -61,7 +78,7 @@ int PlayerLimit(int x) {
 		return 1;
 	}
 	else if (player.x > MOVE_RIGHT_LIMIT) {
-		player.speed=0;
+		player.speed = 0;
 		player.x = 1000;
 		return 1;
 	}
