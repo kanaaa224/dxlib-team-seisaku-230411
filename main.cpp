@@ -1,12 +1,15 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
-#include"Title.h"
 #include "main.h"
 #include "PadInput.h"
 #include "player.h"
+#include "title.h"
 #include "test.h"
 #include "help.h"
+#include "ranking.h"
 #include "ranking_name_input.h"
+
+Game game;
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -49,10 +52,10 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	fpsCounter = 0;
 
 	int nextTime;
-	gGameMode = TITLE;
+	game.mode = TITLE;
 
 	// ゲームループ
-	while (ProcessMessage() == 0 && gGameMode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))
+	while (ProcessMessage() == 0 && game.mode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))
 	{
 		// 画面の初期化
 		ClearDrawScreen();
@@ -61,14 +64,43 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		//コントローラーのMODEを押すと左スティックと十字ボタンの入力が逆になる
 		InputController();
 
-		// testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-		// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数
+		// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
 		if (ResourceLoad() == -1) return -1;
-		// テストで、他のcppファイルで宣言された画像表示の関数を実行(test.cpp
-		DrawTest();
-		//drawHelp();
 
-		//DrawTitle();	//タイトル仮
+		//ゲームモードと画面遷移
+		switch (game.mode) {
+		case TITLE:
+			// タイトル
+			DrawTitle(); // 仮
+			break;
+		case INIT:
+			break;
+		case MAIN:
+			// プレイヤー開始
+			PlayerControll();
+			break;
+		case HELP:
+			// ヘルプ画面（島袋）
+			DrawHelp();
+			break;
+		case RESULT:
+			break;
+		case INPUTNAME:
+			// ランキング入力画面（島袋）
+			DrawRankingNameInput();
+			break;
+		case RANKING:
+			// ranking画面（島袋）
+			DrawRanking();
+			break;
+		case END:
+			game.mode = EXIT;
+			break;
+		case TEST:
+			// テストで、画像やフォント表示（島袋）
+			DrawTest();
+			break;
+		}
 
 		// FPSの表示
 		SetFontSize(16);
@@ -100,26 +132,6 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		nextTime += 16;
 		if (nextTime > GetNowCount()) {
 			WaitTimer(nextTime - GetNowCount());
-		}
-
-		//ゲームモードと画面遷移
-		switch (gGameMode){
-		case TITLE:
-			break;
-		case INIT:
-			break;
-		case MAIN:
-			break;
-		case HELP:
-			break;
-		case RESULT:
-			break;
-		case INPUTNAME:
-			break;
-		case RANKING:
-			break;
-		case END:
-			break;
 		}
 	}
 

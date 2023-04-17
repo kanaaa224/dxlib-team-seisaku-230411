@@ -9,11 +9,11 @@
     <ClCompile Include="ranking_name_input.cpp" />
     <ClCompile Include="resourceLoad.cpp" />
     <ClCompile Include="test.cpp" />
-    <ClCompile Include="Title.cpp" />
-    <ClCompile Include="リンゴ生成.cpp" />
+    <ClCompile Include="title.cpp" />
+    <ClCompile Include="AppleGn.cpp" />
+    <ClCompile Include="ranking.cpp" />
   </ItemGroup>
   <ItemGroup>
-
     <ClInclude Include="Apple.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="PadInput.h" />
@@ -22,8 +22,7 @@
     <ClInclude Include="ranking_name_input.h" />
     <ClInclude Include="resourceLoad.h" />
     <ClInclude Include="test.h" />
-    <ClInclude Include="Title.h" />
-
+    <ClInclude Include="title.h" />
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -33,9 +32,7 @@
     <ClCompile Include="Title.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="AppleGn.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
+    <ClInclude Include="ranking.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PadInput.cpp">
@@ -64,9 +61,6 @@
     <ClInclude Include="player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ranking_name_input.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -82,6 +76,5 @@
     <ClInclude Include="Title.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-
   </ItemGroup>
 </Project>

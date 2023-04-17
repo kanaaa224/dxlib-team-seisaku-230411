@@ -2,7 +2,7 @@
 
 #pragma once
 
-void drawRanking();
+void DrawRankingNameInput();
 
 /*
 
