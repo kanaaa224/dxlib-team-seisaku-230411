@@ -148,13 +148,7 @@ void DrawTitle() {
 
 
 
-// らいやごめん、、
-
-
-
-
-
-
+// ごめん、、
 
 //int Image;				//背景画像
 
@@ -186,8 +180,6 @@ void DrawTitle() {
 //{
 //
 //}
-
-
 
 //void DrawTitle(void)
 //{
