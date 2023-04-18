@@ -142,6 +142,7 @@
     <ClCompile Include="end.cpp" />
     <ClCompile Include="help.cpp" />
     <ClCompile Include="FallApple.cpp" />
+    <ClCompile Include="init.cpp" />
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="Apple.h" />
     <ClInclude Include="end.h" />
+    <ClInclude Include="init.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="PadInput.h" />
     <ClInclude Include="player.h" />

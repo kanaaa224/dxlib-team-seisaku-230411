@@ -70,7 +70,7 @@ void DrawTitle() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (title.state == 0) {
 			// スタート選択
-			game.mode = MAIN;
+			game.mode = INIT;
 		}
 		else if (title.state == 1) {
 			// ヘルプ選択

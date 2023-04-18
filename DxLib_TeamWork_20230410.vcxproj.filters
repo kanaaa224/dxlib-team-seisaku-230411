@@ -16,6 +16,7 @@
 
     <ClCompile Include="ranking.cpp" />
     <ClCompile Include="end.cpp" />
+    <ClCompile Include="init.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
@@ -41,6 +42,7 @@
 
     <ClInclude Include="ranking.h" />
     <ClInclude Include="end.h" />
+    <ClInclude Include="init.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PadInput.cpp">
