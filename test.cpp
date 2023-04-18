@@ -22,6 +22,9 @@ void DrawTest() {
 	DrawRotaGraph(100, 150, 0.5f, 0, image.player[0], TRUE);
 	DrawRotaGraph(150, 400, 0.5f, 0, image.apple[0], TRUE);
 
+	// 戻る表示
+	DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;
 	};

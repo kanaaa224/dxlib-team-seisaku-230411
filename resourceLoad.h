@@ -11,7 +11,7 @@ class Image {
 public:
 	int title;
 	int apple[20];
-	int player[15];
+	int player[16];
 	int end;
 	int controller;
 	int controller_s;

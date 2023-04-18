@@ -10,10 +10,10 @@
     <ClCompile Include="resourceLoad.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="title.cpp" />
-    <ClCompile Include="AppleGn.cpp" />
     <ClCompile Include="ranking.cpp" />
     <ClCompile Include="end.cpp" />
     <ClCompile Include="init.cpp" />
+    <ClCompile Include="result.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
@@ -37,6 +37,7 @@
     <ClInclude Include="ranking.h" />
     <ClInclude Include="end.h" />
     <ClInclude Include="init.h" />
+    <ClInclude Include="result.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PadInput.cpp">

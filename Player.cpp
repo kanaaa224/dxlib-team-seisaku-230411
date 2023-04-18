@@ -117,15 +117,24 @@ int PlayerLimit(int x) {
 		return 0;
 	}
 }
-
+int i = 5;
 void DrawPlayer() {
 	if (player.speed > 0 && player.speed < 11 && player.x != 1000) {
 		//DrawGraph(player.x, player.y, image.player[5],TRUE);
-		if ((FPS / 20) % 2 == 0) {
-			DrawRotaGraph(player.x - 8, player.y, 0.45f, 0, image.player[5], TRUE, FALSE);
+		if (FPS % 10 == 0) {
+			i++;
+			if (i > 7) {
+				i = 5;
+			}
 		}
-		else{
-			DrawRotaGraph(player.x - 8, player.y, 0.45f, 0, image.player[6], TRUE, FALSE);
+		if (i == 7) {
+			DrawRotaGraph(player.x - 8, player.y, 0.13f, 0, image.player[15], TRUE, FALSE);
+		}
+		else if (i == 6) {
+			DrawRotaGraph(player.x + 30, player.y, 0.45f, 0, image.player[i], TRUE, FALSE);
+		}
+		else {
+			DrawRotaGraph(player.x - 8, player.y, 0.45f, 0, image.player[i], TRUE, FALSE);
 		}
 	}
 	else if (player.speed > 10 && player.x != 1000) {

@@ -10,6 +10,10 @@
 #include "ranking_name_input.h"
 #include "end.h"
 #include "init.h"
+#include "result.h"
+
+extern Image image;
+extern Font font;
 
 Game game;
 
@@ -38,12 +42,6 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 	// DXライブラリの初期化処理
 	if (DxLib_Init() == -1)return -1;
-
-	//画像読み込み関数を呼び出し
-	//if (LoadImages() == -1)return -1;
-
-	//サウンド読み込み関数を呼び出し
-	//if (LoadSounds() == -1)return -1;
 
 	// 描画先画面を裏にする（ダブルバッファリング）
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -77,17 +75,29 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawTitle(); // 仮
 			break;
 		case INIT:
+			// ゲーム初期化
 			GameInit();
 			break;
 		case MAIN:
+			// 背景表示
+			DrawGraph(0, 0, image.title, TRUE);
+			DrawStringToHandle(340, 140, "r de リザルト画面", 0x000000, font.handle_1_32, 0xffffff);
+			// Space でリザルト
+			if (CheckHitKey(KEY_INPUT_R)) {
+				game.mode = RESULT;
+			};
+
 			// プレイヤー開始
 			PlayerControll();
+			DrawPlayer();
 			break;
 		case HELP:
 			// ヘルプ画面（島袋）
 			DrawHelp();
 			break;
 		case RESULT:
+			// リザルト画面
+			DrawResult();
 			break;
 		case INPUTNAME:
 			// ランキング入力画面（島袋）
