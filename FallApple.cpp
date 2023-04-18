@@ -1,2 +1,4 @@
 #include "DxLib.h"
 
+//test
+
