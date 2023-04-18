@@ -10,8 +10,10 @@
 #include "ranking_name_input.h"
 #include "end.h"
 #include "init.h"
+#include "result.h"
 
 extern Image image;
+extern Font font;
 
 Game game;
 
@@ -73,11 +75,18 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawTitle(); // 仮
 			break;
 		case INIT:
+			// ゲーム初期化
 			GameInit();
 			break;
 		case MAIN:
 			// 背景表示
 			DrawGraph(0, 0, image.title, TRUE);
+			DrawStringToHandle(340, 140, "r de リザルト画面", 0x000000, font.handle_1_32, 0xffffff);
+			// Space でリザルト
+			if (CheckHitKey(KEY_INPUT_R)) {
+				game.mode = RESULT;
+			};
+
 			// プレイヤー開始
 			PlayerControll();
 			DrawPlayer();
@@ -87,6 +96,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawHelp();
 			break;
 		case RESULT:
+			// リザルト画面
+			DrawResult();
 			break;
 		case INPUTNAME:
 			// ランキング入力画面（島袋）
