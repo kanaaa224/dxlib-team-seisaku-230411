@@ -9,6 +9,7 @@
 #include "ranking.h"
 #include "ranking_name_input.h"
 #include "end.h"
+#include "init.h"
 
 Game game;
 
@@ -76,6 +77,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawTitle(); // 仮
 			break;
 		case INIT:
+			GameInit();
 			break;
 		case MAIN:
 			// プレイヤー開始

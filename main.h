@@ -15,7 +15,7 @@
 class Game {
 public:
 	//char mode[10] = "TITLE";
-	int mode = 3;
+	int mode = 0;
 };
 
 
