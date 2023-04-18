@@ -10,10 +10,7 @@
     <ClCompile Include="resourceLoad.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="title.cpp" />
-
     <ClCompile Include="End.cpp" />
-
-
     <ClCompile Include="ranking.cpp" />
     <ClCompile Include="end.cpp" />
     <ClCompile Include="init.cpp" />
@@ -32,15 +29,10 @@
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="FallApple.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Title.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-
     <ClInclude Include="End.h" />
-
     <ClInclude Include="ranking.h" />
     <ClInclude Include="end.h" />
     <ClInclude Include="init.h" />
