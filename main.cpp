@@ -11,6 +11,8 @@
 #include "end.h"
 #include "init.h"
 
+extern Image image;
+
 Game game;
 
 // プログラムの開始
@@ -74,8 +76,11 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			GameInit();
 			break;
 		case MAIN:
+			// 背景表示
+			DrawGraph(0, 0, image.title, TRUE);
 			// プレイヤー開始
 			PlayerControll();
+			DrawPlayer();
 			break;
 		case HELP:
 			// ヘルプ画面（島袋）
@@ -104,9 +109,6 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		// FPSの表示
 		SetFontSize(16);
 		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());
-
-		PlayerControll();
-		DrawPlayer();
 		
 		// 裏画面の内容を表画面に反映する
 		ScreenFlip();
