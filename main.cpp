@@ -8,7 +8,7 @@
 #include "help.h"
 #include "ranking.h"
 #include "ranking_name_input.h"
-#include"End.h"
+#include "end.h"
 
 Game game;
 
@@ -38,12 +38,6 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	// DXライブラリの初期化処理
 	if (DxLib_Init() == -1)return -1;
 
-	//画像読み込み関数を呼び出し
-	//if (LoadImages() == -1)return -1;
-
-	//サウンド読み込み関数を呼び出し
-	//if (LoadSounds() == -1)return -1;
-
 	// 描画先画面を裏にする（ダブルバッファリング）
 	SetDrawScreen(DX_SCREEN_BACK);
 
@@ -53,7 +47,11 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	fpsCounter = 0;
 
 	int nextTime;
-	game.mode = TITLE;
+
+	//game.mode = TITLE;
+
+	// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
+	if (ResourceLoad() == -1) return -1;
 
 	// ゲームループ
 	while (ProcessMessage() == 0 && game.mode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))
@@ -64,9 +62,6 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		//コントローラーの入力を取得
 		//コントローラーのMODEを押すと左スティックと十字ボタンの入力が逆になる
 		InputController();
-
-		// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
-		if (ResourceLoad() == -1) return -1;
 
 		//ゲームモードと画面遷移
 		switch (game.mode) {
@@ -95,7 +90,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawRanking();
 			break;
 		case END:
-			game.mode = EXIT;
+			// エンド画面
+			DrawEnd();
 			break;
 		case TEST:
 			// テストで、画像やフォント表示（島袋）

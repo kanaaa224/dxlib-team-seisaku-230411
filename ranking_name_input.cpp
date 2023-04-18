@@ -19,10 +19,12 @@ extern Game game;
 * ランキング入力処理
 ********************************/
 void DrawRankingNameInput() {
+    // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
     DrawStringToHandle(340, 140, "ランキング入力", 0x000000, font.handle_1_32, 0xffffff);
 
+    // 仮
     if (CheckHitKey(KEY_INPUT_ESCAPE)) {
         game.mode = TITLE;
     };
