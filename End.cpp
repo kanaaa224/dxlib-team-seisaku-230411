@@ -26,7 +26,8 @@ void DrawEnd() {
 	DrawStringToHandle(10, 320, "リンゴ画像：AAA様", 0x000000, font.handle_1_32, 0xffffff);
 	DrawStringToHandle(10, 360, "フォント：AAA様", 0x000000, font.handle_1_32, 0xffffff);
 
-	DrawStringToHandle(520, 670, "ESC キーで閉じる", 0x000000, font.handle_1_32, 0xffffff);
+	// 戻る表示
+	DrawStringToHandle(420, 670, "ESCキーまたはBボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = EXIT;

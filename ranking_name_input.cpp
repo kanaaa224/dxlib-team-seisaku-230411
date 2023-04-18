@@ -24,6 +24,9 @@ void DrawRankingNameInput() {
 
     DrawStringToHandle(340, 140, "ランキング入力", 0x000000, font.handle_1_32, 0xffffff);
 
+    // 戻る表示
+    DrawStringToHandle(420, 670, "ESCキーまたはBボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+
     // 仮
     if (CheckHitKey(KEY_INPUT_ESCAPE)) {
         game.mode = TITLE;
