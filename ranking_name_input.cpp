@@ -1,24 +1,33 @@
 // 作：島袋
 
-#include "DxLib.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #define RANKING_DATA 5
 #include <stdio.h>
-//#include "image.h"
+
+#include "DxLib.h"
 #include "resourceLoad.h"
 #include "ranking_name_input.h"
+#include "main.h"
 
 extern Image image;
 extern Font font;
 
+extern Game game;
+
 /********************************
 * ランキング入力処理
 ********************************/
-void drawRanking() {
+void DrawRankingNameInput() {
+    // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
-    DrawStringToHandle(340, 140, "りんごおとし", 0x000000, font.handle_1_32, 0xffffff);
+    DrawStringToHandle(340, 140, "ランキング入力", 0x000000, font.handle_1_32, 0xffffff);
+
+    // 仮
+    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+        game.mode = TITLE;
+    };
 };
 
 
