@@ -15,6 +15,8 @@
     <ClCompile Include="end.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="result.cpp" />
+    <ClCompile Include="FallApple.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
@@ -29,9 +31,6 @@
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="FallApple.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Title.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -40,6 +39,7 @@
     <ClInclude Include="end.h" />
     <ClInclude Include="init.h" />
     <ClInclude Include="result.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PadInput.cpp">

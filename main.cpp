@@ -11,6 +11,7 @@
 #include "end.h"
 #include "init.h"
 #include "result.h"
+#include"UI.h"
 
 extern Image image;
 extern Font font;
@@ -90,6 +91,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// プレイヤー開始
 			PlayerControll();
 			DrawPlayer();
+			DrawUserInterFace();
 			break;
 		case HELP:
 			// ヘルプ画面（島袋）
