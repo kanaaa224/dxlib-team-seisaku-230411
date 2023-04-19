@@ -48,8 +48,7 @@ void FallApple(void)
 			//DrawFormatString(100, 0, 0xffffff, "X:%3d", gApple[i].x);
 
 			//リンゴの表示
-			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.25, 0, gApple[i].img, TRUE);
-
+			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.19, 0, gApple[i].img, TRUE);
 
 			//真っすぐ下に移動
 			gApple[i].y += gApple[i].speed;
@@ -112,7 +111,7 @@ int CreateApple(void)
 		if (gApple[i].flg == FALSE) {
 			gApple[i].img = AppleImg;						//リンゴの画像
 			gApple[i].x = 70 + (GetRand(6) * 130);	//りんごのレーン決定
-			gApple[i].y = -100;								//リンゴの初期Y座標
+			gApple[i].y = -150;								//リンゴの初期Y座標
 			AppleSpeed(i);								//リンゴの速度
 			//成功
 			return gApple[i].flg = TRUE;
@@ -189,10 +188,10 @@ int HitBoxPlayer(void) {
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
-			sx1[i] = gApple[i].x - 31;	//左上 X
-			sy1[i] = gApple[i].y - 60;	//左上 Y
-			sx2[i] = gApple[i].x + 31;	//右下 X
-			sy2[i] = gApple[i].y + 60;	//右下 Y
+			sx1[i] = gApple[i].x - 51;	//左上 X
+			sy1[i] = gApple[i].y - 50;	//左上 Y
+			sx2[i] = gApple[i].x + 51;	//右下 X
+			sy2[i] = gApple[i].y + 50;	//右下 Y
 		}
 	}
 
