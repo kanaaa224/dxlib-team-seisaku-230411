@@ -48,7 +48,7 @@ void FallApple(void)
 			//DrawFormatString(100, 0, 0xffffff, "X:%3d", gApple[i].x);
 
 			//リンゴの表示
-			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.25, 0, image.apple[i], TRUE);
+			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.25, 0, gApple[i].img, TRUE);
 
 
 			//真っすぐ下に移動
@@ -75,7 +75,7 @@ void FallApple(void)
 
 	//gNowTime = GetNowCount();
 
-	if ((gFPSCount) % 25 == 0) {//２５フレームごとに生成されるりんごの数をチェック
+	if ((gFPSCount++) % 25 == 0) {//２５フレームごとに生成されるりんごの数をチェック
 		CreateApple();
 		HitBox();
 	}
@@ -163,7 +163,7 @@ int HitBox(void)
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
 			for (int j = 0; j < 10; j++) {
-				if (image.apple[i] == image.apple[j]) {
+				if (gApple[i].img == gApple[j].img) {
 					if (sx1[i] == sx1[j] && sx2[j] == sx2[i] && sy1[i] < sy1[j] && sy1[j] < sy2[i]) {
 						gApple[j].flg = FALSE;	//削除
 					}

@@ -16,7 +16,7 @@
 /************************************************
 *　構造体
 ************************************************/
-struct APPLE {
+static struct APPLE {
 	int flg;			//使用フラグ
 	int img;			//画像
 	double x, y, w, h;	//座標、幅、高さ
@@ -24,7 +24,7 @@ struct APPLE {
 	int point;			//スコア加算ポイント
 };
 
-struct APPLE gApple[10];
+static struct APPLE gApple[10];
 
 //プロトタイプ宣言
 //int LoadImges(void);		//画像読込
