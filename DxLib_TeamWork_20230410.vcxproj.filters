@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="help.cpp" />
-    <ClCompile Include="FallApple.cpp" />
+    <ClCompile Include="Apple.cpp" />
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -10,6 +10,7 @@
     <ClCompile Include="resourceLoad.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="title.cpp" />
+    <ClCompile Include="End.cpp" />
     <ClCompile Include="ranking.cpp" />
     <ClCompile Include="end.cpp" />
     <ClCompile Include="init.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="Title.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClInclude Include="End.h" />
     <ClInclude Include="ranking.h" />
     <ClInclude Include="end.h" />
     <ClInclude Include="init.h" />

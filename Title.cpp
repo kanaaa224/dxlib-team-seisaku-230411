@@ -14,6 +14,9 @@ extern Game game;
 
 Title title;
 
+int y;
+int stickflg = 0;
+
 /********************************
 * タイトル
 ********************************/
@@ -128,6 +131,31 @@ void DrawTitle() {
 
 	// BGM SE ここに書くか、bgm.cppで画面別に制御させる？
 
+	//タイトルスティック操作対応済み
+	if (y = (GetStickY()) > 32000 && stickflg == 0) {
+		if (title.state <= 0) {
+			title.state = 3;
+		}
+		else {
+			title.state -= 1;
+		}
+		stickflg = 1;
+	}
+	else if(y = (GetStickY()) < -32000 && stickflg == 0) {
+		if (title.state >= 3) {
+			title.state = 0;
+		}
+		else {
+			title.state += 1;
+		}
+		stickflg = 1;
+	}
+
+	if (y = (GetStickY()) < 1200 && stickflg == 1) {
+		if (y = (GetStickY()) > -1200) {
+			stickflg = 0;
+		}
+	}
 };
 
 
