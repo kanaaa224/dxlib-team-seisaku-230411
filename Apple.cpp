@@ -111,7 +111,7 @@ int CreateApple(void)
 		if (gApple[i].flg == FALSE) {
 			gApple[i].img = AppleImg;						//リンゴの画像
 			gApple[i].x = 70 + (GetRand(6) * 130);	//りんごのレーン決定
-			gApple[i].y = -150;								//リンゴの初期Y座標
+			gApple[i].y = -120;								//リンゴの初期Y座標
 			AppleSpeed(i);								//リンゴの速度
 			//成功
 			return gApple[i].flg = TRUE;
