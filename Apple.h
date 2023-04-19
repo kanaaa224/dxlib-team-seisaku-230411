@@ -27,7 +27,7 @@ struct APPLE {
 struct APPLE gApple[10];
 
 //プロトタイプ宣言
-int LoadImges(void);		//画像読込
+//int LoadImges(void);		//画像読込
 void FallApple(void);		//リンゴ落下処理
 int CreateApple(void);		//リンゴ生成
 void AppleSpeed(int i);		//りんごの速度

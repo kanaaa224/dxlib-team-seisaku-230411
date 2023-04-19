@@ -6,10 +6,11 @@
 #include "Apple.h"
 #include "resourceLoad.h"
 
+extern Image image;
 /************************************************
 *　変数の宣言（グローバル変数）
 ************************************************/
-int gAppleImg[20];		//りんごの画像変数
+//int gAppleImg[20];		//りんごの画像変数
 int gP;					//りんごの確率
 
 int gOldTime;			//前時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
@@ -26,11 +27,11 @@ const int APPLE_MAX = 10;
 /************************************************
 *　画像読込
 ************************************************/
-int LoadImges(void)
-{
-	//りんご画像データの分割読み込み
-	if (LoadDivGraph("images/Apple.png", 20, 5, 4, 700, 620, gAppleImg) == -1)return -1;
-}
+//int LoadImges(void)
+//{
+//	//りんご画像データの分割読み込み
+//	if (LoadDivGraph("images/Apple.png", 20, 5, 4, 700, 620, gAppleImg) == -1)return -1;
+//}
 
 /************************************************
 *　リンゴ落下処理
@@ -47,7 +48,7 @@ void FallApple(void)
 			//DrawFormatString(100, 0, 0xffffff, "X:%3d", gApple[i].x);
 
 			//リンゴの表示
-			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.25, 0, gApple[i].img, TRUE);
+			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.25, 0, image.apple[i], TRUE);
 
 
 			//真っすぐ下に移動
@@ -90,21 +91,21 @@ int CreateApple(void)
 	//りんご確率
 	gP = 0;
 
-	int AppleImg = gAppleImg[0];
+	int AppleImg = image.apple[0];
 
 	gP = GetRand(99);//100%
 
 	if (gP < 59) {
-		AppleImg = gAppleImg[REDAPPLE];//赤リンゴ
+		AppleImg = image.apple[REDAPPLE];//赤リンゴ
 	}
 	else if (gP >= 60 && gP < 84) {
-		AppleImg = gAppleImg[BULEAPPLE];//青リンゴ
+		AppleImg = image.apple[BULEAPPLE];//青リンゴ
 	}
 	else if (gP >= 85 && gP < 94) {
-		AppleImg = gAppleImg[GOLDAPPLE];//金リンゴ
+		AppleImg = image.apple[GOLDAPPLE];//金リンゴ
 	}
 	else if (gP >= 95 && gP < 99) {
-		AppleImg = gAppleImg[POISONAPPLE];//毒リンゴ
+		AppleImg = image.apple[POISONAPPLE];//毒リンゴ
 	}
 
 	for (int i = 0; i < APPLE_MAX; i++) {
@@ -162,7 +163,7 @@ int HitBox(void)
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
 			for (int j = 0; j < 10; j++) {
-				if (gApple[i].img == gApple[j].img) {
+				if (image.apple[i] == image.apple[j]) {
 					if (sx1[i] == sx1[j] && sx2[j] == sx2[i] && sy1[i] < sy1[j] && sy1[j] < sy2[i]) {
 						gApple[j].flg = FALSE;	//削除
 					}
