@@ -4,32 +4,34 @@
 #define APPLE_H
 
 //マクロ定義
-#define APPLE_MAX 10; //リンゴの画面内の最大数
+#define REDAPPLE 0
+#define BULEAPPLE 3
+#define GOLDAPPLE 4
+#define POISONAPPLE 12
+
+#define LINE_NUM 7
 
 //型定義
 
-struct Apple
-{
+/************************************************
+*　構造体
+************************************************/
+struct APPLE {
 	int flg;			//使用フラグ
-	int type;			//タイプ
 	int img;			//画像
-	int x, y, w, h;		//座標、幅、高さ
-	int speed;			//移動速度
+	double x, y, w, h;	//座標、幅、高さ
+	double speed;		//移動速度
 	int point;			//スコア加算ポイント
 };
 
-typedef enum
-{
-	Apple_ID_Red = 0,
-	Apple_ID_Blue,
-	Apple_ID_Gold,
-	Apple_ID_Poison,
-	//-----------------------------
-	E_Apple_ID_END,//番兵
-}Apple_ID;
+struct APPLE gApple[10];
 
 //プロトタイプ宣言
-int CreateApple(void);	//リンゴ生成処理
-int FallAplle(void);	//リンゴ落下処理
+//int LoadImges(void);		//画像読込
+void FallApple(void);		//リンゴ落下処理
+int CreateApple(void);		//リンゴ生成
+void AppleSpeed(int i);		//りんごの速度
+void AppleInit(void);		//リンゴの変数の初期化
+int HitBox(void);
 
 #endif
