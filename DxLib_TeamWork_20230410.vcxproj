@@ -142,10 +142,12 @@
     <ClCompile Include="end.cpp" />
     <ClCompile Include="help.cpp" />
 
+
     <ClCompile Include="FallApple.cpp" />
     <ClCompile Include="init.cpp" />
 
     <ClCompile Include="Apple.cpp" />
+
 
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="main.cpp" />
