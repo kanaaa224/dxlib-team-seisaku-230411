@@ -120,6 +120,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		// FPS‚Ì•\Ž¦
 		SetFontSize(16);
 		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());
+
+		PlayerControll();
+		DrawPlayer();
 		
 		// — ‰æ–Ê‚Ì“à—e‚ð•\‰æ–Ê‚É”½‰f‚·‚é
 		ScreenFlip();
