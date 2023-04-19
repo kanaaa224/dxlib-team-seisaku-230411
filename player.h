@@ -22,4 +22,5 @@ static struct PLAYER player;
 void PlayerControll(void);
 int PlayerLimit(int x);
 void DrawPlayer();
-int HitBoxPlayer(void);
+int ReturnPlayerX();
+int ReturnPlayerY();
