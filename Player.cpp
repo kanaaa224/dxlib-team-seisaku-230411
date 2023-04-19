@@ -2,7 +2,7 @@
 #include"resourceLoad.h"
 #include"PadInput.h"
 #include"player.h"
-
+#include"Apple.h"
 
 int Stick;
 int FPScount = 0;
@@ -153,4 +153,36 @@ void DrawPlayer() {
 		DrawRotaGraph(player.x, player.y - 30, 0.45f, 0, image.player[1], TRUE, FALSE);
 	}
 	FPS++;
+	HitBoxPlayer();
+}
+
+int HitBoxPlayer(void) {
+	int sx1[10];
+	int sy1[10];
+	int sx2[10];
+	int sy2[10];
+
+	int px1;
+	int py1;
+	int px2;
+	int py2;
+
+	for (int i = 0; i < 10; i++) {
+		if (gApple[i].flg == TRUE) {
+			sx1[i] = gApple[i].x - 31;	//¶ã X
+			sy1[i] = gApple[i].y - 60;	//¶ã Y
+			sx2[i] = gApple[i].x + 31;	//‰E‰º X
+			sy2[i] = gApple[i].y + 60;	//‰E‰º Y
+		}
+	}
+
+	px1 = player.x - 30;
+	py1 = player.y - 30;
+	px2 = player.x + 30;
+	py2 = player.y + 30;
+
+	DrawBox(px1, py1, px2, py2, 0xffffff, TRUE);
+
+
+	return 0;
 }

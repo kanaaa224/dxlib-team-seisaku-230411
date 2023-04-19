@@ -172,6 +172,12 @@ int HitBox(void)
 		}
 	}
 
+	for (int i = 0; i < 10; i++) {
+		if (gApple[i].flg == TRUE) {
+			DrawBox(sx1[i], sy1[i], sx2[i], sy2[i], 0xffffff, TRUE);
+		}
+	}
+
 	return 0;
 
 }
