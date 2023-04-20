@@ -6,18 +6,26 @@
 #include "Apple.h"
 #include "resourceLoad.h"
 #include "player.h"
-extern Image image;
+
 /************************************************
 *　変数の宣言（グローバル変数）
 ************************************************/
-//int gAppleImg[20];		//りんごの画像変数
+//int gAppleImg[20];	//りんごの画像変数
 int gP;					//りんごの確率
 
 int gOldTime;			//前時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
 int gNowTime;			//後時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
 int gTimeFlg = FALSE;	//時間計測用の変数
 
-int gFPSCount;
+int gFPSCount = 0;
+
+int RACount = 0;	//赤りんごの個数
+int BACount = 0;	//青りんごの個数
+int GACount = 0;	//金りんごの個数
+int PACount = 0;	//毒りんごの個数
+int gScore = 0;		//スコア
+
+extern Image image;		//りんごの画像変数
 
 /************************************************
 *　定数の宣言
@@ -211,9 +219,10 @@ int HitBoxPlayer(void) {
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
-			
+
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
 				gApple[i].flg = FALSE;	//削除
+				ApplePoint(i);
 			}
 
 			
@@ -222,8 +231,39 @@ int HitBoxPlayer(void) {
 			}*/
 		}
 	}
-
-
+	
+	SetFontSize(16);
+	DrawFormatString(0, 100, 0xffffff, "Score:%d", gScore);
+	DrawFormatString(0, 120, 0xffffff, "RED:%d", RACount);
+	DrawFormatString(0, 140, 0xffffff, "BULE:%d", BACount);
+	DrawFormatString(0, 160, 0xffffff, "GOLD:%d", GACount);
+	DrawFormatString(0, 180, 0xffffff, "POISON:%d", PACount);
 
 	return 0;
+}
+
+/************************************************
+*　りんごのスコア処理
+************************************************/
+void ApplePoint(int i)
+{
+	if (gApple[i].img == image.apple[REDAPPLE]) {//赤りんご
+		gScore += 100;
+		RACount += 1;
+	}
+	if (gApple[i].img == image.apple[BULEAPPLE]) {//青りんご
+		gScore += 200;
+		BACount += 1;
+	}
+	if (gApple[i].img == image.apple[GOLDAPPLE]) {//金りんご
+		gScore += 500;
+		GACount += 1;
+	}
+	if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんご
+		gScore -= 750;
+		PACount += 1;
+		if (gScore < 0) {
+			gScore = 0;
+		}
+	}
 }

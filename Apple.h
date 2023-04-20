@@ -34,5 +34,6 @@ void AppleSpeed(int i);		//りんごの速度
 void AppleInit(void);		//リンゴの変数の初期化
 int HitBox(void);
 int HitBoxPlayer(void);
+void ApplePoint(int i);		//りんごのスコア処理
 
 #endif
