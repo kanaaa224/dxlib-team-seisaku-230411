@@ -19,10 +19,10 @@ int gTimeFlg = FALSE;	//ŽžŠÔŒv‘ª—p‚Ì•Ï”
 
 int gFPSCount = 0;
 
-int RACount = 0;	//Ô‚è‚ñ‚²‚ÌŒÂ”
-int BACount = 0;	//Â‚è‚ñ‚²‚ÌŒÂ”
-int GACount = 0;	//‹à‚è‚ñ‚²‚ÌŒÂ”
-int PACount = 0;	//“Å‚è‚ñ‚²‚ÌŒÂ”
+int gRACount = 0;	//Ô‚è‚ñ‚²‚ÌŒÂ”
+int gBACount = 0;	//Â‚è‚ñ‚²‚ÌŒÂ”
+int gGACount = 0;	//‹à‚è‚ñ‚²‚ÌŒÂ”
+int gPACount = 0;	//“Å‚è‚ñ‚²‚ÌŒÂ”
 int gScore = 0;		//ƒXƒRƒA
 
 extern Image image;		//‚è‚ñ‚²‚Ì‰æ‘œ•Ï”
@@ -106,7 +106,7 @@ int CreateApple(void)
 		AppleImg = image.apple[REDAPPLE];//ÔƒŠƒ“ƒS
 	}
 	else if (gP >= 60 && gP < 84) {
-		AppleImg = image.apple[BULEAPPLE];//ÂƒŠƒ“ƒS
+		AppleImg = image.apple[BLUEAPPLE];//ÂƒŠƒ“ƒS
 	}
 	else if (gP >= 85 && gP < 94) {
 		AppleImg = image.apple[GOLDAPPLE];//‹àƒŠƒ“ƒS
@@ -234,10 +234,10 @@ int HitBoxPlayer(void) {
 	
 	SetFontSize(16);
 	DrawFormatString(0, 100, 0xffffff, "Score:%d", gScore);
-	DrawFormatString(0, 120, 0xffffff, "RED:%d", RACount);
-	DrawFormatString(0, 140, 0xffffff, "BULE:%d", BACount);
-	DrawFormatString(0, 160, 0xffffff, "GOLD:%d", GACount);
-	DrawFormatString(0, 180, 0xffffff, "POISON:%d", PACount);
+	DrawFormatString(0, 120, 0xffffff, "RED:%d", gRACount);
+	DrawFormatString(0, 140, 0xffffff, "BULE:%d", gBACount);
+	DrawFormatString(0, 160, 0xffffff, "GOLD:%d", gGACount);
+	DrawFormatString(0, 180, 0xffffff, "POISON:%d", gPACount);
 
 	return 0;
 }
@@ -249,19 +249,19 @@ void ApplePoint(int i)
 {
 	if (gApple[i].img == image.apple[REDAPPLE]) {//Ô‚è‚ñ‚²
 		gScore += 100;
-		RACount += 1;
+		gRACount += 1;
 	}
-	if (gApple[i].img == image.apple[BULEAPPLE]) {//Â‚è‚ñ‚²
+	if (gApple[i].img == image.apple[BLUEAPPLE]) {//Â‚è‚ñ‚²
 		gScore += 200;
-		BACount += 1;
+		gBACount += 1;
 	}
 	if (gApple[i].img == image.apple[GOLDAPPLE]) {//‹à‚è‚ñ‚²
 		gScore += 500;
-		GACount += 1;
+		gGACount += 1;
 	}
 	if (gApple[i].img == image.apple[POISONAPPLE]) {//“Å‚è‚ñ‚²
 		gScore -= 750;
-		PACount += 1;
+		gPACount += 1;
 		if (gScore < 0) {
 			gScore = 0;
 		}

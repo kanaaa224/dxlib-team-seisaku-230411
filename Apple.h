@@ -5,7 +5,7 @@
 
 //É}ÉNÉçíËã`
 #define REDAPPLE 0
-#define BULEAPPLE 3
+#define BLUEAPPLE 3
 #define GOLDAPPLE 4
 #define POISONAPPLE 12
 
