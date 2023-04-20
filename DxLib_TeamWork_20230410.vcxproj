@@ -141,14 +141,9 @@
   <ItemGroup>
     <ClCompile Include="end.cpp" />
     <ClCompile Include="help.cpp" />
-
-
     <ClCompile Include="FallApple.cpp" />
     <ClCompile Include="init.cpp" />
-
     <ClCompile Include="Apple.cpp" />
-
-
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -158,6 +153,7 @@
     <ClCompile Include="result.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="title.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
@@ -173,6 +169,7 @@
     <ClInclude Include="result.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="title.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
