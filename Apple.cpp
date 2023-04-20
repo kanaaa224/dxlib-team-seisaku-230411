@@ -119,8 +119,10 @@ int CreateApple(void)
 		if (gApple[i].flg == FALSE) {
 			gApple[i].img = AppleImg;				//ƒŠƒ“ƒS‚Ì‰æ‘œ
 			gApple[i].x = 70 + (GetRand(6) * 130);	//‚è‚ñ‚²‚ÌƒŒ[ƒ“Œˆ’è
+
 			gApple[i].y = -150;						//ƒŠƒ“ƒS‚Ì‰ŠúYÀ•W
 			AppleSpeed(i);							//ƒŠƒ“ƒS‚Ì‘¬“x
+
 			//¬Œ÷
 			return gApple[i].flg = TRUE;
 		}
