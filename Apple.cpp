@@ -197,11 +197,21 @@ int HitBoxPlayer(void) {
 	int py2;
 
 	for (int i = 0; i < 10; i++) {
-		if (gApple[i].flg == TRUE) {
-			sx1[i] = gApple[i].x - 51;	//左上 X
-			sy1[i] = gApple[i].y - 50;	//左上 Y
-			sx2[i] = gApple[i].x + 51;	//右下 X
-			sy2[i] = gApple[i].y + 50;	//右下 Y
+		if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんごの当たり判定
+			if (gApple[i].flg == TRUE) {
+				sx1[i] = gApple[i].x - 40;	//左上 X
+				sy1[i] = gApple[i].y - 37;	//左上 Y
+				sx2[i] = gApple[i].x + 40;	//右下 X
+				sy2[i] = gApple[i].y + 37;	//右下 Y
+			}
+		}
+		else {											//それ以外の当たり判定
+			if (gApple[i].flg == TRUE) {
+				sx1[i] = gApple[i].x - 55;	//左上 X
+				sy1[i] = gApple[i].y - 52;	//左上 Y
+				sx2[i] = gApple[i].x + 55;	//右下 X
+				sy2[i] = gApple[i].y + 52;	//右下 Y
+			}
 		}
 	}
 
@@ -224,7 +234,7 @@ int HitBoxPlayer(void) {
 
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
 				gApple[i].flg = FALSE;	//削除
-				ApplePoint(i);
+				ApplePoint(i);//スコア処理
 			}
 
 			
@@ -237,7 +247,7 @@ int HitBoxPlayer(void) {
 	SetFontSize(16);
 	DrawFormatString(0, 100, 0xffffff, "Score:%d", gScore);
 	DrawFormatString(0, 120, 0xffffff, "RED:%d", gRACount);
-	DrawFormatString(0, 140, 0xffffff, "BULE:%d", gBACount);
+	DrawFormatString(0, 140, 0xffffff, "BLUE:%d", gBACount);
 	DrawFormatString(0, 160, 0xffffff, "GOLD:%d", gGACount);
 	DrawFormatString(0, 180, 0xffffff, "POISON:%d", gPACount);
 
