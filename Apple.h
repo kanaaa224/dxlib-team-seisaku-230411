@@ -33,5 +33,6 @@ int CreateApple(void);		//ƒŠƒ“ƒS¶¬
 void AppleSpeed(int i);		//‚è‚ñ‚²‚Ì‘¬“x
 void AppleInit(void);		//ƒŠƒ“ƒS‚Ì•Ï”‚Ì‰Šú‰»
 int HitBox(void);
+int HitBoxPlayer(void);
 
 #endif

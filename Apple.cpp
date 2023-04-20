@@ -5,7 +5,7 @@
 #include "DxLib.h"
 #include "Apple.h"
 #include "resourceLoad.h"
-
+#include "player.h"
 extern Image image;
 /************************************************
 *　変数の宣言（グローバル変数）
@@ -48,8 +48,7 @@ void FallApple(void)
 			//DrawFormatString(100, 0, 0xffffff, "X:%3d", gApple[i].x);
 
 			//リンゴの表示
-			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.25, 0, gApple[i].img, TRUE);
-
+			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.19, 0, gApple[i].img, TRUE);
 
 			//真っすぐ下に移動
 			gApple[i].y += gApple[i].speed;
@@ -112,7 +111,7 @@ int CreateApple(void)
 		if (gApple[i].flg == FALSE) {
 			gApple[i].img = AppleImg;						//リンゴの画像
 			gApple[i].x = 70 + (GetRand(6) * 130);	//りんごのレーン決定
-			gApple[i].y = -100;								//リンゴの初期Y座標
+			gApple[i].y = -120;								//リンゴの初期Y座標
 			AppleSpeed(i);								//リンゴの速度
 			//成功
 			return gApple[i].flg = TRUE;
@@ -174,4 +173,57 @@ int HitBox(void)
 
 	return 0;
 
+}
+
+int HitBoxPlayer(void) {
+	int sx1[10];
+	int sy1[10];
+	int sx2[10];
+	int sy2[10];
+
+	int px1;
+	int py1;
+	int px2;
+	int py2;
+
+	for (int i = 0; i < 10; i++) {
+		if (gApple[i].flg == TRUE) {
+			sx1[i] = gApple[i].x - 51;	//左上 X
+			sy1[i] = gApple[i].y - 50;	//左上 Y
+			sx2[i] = gApple[i].x + 51;	//右下 X
+			sy2[i] = gApple[i].y + 50;	//右下 Y
+		}
+	}
+
+	px1 = ReturnPlayerX() - 30;
+	py1 = ReturnPlayerY() - 30;
+	px2 = ReturnPlayerX() + 30;
+	py2 = ReturnPlayerY() + 30;
+
+	DrawBox(px1, py1, px2, py2, 0xffffff, TRUE);
+
+	for (int i = 0; i < 10; i++) {
+		if (gApple[i].flg == TRUE) {
+			DrawBox(sx1[i], sy1[i], sx2[i], sy2[i], 0xffffff, TRUE);
+		}
+		DrawFormatString(390, 100, 0xffffff, "%d", sy1[i]);
+	}
+
+	for (int i = 0; i < 10; i++) {
+		if (gApple[i].flg == TRUE) {
+			
+			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
+				gApple[i].flg = FALSE;	//削除
+			}
+
+			
+			/*if (py1 < sy2[i]) {
+				gApple[i].flg = FALSE;
+			}*/
+		}
+	}
+
+
+
+	return 0;
 }
