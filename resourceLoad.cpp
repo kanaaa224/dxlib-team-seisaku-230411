@@ -1,7 +1,7 @@
 // ìF“‡‘Ü
 
-#include "resourceLoad.h"
 #include "DxLib.h"
+#include "resourceLoad.h"
 
 Resourceload resourceload;
 Image image;

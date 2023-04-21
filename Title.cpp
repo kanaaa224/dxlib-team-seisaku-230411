@@ -1,18 +1,17 @@
 // 作：島袋、玉城
 
 #include "DxLib.h"
-#include <stdlib.h>
-#include "title.h"
 #include "resourceLoad.h"
-#include "PadInput.h"
+
 #include "main.h"
+#include "PadInput.h"
 
 extern Image image;
 extern Font font;
 
 extern Game game;
 
-Title title;
+int title_state = 0;
 
 int title_selectstate;
 int title_stickflg = 0;
@@ -37,16 +36,16 @@ void DrawTitle() {
 	//DrawStringToHandle(500, 640, "Tキーでりそーすテスト", 0x000000, font.handle_1_32, 0xffffff);
 
 	// ゲームモードセレクトのカーソル処理
-	if (title.state == 0) {
+	if (title_state == 0) {
 		DrawStringToHandle(570, 350, "→", 0x000000, font.handle_1_32, 0xffffff);
 	}
-	else if (title.state == 1) {
+	else if (title_state == 1) {
 		DrawStringToHandle(570, 400, "→", 0x000000, font.handle_1_32, 0xffffff);
 	}
-	else if (title.state == 2) {
+	else if (title_state == 2) {
 		DrawStringToHandle(570, 450, "→", 0x000000, font.handle_1_32, 0xffffff);
 	}
-	else if (title.state == 3) {
+	else if (title_state == 3) {
 		DrawStringToHandle(570, 500, "→", 0x000000, font.handle_1_32, 0xffffff);
 	};
 
@@ -55,20 +54,20 @@ void DrawTitle() {
 	********************************/
 	// コントローラー入力
 	if (title_selectstate = GetStickY() > 32000 && title_stickflg == 0) {
-		if (title.state <= 0) {
-			title.state = 3;
+		if (title_state <= 0) {
+			title_state = 3;
 		}
 		else {
-			title.state -= 1;
+			title_state -= 1;
 		};
 		title_stickflg = 1;
 	}
 	else if (title_selectstate = GetStickY() < -32000 && title_stickflg == 0) {
-		if (title.state >= 3) {
-			title.state = 0;
+		if (title_state >= 3) {
+			title_state = 0;
 		}
 		else {
-			title.state += 1;
+			title_state += 1;
 		};
 		title_stickflg = 1;
 	};
@@ -80,19 +79,19 @@ void DrawTitle() {
 	};
 	// Bボタンで選択
 	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
-		if (title.state == 0) {
+		if (title_state == 0) {
 			// スタート選択
 			game.mode = INIT;
 		}
-		else if (title.state == 1) {
+		else if (title_state == 1) {
 			// ヘルプ選択
 			game.mode = HELP;
 		}
-		else if (title.state == 2) {
+		else if (title_state == 2) {
 			// ランキング選択
 			game.mode = RANKING;
 		}
-		else if (title.state == 3) {
+		else if (title_state == 3) {
 			// 終わる選択
 			game.mode = END;
 		};
@@ -100,28 +99,28 @@ void DrawTitle() {
 
 	// キーボード入力対応
 	if (CheckHitKey(KEY_INPUT_1)) {
-		title.state = 0;
+		title_state = 0;
 	} else if (CheckHitKey(KEY_INPUT_2)) {
-		title.state = 1;
+		title_state = 1;
 	} else if (CheckHitKey(KEY_INPUT_3)) {
-		title.state = 2;
+		title_state = 2;
 	} else if (CheckHitKey(KEY_INPUT_4)) {
-		title.state = 3;
+		title_state = 3;
 	};
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
-		if (title.state == 0) {
+		if (title_state == 0) {
 			// スタート選択
 			game.mode = INIT;
 		}
-		else if (title.state == 1) {
+		else if (title_state == 1) {
 			// ヘルプ選択
 			game.mode = HELP;
 		}
-		else if (title.state == 2) {
+		else if (title_state == 2) {
 			// ランキング選択
 			game.mode = RANKING;
 		}
-		else if (title.state == 3) {
+		else if (title_state == 3) {
 			// 終わる選択
 			game.mode = END;
 		};
