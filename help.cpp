@@ -96,9 +96,9 @@ void DrawHelp() {
 		DrawStringToHandle(720, 560, "毒リンゴ：ポイントマイナス", 0x000000, font.handle_1_32, 0xffffff);
 	};
 
-	// 説明表示切替
-	
-
+	/********************************
+	* 説明表示切替
+	********************************/
 	// コントローラー入力
 	if (help_selectstate = GetStickX() > 32000 && help_stickflg == 0) {
 		help.state = 1;

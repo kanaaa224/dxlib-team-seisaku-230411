@@ -50,7 +50,10 @@ void DrawTitle() {
 		DrawStringToHandle(570, 500, "→", 0x000000, font.handle_1_32, 0xffffff);
 	};
 
-	// ゲームモードセレクト処理
+	/********************************
+	* ゲームモードセレクト処理
+	********************************/
+	// コントローラー入力
 	if (title_selectstate = GetStickY() > 32000 && title_stickflg == 0) {
 		if (title.state <= 0) {
 			title.state = 3;
