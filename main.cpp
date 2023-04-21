@@ -11,7 +11,11 @@
 #include "end.h"
 #include "init.h"
 #include "result.h"
+
 #include"UI.h"
+
+#include "Apple.h"
+
 
 extern Image image;
 extern Font font;
@@ -91,7 +95,13 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// プレイヤー開始
 			PlayerControll();
 			DrawPlayer();
+
 			DrawUserInterFace();
+
+			HitBoxPlayer();
+			//リンゴ
+			FallApple();
+
 			break;
 		case HELP:
 			// ヘルプ画面（島袋）
@@ -123,8 +133,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		SetFontSize(16);
 		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());
 
-		PlayerControll();
-		DrawPlayer();
+		/*PlayerControll();
+		DrawPlayer();*/
 		
 		// 裏画面の内容を表画面に反映する
 		ScreenFlip();

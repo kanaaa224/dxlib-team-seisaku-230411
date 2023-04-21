@@ -22,3 +22,5 @@ static struct PLAYER player;
 void PlayerControll(void);
 int PlayerLimit(int x);
 void DrawPlayer();
+int ReturnPlayerX();
+int ReturnPlayerY();

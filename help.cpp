@@ -41,7 +41,7 @@ void DrawHelp() {
 
 		// サブタイトル表示
 		DrawStringToHandle(700, 40, "操作説明", 0x000000, font.handle_1_64, 0xffffff);
-		
+
 		// B Btn
 		DrawLine(587, 368, 700, 368, 0x000000);
 		DrawStringToHandle(700, 345, "Bボタン：決定", 0x000000, font.handle_1_32, 0xffffff);
@@ -61,25 +61,38 @@ void DrawHelp() {
 		// Start Btn
 		DrawLine(510, 350, 700, 300, 0x000000);
 		DrawStringToHandle(700, 290, "STARTボタン：ポーズ", 0x000000, font.handle_1_32, 0xffffff);
-
-		// 項目表示
-		
-		
-		
-
-
 	}
 	else if (help.state) {
 		// ゲーム内容のヘルプ表示
-		
+
 		// サブタイトル表示
 		DrawStringToHandle(700, 40, "ゲーム説明", 0x000000, font.handle_1_64, 0xffffff);
 
+		// 説明表示
+		DrawStringToHandle(100, 220, "この「りんごおとし」は、プレイヤーを左右に動かすだけの単純なゲームです。", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(20, 270, "頭上からリンゴを落とされるといういやがらせを受けるので、毒リンゴだけはよけながら、", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(300, 320, "他のリンゴを取ってポイントをかせいでください。", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(100, 370, "落下してくるリンゴは４種類です。", 0x000000, font.handle_1_32, 0xffffff);
 
+		// リンゴ画像表示
+		DrawLine(640, 420, 640, 620, 0x000000);
+		DrawLine(200, 520, 1080, 520, 0x000000);
 
+		// リンゴの説明
+		DrawExtendGraph(200, 440, 250, 490, image.apple[0], TRUE);
+		DrawStringToHandle(250, 450, "赤リンゴ：ポイントUP", 0x000000, font.handle_1_32, 0xffffff);
 
-	}
+		DrawExtendGraph(670, 440, 720, 490, image.apple[3], TRUE);
+		DrawStringToHandle(720, 450, "青リンゴ：ポイントUP", 0x000000, font.handle_1_32, 0xffffff);
 
+		DrawExtendGraph(200, 550, 250, 600, image.apple[4], TRUE);
+		DrawStringToHandle(250, 560, "金リンゴ：ポイントUP＋", 0x000000, font.handle_1_32, 0xffffff);
+
+		DrawExtendGraph(670, 550, 720, 600, image.apple[12], TRUE);
+		DrawStringToHandle(720, 560, "毒リンゴ：ポイントマイナス", 0x000000, font.handle_1_32, 0xffffff);
+	};
+
+	// 説明表示切替
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
 		help.state = 0;
 	};
