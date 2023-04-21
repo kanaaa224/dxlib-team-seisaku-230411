@@ -10,7 +10,7 @@ extern Game game;
 /********************************
 * ƒŠƒUƒ‹ƒg‰æ–Ê
 ********************************/
-void DrawResult() {
+void DrawResult() { // –¢Š®¬
 	// ”wŒi•\¦
 	DrawGraph(0, 0, image.title, TRUE);
 

@@ -10,6 +10,6 @@ extern Game game;
 /********************************
 * ƒQ[ƒ€‰Šú‰»
 ********************************/
-void GameInit() {
+void GameInit() { // –¢Š®¬
 	game.mode = MAIN;
 };
