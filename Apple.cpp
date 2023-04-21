@@ -278,3 +278,23 @@ void ApplePoint(int i)
 		}
 	}
 }
+
+int ReturnRA(void) {
+	return gRACount;
+}
+
+int ReturnBL(void) {
+	return gBACount;
+}
+
+int ReturnGL(void) {
+	return gGACount;
+}
+
+int ReturnPO(void) {
+	return gPACount;
+}
+
+int ReturnScore(void) {
+	return gScore;
+}
