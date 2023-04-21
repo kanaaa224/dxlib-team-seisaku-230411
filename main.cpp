@@ -11,6 +11,7 @@
 #include "end.h"
 #include "init.h"
 #include "result.h"
+#include"UI.h"
 #include "Apple.h"
 
 extern Image image;
@@ -92,6 +93,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			PlayerControll();
 			DrawPlayer();
 			HitBoxPlayer();
+			DrawUserInterFace();
 			//ƒŠƒ“ƒS
 			FallApple();
 			break;
