@@ -35,5 +35,9 @@ void AppleInit(void);		//ƒŠƒ“ƒS‚Ì•Ï”‚Ì‰Šú‰»
 int HitBox(void);
 int HitBoxPlayer(void);
 void ApplePoint(int i);		//‚è‚ñ‚²‚ÌƒXƒRƒAˆ—
+int ReturnAppleX(int num);
+int ReturnAppleY(int num);
+int ReturnAppleImg(int num);
+
 
 #endif

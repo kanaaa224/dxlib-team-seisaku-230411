@@ -16,6 +16,7 @@
     <ClCompile Include="init.cpp" />
     <ClCompile Include="result.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Pause.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
@@ -39,6 +40,7 @@
     <ClInclude Include="init.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="Pause.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PadInput.cpp">

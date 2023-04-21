@@ -13,6 +13,7 @@
 #include "result.h"
 #include"UI.h"
 #include "Apple.h"
+#include "Pause.h"
 
 
 
@@ -109,12 +110,15 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				FallApple();
 			}
 			else {
-
+				for (int i = 0; i < 10; i++) {
+					//ƒŠƒ“ƒS‚Ì•\Ž¦
+					DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
+				}
 				DrawPlayer();
 				HitBoxPlayer();
 				DrawUserInterFace();
 				//ƒŠƒ“ƒS
-				FallApple();
+				//FallApple();
 			}
 
 			break;
