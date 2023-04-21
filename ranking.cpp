@@ -26,7 +26,7 @@ void DrawRanking() {
     DrawStringToHandle(340, 180, "rでランキング入力画面へ", 0x000000, font.handle_1_32, 0xffffff);
 
     // 戻る表示
-    DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+    DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
     // 仮
     if (CheckHitKey(KEY_INPUT_R)) {

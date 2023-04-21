@@ -33,7 +33,7 @@ void DrawTitle() {
 	DrawStringToHandle(630, 450, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
 	DrawStringToHandle(630, 500, "終わる", 0x000000, font.handle_1_32, 0xffffff);
 
-	DrawStringToHandle(380, 670, "Bボタン、数字・スペースキーで選たく", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(380, 670, "左スティックで選たく、Bボタンで決定", 0x000000, font.handle_1_32, 0xffffff);
 	//DrawStringToHandle(500, 640, "Tキーでりそーすテスト", 0x000000, font.handle_1_32, 0xffffff);
 
 	// ゲームモードセレクトのカーソル処理
