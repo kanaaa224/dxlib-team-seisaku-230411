@@ -13,7 +13,7 @@ Init ini;
 /********************************
 * ƒQ[ƒ€‰Šú‰»
 ********************************/
-void GameInit() {
+void GameInit() { // –¢Š®¬
 	game.mode = MAIN;
 
 	ini.StartTime = GetNowCount();

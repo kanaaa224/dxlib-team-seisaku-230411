@@ -14,8 +14,8 @@ extern Game game;
 
 Title title;
 
-int selectstate;
-int stickflg = 0;
+int title_selectstate;
+int title_stickflg = 0;
 
 /********************************
 * タイトル
@@ -50,27 +50,33 @@ void DrawTitle() {
 		DrawStringToHandle(570, 500, "→", 0x000000, font.handle_1_32, 0xffffff);
 	};
 
-
-	//if (CheckHitKey(KEY_INPUT_DOWN)) {
-	//	if (title.state >= 3) {
-	//		title.state = 0;
-	//	}
-	//	else {
-	//		title.state += 1;
-	//	};
-	//};
-
-	if (CheckHitKey(KEY_INPUT_1)) {
-		title.state = 0;
-	} else if (CheckHitKey(KEY_INPUT_2)) {
-		title.state = 1;
-	} else if (CheckHitKey(KEY_INPUT_3)) {
-		title.state = 2;
-	} else if (CheckHitKey(KEY_INPUT_4)) {
-		title.state = 3;
+	// ゲームモードセレクト処理
+	if (title_selectstate = GetStickY() > 32000 && title_stickflg == 0) {
+		if (title.state <= 0) {
+			title.state = 3;
+		}
+		else {
+			title.state -= 1;
+		};
+		title_stickflg = 1;
+	}
+	else if (title_selectstate = GetStickY() < -32000 && title_stickflg == 0) {
+		if (title.state >= 3) {
+			title.state = 0;
+		}
+		else {
+			title.state += 1;
+		};
+		title_stickflg = 1;
 	};
-
-	if (CheckHitKey(KEY_INPUT_SPACE)) {
+	// スティックが戻ると操作受付
+	if (title_selectstate = GetStickY() < 1200 && title_stickflg == 1) {
+		if (title_selectstate = GetStickY() > -1200) {
+			title_stickflg = 0;
+		};
+	};
+	// Bボタンで選択
+	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
 		if (title.state == 0) {
 			// スタート選択
 			game.mode = INIT;
@@ -89,72 +95,41 @@ void DrawTitle() {
 		};
 	};
 
+	// キーボード入力対応
+	if (CheckHitKey(KEY_INPUT_1)) {
+		title.state = 0;
+	} else if (CheckHitKey(KEY_INPUT_2)) {
+		title.state = 1;
+	} else if (CheckHitKey(KEY_INPUT_3)) {
+		title.state = 2;
+	} else if (CheckHitKey(KEY_INPUT_4)) {
+		title.state = 3;
+	};
+	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		if (title.state == 0) {
+			// スタート選択
+			game.mode = INIT;
+		}
+		else if (title.state == 1) {
+			// ヘルプ選択
+			game.mode = HELP;
+		}
+		else if (title.state == 2) {
+			// ランキング選択
+			game.mode = RANKING;
+		}
+		else if (title.state == 3) {
+			// 終わる選択
+			game.mode = END;
+		};
+	};
 	if (CheckHitKey(KEY_INPUT_T)) {
 		game.mode = TEST;
 	};
 
 
-
-
-
-
-	//if ((selector_current_value = GetStickY()) <= -32000) { //CheckHitKey(KEY_INPUT_M) != 0
-	//	
-
-	//	if (selector_current_value >= 1) {
-	//		if (title.state >= 3) {
-	//			title.state = 0;
-	//		}
-	//		else {
-	//			title.state += 1;
-	//		};
-	//	};
-	//};
-
-	//if ((title.selector_current_value = GetStickY()) <= -32000) { //CheckHitKey(KEY_INPUT_M) != 0
-	//	title.selector_current_value = abs(title.selector_current_value);
-
-	//	if (title.selector_current_value - title.selector_prev_value > 1) {
-	//		
-
-	//		if (title.state >= 3) {
-	//			title.state = 0;
-	//		}
-	//		else {
-	//			title.state += 1;
-	//		};
-	//	};
-	//	title.selector_prev_value = abs(GetStickY());
-	//};
-
-	// ゲームモードセレクト処理
-
 	// BGM SE ここに書くか、bgm.cppで画面別に制御させる？
-
-	//タイトルスティック操作対応済み
-	if (selectstate = GetStickY() > 32000 && stickflg == 0) {
-		if (title.state <= 0) {
-			title.state = 3;
-		}
-		else {
-			title.state -= 1;
-		}
-		stickflg = 1;
-	}
-	else if(selectstate = GetStickY() < -32000 && stickflg == 0) {
-		if (title.state >= 3) {
-			title.state = 0;
-		}
-		else {
-			title.state += 1;
-		}
-		stickflg = 1;
-	}
-	if (selectstate = GetStickY() < 1200 && stickflg == 1) {
-		if (selectstate = GetStickY() > -1200) {
-			stickflg = 0;
-		}
-	}
+	
 };
 
 
