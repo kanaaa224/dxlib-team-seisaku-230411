@@ -19,8 +19,6 @@ public:
 };
 
 
-
-
 //static enum MODE{
 //	TITLE,
 //	INIT,

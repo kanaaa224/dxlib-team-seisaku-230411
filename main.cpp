@@ -13,6 +13,7 @@
 #include "result.h"
 #include"UI.h"
 #include "Apple.h"
+#include "Pause.h"
 
 
 
@@ -90,19 +91,35 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (CheckHitKey(KEY_INPUT_R)) {
 				game.mode = RESULT;
 			};
-
+			if (JudgeButton(XINPUT_BUTTON_START) == 1) { //ポーズ
+				if (PauseFlg == 0) {
+					PauseFlg = 1;
+				}
+				else {
+					PauseFlg = 0;
+				}
+			}
 			// プレイヤー開始
-			PlayerControll();
-			DrawPlayer();
+			if (PauseFlg == 0) {
+				PlayerControll();
+				DrawPlayer();
 
-
-			DrawUserInterFace();
-
-
-			HitBoxPlayer();
-			DrawUserInterFace();
-			//リンゴ
-			FallApple();
+				HitBoxPlayer();
+				DrawUserInterFace();
+				//リンゴ
+				FallApple();
+			}
+			else {
+				for (int i = 0; i < 10; i++) {
+					//リンゴの表示
+					DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
+				}
+				DrawPlayer();
+				HitBoxPlayer();
+				DrawUserInterFace();
+				//リンゴ
+				//FallApple();
+			}
 
 			break;
 		case HELP:
