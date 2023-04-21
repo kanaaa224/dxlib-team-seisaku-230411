@@ -14,7 +14,7 @@ public:
 	int player[16];
 	int Walk[3];
 	int Run[8];
-	int Stop;
+	int Stop[2];
 	int end;
 	int controller;
 	int controller_s;
