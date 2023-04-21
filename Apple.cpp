@@ -6,6 +6,7 @@
 #include "Apple.h"
 #include "resourceLoad.h"
 #include "player.h"
+#include "main.h"
 
 /************************************************
 *　変数の宣言（グローバル変数）
@@ -58,8 +59,11 @@ void FallApple(void)
 			//リンゴの表示
 			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.19, 0, gApple[i].img, TRUE);
 
-			//真っすぐ下に移動
-			gApple[i].y += gApple[i].speed;
+			if (PauseFlg == 0) {		//ポーズ
+				//真っすぐ下に移動
+				gApple[i].y += gApple[i].speed;
+			}
+			
 
 			//りんごの座標が１０００になったらりんごをけす
 			if (gApple[i].y > 1000 + gApple[i].h) {

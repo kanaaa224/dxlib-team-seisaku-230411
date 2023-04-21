@@ -15,7 +15,6 @@
     <ClCompile Include="end.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="result.cpp" />
-    <ClCompile Include="FallApple.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>

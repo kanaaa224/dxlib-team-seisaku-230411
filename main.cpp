@@ -90,19 +90,32 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (CheckHitKey(KEY_INPUT_R)) {
 				game.mode = RESULT;
 			};
-
+			if (JudgeButton(XINPUT_BUTTON_START) == 1) { //ポーズ
+				if (PauseFlg == 0) {
+					PauseFlg = 1;
+				}
+				else {
+					PauseFlg = 0;
+				}
+			}
 			// プレイヤー開始
-			PlayerControll();
-			DrawPlayer();
+			if (PauseFlg == 0) {
+				PlayerControll();
+				DrawPlayer();
 
+				HitBoxPlayer();
+				DrawUserInterFace();
+				//リンゴ
+				FallApple();
+			}
+			else {
 
-			DrawUserInterFace();
-
-
-			HitBoxPlayer();
-			DrawUserInterFace();
-			//リンゴ
-			FallApple();
+				DrawPlayer();
+				HitBoxPlayer();
+				DrawUserInterFace();
+				//リンゴ
+				FallApple();
+			}
 
 			break;
 		case HELP:

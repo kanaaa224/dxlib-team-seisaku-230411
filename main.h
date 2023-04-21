@@ -18,7 +18,7 @@ public:
 	int mode = 0;
 };
 
-
+static int PauseFlg = 0;
 
 
 //static enum MODE{
