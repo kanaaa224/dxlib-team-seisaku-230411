@@ -1,7 +1,8 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
+
 #include "main.h"
-#include"init.h"
+#include "init.h"
 
 extern Image image;
 extern Font font;

@@ -1,13 +1,8 @@
 // ìF“‡‘Ü
 
-#define _USE_MATH_DEFINES
-#include <math.h>
-#define RANKING_DATA 5
-#include <stdio.h>
-
 #include "DxLib.h"
 #include "resourceLoad.h"
-#include "ranking_name_input.h"
+
 #include "main.h"
 #include "PadInput.h"
 
@@ -15,6 +10,9 @@ extern Image image;
 extern Font font;
 
 extern Game game;
+
+//char rni_hiragana = [""A","B""];
+int rni_hiragana_select_state = 0;
 
 int rni_selectstate;
 int rni_stickflg = 0;

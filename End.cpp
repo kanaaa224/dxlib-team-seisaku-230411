@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
+
 #include "main.h"
 
 extern Image image;

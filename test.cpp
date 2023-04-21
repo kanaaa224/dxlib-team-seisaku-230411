@@ -2,6 +2,7 @@
 
 #include "DxLib.h"
 #include "resourceLoad.h"
+
 #include "main.h"
 #include "PadInput.h"
 

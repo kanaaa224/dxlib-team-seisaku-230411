@@ -1,13 +1,13 @@
 // ìF“‡‘Ü
 
 #define _USE_MATH_DEFINES
-#include <math.h>
 #define RANKING_DATA 5
 #include <stdio.h>
+#include <math.h>
 
 #include "DxLib.h"
 #include "resourceLoad.h"
-#include "ranking.h"
+
 #include "main.h"
 
 extern Image image;

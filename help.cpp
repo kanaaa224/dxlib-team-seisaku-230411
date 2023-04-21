@@ -2,7 +2,7 @@
 
 #include "DxLib.h"
 #include "resourceLoad.h"
-#include "help.h"
+
 #include "main.h"
 #include "PadInput.h"
 
@@ -11,7 +11,7 @@ extern Font font;
 
 extern Game game;
 
-Help help;
+int help_state = 0;
 
 int help_selectstate;
 int help_stickflg = 0;
@@ -34,7 +34,7 @@ void DrawHelp() {
 
 	// メンバー変数に保存されたステートで表示を分岐
 
-	if (help.state == 0) {
+	if (help_state == 0) {
 		// コントローラーのヘルプ表示
 
 		// サブタイトル表示
@@ -65,7 +65,7 @@ void DrawHelp() {
 		DrawLine(510, 350, 700, 300, 0x000000);
 		DrawStringToHandle(700, 290, "STARTボタン：ポーズ", 0x000000, font.handle_1_32, 0xffffff);
 	}
-	else if (help.state == 1) {
+	else if (help_state == 1) {
 		// ゲーム内容のヘルプ表示
 
 		// サブタイトル表示
@@ -101,11 +101,11 @@ void DrawHelp() {
 	********************************/
 	// コントローラー入力
 	if (help_selectstate = GetStickX() > 32000 && help_stickflg == 0) {
-		help.state = 1;
+		help_state = 1;
 		help_stickflg = 1;
 	}
 	else if (help_selectstate = GetStickX() < -32000 && help_stickflg == 0) {
-		help.state = 0;
+		help_state = 0;
 		help_stickflg = 1;
 	};
 	// スティックが戻ると操作受付
@@ -125,10 +125,10 @@ void DrawHelp() {
 
 	// キーボード入力
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
-		help.state = 0;
+		help_state = 0;
 	};
 	if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		help.state = 1;
+		help_state = 1;
 	};
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;
