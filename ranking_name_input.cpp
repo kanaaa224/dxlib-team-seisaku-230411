@@ -11,7 +11,8 @@ extern Font font;
 
 extern Game game;
 
-//char rni_hiragana = [""A","B""];
+char rni_alphabet[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
+char rni_qwerty[] = { 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M' };
 int rni_hiragana_select_state = 0;
 
 int rni_selectstate;
@@ -38,6 +39,19 @@ void DrawRankingNameInput() { // “‡‘Ü‚ª’S“–’†
 	//ChangeFontSize(30);
 
 	DrawString(150, 270, "–¼‘O‚ð‰pŽš‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢", 0xFFFFFF);
+
+	for (int i = 0; i < (sizeof(rni_alphabet) / sizeof(rni_alphabet[0])); i++) {
+		DrawFormatString(10 + (i * 20), 300, 0x000000,"%c", rni_alphabet[i]);
+	}
+
+
+
+
+
+
+
+
+
 
 	// –ß‚é•\Ž¦
 	DrawStringToHandle(530, 670, "Aƒ{ƒ^ƒ“‚Å‚à‚Ç‚é", 0x000000, font.handle_1_32, 0xffffff);
