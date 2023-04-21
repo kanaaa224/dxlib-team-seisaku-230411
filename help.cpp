@@ -12,7 +12,7 @@ extern Game game;
 
 Help help;
 
-int mirutame[3];
+int mirutame[4];
 
 /********************************
 * ヘルプ画面描画
@@ -28,19 +28,20 @@ void DrawHelp() {
 	DrawStringToHandle(650, 130, "矢印キーまたは左スティックで切りかえ", 0x000000, font.handle_1_32, 0xffffff);
 
 	// 戻る表示
-	DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(370, 670, "Bボタンでゲーム開始、Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
 	// メンバー変数に保存されたステートで表示を分岐
 
 	if (help.state == 0) {
 		// コントローラーのヘルプ表示
 
+		// サブタイトル表示
+		DrawStringToHandle(735, 40, "操作説明", 0x000000, font.handle_1_64, 0xffffff);
+		DrawTriangle(1065, 55, 1105, 70, 1065, 85, 0x000000, TRUE);
+
 		// コントローラー画像表示
 		DrawExtendGraph(330, 290, 630, 490, image.controller, TRUE);
 		//DrawExtendGraph(400, 500, 500, 600, image.controller_s, TRUE);
-
-		// サブタイトル表示
-		DrawStringToHandle(700, 40, "操作説明", 0x000000, font.handle_1_64, 0xffffff);
 
 		// B Btn
 		DrawLine(587, 368, 700, 368, 0x000000);
@@ -62,11 +63,12 @@ void DrawHelp() {
 		DrawLine(510, 350, 700, 300, 0x000000);
 		DrawStringToHandle(700, 290, "STARTボタン：ポーズ", 0x000000, font.handle_1_32, 0xffffff);
 	}
-	else if (help.state) {
+	else if (help.state == 1) {
 		// ゲーム内容のヘルプ表示
 
 		// サブタイトル表示
-		DrawStringToHandle(700, 40, "ゲーム説明", 0x000000, font.handle_1_64, 0xffffff);
+		DrawStringToHandle(770, 40, "ゲーム説明", 0x000000, font.handle_1_64, 0xffffff);
+		DrawTriangle(710, 55, 670, 70, 710, 85, 0x000000, TRUE);
 
 		// 説明表示
 		DrawStringToHandle(100, 220, "この「りんごおとし」は、プレイヤーを左右に動かすだけの単純なゲームです。", 0x000000, font.handle_1_32, 0xffffff);
@@ -101,12 +103,16 @@ void DrawHelp() {
 	};
 
 	// 仮
-	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+	if (CheckHitKey(KEY_INPUT_A)) {
 		game.mode = TITLE;
+	};
+	if (CheckHitKey(KEY_INPUT_B)) {
+		game.mode = INIT;
 	};
 
 	// 開発用
-	DrawCircle(mirutame[0], mirutame[1], mirutame[2], 0xffffff, FALSE);
+	//DrawCircle(mirutame[0], mirutame[1], mirutame[2], 0xffffff, FALSE);
+	DrawBox(mirutame[0], mirutame[1], mirutame[0] + mirutame[2], mirutame[1] + mirutame[3], 0xffffff, FALSE);
 	DrawFormatString(mirutame[0], mirutame[1], 0xffffff, "%d - %d", mirutame[0], mirutame[1]);
 	if (CheckHitKey(KEY_INPUT_W)) {
 		mirutame[1]--;
@@ -121,9 +127,15 @@ void DrawHelp() {
 		mirutame[0]++;
 	};
 	if (CheckHitKey(KEY_INPUT_Q)) {
-		mirutame[2]++;
+		mirutame[2]--;
 	};
 	if (CheckHitKey(KEY_INPUT_E)) {
-		mirutame[2]--;
+		mirutame[2]++;
+	};
+	if (CheckHitKey(KEY_INPUT_R)) {
+		mirutame[3]--;
+	};
+	if (CheckHitKey(KEY_INPUT_F)) {
+		mirutame[3]++;
 	};
 };
