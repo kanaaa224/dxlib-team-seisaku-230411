@@ -32,7 +32,7 @@ void DrawScore()
 {
 	//ƒŠƒ“ƒS‚Ì•\Ž¦
 	DrawRotaGraph(1090, 350, 0.125, 0, image.apple[REDAPPLE], TRUE);
-	DrawRotaGraph(1170, 350, 0.125, 0, image.apple[BULEAPPLE], TRUE);
+	DrawRotaGraph(1170, 350, 0.125, 0, image.apple[BLUEAPPLE], TRUE);
 	DrawRotaGraph(1250, 350, 0.125, 0, image.apple[GOLDAPPLE], TRUE);
 
 }
