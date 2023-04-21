@@ -24,7 +24,7 @@ void DrawTest() {
 	DrawRotaGraph(150, 400, 0.5f, 0, image.apple[0], TRUE);
 
 	// 戻る表示
-	DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
 	// Aボタンで終了
 	if (JudgeReleaseButton(XINPUT_BUTTON_A) == 1) {

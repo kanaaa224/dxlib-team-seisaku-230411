@@ -27,7 +27,7 @@ void DrawHelp() {
 	DrawStringToHandle(180, 40, "ヘルプ", 0x000000, font.handle_1_128, 0xffffff);
 
 	// 説明表示
-	DrawStringToHandle(650, 130, "矢印キーまたは左スティックで切りかえ", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(680, 130, "左スティックで説明を切りかえ", 0x000000, font.handle_1_32, 0xffffff);
 
 	// 戻る表示
 	DrawStringToHandle(370, 670, "Bボタンでゲーム開始、Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
@@ -130,7 +130,7 @@ void DrawHelp() {
 	if (CheckHitKey(KEY_INPUT_RIGHT)) {
 		help.state = 1;
 	};
-	if (CheckHitKey(KEY_INPUT_A)) {
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;
 	};
 	if (CheckHitKey(KEY_INPUT_B)) {

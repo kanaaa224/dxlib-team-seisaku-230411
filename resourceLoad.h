@@ -35,4 +35,11 @@ public:
 	int handle_1_32;
 };
 
+class ChageFont {
+public:
+	int state;
+};
+
 int ResourceLoad(void);
+
+int ChangeFontSize(int size);

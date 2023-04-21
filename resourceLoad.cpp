@@ -7,6 +7,7 @@ Resourceload resourceload;
 Image image;
 Sound sound;
 Font font;
+ChageFont chageFont;
 
 int LoadImages(void)
 {
@@ -55,6 +56,17 @@ int ResourceLoad(void)
 		resourceload.state = 1;
 	}
 	return 0;
+}
+
+int ChangeFontSize(int size) {
+	if (chageFont.state != size) {
+		SetFontSize(size);
+		chageFont.state = size;
+		return 1;
+	}
+	else {
+		return 0;
+	}
 }
 
 

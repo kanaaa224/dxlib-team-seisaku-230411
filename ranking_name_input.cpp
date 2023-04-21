@@ -31,8 +31,18 @@ void DrawRankingNameInput() { // 島袋が担当中
 
     DrawStringToHandle(340, 140, "ランキング入力", 0x000000, font.handle_1_32, 0xffffff);
 
-    // 戻る表示
-    DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+	// フォントサイズの設定
+	ChangeFontSize(20); // ループ内で一回のみ機能
+
+	// 名前入力指示文字列の描画
+	DrawString(150, 240, "ランキングに登録します", 0xFFFFFF);
+
+	//ChangeFontSize(30);
+
+	DrawString(150, 270, "名前を英字で入力してください", 0xFFFFFF);
+
+	// 戻る表示
+	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
 	// ゲームモードセレクト処理
 	if (rni_selectstate = GetStickY() > 32000 && rni_stickflg == 0) {
