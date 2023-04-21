@@ -6,18 +6,26 @@
 #include "Apple.h"
 #include "resourceLoad.h"
 #include "player.h"
-extern Image image;
+
 /************************************************
 *　変数の宣言（グローバル変数）
 ************************************************/
-//int gAppleImg[20];		//りんごの画像変数
+//int gAppleImg[20];	//りんごの画像変数
 int gP;					//りんごの確率
 
 int gOldTime;			//前時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
 int gNowTime;			//後時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
 int gTimeFlg = FALSE;	//時間計測用の変数
 
-int gFPSCount;
+int gFPSCount = 0;
+
+int gRACount = 0;	//赤りんごの個数
+int gBACount = 0;	//青りんごの個数
+int gGACount = 0;	//金りんごの個数
+int gPACount = 0;	//毒りんごの個数
+int gScore = 0;		//スコア
+
+extern Image image;		//りんごの画像変数
 
 /************************************************
 *　定数の宣言
@@ -98,7 +106,7 @@ int CreateApple(void)
 		AppleImg = image.apple[REDAPPLE];//赤リンゴ
 	}
 	else if (gP >= 60 && gP < 84) {
-		AppleImg = image.apple[BULEAPPLE];//青リンゴ
+		AppleImg = image.apple[BLUEAPPLE];//青リンゴ
 	}
 	else if (gP >= 85 && gP < 94) {
 		AppleImg = image.apple[GOLDAPPLE];//金リンゴ
@@ -188,11 +196,21 @@ int HitBoxPlayer(void) {
 	int py2;
 
 	for (int i = 0; i < 10; i++) {
-		if (gApple[i].flg == TRUE) {
-			sx1[i] = gApple[i].x - 51;	//左上 X
-			sy1[i] = gApple[i].y - 50;	//左上 Y
-			sx2[i] = gApple[i].x + 51;	//右下 X
-			sy2[i] = gApple[i].y + 50;	//右下 Y
+		if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんごの当たり判定
+			if (gApple[i].flg == TRUE) {
+				sx1[i] = gApple[i].x - 40;	//左上 X
+				sy1[i] = gApple[i].y - 37;	//左上 Y
+				sx2[i] = gApple[i].x + 40;	//右下 X
+				sy2[i] = gApple[i].y + 37;	//右下 Y
+			}
+		}
+		else {											//それ以外の当たり判定
+			if (gApple[i].flg == TRUE) {
+				sx1[i] = gApple[i].x - 55;	//左上 X
+				sy1[i] = gApple[i].y - 52;	//左上 Y
+				sx2[i] = gApple[i].x + 55;	//右下 X
+				sy2[i] = gApple[i].y + 52;	//右下 Y
+			}
 		}
 	}
 
@@ -212,9 +230,10 @@ int HitBoxPlayer(void) {
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
-			
+
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
 				gApple[i].flg = FALSE;	//削除
+				ApplePoint(i);//スコア処理
 			}
 
 			
@@ -223,8 +242,39 @@ int HitBoxPlayer(void) {
 			}*/
 		}
 	}
-
-
+	
+	SetFontSize(16);
+	DrawFormatString(0, 100, 0xffffff, "Score:%d", gScore);
+	DrawFormatString(0, 120, 0xffffff, "RED:%d", gRACount);
+	DrawFormatString(0, 140, 0xffffff, "BLUE:%d", gBACount);
+	DrawFormatString(0, 160, 0xffffff, "GOLD:%d", gGACount);
+	DrawFormatString(0, 180, 0xffffff, "POISON:%d", gPACount);
 
 	return 0;
+}
+
+/************************************************
+*　りんごのスコア処理
+************************************************/
+void ApplePoint(int i)
+{
+	if (gApple[i].img == image.apple[REDAPPLE]) {//赤りんご
+		gScore += 100;
+		gRACount += 1;
+	}
+	if (gApple[i].img == image.apple[BLUEAPPLE]) {//青りんご
+		gScore += 200;
+		gBACount += 1;
+	}
+	if (gApple[i].img == image.apple[GOLDAPPLE]) {//金りんご
+		gScore += 500;
+		gGACount += 1;
+	}
+	if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんご
+		gScore -= 750;
+		gPACount += 1;
+		if (gScore < 0) {
+			gScore = 0;
+		}
+	}
 }
