@@ -12,6 +12,9 @@ public:
 	int title;
 	int apple[20];
 	int player[16];
+	int Walk[3];
+	int Run[8];
+	int Stop;
 	int end;
 	int controller;
 	int controller_s;
