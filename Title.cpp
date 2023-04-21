@@ -28,13 +28,13 @@ void DrawTitle() {
 	DrawStringToHandle(350, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
 
 	// ゲームモードセレクトの項目
-	DrawStringToHandle(630, 350, "1.スタート", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 400, "2.ヘルプ", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 450, "3.ランキング", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 500, "4.終わる", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 350, "スタート", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 400, "ヘルプ", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 450, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 500, "終わる", 0x000000, font.handle_1_32, 0xffffff);
 
-	DrawStringToHandle(300, 600, "スティック操作対応に修正予定・スペースで決定", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(500, 640, "Tキーでりそーすテスト", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(380, 670, "Bボタン、数字・スペースキーで選たく", 0x000000, font.handle_1_32, 0xffffff);
+	//DrawStringToHandle(500, 640, "Tキーでりそーすテスト", 0x000000, font.handle_1_32, 0xffffff);
 
 	// ゲームモードセレクトのカーソル処理
 	if (title.state == 0) {
@@ -150,7 +150,6 @@ void DrawTitle() {
 		}
 		stickflg = 1;
 	}
-
 	if (selectstate = GetStickY() < 1200 && stickflg == 1) {
 		if (selectstate = GetStickY() > -1200) {
 			stickflg = 0;
