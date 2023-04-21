@@ -31,13 +31,14 @@ static struct APPLE gApple[10];
 void FallApple(void);		//リンゴ落下処理
 int CreateApple(void);		//リンゴ生成
 void AppleSpeed(int i);		//りんごの速度
-void AppleInit(void);		//リンゴの変数の初期化
+//void AppleInit(void);		//リンゴの変数の初期化
 int HitBox(void);
 int HitBoxPlayer(void);
 void ApplePoint(int i);		//りんごのスコア処理
-int ReturnAppleX(int num);
-int ReturnAppleY(int num);
-int ReturnAppleImg(int num);
-
+int ReturnRA(void);			//gRACountがリザルト画面で使用したいので
+int ReturnBL(void);
+int ReturnGL(void);
+int ReturnPO(void);
+int ReturnScore(void);
 
 #endif
