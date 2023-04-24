@@ -48,35 +48,58 @@ void DrawRankingNameInput() { // 島袋が担当中
 	// フォントサイズの設定
 	//ChangeFontSize(40); // ループ内で一回のみ機能、二回目は激重になる → バグ発生中、機能しません
 
-	// キーボード
+	/********************************
+	* キーボード描画
+	********************************/
+	// キーボードエリアの背景
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
 	DrawBox(0, 330, 1280, 600, 0x000000, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-	DrawBox(690, 360, 820, 398, 0xffffff, FALSE);
+	// キーボードの要素を表示
+	// テキストボックスの幅を入力文字数に追従
+	int inputName_Box_Width = 820;
+	if (rni_inputName.length() > 12) {
+		int len = (rni_inputName.length()) - 12;
+		inputName_Box_Width += (9 * len);
+	}
+	DrawBox(690, 360, inputName_Box_Width, 398, 0xffffff, FALSE);
 
 	DrawString(680, 370, ">", 0xFFFFFF);
 	DrawString(370, 360, "名前を英数字で入力してください", 0xFFFFFF);
-	DrawString(370, 378, "* Xボタンで一字削除", 0xFFFFFF);
+	DrawString(370, 380, "左スティックでカーソル移動、Bボタンで入力", 0xFFFFFF);
+	DrawString(370, 380, " Xボタンで一字削除", 0xFFFFFF);
+	DrawString(370, 400, " Yボタンで入力確定", 0xFFFFFF);
 
 	DrawString(700, 370, rni_inputName.c_str(), 0xFFFFFF);
 
 	SetFontSize(30);
 
+	// アルファベット大文字の表示
 	for (int i = 0; i < 26; i++) {
 		DrawFormatString(100 + (i * 42), 440, 0xffffff,"%c", rni_alphabet[i]);
 	}
-
+	// アルファベット小文字の表示
 	for (int i = 0; i < 26; i++) {
 		DrawFormatString(100 + (i * 42), 490, 0xffffff, "%c", rni_alphabet[i + 26]);
 	}
-
+	// 数字キーパッド表示
 	for (int i = 0; i < 10; i++) {
-		DrawFormatString(440 + (i * 42), 540, 0xffffff, "%c", rni_alphabet[i + 52]);
+		DrawFormatString(435 + (i * 42), 540, 0xffffff, "%c", rni_alphabet[i + 52]);
 	}
 
 
-	rni_inputName += "A";
+
+	if (CheckHitKey(KEY_INPUT_0)) {
+		rni_inputName += "A";
+	};
+	if (CheckHitKey(KEY_INPUT_9)) {
+		if (rni_inputName.length() > 0) {
+			rni_inputName.erase(rni_inputName.length() - 1);
+		}
+	};
+	
+
 	
 
 
@@ -95,7 +118,7 @@ void DrawRankingNameInput() { // 島袋が担当中
 
 
 	// 戻る表示
-	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(520, 670, "Aボタンでスキップ", 0x000000, font.handle_1_32, 0xffffff);
 
 	// ゲームモードセレクト処理
 	if (rni_selectstate = GetStickY() > 32000 && rni_stickflg == 0) {
