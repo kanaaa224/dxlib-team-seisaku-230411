@@ -5,9 +5,9 @@
 
 //É}ÉNÉçíËã`
 #define REDAPPLE 0
-#define BLUEAPPLE 3
-#define GOLDAPPLE 4
-#define POISONAPPLE 12
+#define BLUEAPPLE 1
+#define GOLDAPPLE 2
+#define POISONAPPLE 3
 
 #define LINE_NUM 7
 
