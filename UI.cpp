@@ -5,7 +5,7 @@
 #include"resourceLoad.h"
 #include"Apple.h"
 #include <string>
-
+#include"Pause.h"
 extern Init ini;
 extern Game game;
 extern Image image;
@@ -14,7 +14,7 @@ extern Font font;
 using std::string;
 using std::to_string;
 
-int gFpsCnt = 0;
+
 int gTimeLimit = 60;
 
 
@@ -31,8 +31,10 @@ void DrawTimeLimit()
 {
 	std::string str = std::to_string(gTimeLimit);
 
-	if ((gFpsCnt++) % 28 == 0) {
-		gTimeLimit = gTimeLimit - 1;
+	if (GetPauseFlg() == 0) {
+		if ((gFpsCnt++) % 28 == 0) {
+			gTimeLimit = gTimeLimit - 1;
+		}
 	}
 	DrawStringToHandle(1005, 50, "êßå¿éûä‘", 0x000000, font.handle_1_64, 0xffffff);
 	DrawStringToHandle(1100, 150, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
