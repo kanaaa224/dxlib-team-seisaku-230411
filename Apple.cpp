@@ -298,3 +298,15 @@ int ReturnPO(void) {
 int ReturnScore(void) {
 	return gScore;
 }
+
+int ReturnAppleX(int num) {
+	return gApple[num].x;
+}
+
+int ReturnAppleY(int num) {
+	return gApple[num].y;
+}
+
+int ReturnAppleImg(int num) {
+	return gApple[num].img;
+}

@@ -40,5 +40,8 @@ int ReturnBL(void);
 int ReturnGL(void);
 int ReturnPO(void);
 int ReturnScore(void);
+int ReturnAppleX(int num);
+int ReturnAppleY(int num);
+int ReturnAppleImg(int num);
 
 #endif
