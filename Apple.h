@@ -44,5 +44,6 @@ int ReturnAppleX(int num);
 int ReturnAppleY(int num);
 int ReturnAppleImg(int num);
 int ReturnAppleFlg(int num);
+int ReturnFPSCount(void);
 
 #endif
