@@ -14,9 +14,12 @@ int LoadImages(void)
 	if ((image.title = LoadGraph("Resources/Images/title.png")) == -1) return -1;
 	if ((image.controller = LoadGraph("Resources/Images/controller.png")) == -1) return -1;
 	if ((image.controller_s = LoadGraph("Resources/Images/controller_sokumen.png")) == -1) return -1;
-	//if ((image.apple = LoadGraph("Resources/Images/apple.png")) == -1) return -1;
 	//if ((image.player = LoadGraph("Resources/Images/player.png")) == -1) return -1;
-	LoadDivGraph("Resources/Images/apple.png", 20, 5, 4, 700, 620, image.apple);
+	//LoadDivGraph("Resources/Images/apple.png", 20, 5, 4, 700, 620, image.apple);
+	if ((image.apple[0] = LoadGraph("Resources/Images/REDApple.png")) == -1) return -1;
+	if ((image.apple[1] = LoadGraph("Resources/Images/BLUEApple.png")) == -1) return -1;
+	if ((image.apple[2] = LoadGraph("Resources/Images/GOLDApple.png")) == -1) return -1;
+	if ((image.apple[3] = LoadGraph("Resources/Images/POISONApple.png")) == -1) return -1;
 	LoadDivGraph("Resources/Images/player.png", 15, 5, 3, 515, 612, image.player);
 	image.player[15] = LoadGraph("Resources/Images/human.png");
 	LoadDivGraph("Resources/Images/Run.png", 8, 4, 2, 300, 300, image.Run);

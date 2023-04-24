@@ -84,16 +84,16 @@ void DrawHelp() {
 
 		// リンゴの説明
 		DrawExtendGraph(200, 440, 250, 490, image.apple[0], TRUE);
-		DrawStringToHandle(250, 450, "赤リンゴ：ポイントUP", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(260, 450, "赤リンゴ：ポイントUP", 0x000000, font.handle_1_32, 0xffffff);
 
-		DrawExtendGraph(670, 440, 720, 490, image.apple[3], TRUE);
-		DrawStringToHandle(720, 450, "青リンゴ：ポイントUP", 0x000000, font.handle_1_32, 0xffffff);
+		DrawExtendGraph(670, 440, 720, 490, image.apple[1], TRUE);
+		DrawStringToHandle(730, 450, "青リンゴ：ポイントUP", 0x000000, font.handle_1_32, 0xffffff);
 
-		DrawExtendGraph(200, 550, 250, 600, image.apple[4], TRUE);
-		DrawStringToHandle(250, 560, "金リンゴ：ポイントUP＋", 0x000000, font.handle_1_32, 0xffffff);
+		DrawExtendGraph(200, 550, 250, 600, image.apple[2], TRUE);
+		DrawStringToHandle(260, 560, "金リンゴ：ポイントUP＋", 0x000000, font.handle_1_32, 0xffffff);
 
-		DrawExtendGraph(670, 550, 720, 600, image.apple[12], TRUE);
-		DrawStringToHandle(720, 560, "毒リンゴ：ポイントマイナス", 0x000000, font.handle_1_32, 0xffffff);
+		DrawExtendGraph(670, 550, 720, 600, image.apple[3], TRUE);
+		DrawStringToHandle(730, 560, "毒リンゴ：ポイントマイナス", 0x000000, font.handle_1_32, 0xffffff);
 	};
 
 	/********************************
