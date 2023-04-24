@@ -31,7 +31,7 @@ static struct APPLE gApple[10];
 void FallApple(void);		//ƒŠƒ“ƒS—‰ºˆ—
 int CreateApple(void);		//ƒŠƒ“ƒS¶¬
 void AppleSpeed(int i);		//‚è‚ñ‚²‚Ì‘¬“x
-//void AppleInit(void);		//ƒŠƒ“ƒS‚Ì•Ï”‚Ì‰Šú‰»
+void AppleInit(void);		//ƒŠƒ“ƒS‚Ì•Ï”‚Ì‰Šú‰»
 int HitBox(void);
 int HitBoxPlayer(void);
 void ApplePoint(int i);		//‚è‚ñ‚²‚ÌƒXƒRƒAˆ—
@@ -45,5 +45,8 @@ int ReturnAppleY(int num);
 int ReturnAppleImg(int num);
 int ReturnAppleFlg(int num);
 int ReturnFPSCount(void);
+
+
+
 
 #endif
