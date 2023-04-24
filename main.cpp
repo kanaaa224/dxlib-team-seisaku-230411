@@ -124,6 +124,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				//FallApple();
 			}
 
+			PlayerControll();
+			DrawPlayer();
+			DrawUserInterFace();
+			HitBoxPlayer();
+			//ƒŠƒ“ƒS
+			FallApple();
 			break;
 		case HELP:
 			// ƒwƒ‹ƒv‰æ–Êi“‡‘Üj
