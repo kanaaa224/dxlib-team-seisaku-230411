@@ -1,5 +1,9 @@
 // 作：島袋
 
+#include <string>
+using std::string;
+using std::to_string;
+
 #include "DxLib.h"
 #include "resourceLoad.h"
 
@@ -11,7 +15,7 @@ extern Font font;
 
 extern Game game;
 
-char rni_alphabet[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
+char rni_alphabet[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 char rni_qwerty[] = { 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M' };
 int rni_hiragana_select_state = 0;
 
@@ -28,21 +32,43 @@ void DrawRankingNameInput() { // 島袋が担当中
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
+	// タイトル
+	DrawStringToHandle(320, 40, "ランキングに登録", 0x000000, font.handle_1_64, 0xffffff);
+
+	// 本文
     DrawStringToHandle(340, 140, "ランキング入力", 0x000000, font.handle_1_32, 0xffffff);
 
 	// フォントサイズの設定
-	ChangeFontSize(20); // ループ内で一回のみ機能
+	//ChangeFontSize(40); // ループ内で一回のみ機能、二回目は激重になる → バグ発生中、機能しません
 
 	// 名前入力指示文字列の描画
 	DrawString(150, 240, "ランキングに登録します", 0xFFFFFF);
 
-	//ChangeFontSize(30);
-
 	DrawString(150, 270, "名前を英字で入力してください", 0xFFFFFF);
 
-	for (int i = 0; i < (sizeof(rni_alphabet) / sizeof(rni_alphabet[0])); i++) {
+	SetFontSize(40);
+
+	for (int i = 0; i < 26; i++) {
 		DrawFormatString(10 + (i * 20), 300, 0x000000,"%c", rni_alphabet[i]);
 	}
+
+	for (int i = 0; i < 26; i++) {
+		DrawFormatString(10 + (i * 20), 325, 0x000000, "%c", rni_alphabet[i + 26]);
+	}
+
+	for (int i = 0; i < 10; i++) {
+		DrawFormatString(10 + (i * 20), 350, 0x000000, "%c", rni_alphabet[i + 52]);
+	}
+
+	int score = 12345;
+	std::string str = "スコア：" + std::to_string(score);
+	DrawStringToHandle(300, 400, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
+
+
+
+	/*for (int i = 0; i < (sizeof(rni_alphabet) / sizeof(rni_alphabet[0])); i++) {
+		DrawFormatString(10 + (i * 20), 350, 0x000000, "%c", rni_alphabet[i]);
+	}*/
 
 
 

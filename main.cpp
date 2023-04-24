@@ -135,7 +135,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawRankingNameInput();
 			break;
 		case RANKING:
-			// ranking画面（島袋）
+			// ランキング画面
 			DrawRanking();
 			break;
 		case END:
@@ -143,7 +143,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawEnd();
 			break;
 		case TEST:
-			// テストで、画像やフォント表示（島袋）
+			// テストで、画像やフォント表示（島袋）（タイトルでTを押して発動）
 			DrawTest();
 			break;
 		}
