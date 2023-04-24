@@ -1,7 +1,8 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
+
 #include "main.h"
-#include"init.h"
+#include "init.h"
 
 extern Image image;
 extern Font font;
@@ -13,7 +14,7 @@ Init ini;
 /********************************
 * ƒQ[ƒ€‰Šú‰»
 ********************************/
-void GameInit() {
+void GameInit() { // –¢Š®¬
 	game.mode = MAIN;
 
 	ini.StartTime = GetNowCount();

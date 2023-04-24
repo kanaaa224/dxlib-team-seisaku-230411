@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
+
 #include "main.h"
 
 extern Image image;
@@ -10,7 +11,7 @@ extern Game game;
 /********************************
 * ÉGÉìÉhâÊñ 
 ********************************/
-void DrawEnd() {
+void DrawEnd() { // ñ¢äÆê¨
 	// îwåiï\é¶
     DrawGraph(0, 0, image.title, TRUE);
 	

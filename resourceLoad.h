@@ -12,6 +12,9 @@ public:
 	int title;
 	int apple[20];
 	int player[16];
+	int Walk[3];
+	int Run[8];
+	int Stop[2];
 	int end;
 	int controller;
 	int controller_s;
@@ -25,11 +28,18 @@ public:
 
 class Font {
 public:
-	int s;
+	//int s;
 	int state;
 	int handle_1_128;
 	int handle_1_64;
 	int handle_1_32;
 };
 
+class ChageFont {
+public:
+	int state;
+};
+
 int ResourceLoad(void);
+
+int ChangeFontSize(int size);

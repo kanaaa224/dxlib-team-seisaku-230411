@@ -1,13 +1,13 @@
 // 作：島袋
 
 #define _USE_MATH_DEFINES
-#include <math.h>
 #define RANKING_DATA 5
 #include <stdio.h>
+#include <math.h>
 
 #include "DxLib.h"
 #include "resourceLoad.h"
-#include "ranking.h"
+
 #include "main.h"
 
 extern Image image;
@@ -26,7 +26,7 @@ void DrawRanking() {
     DrawStringToHandle(340, 180, "rでランキング入力画面へ", 0x000000, font.handle_1_32, 0xffffff);
 
     // 戻る表示
-    DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+    DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
     // 仮
     if (CheckHitKey(KEY_INPUT_R)) {
@@ -41,4 +41,3 @@ void DrawRanking() {
     // ファイル読み込み対応
     // パッド対応
 };
-

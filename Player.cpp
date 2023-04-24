@@ -17,8 +17,8 @@ void PlayerControll() {
 	//右歩き
 	if (Stick > WALK_RIGHT && Stick < RUN_RIGHT) {
 		if (PlayerLimit(player.x) == 0) {
-			if (player.speed != WALK_SPEED) {
-				player.speed += 1;
+			if (player.speed < WALK_SPEED) {
+				player.speed += 0.5;
 			}
 			else{
 				player.speed = WALK_SPEED;
@@ -29,8 +29,8 @@ void PlayerControll() {
 	//左歩き
 	else if (Stick < WALK_LEFT && Stick > RUN_LEFT) {
 		if (PlayerLimit(player.x) == 0) {
-			if (player.speed != WALK_SPEED * -1) {
-				player.speed -= 1;
+			if (player.speed > WALK_SPEED * -1) {
+				player.speed -= 0.5;
 			}
 			else {
 				player.speed = WALK_SPEED * -1;
@@ -42,36 +42,29 @@ void PlayerControll() {
 	//右ダッシュ
 	else if (Stick >= RUN_RIGHT) {
 		if (PlayerLimit(player.x) == 0) {
-			if (player.speed < 5) {
-				player.speed += 1;
+			if (player.speed < 3) {
+				player.speed += 0.5;
 			}
 			else {
-				if (FPScount < 20 && FPScount % 2 == 0) {
+				if (FPScount < 10 && FPScount % 5 == 0) {
 					player.speed += SPEED_UP;
 				}
 				FPScount++;
 			}
 		}
-		if (player.x > MOVE_RIGHT_LIMIT) {
-			//立ち止まりのアニメーション
-		}
-		else {
-			//走るアニメーション
-		}
 	}
 	//左ダッシュ
 	else if(Stick <= RUN_LEFT) {
 		if (PlayerLimit(player.x) == 0) {
-			if (player.speed > -5 ) {
-				player.speed -= 1;
+			if (player.speed > -3 ) {
+				player.speed -= 0.5;
 			}
 			else {
-				if (FPScount < 20 && FPScount % 2 == 0) {
+				if (FPScount < 10 && FPScount % 5 == 0) {
 					player.speed -= SPEED_UP;
 				}
 				FPScount++;
 			}
-			
 		}
 	}
 	//立ち止まり
@@ -79,10 +72,10 @@ void PlayerControll() {
 		if (PlayerLimit(player.x) == 0) {
 			//慣性
 			if (player.speed != 0 && player.speed > 0) {
-				player.speed--;
+				player.speed -= 0.5;
 			}
 			else if (player.speed != 0 && player.speed < 0) {
-				player.speed++;
+				player.speed += 0.5;
 			}
 			else {
 				player.speed = 0;
@@ -103,12 +96,12 @@ int PlayerLimit(int x) {
 	//プレイヤーの移動制限
 	if (player.x < MOVE_LEFT_LIMIT) {
 		player.speed = 0;
-		player.x = 10;
+		player.x = MOVE_LEFT_LIMIT;
 		return 1;
 	}
 	else if (player.x > MOVE_RIGHT_LIMIT) {
 		player.speed = 0;
-		player.x = 1000;
+		player.x = MOVE_RIGHT_LIMIT;
 		return 1;
 	}
 	else {
@@ -117,40 +110,53 @@ int PlayerLimit(int x) {
 		return 0;
 	}
 }
-int i = 5;
+
 void DrawPlayer() {
-	if (player.speed > 0 && player.speed < 11 && player.x != 1000) {
-		//DrawGraph(player.x, player.y, image.player[5],TRUE);
+
+
+
+	if (player.speed > 0 && player.speed < 3 && player.x != MOVE_RIGHT_LIMIT) {
 		if (FPS % 10 == 0) {
-			i++;
-			if (i > 7) {
-				i = 5;
+			Walk++;
+			if (Walk > 2) {
+				Walk = 0;
 			}
 		}
-		if (i == 7) {
-			DrawRotaGraph(player.x - 8, player.y, 0.13f, 0, image.player[15], TRUE, FALSE);
+		DrawRotaGraph(player.x, player.y, 0.8f, 0, image.Walk[Walk], TRUE, TRUE);
+	}
+	else if (player.speed > 3 && player.x != MOVE_RIGHT_LIMIT) {
+		if (FPS % 5 == 0) {
+			Run += 2;
+			if (Run > 7) {
+				Run = 0;
+			}
 		}
-		else if (i == 6) {
-			DrawRotaGraph(player.x + 30, player.y, 0.45f, 0, image.player[i], TRUE, FALSE);
+		DrawRotaGraph(player.x, player.y, 1.07f, 0, image.Run[Run], TRUE, TRUE);
+
+	}
+	else if (player.speed < 0 && player.speed > -3 && player.x != MOVE_LEFT_LIMIT) {
+		if (FPS % 10 == 0) {
+			Walk++;
+			if (Walk > 2) {
+				Walk = 0;
+			}
 		}
-		else {
-			DrawRotaGraph(player.x - 8, player.y, 0.45f, 0, image.player[i], TRUE, FALSE);
+		DrawRotaGraph(player.x, player.y, 0.8f, 0, image.Walk[Walk], TRUE, FALSE);
+	}
+	else if (player.speed < -2 && player.x != MOVE_LEFT_LIMIT) {
+		if (FPS % 5 == 0) {
+			Run += 2;
+			if (Run > 7) {
+				Run = 0;
+			}
 		}
+		DrawRotaGraph(player.x, player.y, 1.07f, 0, image.Run[Run], TRUE, FALSE);
 	}
-	else if (player.speed > 10 && player.x != 1000) {
-		//DrawGraph(player.x, player.y, image.player[8], TRUE);
-		DrawRotaGraph(player.x + 40, player.y, 0.45f, 0, image.player[8], TRUE, FALSE);
-	}
-	else if (player.speed < 0 && player.speed > -11 && player.x != 10) {
-		//DrawGraph(player.x, player.y, image.player[5],TRUE);
-		DrawRotaGraph(player.x + 8, player.y, 0.45f, 0, image.player[5], TRUE, TRUE);
-	}
-	else if (player.speed < -10 && player.x != 10) {
-		//DrawGraph(player.x, player.y, image.player[8], TRUE);
-		DrawRotaGraph(player.x - 40, player.y, 0.45f, 0, image.player[8], TRUE, TRUE);
-	}
+	else if (Stick < 500 && Stick > -500) {
+		DrawRotaGraph(player.x, player.y, 0.5f, 0, image.Stop[0], TRUE, FALSE);
+    }
 	else {
-		DrawRotaGraph(player.x, player.y - 30, 0.45f, 0, image.player[1], TRUE, FALSE);
+		DrawRotaGraph(player.x, player.y, 0.5f, 0, image.Stop[1], TRUE, FALSE);
 	}
 	FPS++;
 	HitBoxPlayer();

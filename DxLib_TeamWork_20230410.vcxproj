@@ -141,13 +141,11 @@
   <ItemGroup>
     <ClCompile Include="end.cpp" />
     <ClCompile Include="help.cpp" />
-
-
-    <ClCompile Include="FallApple.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="Apple.cpp" />
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pause.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ranking.cpp" />
     <ClCompile Include="ranking_name_input.cpp" />
@@ -163,6 +161,7 @@
     <ClInclude Include="init.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="PadInput.h" />
+    <ClInclude Include="Pause.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="help.h" />
     <ClInclude Include="ranking.h" />
