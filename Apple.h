@@ -43,5 +43,6 @@ int ReturnScore(void);
 int ReturnAppleX(int num);
 int ReturnAppleY(int num);
 int ReturnAppleImg(int num);
+int ReturnAppleFlg(int num);
 
 #endif

@@ -19,11 +19,12 @@ struct PLAYER
 
 static int Run = 0;
 static int Walk = 0;
-
+static int FPS = 0;
 static struct PLAYER player;
 
 void PlayerControll(void);
 int PlayerLimit(int x);
 void DrawPlayer();
+void DrawPlayerPause();
 int ReturnPlayerX();
 int ReturnPlayerY();

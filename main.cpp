@@ -111,12 +111,15 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			}
 			else {
 				for (int i = 0; i < 10; i++) {
-					//ƒŠƒ“ƒS‚Ì•\Ž¦
-					DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
+					if (ReturnAppleFlg(i) == TRUE) {
+						//ƒŠƒ“ƒS‚Ì•\Ž¦
+						DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
+					}
 				}
-				DrawPlayer();
-				HitBoxPlayer();
+				DrawPlayerPause();
+				//HitBoxPlayer();
 				DrawUserInterFace();
+				DrawStringToHandle(200, 310, "-- ƒ|[ƒY’† --", 0x000000, font.handle_1_128, 0xffffff);
 				//ƒŠƒ“ƒS
 				//FallApple();
 			}

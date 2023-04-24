@@ -310,3 +310,7 @@ int ReturnAppleY(int num) {
 int ReturnAppleImg(int num) {
 	return gApple[num].img;
 }
+
+int ReturnAppleFlg(int num) {
+	return gApple[num].flg;
+}
