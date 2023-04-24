@@ -9,4 +9,4 @@ public:
 
 void DrawUserInterFace();
 void DrawTimeLimit();
-void DrawScore();
+void DrawCnt();

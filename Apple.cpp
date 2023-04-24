@@ -6,6 +6,7 @@
 #include "Apple.h"
 #include "resourceLoad.h"
 #include "player.h"
+#include<string>
 
 /************************************************
 *　変数の宣言（グローバル変数）
@@ -25,7 +26,11 @@ int gGACount = 0;	//金りんごの個数
 int gPACount = 0;	//毒りんごの個数
 int gScore = 0;		//スコア
 
+using std::string;
+using std::to_string;
+
 extern Image image;		//りんごの画像変数
+extern Font font;
 
 /************************************************
 *　定数の宣言
@@ -242,6 +247,14 @@ int HitBoxPlayer(void) {
 			}*/
 		}
 	}
+	std::string str1 = std::to_string(gRACount);
+	std::string str2 = std::to_string(gBACount);
+	std::string str3 = std::to_string(gGACount);
+
+	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+
 	
 	SetFontSize(16);
 	DrawFormatString(0, 100, 0xffffff, "Score:%d", gScore);
