@@ -6,6 +6,7 @@
 #include "Apple.h"
 #include "resourceLoad.h"
 #include "player.h"
+#include<string>
 
 /************************************************
 *　変数の宣言（グローバル変数）
@@ -25,7 +26,11 @@ int gGACount = 0;	//金りんごの個数
 int gPACount = 0;	//毒りんごの個数
 int gScore = 0;		//スコア
 
+using std::string;
+using std::to_string;
+
 extern Image image;		//りんごの画像変数
+extern Font font;
 
 /************************************************
 *　定数の宣言
@@ -225,7 +230,6 @@ int HitBoxPlayer(void) {
 		if (gApple[i].flg == TRUE) {
 			DrawBox(sx1[i], sy1[i], sx2[i], sy2[i], 0xffffff, TRUE);
 		}
-		DrawFormatString(390, 100, 0xffffff, "%d", sy1[i]);
 	}
 
 	for (int i = 0; i < 10; i++) {
@@ -235,14 +239,17 @@ int HitBoxPlayer(void) {
 				gApple[i].flg = FALSE;	//削除
 				ApplePoint(i);//スコア処理
 			}
-
-			
-			/*if (py1 < sy2[i]) {
-				gApple[i].flg = FALSE;
-			}*/
 		}
+
 	}
-	
+	std::string str1 = std::to_string(gRACount);
+	std::string str2 = std::to_string(gBACount);
+	std::string str3 = std::to_string(gGACount);
+
+	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+
 	SetFontSize(16);
 	DrawFormatString(0, 100, 0xffffff, "Score:%d", gScore);
 	DrawFormatString(0, 120, 0xffffff, "RED:%d", gRACount);
