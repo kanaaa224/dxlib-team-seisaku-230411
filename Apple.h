@@ -5,9 +5,9 @@
 
 //マクロ定義
 #define REDAPPLE 0
-#define BLUEAPPLE 3
-#define GOLDAPPLE 4
-#define POISONAPPLE 12
+#define BLUEAPPLE 1
+#define GOLDAPPLE 2
+#define POISONAPPLE 3
 
 #define LINE_NUM 7
 
@@ -35,6 +35,11 @@ void AppleInit(void);		//リンゴの変数の初期化
 int HitBox(void);
 int HitBoxPlayer(void);
 void ApplePoint(int i);		//りんごのスコア処理
+int ReturnRA(void);
+int ReturnBL(void);
+int ReturnGL(void);
+int ReturnPO(void);
+int ReturnScore(void);
 int ReturnAppleX(int num);
 int ReturnAppleY(int num);
 int ReturnAppleImg(int num);

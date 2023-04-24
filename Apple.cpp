@@ -222,7 +222,7 @@ int HitBoxPlayer(void) {
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
-			//DrawBox(sx1[i], sy1[i], sx2[i], sy2[i], 0xffffff, TRUE);
+			DrawBox(sx1[i], sy1[i], sx2[i], sy2[i], 0xffffff, TRUE);
 		}
 		DrawFormatString(390, 100, 0xffffff, "%d", sy1[i]);
 	}
@@ -276,6 +276,25 @@ void ApplePoint(int i)
 			gScore = 0;
 		}
 	}
+}
+int ReturnRA(void) {
+	return gRACount;
+}
+
+int ReturnBL(void) {
+	return gBACount;
+}
+
+int ReturnGL(void) {
+	return gGACount;
+}
+
+int ReturnPO(void) {
+	return gPACount;
+}
+
+int ReturnScore(void) {
+	return gScore;
 }
 
 int ReturnAppleX(int num) {
