@@ -27,6 +27,7 @@ int AppleScore = 0;
 /********************************
 * リザルト画面
 ********************************/
+
 void DrawResult() { // 未完成
 
 	RED_AppleCount		= ReturnRA();
@@ -58,6 +59,7 @@ void DrawResult() { // 未完成
 	//DrawFormatStringFToHandle(660, 180,  0x000000, font.handle_1_64,  "%d", RED_AppleCount);
 	
 	// 戻る表示
+	DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 	DrawStringToHandle(530, 670, "Bボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
 	// Space でタイトル
