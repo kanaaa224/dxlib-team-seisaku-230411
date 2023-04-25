@@ -3,7 +3,8 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
 
-Resourceload resourceload;
+int resourceload_state;
+
 Image image;
 Sound sound;
 Font font;
@@ -47,7 +48,7 @@ int LoadFonts(void)
 		font.handle_1_128 = CreateFontToHandle("しょかきうたげ（無料版）", 128, 9, DX_FONTTYPE_EDGE);
 		font.handle_1_64 = CreateFontToHandle("しょかきうたげ（無料版）", 64, 9, DX_FONTTYPE_EDGE);
 		font.handle_1_32 = CreateFontToHandle("しょかきうたげ（無料版）", 32, 9, DX_FONTTYPE_EDGE);
-		//font.handle_2 = 追加フォントのパス
+		//font.handle_3_ // 追加フォントのパスとサイズ
 		font.state = 1;
 	}
 	//if ((font.s = LoadFont("Resources/Fonts/syokakiutage.ttf")) == -1) return -1;
@@ -56,11 +57,11 @@ int LoadFonts(void)
 
 int ResourceLoad(void)
 {
-	if (resourceload.state == 0) {
+	if (resourceload_state == 0) {
 		if (LoadImages() == -1) return -1;
 		if (LoadSounds() == -1) return -1;
 		if (LoadFonts() == -1) return -1;
-		resourceload.state = 1;
+		resourceload_state = 1;
 	}
 	return 0;
 }

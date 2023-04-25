@@ -22,7 +22,10 @@ void DrawRanking() {
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
-    DrawStringToHandle(340, 140, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
+    // タイトル
+    DrawStringToHandle(370, 40, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
+
+    // 本文
     DrawStringToHandle(340, 180, "rでランキング入力画面へ", 0x000000, font.handle_1_32, 0xffffff);
 
     // 戻る表示
