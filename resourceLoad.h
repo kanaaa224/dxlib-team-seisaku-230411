@@ -17,7 +17,7 @@ public:
 
 class Sound {
 public:
-	int bgm;
+	int mainbgm;
 	int se_1;
 };
 

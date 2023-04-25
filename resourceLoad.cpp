@@ -32,7 +32,7 @@ int LoadImages(void)
 
 int LoadSounds(void)
 {
-	//if ((sound.bgm = LoadSound("Resources/Sounds/bgm.mp3")) == -1) return -1;
+	if ((sound.mainbgm = LoadSoundMem("Resources/BGM/Natural_Green.wav")) == -1) return -1;
 	//if ((sound.se = LoadSound("Resources/Sounds/se_1.mp3")) == -1) return -1;
 	return 0;
 }

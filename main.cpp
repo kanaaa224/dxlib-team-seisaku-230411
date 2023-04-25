@@ -19,6 +19,7 @@
 
 extern Image image;
 extern Font font;
+extern Sound sound;
 
 Game game;
 
@@ -87,6 +88,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// 背景表示
 			DrawGraph(0, 0, image.title, TRUE);
 			DrawStringToHandle(340, 140, "r de リザルト画面", 0x000000, font.handle_1_32, 0xffffff);
+			
 			// Space でリザルト
 			if (CheckHitKey(KEY_INPUT_R)) {
 				game.mode = RESULT;
@@ -103,6 +105,16 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			}
 			// プレイヤー開始
 			if (PauseFlg == 0) {
+				if (game.soundflg == 0) {		//最初だけはじめから再生
+					//BGM
+					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, TRUE);
+					game.soundflg = 1;
+				}
+				else {
+					//BGM
+					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, FALSE);
+				}
+
 				PlayerControll();
 				DrawPlayer();
 				DrawUserInterFace();
@@ -112,6 +124,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				FallApple();
 			}
 			else {
+				//BGM
+				StopSoundMem(sound.mainbgm);
 				for (int i = 0; i < 10; i++) {
 					if (ReturnAppleFlg(i) == TRUE) {
 						//リンゴの表示
@@ -131,6 +145,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawHelp();
 			break;
 		case RESULT:
+			//BGM
+			StopSoundMem(sound.mainbgm);
+			game.soundflg = 0;
 			// リザルト画面
 			DrawResult();
 			break;
