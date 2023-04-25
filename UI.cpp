@@ -38,7 +38,7 @@ void DrawTimeLimit()
 	}
 	DrawStringToHandle(1005, 50, "êßå¿éûä‘", 0x000000, font.handle_1_64, 0xffffff);
 	DrawStringToHandle(1100, 150, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
-	if (gTimeLimit==0)
+	if (gTimeLimit <= 0)
 	{
 		game.mode = RESULT;
 	}
