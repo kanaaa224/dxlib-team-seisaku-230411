@@ -7,13 +7,19 @@
 
 #include "DxLib.h"
 #include "resourceLoad.h"
-
+#include "ranking_name_input.h"
+#include <string>
 #include "main.h"
 
 extern Image image;
 extern Font font;
 
 extern Game game;
+
+extern NameInput nameInput;
+
+using std::string;
+using std::to_string;
 
 int gRankingImg;	//ランキング画面背景
 
@@ -31,19 +37,16 @@ struct RankingData gRanking[RANKING_DATA];
 * ランキング
 ********************************/
 void DrawRanking() {
+
+	//std::string RED = "赤リンゴ：" + std::to_string(RED_AppleCount);
+
+	nameInput.inputedName;
+
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
     DrawStringToHandle(340, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
-    //DrawStringToHandle(340, 180, "rでランキング入力画面へ", 0x000000, font.handle_1_32, 0xffffff);
-
-	//1位
-	/*DrawStringToHandle(340, 200, "１位", 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(340, 300, "２位", 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(340, 400, "３位", 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(340, 500, "４位", 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(340, 600, "５位", 0x000000, font.handle_1_64, 0xffffff);*/
-
+ 
     // 戻る表示
     DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
@@ -57,12 +60,10 @@ void DrawRanking() {
         game.mode = TITLE;
     };
 
-
-
 	SetFontSize(18);
 	for (int i = 0; i < RANKING_DATA; i++) {
-		DrawFormatStringFToHandle(340, 199 + i * 100, 0x000000, font.handle_1_64, "%d位 %-10s %5d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
-		//DrawFormatString(400, 170 + i * 25, 0xffffff, "%2d %-10s %10d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
+
+		DrawFormatStringFToHandle(240, 150 + i * 100, 0x000000, font.handle_1_64, "%d位 %s %d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
 	}
 
 	//DrawString(100, 450, "--- スペースキーを押してタイトルへ戻る ---", 0xff0000, 0);
@@ -141,7 +142,7 @@ int ReadRanking(void)
 
 	//ランキングデータ配分列データを読み込む
 	for (int i = 0; i < RANKING_DATA; i++) {
-		int dammy = fscanf(fp, "%2d %10s %10d", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
+		int dammy = fscanf(fp, "%d %s %d", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
 	}
 
 	//ファイルクローズ
