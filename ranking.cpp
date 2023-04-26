@@ -15,6 +15,18 @@ extern Font font;
 
 extern Game game;
 
+int gRankingImg;	//ランキング画面背景
+
+//ランキングデータ構造体
+struct RankingData {
+	int number;
+	char name[11];
+	long score;
+};
+
+//ランキングデータの変数宣言
+struct RankingData gRanking[RANKING_DATA];
+
 /********************************
 * ランキング
 ********************************/
@@ -22,8 +34,15 @@ void DrawRanking() {
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
-    DrawStringToHandle(340, 140, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
-    DrawStringToHandle(340, 180, "rでランキング入力画面へ", 0x000000, font.handle_1_32, 0xffffff);
+    DrawStringToHandle(340, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
+    //DrawStringToHandle(340, 180, "rでランキング入力画面へ", 0x000000, font.handle_1_32, 0xffffff);
+
+	//1位
+	/*DrawStringToHandle(340, 200, "１位", 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(340, 300, "２位", 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(340, 400, "３位", 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(340, 500, "４位", 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(340, 600, "５位", 0x000000, font.handle_1_64, 0xffffff);*/
 
     // 戻る表示
     DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
@@ -38,6 +57,95 @@ void DrawRanking() {
         game.mode = TITLE;
     };
 
+
+
+	SetFontSize(18);
+	for (int i = 0; i < RANKING_DATA; i++) {
+		DrawFormatStringFToHandle(340, 199 + i * 100, 0x000000, font.handle_1_64, "%d位 %-10s %5d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
+		//DrawFormatString(400, 170 + i * 25, 0xffffff, "%2d %-10s %10d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
+	}
+
+	//DrawString(100, 450, "--- スペースキーを押してタイトルへ戻る ---", 0xff0000, 0);
+
     // ファイル読み込み対応
     // パッド対応
 };
+
+//ランキング並べ替え
+void SortRanking(void)
+{
+	int i, j;
+	RankingData work;
+
+	//選択法ソート
+	for (i = 0; i < RANKING_DATA - 1; i++) {
+		for (j = i + 1; j < RANKING_DATA; j++) {
+			if (gRanking[i].score <= gRanking[j].score) {
+				work = gRanking[i];
+				gRanking[i] = gRanking[j];
+				gRanking[j] = work;
+			}
+		}
+	}
+
+	//順位付け
+	for (i = 0; i < RANKING_DATA; i++) {
+		gRanking[i].number = 1;
+	}
+	//得点が同じ場合は、同じ順位とする。
+	//同順位があった場合の次の順位はデータ個数が加算された順位とする。
+	for (i = 0; i < RANKING_DATA; i++) {
+		for (j = i + j; j < RANKING_DATA; j++) {
+			if (gRanking[i].score > gRanking[i].score) {
+				gRanking[j].number++;
+			}
+		}
+	}
+}
+
+//ランキングデータの保存
+int SaveRanking(void)
+{
+	FILE* fp;
+#pragma warning(disable:4996)
+
+	//ファイルオープン
+	if ((fp = fopen("Resources/dat/rankingdata.txt", "w")) == NULL) {
+		/*エラー処理*/
+		printf("Ranking Data Error\n");
+		return -1;
+	}
+
+	//ランキングデータ分配列データを書き込む
+	for (int i = 0; i < RANKING_DATA; i++) {
+		fprintf(fp, "%2d %10s %10d\n", gRanking[i].number, gRanking[i].name, gRanking[i].score);
+	}
+
+	//ファイルクローズ
+	fclose(fp);
+	return 0;
+}
+
+//ランキングデータ読み込み
+int ReadRanking(void)
+{
+	FILE* fp;
+#pragma warning(disable:4996)
+
+	//ファイルオープン
+	if ((fp = fopen("Resources/dat/rankingdata.txt", "r")) == NULL) {
+		//エラー処理
+		printf("Ranking Data Error\n");
+		return -1;
+	}
+
+	//ランキングデータ配分列データを読み込む
+	for (int i = 0; i < RANKING_DATA; i++) {
+		int dammy = fscanf(fp, "%2d %10s %10d", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
+	}
+
+	//ファイルクローズ
+	fclose(fp);
+
+	return 0;
+}
