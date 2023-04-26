@@ -154,6 +154,19 @@ void AppleSpeed(int i)
 	}
 }
 
+void AppleInit(int num) {
+	for (int i = 0; i < APPLE_MAX; i++) {
+		gApple[i].flg = FALSE;
+	}
+	gRACount = num;
+	gBACount = num;
+	gGACount = num;
+	gPACount = num;
+	gScore = num;
+}
+
+
+
 /************************************************
 *　りんごの当たり判定
 ************************************************/
@@ -211,10 +224,10 @@ int HitBoxPlayer(void) {
 		}
 		else {											//それ以外の当たり判定
 			if (gApple[i].flg == TRUE) {
-				sx1[i] = gApple[i].x - 55;	//左上 X
-				sy1[i] = gApple[i].y - 52;	//左上 Y
-				sx2[i] = gApple[i].x + 55;	//右下 X
-				sy2[i] = gApple[i].y + 52;	//右下 Y
+				sx1[i] = gApple[i].x - 46;	//左上 X
+				sy1[i] = gApple[i].y - 43;	//左上 Y
+				sx2[i] = gApple[i].x + 46;	//右下 X
+				sy2[i] = gApple[i].y + 43;	//右下 Y
 			}
 		}
 	}
@@ -322,4 +335,12 @@ int ReturnAppleImg(int num) {
 int ReturnAppleFlg(int num) {
 	return gApple[num].flg;
 }
+
+void SetAppleCount(int num) {
+	gRACount = num;
+	gBACount = num;
+	gGACount = num;
+	gPACount = num;
+}
+
 

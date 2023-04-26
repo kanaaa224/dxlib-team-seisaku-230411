@@ -60,7 +60,7 @@ void DrawResult() { // 未完成
 	
 	// 戻る表示
 	DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(530, 670, "Bボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+	//DrawStringToHandle(530, 670, "Bボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
 	// Space でタイトル
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {

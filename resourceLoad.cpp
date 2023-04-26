@@ -24,7 +24,7 @@ int LoadImages(void)
 	LoadDivGraph("Resources/Images/player.png", 15, 5, 3, 515, 612, image.player);
 	image.player[15] = LoadGraph("Resources/Images/human.png");
 	LoadDivGraph("Resources/Images/Run.png", 8, 4, 2, 300, 300, image.Run);
-	LoadDivGraph("Resources/Images/Walk.png", 3, 3, 1, 400, 400, image.Walk);
+	LoadDivGraph("Resources/Images/Walk.png", 3, 3, 1, 300, 300, image.Walk);
 	image.Stop[0] = LoadGraph("Resources/Images/Stop.png");
 	image.Stop[1] = LoadGraph("Resources/Images/Stop2.png");
 	return 0;
