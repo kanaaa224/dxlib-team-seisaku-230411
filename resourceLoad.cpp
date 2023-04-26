@@ -33,7 +33,12 @@ int LoadImages(void)
 int LoadSounds(void)
 {
 	if ((sound.mainbgm = LoadSoundMem("Resources/BGM/Natural_Green.wav")) == -1) return -1;
-	//if ((sound.se = LoadSound("Resources/Sounds/se_1.mp3")) == -1) return -1;
+	if ((sound.se_apple = LoadSoundMem("Resources/SE/Apple.wav")) == -1) return -1;
+	if ((sound.se_poisonapple = LoadSoundMem("Resources/SE/PoisonApple.wav")) == -1) return -1;
+
+	ChangeVolumeSoundMem(97, sound.mainbgm);
+	ChangeVolumeSoundMem(400, sound.se_apple);
+	ChangeVolumeSoundMem(450, sound.se_poisonapple);
 	return 0;
 }
 
