@@ -16,6 +16,7 @@ class Game {
 public:
 	//char mode[10] = "TITLE";
 	int mode = 0;
+	int soundflg = 0;
 };
 
 

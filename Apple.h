@@ -35,7 +35,7 @@ void AppleInit(void);		//リンゴの変数の初期化
 int HitBox(void);
 int HitBoxPlayer(void);
 void ApplePoint(int i);		//りんごのスコア処理
-int ReturnRA(void);
+int ReturnRA(void);			//gRACountがリザルト画面で使用したいので
 int ReturnBL(void);
 int ReturnGL(void);
 int ReturnPO(void);
@@ -43,6 +43,10 @@ int ReturnScore(void);
 int ReturnAppleX(int num);
 int ReturnAppleY(int num);
 int ReturnAppleImg(int num);
+int ReturnAppleFlg(int num);
+int ReturnFPSCount(void);
+
+
 
 
 #endif

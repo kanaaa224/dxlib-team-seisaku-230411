@@ -7,7 +7,7 @@
 int Stick;
 int FPScount = 0;
 extern Image image;
-int FPS = 0;
+
 
 void PlayerControll() {
 	Stick = GetStickX();	//スティックの状態取得
@@ -113,8 +113,6 @@ int PlayerLimit(int x) {
 
 void DrawPlayer() {
 
-
-
 	if (player.speed > 0 && player.speed < 3 && player.x != MOVE_RIGHT_LIMIT) {
 		if (FPS % 10 == 0) {
 			Walk++;
@@ -161,6 +159,30 @@ void DrawPlayer() {
 	FPS++;
 	HitBoxPlayer();
 }
+
+void DrawPlayerPause() {
+
+	if (player.speed > 0 && player.speed < 3 && player.x != MOVE_RIGHT_LIMIT) {
+		DrawRotaGraph(player.x, player.y, 0.8f, 0, image.Walk[Walk], TRUE, TRUE);
+	}
+	else if (player.speed > 3 && player.x != MOVE_RIGHT_LIMIT) {
+		DrawRotaGraph(player.x, player.y, 1.07f, 0, image.Run[Run], TRUE, TRUE);
+
+	}
+	else if (player.speed < 0 && player.speed > -3 && player.x != MOVE_LEFT_LIMIT) {
+		DrawRotaGraph(player.x, player.y, 0.8f, 0, image.Walk[Walk], TRUE, FALSE);
+	}
+	else if (player.speed < -2 && player.x != MOVE_LEFT_LIMIT) {
+		DrawRotaGraph(player.x, player.y, 1.07f, 0, image.Run[Run], TRUE, FALSE);
+	}
+	else if (Stick < 500 && Stick > -500) {
+		DrawRotaGraph(player.x, player.y, 0.5f, 0, image.Stop[0], TRUE, FALSE);
+	}
+	else {
+		DrawRotaGraph(player.x, player.y, 0.5f, 0, image.Stop[1], TRUE, FALSE);
+	}
+}
+
 
 int ReturnPlayerX() {
 	return player.x;

@@ -6,7 +6,7 @@
 #include "Apple.h"
 #include "resourceLoad.h"
 #include "player.h"
-#include "Pause.h"
+#include<string>
 
 /************************************************
 *　変数の宣言（グローバル変数）
@@ -25,8 +25,12 @@ int gBACount = 0;	//青りんごの個数
 int gGACount = 0;	//金りんごの個数
 int gPACount = 0;	//毒りんごの個数
 int gScore = 0;		//スコア
-int pause;
+
+using std::string;
+using std::to_string;
+
 extern Image image;		//りんごの画像変数
+extern Font font;
 
 /************************************************
 *　定数の宣言
@@ -51,14 +55,15 @@ void FallApple(void)
 
 		if (gApple[i].flg == TRUE) {
 
+			////テスト
+			//SetFontSize(16);
+			//DrawFormatString(0, 0, 0xffffff, "Y:%3d", gApple[i].y);
+			//DrawFormatString(100, 0, 0xffffff, "X:%3d", gApple[i].x);
+
 			//リンゴの表示
 			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.19, 0, gApple[i].img, TRUE);
 
-			if ((pause = GetPauseFlg()) == 1) {		//ポーズ
-				//真っすぐ下に移動
-				gApple[i].y = gApple[i].speed;
-
-			}
+			//真っすぐ下に移動
 			gApple[i].y += gApple[i].speed;
 
 			//りんごの座標が１０００になったらりんごをけす
@@ -66,6 +71,7 @@ void FallApple(void)
 				gApple[i].flg = FALSE;
 				gApple[i].y = 0;
 			}
+
 		}
 
 	}
@@ -224,7 +230,6 @@ int HitBoxPlayer(void) {
 		if (gApple[i].flg == TRUE) {
 			DrawBox(sx1[i], sy1[i], sx2[i], sy2[i], 0xffffff, TRUE);
 		}
-		DrawFormatString(390, 100, 0xffffff, "%d", sy1[i]);
 	}
 
 	for (int i = 0; i < 10; i++) {
@@ -234,14 +239,17 @@ int HitBoxPlayer(void) {
 				gApple[i].flg = FALSE;	//削除
 				ApplePoint(i);//スコア処理
 			}
-
-			
-			/*if (py1 < sy2[i]) {
-				gApple[i].flg = FALSE;
-			}*/
 		}
+
 	}
-	
+	std::string str1 = std::to_string(gRACount);
+	std::string str2 = std::to_string(gBACount);
+	std::string str3 = std::to_string(gGACount);
+
+	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+
 	SetFontSize(16);
 	DrawFormatString(0, 100, 0xffffff, "Score:%d", gScore);
 	DrawFormatString(0, 120, 0xffffff, "RED:%d", gRACount);
@@ -277,6 +285,7 @@ void ApplePoint(int i)
 		}
 	}
 }
+
 int ReturnRA(void) {
 	return gRACount;
 }
@@ -300,9 +309,17 @@ int ReturnScore(void) {
 int ReturnAppleX(int num) {
 	return gApple[num].x;
 }
+
 int ReturnAppleY(int num) {
 	return gApple[num].y;
 }
+
 int ReturnAppleImg(int num) {
 	return gApple[num].img;
 }
+
+
+int ReturnAppleFlg(int num) {
+	return gApple[num].flg;
+}
+

@@ -2,11 +2,6 @@
 
 #pragma once
 
-class Resourceload {
-public:
-	int state;
-};
-
 class Image {
 public:
 	int title;
@@ -22,7 +17,7 @@ public:
 
 class Sound {
 public:
-	int bgm;
+	int mainbgm;
 	int se_1;
 };
 
@@ -33,6 +28,9 @@ public:
 	int handle_1_128;
 	int handle_1_64;
 	int handle_1_32;
+	int handle_2_128;
+	int handle_2_64;
+	int handle_2_32;
 };
 
 class ChageFont {

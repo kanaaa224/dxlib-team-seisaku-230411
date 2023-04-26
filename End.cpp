@@ -8,29 +8,35 @@ extern Font font;
 
 extern Game game;
 
+int FPSCount = 0;
+
 /********************************
 * エンド画面
 ********************************/
 void DrawEnd() { // 未完成
-	// 背景表示
-    DrawGraph(0, 0, image.title, TRUE);
-	
-	// Thank you for playing
-	DrawStringToHandle(10, 10, "Thank you for playing", 0x000000, font.handle_1_128, 0xffffff);
+	if (FPSCount++ < 300) {
 
-	// 謝辞
-	//SetFontSize(40); FPS低下問題発生中
-	//DrawFormatString(20, 200, 0x000000, "使用した素材のクレジット");
-	//SetFontSize(32);
-	DrawStringToHandle(10, 200, "使用した素材のクレジット", 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(10, 280, "プレイヤー画像：AAA様", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(10, 320, "リンゴ画像：AAA様", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(10, 360, "フォント：AAA様", 0x000000, font.handle_1_32, 0xffffff);
+		// 背景表示
+		DrawGraph(0, 0, image.title, TRUE);
 
-	// 戻る表示
-	DrawStringToHandle(420, 670, "ESCキーでおわる / 300f tuika yotei", 0x000000, font.handle_1_32, 0xffffff);
+		// Thank you for playing
+		DrawStringToHandle(10, 10, "Thank you for playing", 0x000000, font.handle_1_128, 0xffffff);
 
-	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-		game.mode = EXIT;
-	};
+		// 謝辞
+		//SetFontSize(40); FPS低下問題発生中
+		//DrawFormatString(20, 200, 0x000000, "使用した素材のクレジット");
+		//SetFontSize(32);
+		DrawStringToHandle(10, 200, "使用した素材のクレジット", 0x000000, font.handle_1_64, 0xffffff);
+		DrawStringToHandle(10, 280, "プレイヤー画像：AAA様", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(10, 320, "リンゴ画像：AAA様", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(10, 360, "フォント：AAA様", 0x000000, font.handle_1_32, 0xffffff);
+
+		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+			game.mode = EXIT;
+		};
+
+		if (FPSCount == 300) {
+			game.mode = EXIT;
+		}
+	}
 };

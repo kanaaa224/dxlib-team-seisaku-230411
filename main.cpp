@@ -19,6 +19,7 @@
 
 extern Image image;
 extern Font font;
+extern Sound sound;
 
 Game game;
 
@@ -87,46 +88,66 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// 背景表示
 			DrawGraph(0, 0, image.title, TRUE);
 			DrawStringToHandle(340, 140, "r de リザルト画面", 0x000000, font.handle_1_32, 0xffffff);
+			
 			// Space でリザルト
 			if (CheckHitKey(KEY_INPUT_R)) {
 				game.mode = RESULT;
 			};
 			if (JudgeButton(XINPUT_BUTTON_START) == 1) { //ポーズ
 				if (PauseFlg == 0) {
+					SetPauseFlg(1);
 					PauseFlg = 1;
 				}
 				else {
+					SetPauseFlg(0);
 					PauseFlg = 0;
 				}
 			}
 			// プレイヤー開始
 			if (PauseFlg == 0) {
+				if (game.soundflg == 0) {		//最初だけはじめから再生
+					//BGM
+					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, TRUE);
+					game.soundflg = 1;
+				}
+				else {
+					//BGM
+					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, FALSE);
+				}
+
 				PlayerControll();
 				DrawPlayer();
-
-				HitBoxPlayer();
 				DrawUserInterFace();
+				HitBoxPlayer();
+				
 				//リンゴ
 				FallApple();
 			}
 			else {
+				//BGM
+				StopSoundMem(sound.mainbgm);
 				for (int i = 0; i < 10; i++) {
-					//リンゴの表示
-					DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
+					if (ReturnAppleFlg(i) == TRUE) {
+						//リンゴの表示
+						DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
+					}
 				}
-				DrawPlayer();
-				HitBoxPlayer();
+				DrawPlayerPause();
 				DrawUserInterFace();
+				HitBoxPlayer();
+				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, font.handle_1_128, 0xffffff);
 				//リンゴ
 				//FallApple();
 			}
-
 			break;
 		case HELP:
 			// ヘルプ画面（島袋）
 			DrawHelp();
 			break;
 		case RESULT:
+			//BGM
+			StopSoundMem(sound.mainbgm);
+			game.soundflg = 0;
 			// リザルト画面
 			DrawResult();
 			break;
@@ -135,7 +156,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawRankingNameInput();
 			break;
 		case RANKING:
-			// ranking画面（島袋）
+			// ランキング画面
 			DrawRanking();
 			break;
 		case END:
@@ -143,7 +164,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			DrawEnd();
 			break;
 		case TEST:
-			// テストで、画像やフォント表示（島袋）
+			// テストで、画像やフォント表示（島袋）（タイトルでTを押して発動）
 			DrawTest();
 			break;
 		}
