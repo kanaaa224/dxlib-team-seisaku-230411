@@ -62,7 +62,11 @@ void DrawResult() { // 未完成
 	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
 	// Space でタイトル
-	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+	/*if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = INPUTNAME;
-	};
+	};*/
+
+	WaitTimer(3000);
+
+	game.mode = RANKING;
 };

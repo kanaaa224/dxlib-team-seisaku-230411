@@ -8,6 +8,8 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
 #include "ranking_name_input.h"
+#include "ranking.h"
+#include "Apple.h"
 #include <string>
 #include "main.h"
 
@@ -38,7 +40,9 @@ struct RankingData gRanking[RANKING_DATA];
 ********************************/
 void DrawRanking() {
 
-	//std::string RED = "赤リンゴ：" + std::to_string(RED_AppleCount);
+	int RgScore = 0;
+
+	RgScore = ReturnScore();
 
 	nameInput.inputedName;
 
@@ -60,10 +64,18 @@ void DrawRanking() {
         game.mode = TITLE;
     };
 
+	if (RgScore > 0) {
+		//gRanking[RANKING_DATA - 1].name = 
+		gRanking[RANKING_DATA - 1].score = RgScore;	//ランキングデータにスコアを登録
+		SortRanking();								//ランキング並べ替え
+		SaveRanking();								//ランキングデータの保存
+		game.mode = RANKING;						//ゲームモードの変更
+	}
+
 	SetFontSize(18);
 	for (int i = 0; i < RANKING_DATA; i++) {
 
-		DrawFormatStringFToHandle(240, 150 + i * 100, 0x000000, font.handle_1_64, "%d位 %s %d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
+		DrawFormatStringFToHandle(240, 150 + i * 100, 0x000000, font.handle_1_64, "%2d位 %10s %10d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
 	}
 
 	//DrawString(100, 450, "--- スペースキーを押してタイトルへ戻る ---", 0xff0000, 0);
@@ -142,7 +154,7 @@ int ReadRanking(void)
 
 	//ランキングデータ配分列データを読み込む
 	for (int i = 0; i < RANKING_DATA; i++) {
-		int dammy = fscanf(fp, "%d %s %d", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
+		int dammy = fscanf(fp, "%2d %10s %d10", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
 	}
 
 	//ファイルクローズ
