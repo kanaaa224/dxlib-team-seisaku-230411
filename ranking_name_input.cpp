@@ -26,19 +26,17 @@ char rni_alphabet[][26] = {
 	{ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }
 };
 //char rni_qwerty[] = { 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M' };
+
 std::string rni_inputName = "";
 int rni_selecter[] = { 90, 440, 35, 30, 0, 0 };
 int rni_state = 0;
 
 #include "Apple.h"
 
-// 開発
-int mirutame[4];
-
 /********************************
 * ランキング入力処理
 ********************************/
-void DrawRankingNameInput() { // 島袋が担当中
+void DrawRankingNameInput() { // 島袋が担当中、仮完成
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
@@ -56,7 +54,8 @@ void DrawRankingNameInput() { // 島袋が担当中
 	// フォントサイズの設定
 	//ChangeFontSize(40); // ループ内で一回のみ機能、二回目は激重になる → バグ発生中、機能しません
 
-	DrawFormatString(600, 20, 0x000000, "%d - %d / %d - %d / %c / %d", rni_selecter[0], rni_selecter[1], rni_selecter[4], rni_selecter[5], rni_alphabet[rni_selecter[4]][rni_selecter[5]], rni_inputName.capacity() * sizeof(char));
+	// 開発用
+	//DrawFormatString(600, 20, 0x000000, "%d - %d / %d - %d / %c / %d", rni_selecter[0], rni_selecter[1], rni_selecter[4], rni_selecter[5], rni_alphabet[rni_selecter[4]][rni_selecter[5]], strlen(rni_inputName.c_str()));
 
 	/********************************
 	* キーボード描画
@@ -107,32 +106,94 @@ void DrawRankingNameInput() { // 島袋が担当中
 	// コントローラー入力
 	if (rni_selectstate = GetStickY() > 32000 && rni_stickflg == 0) {
 		// 左スティック上
-		//if (title.state <= 0) {
-		//	title.state = 3;
-		//}
-		//else {
-		//	title.state -= 1;
-		//};
+		if (rni_selecter[1] != 440) {
+			// １段目じゃないなら
+			if (rni_selecter[1] == 540) {
+				// ３段目から２段目へ移動したら差を足す
+				rni_selecter[5] = (rni_selecter[5] + 8);
+			}
+			rni_selecter[1] -= 50;
+			rni_selecter[4] -= 1;
+		}
 		rni_stickflg = 1;
 	}
 	else if (rni_selectstate = GetStickY() < -32000 && rni_stickflg == 0) {
 		// 左スティック下
-		//if (title.state >= 3) {
-		//	title.state = 0;
-		//}
-		//else {
-		//	title.state += 1;
-		//};
+		if (rni_selecter[1] != 540) {
+			// ３段目じゃないなら
+			if (rni_selecter[1] == 490) {
+				// ２段目から３段目へ移動したら差を引く
+				rni_selecter[5] = (rni_selecter[5] - 8);
+				if (rni_selecter[0] >= 846) {
+					// ９より右にカーソルがあったら９にする
+					rni_selecter[0] = 804;
+					rni_selecter[5] = 9;
+				}
+				else if (rni_selecter[0] <= 384) {
+					//	０より左にカーソルがあったら０にする
+					rni_selecter[0] = 426;
+					rni_selecter[5] = 0;
+				}
+			}
+			rni_selecter[1] += 50;
+			rni_selecter[4] += 1;
+		}
 		rni_stickflg = 1;
 	}
 	else if (rni_selectstate = GetStickX() > 32000 && rni_stickflg == 0) {
 		// 左スティック左
-
+		if (rni_selecter[1] == 440) {
+			// １段目のとき
+			if (rni_selecter[0] < 1140) {
+				// 右端なら破棄、それ以外なら移動
+				rni_selecter[0] += 42;
+				rni_selecter[5] += 1;
+			}
+		}
+		else if (rni_selecter[1] == 490) {
+			// ２段目のとき
+			if (rni_selecter[0] < 1140) {
+				// 右端なら破棄、それ以外なら移動
+				rni_selecter[0] += 42;
+				rni_selecter[5] += 1;
+			}
+		}
+		else if (rni_selecter[1] == 540) {
+			// ３段目のとき
+			if (rni_selecter[0] < 804) {
+				// 右端なら破棄、それ以外なら移動
+				rni_selecter[0] += 42;
+				rni_selecter[5] += 1;
+			}
+		}
 		rni_stickflg = 1;
 	}
 	else if (rni_selectstate = GetStickX() < -32000 && rni_stickflg == 0) {
 		// 左スティック右
-
+		if (rni_selecter[1] == 440) {
+			// １段目のとき
+			if (rni_selecter[0] > 90) {
+				// 左端なら破棄、それ以外なら移動
+				rni_selecter[0] -= 42;
+				rni_selecter[5] -= 1;
+			}
+		}
+		else if (rni_selecter[1] == 490) {
+			// ２段目のとき
+			if (rni_selecter[0] > 90) {
+				// 左端なら破棄、それ以外なら移動
+				rni_selecter[0] -= 42;
+				rni_selecter[5] -= 1;
+			}
+		}
+		else if (rni_selecter[1] == 540) {
+			// ３段目のとき
+			if (rni_selecter[0] > 426) {
+				// 左端なら破棄、それ以外なら移動
+				rni_selecter[0] -= 42;
+				rni_selecter[5] -= 1;
+			}
+		}
 		rni_stickflg = 1;
 	};
 	// スティックが戻ると操作受付
@@ -141,24 +202,32 @@ void DrawRankingNameInput() { // 島袋が担当中
 			rni_stickflg = 0;
 		};
 	};
-	// Bボタンで選択
+	// Bボタンで入力
 	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
-		//if (title.state == 0) {
-		//	// スタート選択
-		//	game.mode = INIT;
-		//}
-		//else if (title.state == 1) {
-		//	// ヘルプ選択
-		//	game.mode = HELP;
-		//}
-		//else if (title.state == 2) {
-		//	// ランキング選択
-		//	game.mode = RANKING;
-		//}
-		//else if (title.state == 3) {
-		//	// 終わる選択
-		//	game.mode = END;
-		//};
+		// Char１文字を１バイトとして考えて１０バイトまで
+		if (strlen(rni_inputName.c_str()) < 10) {
+			rni_inputName += rni_alphabet[rni_selecter[4]][rni_selecter[5]];
+		}
+		else {
+			// 10文字超えてるので警告
+		}
+	};
+	// Xボタンで一文字削除
+	if (JudgeReleaseButton(XINPUT_BUTTON_X) == 1) {
+		// １文字削除
+		if (rni_inputName.length() > 0) {
+			rni_inputName.erase(rni_inputName.length() - 1);
+		}
+	};
+	// Yボタンで入力終了
+	if (JudgeReleaseButton(XINPUT_BUTTON_Y) == 1) {
+		if (rni_inputName.length() > 0) {
+			nameInput.inputedName = rni_inputName;
+			game.mode = RANKING;
+		}
+		else {
+			// 何も入力されていないので警告
+		}
 	};
 
 	// キーボード入力
@@ -243,9 +312,12 @@ void DrawRankingNameInput() { // 島袋が担当中
 		}
 	}
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
-		if ((rni_inputName.capacity() * sizeof(char)) <= 10) {
+		// Char１文字を１バイトとして考えて１０バイトまで
+		if (strlen(rni_inputName.c_str()) < 10) {
 			rni_inputName += rni_alphabet[rni_selecter[4]][rni_selecter[5]];
-			nameInput.inputedName = rni_inputName;
+		}
+		else {
+			// １０文字超えてるので警告
 		}
 	}
 	if (CheckHitKey(KEY_INPUT_BACK)) {
@@ -255,46 +327,16 @@ void DrawRankingNameInput() { // 島袋が担当中
 	}
 
 	if(CheckHitKey(KEY_INPUT_SPACE)) {
-		if (rni_state) {
-
+		if (rni_inputName.length() > 0) {
+			nameInput.inputedName = rni_inputName;
+			game.mode = RANKING;
 		}
-	
+		else {
+			// 何も入力されていないので警告
+		}
 	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;
 	}
-
-	
-
-
-
-	// 開発用
-	//DrawCircle(mirutame[0], mirutame[1], mirutame[2], 0xffffff, FALSE);
-	DrawBox(mirutame[0], mirutame[1], mirutame[0] + mirutame[2], mirutame[1] + mirutame[3], 0xffffff, FALSE);
-	DrawFormatString(mirutame[0], mirutame[1], 0xffffff, "%d - %d", mirutame[0], mirutame[1]);
-	if (CheckHitKey(KEY_INPUT_W)) {
-		mirutame[1]--;
-	};
-	if (CheckHitKey(KEY_INPUT_S)) {
-		mirutame[1]++;
-	};
-	if (CheckHitKey(KEY_INPUT_A)) {
-		mirutame[0]--;
-	};
-	if (CheckHitKey(KEY_INPUT_D)) {
-		mirutame[0]++;
-	};
-	if (CheckHitKey(KEY_INPUT_Q)) {
-		mirutame[2]--;
-	};
-	if (CheckHitKey(KEY_INPUT_E)) {
-		mirutame[2]++;
-	};
-	if (CheckHitKey(KEY_INPUT_R)) {
-		mirutame[3]--;
-	};
-	if (CheckHitKey(KEY_INPUT_F)) {
-		mirutame[3]++;
-	};
 };
 
