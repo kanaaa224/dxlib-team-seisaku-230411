@@ -64,6 +64,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
 	if (ResourceLoad() == -1) return -1;
 
+	// ランキングデータの読込
+	if (ReadRanking() == -1) return -1;
+
 	// ゲームループ
 	while (ProcessMessage() == 0 && game.mode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))
 	{
