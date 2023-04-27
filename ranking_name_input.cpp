@@ -222,7 +222,7 @@ void DrawRankingNameInput() { // 島袋が担当中、仮完成
 	// Yボタンで入力終了
 	if (JudgeReleaseButton(XINPUT_BUTTON_Y) == 1) {
 		if (rni_inputName.length() > 0) {
-			nameInput.inputedName = rni_inputName;
+			nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
@@ -328,7 +328,7 @@ void DrawRankingNameInput() { // 島袋が担当中、仮完成
 
 	if(CheckHitKey(KEY_INPUT_SPACE)) {
 		if (rni_inputName.length() > 0) {
-			nameInput.inputedName = rni_inputName;
+			nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
