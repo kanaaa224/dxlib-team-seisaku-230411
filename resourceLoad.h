@@ -18,7 +18,8 @@ public:
 class Sound {
 public:
 	int mainbgm;
-	int se_1;
+	int se_apple;
+	int se_poisonapple;
 };
 
 class Font {
@@ -28,9 +29,9 @@ public:
 	int handle_1_128;
 	int handle_1_64;
 	int handle_1_32;
-	int handle_2_128;
-	int handle_2_64;
-	int handle_2_32;
+	//int handle_2_128;
+	//int handle_2_64;
+	//int handle_2_32;
 };
 
 class ChageFont {

@@ -93,7 +93,7 @@ void DrawHelp() {
 		DrawStringToHandle(260, 560, "金リンゴ：ポイントUP＋", 0x000000, font.handle_1_32, 0xffffff);
 
 		DrawExtendGraph(670, 550, 720, 600, image.apple[3], TRUE);
-		DrawStringToHandle(730, 560, "毒リンゴ：ポイントマイナス", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(730, 560, "毒リンゴ：ポイントDOWN", 0x000000, font.handle_1_32, 0xffffff);
 	};
 
 	/********************************

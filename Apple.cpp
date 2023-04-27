@@ -31,6 +31,7 @@ using std::to_string;
 
 extern Image image;		//ÇËÇÒÇ≤ÇÃâÊëúïœêî
 extern Font font;
+extern Sound sound;
 
 /************************************************
 *Å@íËêîÇÃêÈåæ
@@ -281,14 +282,17 @@ void ApplePoint(int i)
 	if (gApple[i].img == image.apple[REDAPPLE]) {//ê‘ÇËÇÒÇ≤
 		gScore += 100;
 		gRACount += 1;
+		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[BLUEAPPLE]) {//ê¬ÇËÇÒÇ≤
 		gScore += 200;
 		gBACount += 1;
+		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[GOLDAPPLE]) {//ã‡ÇËÇÒÇ≤
 		gScore += 500;
 		gGACount += 1;
+		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[POISONAPPLE]) {//ì≈ÇËÇÒÇ≤
 		gScore -= 750;
@@ -296,6 +300,7 @@ void ApplePoint(int i)
 		if (gScore < 0) {
 			gScore = 0;
 		}
+		PlaySoundMem(sound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
 	}
 }
 

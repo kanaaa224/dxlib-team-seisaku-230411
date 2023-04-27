@@ -4,21 +4,11 @@
 
 void DrawRankingNameInput();
 
-/*
+#include <string>
+using std::string;
+using std::to_string;
 
-class RANKING_NAME_INPUT {
+class NameInput {
 public:
-
-	double x;
-	double y;
-
-	void print();
+	std::string inputedName;
 };
-
-// メンバー関数（メソッド）の定義と処理
-// :: はスコープ演算子
-void POS::print() {
-	printf("x : %lf y : %lf\n", x, y);
-};
-
-*/
