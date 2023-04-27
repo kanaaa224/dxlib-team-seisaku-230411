@@ -10,5 +10,5 @@ using std::to_string;
 
 class NameInput {
 public:
-	std::string inputedName;
+	std::string inputedName = "";
 };
