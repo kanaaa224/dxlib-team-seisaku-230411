@@ -30,6 +30,8 @@ std::string rni_inputName = "";
 int rni_selecter[] = { 90, 440, 35, 30, 0, 0 };
 int rni_state = 0;
 
+#include "Apple.h"
+
 // 開発
 int mirutame[4];
 
@@ -44,8 +46,7 @@ void DrawRankingNameInput() { // 島袋が担当中
 	DrawStringToHandle(250, 50, "ランキングに登録", 0x000000, font.handle_1_64, 0xffffff);
 
 	// 本文
-	int score = 12345;
-	std::string str = "スコア：" + std::to_string(score);
+	std::string str = "スコア：" + std::to_string(ReturnScore());
 	DrawStringToHandle(750, 70, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
 
 	DrawStringToHandle(140, 150, "あなたのスコアが上位５位内に入りました！おめでとうございます。", 0x000000, font.handle_1_32, 0xffffff);
@@ -55,7 +56,7 @@ void DrawRankingNameInput() { // 島袋が担当中
 	// フォントサイズの設定
 	//ChangeFontSize(40); // ループ内で一回のみ機能、二回目は激重になる → バグ発生中、機能しません
 
-	DrawFormatString(600, 20, 0x000000, "%d - %d / %d - %d / %c", rni_selecter[0], rni_selecter[1], rni_selecter[4], rni_selecter[5], rni_alphabet[rni_selecter[4]][rni_selecter[5]]);
+	DrawFormatString(600, 20, 0x000000, "%d - %d / %d - %d / %c / %d", rni_selecter[0], rni_selecter[1], rni_selecter[4], rni_selecter[5], rni_alphabet[rni_selecter[4]][rni_selecter[5]], rni_inputName.capacity() * sizeof(char));
 
 	/********************************
 	* キーボード描画
@@ -100,6 +101,67 @@ void DrawRankingNameInput() { // 島袋が担当中
 	DrawBox(rni_selecter[0], rni_selecter[1], (rni_selecter[0] + rni_selecter[2]), (rni_selecter[1] + rni_selecter[3]), 0xffffff, FALSE);
 
 	// セレクター処理
+	/********************************
+	* ゲームモードセレクト処理
+	********************************/
+	// コントローラー入力
+	if (rni_selectstate = GetStickY() > 32000 && rni_stickflg == 0) {
+		// 左スティック上
+		//if (title.state <= 0) {
+		//	title.state = 3;
+		//}
+		//else {
+		//	title.state -= 1;
+		//};
+		rni_stickflg = 1;
+	}
+	else if (rni_selectstate = GetStickY() < -32000 && rni_stickflg == 0) {
+		// 左スティック下
+		//if (title.state >= 3) {
+		//	title.state = 0;
+		//}
+		//else {
+		//	title.state += 1;
+		//};
+		rni_stickflg = 1;
+	}
+	else if (rni_selectstate = GetStickX() > 32000 && rni_stickflg == 0) {
+		// 左スティック左
+
+		rni_stickflg = 1;
+	}
+	else if (rni_selectstate = GetStickX() < -32000 && rni_stickflg == 0) {
+		// 左スティック右
+
+		rni_stickflg = 1;
+	};
+	// スティックが戻ると操作受付
+	if (rni_selectstate = GetStickY() < 1200 && rni_stickflg == 1) {
+		if (rni_selectstate = GetStickY() > -1200) {
+			rni_stickflg = 0;
+		};
+	};
+	// Bボタンで選択
+	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
+		//if (title.state == 0) {
+		//	// スタート選択
+		//	game.mode = INIT;
+		//}
+		//else if (title.state == 1) {
+		//	// ヘルプ選択
+		//	game.mode = HELP;
+		//}
+		//else if (title.state == 2) {
+		//	// ランキング選択
+		//	game.mode = RANKING;
+		//}
+		//else if (title.state == 3) {
+		//	// 終わる選択
+		//	game.mode = END;
+		//};
+	};
+
+	// キーボード入力
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
 		if (rni_selecter[1] == 440) {
 			// １段目のとき
@@ -180,92 +242,31 @@ void DrawRankingNameInput() { // 島袋が担当中
 			rni_selecter[4] += 1;
 		}
 	}
-	if (CheckHitKey(KEY_INPUT_SPACE)) {
-		rni_inputName += rni_alphabet[rni_selecter[4]][rni_selecter[5]];
-		nameInput.inputedName = rni_inputName;
-	};
-	if (CheckHitKey(KEY_INPUT_DELETE)) {
+	if (CheckHitKey(KEY_INPUT_RETURN)) {
+		if ((rni_inputName.capacity() * sizeof(char)) <= 10) {
+			rni_inputName += rni_alphabet[rni_selecter[4]][rni_selecter[5]];
+			nameInput.inputedName = rni_inputName;
+		}
+	}
+	if (CheckHitKey(KEY_INPUT_BACK)) {
 		if (rni_inputName.length() > 0) {
 			rni_inputName.erase(rni_inputName.length() - 1);
 		}
-	};
-
-
-	if (CheckHitKey(KEY_INPUT_0)) {
-		rni_inputName += "A";
-	};
-
-	
-
-	
-
-
-
-	/*for (int i = 0; i < (sizeof(rni_alphabet) / sizeof(rni_alphabet[0])); i++) {
-		DrawFormatString(10 + (i * 20), 350, 0x000000, "%c", rni_alphabet[i]);
-	}*/
-
-
-
-
-
-
-
-
-
-
-	// 戻る表示
-	DrawStringToHandle(520, 670, "Aボタンでスキップ", 0x000000, font.handle_1_32, 0xffffff);
-
-	// ゲームモードセレクト処理
-	if (rni_selectstate = GetStickY() > 32000 && rni_stickflg == 0) {
-		//if (title.state <= 0) {
-		//	title.state = 3;
-		//}
-		//else {
-		//	title.state -= 1;
-		//};
-		rni_stickflg = 1;
 	}
-	else if (rni_selectstate = GetStickY() < -32000 && rni_stickflg == 0) {
-		//if (title.state >= 3) {
-		//	title.state = 0;
-		//}
-		//else {
-		//	title.state += 1;
-		//};
-		rni_stickflg = 1;
-	};
-	// スティックが戻ると操作受付
-	if (rni_selectstate = GetStickY() < 1200 && rni_stickflg == 1) {
-		if (rni_selectstate = GetStickY() > -1200) {
-			rni_stickflg = 0;
-		};
-	};
-	// Bボタンで選択
-	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
-		//if (title.state == 0) {
-		//	// スタート選択
-		//	game.mode = INIT;
-		//}
-		//else if (title.state == 1) {
-		//	// ヘルプ選択
-		//	game.mode = HELP;
-		//}
-		//else if (title.state == 2) {
-		//	// ランキング選択
-		//	game.mode = RANKING;
-		//}
-		//else if (title.state == 3) {
-		//	// 終わる選択
-		//	game.mode = END;
-		//};
-	};
 
-	// キーボード入力対応
-    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-        game.mode = TITLE;
-    };
+	if(CheckHitKey(KEY_INPUT_SPACE)) {
+		if (rni_state) {
+
+		}
+	
+	}
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		game.mode = TITLE;
+	}
+
+	
+
+
 
 	// 開発用
 	//DrawCircle(mirutame[0], mirutame[1], mirutame[2], 0xffffff, FALSE);
