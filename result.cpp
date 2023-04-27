@@ -67,7 +67,11 @@ void DrawResult() { // ñ¢äÆê¨
 
 
 	// Space Ç≈É^ÉCÉgÉã
-	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+	/*if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = INPUTNAME;
-	};
+	};*/
+
+	WaitTimer(3000);
+
+	game.mode = RANKING;
 };
