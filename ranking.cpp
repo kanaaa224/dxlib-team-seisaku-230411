@@ -1,7 +1,7 @@
 // 作：島袋
 
-#define _USE_MATH_DEFINES
-#define RANKING_DATA 5
+//#define _USE_MATH_DEFINES
+//#define RANKING_DATA 5
 #include <stdio.h>
 #include <math.h>
 
@@ -44,7 +44,16 @@ void DrawRanking() {
 
 	RgScore = ReturnScore();
 
-	nameInput.inputedName;
+
+	// 仮
+	if (CheckHitKey(KEY_INPUT_R)) {
+		game.mode = INPUTNAME;
+	};
+
+	// 仮
+	if (CheckHitKey(KEY_INPUT_R)) {
+		game.mode = END;
+	};
 
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
@@ -52,25 +61,7 @@ void DrawRanking() {
     DrawStringToHandle(340, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
  
     // 戻る表示
-    DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-
-    // 仮
-    if (CheckHitKey(KEY_INPUT_R)) {
-        game.mode = INPUTNAME;
-    };
-
-    // 仮
-    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-        game.mode = TITLE;
-    };
-
-	if (RgScore > 0) {
-		//gRanking[RANKING_DATA - 1].name = 
-		gRanking[RANKING_DATA - 1].score = RgScore;	//ランキングデータにスコアを登録
-		SortRanking();								//ランキング並べ替え
-		SaveRanking();								//ランキングデータの保存
-		game.mode = RANKING;						//ゲームモードの変更
-	}
+    DrawStringToHandle(530, 670, "(仮)RボタンでEND画面へ", 0x000000, font.handle_1_32, 0xffffff);
 
 	SetFontSize(18);
 	for (int i = 0; i < RANKING_DATA; i++) {
@@ -78,10 +69,6 @@ void DrawRanking() {
 		DrawFormatStringFToHandle(240, 150 + i * 100, 0x000000, font.handle_1_64, "%2d位 %10s %10d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
 	}
 
-	//DrawString(100, 450, "--- スペースキーを押してタイトルへ戻る ---", 0xff0000, 0);
-
-    // ファイル読み込み対応
-    // パッド対応
 };
 
 //ランキング並べ替え

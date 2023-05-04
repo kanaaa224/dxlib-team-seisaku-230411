@@ -32,6 +32,7 @@ int rni_selecter[] = { 90, 440, 35, 30, 0, 0 };
 int rni_state = 0;
 
 #include "Apple.h"
+#include "ranking.h"
 
 /********************************
 * ランキング入力処理
@@ -335,6 +336,19 @@ void DrawRankingNameInput() { // 島袋が担当中、仮完成
 			// 何も入力されていないので警告
 		}
 	}
+
+	//RgScore = ReturnScore();
+
+	//if (RgScore > 0) {
+	//	for (int i = 0; i < 11; i++) {
+	//		gRanking[i].name = nameInput.inputedName;
+	//	}
+	//	gRanking[RANKING_DATA - 1].score = RgScore;	//ランキングデータにスコアを登録
+	//	SortRanking();								//ランキング並べ替え
+	//	SaveRanking();								//ランキングデータの保存
+	//	game.mode = RANKING;						//ゲームモードの変更
+	//}
+
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;
 	}
