@@ -31,6 +31,7 @@ using std::to_string;
 
 extern Image image;		//りんごの画像変数
 extern Font font;
+extern Sound sound;
 
 /************************************************
 *　定数の宣言
@@ -154,6 +155,19 @@ void AppleSpeed(int i)
 	}
 }
 
+void AppleInit(int num) {
+	for (int i = 0; i < APPLE_MAX; i++) {
+		gApple[i].flg = FALSE;
+	}
+	gRACount = num;
+	gBACount = num;
+	gGACount = num;
+	gPACount = num;
+	gScore = num;
+}
+
+
+
 /************************************************
 *　りんごの当たり判定
 ************************************************/
@@ -211,10 +225,10 @@ int HitBoxPlayer(void) {
 		}
 		else {											//それ以外の当たり判定
 			if (gApple[i].flg == TRUE) {
-				sx1[i] = gApple[i].x - 55;	//左上 X
-				sy1[i] = gApple[i].y - 52;	//左上 Y
-				sx2[i] = gApple[i].x + 55;	//右下 X
-				sy2[i] = gApple[i].y + 52;	//右下 Y
+				sx1[i] = gApple[i].x - 46;	//左上 X
+				sy1[i] = gApple[i].y - 43;	//左上 Y
+				sx2[i] = gApple[i].x + 46;	//右下 X
+				sy2[i] = gApple[i].y + 43;	//右下 Y
 			}
 		}
 	}
@@ -268,14 +282,17 @@ void ApplePoint(int i)
 	if (gApple[i].img == image.apple[REDAPPLE]) {//赤りんご
 		gScore += 100;
 		gRACount += 1;
+		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[BLUEAPPLE]) {//青りんご
 		gScore += 200;
 		gBACount += 1;
+		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[GOLDAPPLE]) {//金りんご
 		gScore += 500;
 		gGACount += 1;
+		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんご
 		gScore -= 750;
@@ -283,6 +300,7 @@ void ApplePoint(int i)
 		if (gScore < 0) {
 			gScore = 0;
 		}
+		PlaySoundMem(sound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
 	}
 }
 
@@ -322,4 +340,12 @@ int ReturnAppleImg(int num) {
 int ReturnAppleFlg(int num) {
 	return gApple[num].flg;
 }
+
+void SetAppleCount(int num) {
+	gRACount = num;
+	gBACount = num;
+	gGACount = num;
+	gPACount = num;
+}
+
 

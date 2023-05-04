@@ -16,7 +16,7 @@
 /************************************************
 *　構造体
 ************************************************/
-static struct APPLE {
+struct APPLE {
 	int flg;			//使用フラグ
 	int img;			//画像
 	double x, y, w, h;	//座標、幅、高さ
@@ -31,7 +31,7 @@ static struct APPLE gApple[10];
 void FallApple(void);		//リンゴ落下処理
 int CreateApple(void);		//リンゴ生成
 void AppleSpeed(int i);		//りんごの速度
-void AppleInit(void);		//リンゴの変数の初期化
+void AppleInit(int num);		//リンゴの変数の初期化
 int HitBox(void);
 int HitBoxPlayer(void);
 void ApplePoint(int i);		//りんごのスコア処理
@@ -45,6 +45,7 @@ int ReturnAppleY(int num);
 int ReturnAppleImg(int num);
 int ReturnAppleFlg(int num);
 int ReturnFPSCount(void);
+void SetAppleCount(int num);
 
 
 

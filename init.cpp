@@ -1,8 +1,10 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
-
 #include "main.h"
 #include "init.h"
+#include "UI.h"
+#include "player.h"
+#include "Apple.h"
 
 extern Image image;
 extern Font font;
@@ -18,4 +20,8 @@ void GameInit() { // ñ¢äÆê¨
 	game.mode = MAIN;
 
 	ini.StartTime = GetNowCount();
+
+	SetUI(0, 60);
+	SetPlayerX(600);
+	AppleInit(0);
 };

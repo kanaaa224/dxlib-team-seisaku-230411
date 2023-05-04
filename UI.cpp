@@ -15,7 +15,7 @@ using std::string;
 using std::to_string;
 
 
-int gTimeLimit = 60;
+
 
 
 void DrawUserInterFace()
@@ -51,4 +51,9 @@ void DrawCnt()
 	DrawRotaGraph(1140, 350, 0.125, 0, image.apple[BLUEAPPLE], TRUE);
 	DrawRotaGraph(1250, 350, 0.125, 0, image.apple[GOLDAPPLE], TRUE);
 
+}
+
+void SetUI(int cnt, int time) {
+	gFpsCnt = cnt;
+	gTimeLimit = time;
 }

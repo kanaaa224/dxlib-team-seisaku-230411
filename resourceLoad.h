@@ -18,7 +18,8 @@ public:
 class Sound {
 public:
 	int mainbgm;
-	int se_1;
+	int se_apple;
+	int se_poisonapple;
 };
 
 class Font {

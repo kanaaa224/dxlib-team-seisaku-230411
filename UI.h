@@ -7,8 +7,9 @@ public:
 	int SetScore[4];
 };
 
-static int gFpsCnt = 0;
-
+static int gFpsCnt;
+static int gTimeLimit;
 void DrawUserInterFace();
 void DrawTimeLimit();
 void DrawCnt();
+void SetUI(int cnt,int time);
