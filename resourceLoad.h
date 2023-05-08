@@ -26,6 +26,8 @@ class Font {
 public:
 	//int s;
 	int state;
+	int handle_0_32;
+	int handle_0_16;
 	int handle_1_128;
 	int handle_1_64;
 	int handle_1_32;
