@@ -73,5 +73,5 @@ void DrawResult() { // ñ¢äÆê¨
 
 	WaitTimer(3000);
 
-	game.mode = RANKING;
+	game.mode = INPUTNAME;
 };
