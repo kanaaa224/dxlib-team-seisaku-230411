@@ -81,20 +81,11 @@ void DrawRankingNameInput() { // 島袋が担当中、仮完成
 
 	DrawStringToHandle(700, 370, rni_inputName.c_str(), 0xffffff, font.handle_0_16, 0xffffff);
 
-	//DrawString(680, 370, ">", 0xFFFFFF);
-	//DrawString(250, 360, "名前を英数字で入力してください", 0xFFFFFF);
-	//DrawString(250, 380, "左スティックでカーソル移動、Bボタンで入力", 0xFFFFFF);
-	//DrawString(250, 400, "Xボタンで一字削除、Yボタンで入力確定", 0xFFFFFF);
-
-	//DrawString(700, 370, rni_inputName.c_str(), 0xFFFFFF);
-
-	// アルファベット大文字の表示
+	SetFontSize(32);
+	// アルファベット大文字・小文字の表示
 	for (int i = 0; i < 26; i++) {
-		DrawStringToHandle(100 + (i * 42), 440, rni_alphabet[0][i], 0xffffff, font.handle_0_32, 0xffffff);
-		//DrawFormatString(100 + (i * 42), 440, 0xffffff,"%c", rni_alphabet[0][i]);
-	}
-	// アルファベット小文字の表示
-	for (int i = 0; i < 26; i++) {
+		//DrawStringToHandle(100 + (i * 42), 440, rni_alphabet[0][i], 0xffffff, font.handle_0_32, 0xffffff);
+		DrawFormatString(100 + (i * 42), 440, 0xffffff,"%c", rni_alphabet[0][i]);
 		DrawFormatString(100 + (i * 42), 490, 0xffffff, "%c", rni_alphabet[1][i]);
 	}
 	// 数字キーパッド表示
@@ -107,7 +98,7 @@ void DrawRankingNameInput() { // 島袋が担当中、仮完成
 
 	// セレクター処理
 	/********************************
-	* ゲームモードセレクト処理
+	* 入力処理
 	********************************/
 	// コントローラー入力
 	if (rni_selectstate = GetStickY() > 32000 && rni_stickflg == 0) {
