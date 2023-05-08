@@ -14,7 +14,6 @@ extern Font font;
 using std::string;
 using std::to_string;
 
-int a;
 
 
 
