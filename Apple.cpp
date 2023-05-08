@@ -9,22 +9,19 @@
 #include<string>
 
 /************************************************
-*　変数の宣言（グローバル変数）
+*　変数の初期化
 ************************************************/
-//int gAppleImg[20];	//りんごの画像変数
-int gP;					//りんごの確率
+extern int gP = 0;
 
-int gOldTime;			//前時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
-int gNowTime;			//後時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
-int gTimeFlg = FALSE;	//時間計測用の変数
+extern int gTimeFlg = FALSE;//時間計測用の変数
 
-int gFPSCount = 0;
+extern int gFPSCount = 0;
 
-int gRACount = 0;	//赤りんごの個数
-int gBACount = 0;	//青りんごの個数
-int gGACount = 0;	//金りんごの個数
-int gPACount = 0;	//毒りんごの個数
-int gScore = 0;		//スコア
+extern int gRACount = 0;	//赤りんごの個数
+extern int gBACount = 0;	//青りんごの個数
+extern int gGACount = 0;	//金りんごの個数
+extern int gPACount = 0;	//毒りんごの個数
+extern int gScore = 0;		//スコア
 
 using std::string;
 using std::to_string;
@@ -48,7 +45,7 @@ void FallApple(void)
 			//DrawFormatString(100, 0, 0xffffff, "X:%3d", gApple[i].x);
 
 			//リンゴの表示
-			DrawRotaGraph(gApple[i].x, gApple[i].y, 0.19, 0, gApple[i].img, TRUE);
+			DrawRotaGraph((int)gApple[i].x, (int)gApple[i].y, 0.19, 0, gApple[i].img, TRUE);
 
 			//真っすぐ下に移動
 			gApple[i].y += gApple[i].speed;
@@ -88,8 +85,6 @@ int CreateApple(void)
 {
 
 	//りんご確率
-	gP = 0;
-
 	int AppleImg = image.apple[0];
 
 	gP = GetRand(99);//100%
@@ -159,10 +154,10 @@ void AppleInit(int num) {
 ************************************************/
 int HitBox(void)
 {
-	int sx1[10];
-	int sy1[10];
-	int sx2[10];
-	int sy2[10];
+	double sx1[10];
+	double sy1[10];
+	double sx2[10];
+	double sy2[10];
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
@@ -190,15 +185,15 @@ int HitBox(void)
 }
 
 int HitBoxPlayer(void) {
-	int sx1[10];
-	int sy1[10];
-	int sx2[10];
-	int sy2[10];
+	double sx1[10];
+	double sy1[10];
+	double sx2[10];
+	double sy2[10];
 
-	int px1;
-	int py1;
-	int px2;
-	int py2;
+	double px1;
+	double py1;
+	double px2;
+	double py2;
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんごの当たり判定
@@ -224,11 +219,11 @@ int HitBoxPlayer(void) {
 	px2 = ReturnPlayerX() + 30;
 	py2 = ReturnPlayerY() + 30;
 
-	DrawBox(px1, py1, px2, py2, 0xffffff, TRUE);
+	DrawBox((int)px1, (int)py1, (int)px2, (int)py2, 0xffffff, TRUE);
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
-			DrawBox(sx1[i], sy1[i], sx2[i], sy2[i], 0xffffff, TRUE);
+			DrawBox((int)sx1[i], (int)sy1[i], (int)sx2[i], (int)sy2[i], 0xffffff, TRUE);
 		}
 	}
 
@@ -307,15 +302,15 @@ int ReturnPO(void) {
 }
 
 int ReturnScore(void) {
-	return gScore;
+	return (int)gScore;
 }
 
 int ReturnAppleX(int num) {
-	return gApple[num].x;
+	return (int)gApple[num].x;
 }
 
 int ReturnAppleY(int num) {
-	return gApple[num].y;
+	return (int)gApple[num].y;
 }
 
 int ReturnAppleImg(int num) {

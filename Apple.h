@@ -14,6 +14,24 @@
 //型定義
 
 /************************************************
+*　変数の宣言（グローバル変数:Apple.cpp内）
+************************************************/
+//int gAppleImg[20];	//りんごの画像変数
+extern int gP;			//りんごの確率
+
+extern int gOldTime;	//前時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
+extern int gNowTime;	//後時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
+extern int gTimeFlg;	//時間計測用の変数
+
+extern int gFPSCount;
+
+extern int gRACount;	//赤りんごの個数
+extern int gBACount;	//青りんごの個数
+extern int gGACount;	//金りんごの個数
+extern int gPACount;	//毒りんごの個数
+extern int gScore;		//スコア
+
+/************************************************
 *　定数の宣言
 ************************************************/
 const int APPLE_MAX = 10;
