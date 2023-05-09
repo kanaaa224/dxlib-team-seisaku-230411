@@ -1,7 +1,6 @@
 // 作：島袋
 
-//#define _USE_MATH_DEFINES
-//#define RANKING_DATA 5
+#define _USE_MATH_DEFINES
 #include <stdio.h>
 #include <math.h>
 
@@ -17,8 +16,6 @@ extern Image image;
 extern Font font;
 
 extern Game game;
-
-extern NameInput nameInput;
 
 using std::string;
 using std::to_string;
@@ -40,15 +37,30 @@ struct RankingData gRanking[RANKING_DATA];
 ********************************/
 void DrawRanking() {
 
+	if (GetRankingFlg() == 1) {
+		// スコア書き込み処理
+		//gRanking[RANKING_DATA - 1].name = GetInputedName(); String -> Char 変換問題
+		gRanking[RANKING_DATA - 1].score = ReturnScore();	// ランキングデータの最下位にスコアを登録
+		SortRanking();		// ランキング並べ替え
+		SaveRanking();		// ランキングデータの保存
+	};
+
 	int RgScore = 0;
 
 	RgScore = ReturnScore();
 
+    // 背景表示
+    DrawGraph(0, 0, image.title, TRUE);
 
-	// 仮
-	if (CheckHitKey(KEY_INPUT_R)) {
-		game.mode = INPUTNAME;
-	};
+    DrawStringToHandle(340, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
+ 
+    // 戻る表示
+    DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+
+    // 仮
+    if (CheckHitKey(KEY_INPUT_R)) {
+        game.mode = INPUTNAME;
+    };
 
 	// 仮
 	if (CheckHitKey(KEY_INPUT_R)) {
@@ -149,3 +161,17 @@ int ReadRanking(void)
 
 	return 0;
 }
+
+/********************************
+* スコアがランキング最下位を超えたかの判断を返す関数
+********************************/
+int GetRankingFlg() {
+	// 最下位と現在のスコアを比較
+	if (gRanking[RANKING_DATA - 1].score < ReturnScore()) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+	//return gRanking;
+};

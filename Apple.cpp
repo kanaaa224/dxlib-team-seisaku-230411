@@ -169,6 +169,7 @@ int HitBox(void)
 
 }
 
+//プレイヤーとリンゴの当たり判定
 int HitBoxPlayer(void) {
 	double sx1[10];
 	double sy1[10];
@@ -200,9 +201,9 @@ int HitBoxPlayer(void) {
 	}
 
 	px1 = ReturnPlayerX() - 30;
-	py1 = ReturnPlayerY() - 30;
+	py1 = ReturnPlayerY() - 90;
 	px2 = ReturnPlayerX() + 30;
-	py2 = ReturnPlayerY() + 30;
+	py2 = ReturnPlayerY() + 120;
 
 	DrawBox((int)px1, (int)py1, (int)px2, (int)py2, 0xffffff, TRUE);
 
@@ -214,10 +215,14 @@ int HitBoxPlayer(void) {
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
-
+			
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
+				if (gApple[i].img == image.apple[POISONAPPLE]) {
+					SetPlayerBlinkFlg(1);
+				}
 				gApple[i].flg = FALSE;	//削除
 				ApplePoint(i);//スコア処理
+	
 			}
 		}
 

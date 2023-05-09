@@ -4,10 +4,12 @@
 #define APPLE_H
 
 //マクロ定義
+
 #define REDAPPLE 0		//画像の配列番号（赤りんご）
 #define BLUEAPPLE 1		//画像の配列番号（青りんご）
 #define GOLDAPPLE 2		//画像の配列番号（金りんご）
 #define POISONAPPLE 3	//画像の配列番号（毒りんご）
+
 
 //型定義
 

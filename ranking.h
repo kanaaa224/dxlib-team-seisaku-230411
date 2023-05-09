@@ -17,15 +17,19 @@
 ////ランキングデータの変数宣言
 //struct RankingData gRanking[RANKING_DATA];
 
+#define RANKING_DATA 5
+
 void DrawRanking();
 void SortRanking(void);
 int SaveRanking(void);
 int ReadRanking(void);
+int GetRankingFlg(void);
 
-class Ranking {
-public:
-	int score;
-	int number;
-	char name;
-
-};
+//class Ranking {
+//public:
+//	int ranking[RANKING_DATA];
+//	int score;
+//	int number;
+//	char name;
+//
+//};
