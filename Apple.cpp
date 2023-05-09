@@ -122,16 +122,16 @@ int CreateApple(void)
 ************************************************/
 void AppleSpeed(int i)
 {
-	if (gP < 59) {
+	if (gApple[i].img == image.apple[REDAPPLE]) {
 		gApple[i].speed = 1;//ÔƒŠƒ“ƒS
 	}
-	else if (gP >= 60 && gP < 84) {
+	else if (gApple[i].img == image.apple[BLUEAPPLE]) {
 		gApple[i].speed = 2;//ÂƒŠƒ“ƒS
 	}
-	else if (gP >= 85 && gP < 94) {
+	else if (gApple[i].img == image.apple[GOLDAPPLE]) {
 		gApple[i].speed = 3.5;//‹àƒŠƒ“ƒS
 	}
-	else if (gP >= 95 && gP < 99) {
+	else if (gApple[i].img == image.apple[POISONAPPLE]) {
 		gApple[i].speed = 0.5;//“ÅƒŠƒ“ƒS
 	}
 }
