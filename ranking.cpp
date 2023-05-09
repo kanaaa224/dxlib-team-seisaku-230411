@@ -12,6 +12,8 @@
 #include <string>
 #include "main.h"
 
+#include "PadInput.h"
+
 extern Image image;
 extern Font font;
 
@@ -64,24 +66,13 @@ void DrawRanking() {
  
     // 戻る表示
     DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-
-    // 仮
-    if (CheckHitKey(KEY_INPUT_R)) {
-        game.mode = INPUTNAME;
-    };
-
-	// 仮
-	if (CheckHitKey(KEY_INPUT_R)) {
-		game.mode = END;
+	if (JudgeButton(XINPUT_BUTTON_A) == 1) {
+		game.mode = TITLE;
 	};
-
-    // 背景表示
-    DrawGraph(0, 0, image.title, TRUE);
-
-    DrawStringToHandle(340, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
- 
-    // 戻る表示
-    DrawStringToHandle(530, 670, "(仮)RボタンでEND画面へ", 0x000000, font.handle_1_32, 0xffffff);
+	// キーボード対応
+    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+        game.mode = TITLE;
+    };
 
 	SetFontSize(18);
 	for (int i = 0; i < RANKING_DATA; i++) {
