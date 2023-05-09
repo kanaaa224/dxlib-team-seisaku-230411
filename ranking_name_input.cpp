@@ -25,7 +25,7 @@ char rni_alphabet[][26] = {
 
 std::string rni_inputName = "";
 int rni_selecter[] = { 90, 440, 35, 30, 0, 0 };
-int rni_state = 0;
+//int rni_state = 0;
 
 #include "Apple.h"
 #include "ranking.h"
@@ -332,6 +332,21 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;
 	}
+};
+
+/********************************
+* リセット
+********************************/
+void ResetRankingNameInput() {
+	// 名前入力値のリセット
+	rni_inputName = "";
+	// カーソル位置のリセット
+	rni_selecter[0] = 90;
+	rni_selecter[1] = 440;
+	rni_selecter[2] = 35;
+	rni_selecter[3] = 30;
+	rni_selecter[4] = 0;
+	rni_selecter[5] = 0;
 };
 
 /********************************

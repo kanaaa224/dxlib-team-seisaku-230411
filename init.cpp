@@ -6,6 +6,7 @@
 #include "player.h"
 #include "Apple.h"
 #include "ranking.h"
+#include "ranking_name_input.h"
 
 extern Image image;
 extern Font font;
@@ -26,5 +27,9 @@ void GameInit() { // 未完成
 	SetPlayerX(600);
 	AppleInit(0);
 
+	// ランキングの実行済みフラグをリセット
 	SetRankingState(0);
+
+	// ランキング入力画面リセット
+	ResetRankingNameInput();
 };
