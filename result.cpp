@@ -4,6 +4,7 @@
 #include "Apple.h"
 #include "main.h"
 #include"UI.h"
+#include "ranking.h"
 
 
 extern Image image;
@@ -59,31 +60,22 @@ void DrawResult() { // 未完成
 	//DrawFormatStringFToHandle(660, 180,  0x000000, font.handle_1_64,  "%d", RED_AppleCount);
 	
 	// 戻る表示
-
 	DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 	//DrawStringToHandle(530, 670, "Bボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-
 	//DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
 
 	// Space でタイトル
-	/*if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-		game.mode = INPUTNAME;
-	};*/
+	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		if (GetRankingFlg() == 1) {
+			game.mode = INPUTNAME;
+		}
+		else {
+			game.mode = RANKING;
+		}
+	};
 
-	WaitTimer(3000);
+	//WaitTimer(3000);
 
-
-	game.mode = INPUTNAME;
-
-	game.mode = RANKING;
-
-	//gRanking[4].score
-
-
-
-
-
-
-
+	
 };
