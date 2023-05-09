@@ -5,6 +5,7 @@
 #include "main.h"
 #include"UI.h"
 #include "ranking.h"
+#include "PadInput.h"
 
 
 extern Image image;
@@ -66,7 +67,7 @@ void DrawResult() { // 未完成
 
 	// 仮、ボタンで分岐させる処理
 	// Space でタイトル
-	if (CheckHitKey(KEY_INPUT_SPACE)) {
+	if (JudgeButton(XINPUT_BUTTON_B) == 1) {
 		if (GetRankingFlg() == 1) {
 			game.mode = INPUTNAME;
 		}
