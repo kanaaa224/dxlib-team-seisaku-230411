@@ -338,9 +338,14 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 * 入力された名前を返す
 ********************************/
 char GetInputedName(int i) {
-	/*char name[10];
-	char name1[10] = "AED";
-	strcpy(name,name1);
-	return name[i];*/
-	return 'aaaa';
+	char name[10];
+	for (int i = 0; i < GetLength() - 1; i++){
+		name[i] = rni_inputName[i];
+	}
+	return rni_inputName.c_str()[i];
+	//return 'aaaa';
 };
+
+int GetLength() {
+	return strlen(rni_inputName.c_str());
+}
