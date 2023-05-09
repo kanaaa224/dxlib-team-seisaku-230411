@@ -17,6 +17,8 @@ extern Font font;
 
 extern Game game;
 
+extern NameInput nameInput;
+
 using std::string;
 using std::to_string;
 
@@ -25,7 +27,7 @@ int gRankingImg;	//ランキング画面背景
 //ランキングデータ構造体
 struct RankingData {
 	int number;
-	char name[11];
+	std::string name;
 	long score;
 };
 
@@ -42,6 +44,7 @@ void DrawRanking() {
 	if (ranking_state == 0) {
 		if (GetRankingFlg() == 1) {
 			// スコア書き込み処理
+			gRanking[RANKING_DATA - 1].name = nameInput.inputedName;
 			//gRanking[RANKING_DATA - 1].name = GetInputedName(); String -> Char 変換問題
 			gRanking[RANKING_DATA - 1].score = ReturnScore();	// ランキングデータの最下位にスコアを登録
 			SortRanking();		// ランキング並べ替え
