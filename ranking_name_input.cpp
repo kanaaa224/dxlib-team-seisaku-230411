@@ -1,9 +1,5 @@
 // 作：島袋
 
-#include <string>
-using std::string;
-using std::to_string;
-
 #include "DxLib.h"
 
 #include "resourceLoad.h"
@@ -11,7 +7,7 @@ extern Image image;
 extern Font font;
 
 #include "ranking_name_input.h"
-NameInput nameInput;
+//NameInput nameInput;
 
 #include "main.h"
 extern Game game;
@@ -37,7 +33,7 @@ int rni_state = 0;
 /********************************
 * ランキング入力処理
 ********************************/
-void DrawRankingNameInput() { // 島袋が担当中、仮完成
+void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFontSize使用によるFPS低下問題以外完成
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
@@ -220,7 +216,7 @@ void DrawRankingNameInput() { // 島袋が担当中、仮完成
 	// Yボタンで入力終了
 	if (JudgeReleaseButton(XINPUT_BUTTON_Y) == 1) {
 		if (rni_inputName.length() > 0) {
-			nameInput.inputedName = rni_inputName.c_str();
+			//nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
@@ -326,7 +322,7 @@ void DrawRankingNameInput() { // 島袋が担当中、仮完成
 
 	if(CheckHitKey(KEY_INPUT_SPACE)) {
 		if (rni_inputName.length() > 0) {
-			nameInput.inputedName = rni_inputName.c_str();
+			//nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
@@ -351,3 +347,10 @@ void DrawRankingNameInput() { // 島袋が担当中、仮完成
 	}
 };
 
+/********************************
+* 入力された名前を返す
+********************************/
+char GetInputedName() {
+	return *rni_inputName.c_str();
+	//return 'aaaa';
+};
