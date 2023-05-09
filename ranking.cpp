@@ -1,7 +1,6 @@
 // 作：島袋
 
 #define _USE_MATH_DEFINES
-#define RANKING_DATA 5
 #include <stdio.h>
 #include <math.h>
 
@@ -40,11 +39,17 @@ struct RankingData gRanking[RANKING_DATA];
 ********************************/
 void DrawRanking() {
 
+	if (GetRankingFlg() == 1) {
+		// スコア書き込み処理
+		//gRanking[RANKING_DATA - 1].name = GetInputedName();
+		gRanking[RANKING_DATA - 1].score = ReturnScore();	// ランキングデータの最下位にスコアを登録
+		SortRanking();		// ランキング並べ替え
+		SaveRanking();		// ランキングデータの保存
+	};
+
 	int RgScore = 0;
 
 	RgScore = ReturnScore();
-
-	nameInput.inputedName;
 
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
@@ -162,3 +167,17 @@ int ReadRanking(void)
 
 	return 0;
 }
+
+/********************************
+* スコアがランキング最下位を超えたかの判断を返す関数
+********************************/
+int GetRankingFlg() {
+	// 最下位と現在のスコアを比較
+	if (gRanking[RANKING_DATA - 1].score < ReturnScore()) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+	//return gRanking;
+};
