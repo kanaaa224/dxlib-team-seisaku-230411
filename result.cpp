@@ -76,6 +76,4 @@ void DrawResult() { // –¢Š®¬
 	};
 
 	//WaitTimer(3000);
-
-	
 };
