@@ -117,7 +117,6 @@ void SortRanking(void)
 			}
 		}
 	}
-	//gRanking[1].number = 2;
 }
 
 //ランキングデータの保存
