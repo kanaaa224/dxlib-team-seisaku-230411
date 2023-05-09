@@ -5,6 +5,7 @@
 #include "UI.h"
 #include "player.h"
 #include "Apple.h"
+#include "ranking.h"
 
 extern Image image;
 extern Font font;
@@ -24,4 +25,6 @@ void GameInit() { // ñ¢äÆê¨
 	SetUI(0, 60);
 	SetPlayerX(600);
 	AppleInit(0);
+
+	SetRankingState(0);
 };

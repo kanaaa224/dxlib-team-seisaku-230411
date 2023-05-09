@@ -32,17 +32,22 @@ struct RankingData {
 //ランキングデータの変数宣言
 struct RankingData gRanking[RANKING_DATA];
 
+int ranking_state;
+
 /********************************
 * ランキング
 ********************************/
 void DrawRanking() {
 
-	if (GetRankingFlg() == 1) {
-		// スコア書き込み処理
-		//gRanking[RANKING_DATA - 1].name = GetInputedName(); String -> Char 変換問題
-		gRanking[RANKING_DATA - 1].score = ReturnScore();	// ランキングデータの最下位にスコアを登録
-		SortRanking();		// ランキング並べ替え
-		SaveRanking();		// ランキングデータの保存
+	if (ranking_state == 0) {
+		if (GetRankingFlg() == 1) {
+			// スコア書き込み処理
+			//gRanking[RANKING_DATA - 1].name = GetInputedName(); String -> Char 変換問題
+			gRanking[RANKING_DATA - 1].score = ReturnScore();	// ランキングデータの最下位にスコアを登録
+			SortRanking();		// ランキング並べ替え
+			SaveRanking();		// ランキングデータの保存
+		};
+		SetRankingState(1);
 	};
 
 	int RgScore = 0;
@@ -178,4 +183,11 @@ int GetRankingFlg() {
 		return 0;
 	}
 	//return gRanking;
+};
+
+/********************************
+* ランキングフラグ設定
+********************************/
+void SetRankingState(int flg) {
+	ranking_state = flg;
 };

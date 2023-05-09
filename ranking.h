@@ -9,6 +9,7 @@ void SortRanking(void);
 int SaveRanking(void);
 int ReadRanking(void);
 int GetRankingFlg(void);
+void SetRankingState(int flg);
 
 //class Ranking {
 //public:
