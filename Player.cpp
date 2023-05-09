@@ -11,6 +11,8 @@ int Run = 0;
 int Walk = 0;
 int FPS = 0;
 struct PLAYER player;
+int BlinkFlg = 0;
+int BlinkFPSFlg = 0;
 
 void PlayerControll() {
 	Stick = GetStickX();	//スティックの状態取得
@@ -115,74 +117,100 @@ int PlayerLimit() {
 }
 
 void DrawPlayer() {
+	if (player.flg == TRUE) {
+		if (player.speed > 0 && player.speed < 3 && player.x != MOVE_RIGHT_LIMIT) {
+			if (FPS % 10 == 0) {
+				Walk++;
+				if (Walk > 2) {
+					Walk = 0;
+				}
+			}
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Walk[Walk], TRUE, TRUE);
+		}
+		else if (player.speed > 3 && player.x != MOVE_RIGHT_LIMIT) {
+			if (FPS % 5 == 0) {
+				Run += 2;
+				if (Run > 7) {
+					Run = 0;
+				}
+			}
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Run[Run], TRUE, TRUE);
 
-	if (player.speed > 0 && player.speed < 3 && player.x != MOVE_RIGHT_LIMIT) {
-		if (FPS % 10 == 0) {
-			Walk++;
-			if (Walk > 2) {
-				Walk = 0;
-			}
 		}
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Walk[Walk], TRUE, TRUE);
+		else if (player.speed < 0 && player.speed > -3 && player.x != MOVE_LEFT_LIMIT) {
+			if (FPS % 10 == 0) {
+				Walk++;
+				if (Walk > 2) {
+					Walk = 0;
+				}
+			}
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Walk[Walk], TRUE, FALSE);
+		}
+		else if (player.speed < -2 && player.x != MOVE_LEFT_LIMIT) {
+			if (FPS % 5 == 0) {
+				Run += 2;
+				if (Run > 7) {
+					Run = 0;
+				}
+			}
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Run[Run], TRUE, FALSE);
+		}
+		else if ((Stick < 500 && Stick > -500) || player.x <= MOVE_LEFT_LIMIT || player.x >= MOVE_RIGHT_LIMIT) {
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Stop[0], TRUE, FALSE);
+		}
+		else {
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Stop[1], TRUE, FALSE);
+		}
 	}
-	else if (player.speed > 3 && player.x != MOVE_RIGHT_LIMIT) {
-		if (FPS % 5 == 0) {
-			Run += 2;
-			if (Run > 7) {
-				Run = 0;
-			}
-		}
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Run[Run], TRUE, TRUE);
 
+	if (BlinkFlg == 0) {
+		FPS++;
 	}
-	else if (player.speed < 0 && player.speed > -3 && player.x != MOVE_LEFT_LIMIT) {
-		if (FPS % 10 == 0) {
-			Walk++;
-			if (Walk > 2) {
-				Walk = 0;
-			}
-		}
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Walk[Walk], TRUE, FALSE);
-	}
-	else if (player.speed < -2 && player.x != MOVE_LEFT_LIMIT) {
-		if (FPS % 5 == 0) {
-			Run += 2;
-			if (Run > 7) {
-				Run = 0;
-			}
-		}
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Run[Run], TRUE, FALSE);
-	}
-	else if ((Stick < 500 && Stick > -500) || player.x <= MOVE_LEFT_LIMIT || player.x >= MOVE_RIGHT_LIMIT) {
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Stop[0], TRUE, FALSE);
-    }
-	else {
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Stop[1], TRUE, FALSE);
-	}
-	FPS++;
 	HitBoxPlayer();
+	if (BlinkFlg == 1) {
+		//player.flg = FALSE;
+		if (BlinkFPSFlg == 0) {
+			FPS = 0;
+			BlinkFPSFlg = 1;
+		}
+		if (FPS % 20 == 0) {
+			if (player.flg == TRUE) {
+				player.flg = FALSE;
+			}
+			else if (player.flg == FALSE) {
+				player.flg = TRUE;
+			}
+		}
+		FPS++;
+		if (FPS % 120 == 0) {
+			BlinkFlg = 0;
+			BlinkFPSFlg = 0;
+			player.flg = TRUE;
+		}
+	}
 }
 
 void DrawPlayerPause() {
+	if (player.flg == TRUE) {
+		if (player.speed > 0 && player.speed < 3 && player.x != MOVE_RIGHT_LIMIT) {
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Walk[Walk], TRUE, TRUE);
+		}
+		else if (player.speed > 3 && player.x != MOVE_RIGHT_LIMIT) {
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Run[Run], TRUE, TRUE);
 
-	if (player.speed > 0 && player.speed < 3 && player.x != MOVE_RIGHT_LIMIT) {
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Walk[Walk], TRUE, TRUE);
-	}
-	else if (player.speed > 3 && player.x != MOVE_RIGHT_LIMIT) {
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Run[Run], TRUE, TRUE);
-
-	}
-	else if (player.speed < 0 && player.speed > -3 && player.x != MOVE_LEFT_LIMIT) {
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Walk[Walk], TRUE, FALSE);
-	}
-	else if (player.speed < -2 && player.x != MOVE_LEFT_LIMIT) {
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Run[Run], TRUE, FALSE);
-	}
-	else if ((Stick < 500 && Stick > -500) || player.x <= MOVE_LEFT_LIMIT || player.x >= MOVE_RIGHT_LIMIT) {
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Stop[0], TRUE, FALSE);
-	}
-	else {
-		DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Stop[1], TRUE, FALSE);
+		}
+		else if (player.speed < 0 && player.speed > -3 && player.x != MOVE_LEFT_LIMIT) {
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Walk[Walk], TRUE, FALSE);
+		}
+		else if (player.speed < -2 && player.x != MOVE_LEFT_LIMIT) {
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Run[Run], TRUE, FALSE);
+		}
+		else if ((Stick < 500 && Stick > -500) || player.x <= MOVE_LEFT_LIMIT || player.x >= MOVE_RIGHT_LIMIT) {
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Stop[0], TRUE, FALSE);
+		}
+		else {
+			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Stop[1], TRUE, FALSE);
+		}
 	}
 }
 
@@ -196,4 +224,8 @@ int ReturnPlayerY() {
 
 void SetPlayerX(int x) {
 	player.x = x;
+}
+
+void SetPlayerBlinkFlg(int x) {
+	BlinkFlg = x;
 }

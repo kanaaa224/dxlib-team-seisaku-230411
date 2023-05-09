@@ -78,7 +78,7 @@ void DrawResult() { // ñ¢äÆê¨
 
 	game.mode = RANKING;
 
-	gRanking[4].score
+	//gRanking[4].score
 
 
 

@@ -4,7 +4,7 @@
 #define APPLE_H
 
 //É}ÉNÉçíËã`
-#define REDAPPLE 0
+#define REDAPPLE 3 //âº
 #define BLUEAPPLE 1
 #define GOLDAPPLE 2
 #define POISONAPPLE 3

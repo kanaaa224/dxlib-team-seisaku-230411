@@ -229,10 +229,14 @@ int HitBoxPlayer(void) {
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
-
+			
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
+				if (gApple[i].img == image.apple[POISONAPPLE]) {
+					SetPlayerBlinkFlg(1);
+				}
 				gApple[i].flg = FALSE;	//íœ
 				ApplePoint(i);//ƒXƒRƒAˆ—
+	
 			}
 		}
 
