@@ -7,7 +7,6 @@
 #include "ranking.h"
 #include "PadInput.h"
 
-
 extern Image image;
 extern Font font;
 
@@ -60,14 +59,19 @@ void DrawResult() { // 未完成
 	//カウント表示
 	//DrawFormatStringFToHandle(660, 180,  0x000000, font.handle_1_64,  "%d", RED_AppleCount);
 	
-	// 戻る表示
-	DrawStringToHandle(420, 670, "ESCキーまたはAボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-	//DrawStringToHandle(530, 670, "Bボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-	//DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-
+	// 次へ
+	DrawStringToHandle(530, 670, "Bボタンですすむ", 0x000000, font.handle_1_32, 0xffffff);
 	// 仮、ボタンで分岐させる処理
-	// Space でタイトル
 	if (JudgeButton(XINPUT_BUTTON_B) == 1) {
+		if (GetRankingFlg() == 1) {
+			game.mode = INPUTNAME;
+		}
+		else {
+			game.mode = RANKING;
+		}
+	};
+	// キーボード対応
+	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (GetRankingFlg() == 1) {
 			game.mode = INPUTNAME;
 		}
