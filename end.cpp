@@ -19,6 +19,9 @@ void DrawEnd() { // ñ¢äÆê¨
 		// îwåiï\é¶
 		DrawGraph(0, 0, image.title, TRUE);
 
+		//îwåiBOX
+		DrawBox(5, 5, 1275, 715, 0xffffff, TRUE);
+
 		// Thank you for playing
 		DrawStringToHandle(10, 10, "Thank you for playing", 0x000000, font.handle_1_128, 0xffffff);
 
