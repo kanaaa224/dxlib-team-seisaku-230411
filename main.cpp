@@ -82,10 +82,14 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		case TITLE:
 			// タイトル
 			DrawTitle(); // 仮
+			if (CheckSoundMem(sound.subbgm) == 0) {
+				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_BACK, TRUE);
+			}
 			break;
 		case INIT:
 			// ゲーム初期化
 			GameInit();
+			StopSoundMem(sound.subbgm);
 			break;
 		case MAIN:
 			// 背景表示
@@ -150,6 +154,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		case RESULT:
 			//BGM
 			StopSoundMem(sound.mainbgm);
+			if (CheckSoundMem(sound.subbgm) == 0) {
+				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_BACK, TRUE);
+			}
 			game.soundflg = 0;
 			// リザルト画面
 			DrawResult();
