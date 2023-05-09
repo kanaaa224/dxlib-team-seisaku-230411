@@ -64,7 +64,7 @@ void DrawResult() { // 未完成
 	//DrawStringToHandle(530, 670, "Bボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 	//DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
-
+	// 仮、ボタンで分岐させる処理
 	// Space でタイトル
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (GetRankingFlg() == 1) {
