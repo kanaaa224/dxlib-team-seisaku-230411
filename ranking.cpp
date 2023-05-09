@@ -25,7 +25,7 @@ int gRankingImg;	//ランキング画面背景
 //ランキングデータ構造体
 struct RankingData {
 	int number;
-	std::string name;
+	char name[10];
 	long score;
 };
 
@@ -38,18 +38,19 @@ int ranking_state;
 * ランキング
 ********************************/
 void DrawRanking() {
-
 	if (ranking_state == 0) {
 		if (GetRankingFlg() == 1) {
 			// スコア書き込み処理
-			for (int i = 0; i < 10; i++){
+			for (int i = 0; i < GetLength(); i++) {
 				gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i); //String->Char 変換問題
 			}
+			gRanking[RANKING_DATA - 1].name[GetLength()] = '\0';
 			gRanking[RANKING_DATA - 1].score = ReturnScore();	// ランキングデータの最下位にスコアを登録
 			SortRanking();		// ランキング並べ替え
 			SaveRanking();		// ランキングデータの保存
 		};
-		SetRankingState(1);
+		//SetRankingState(1);
+		ranking_state = 1;
 	};
 
 	int RgScore = 0;
@@ -113,13 +114,14 @@ void SortRanking(void)
 	}
 	//得点が同じ場合は、同じ順位とする。
 	//同順位があった場合の次の順位はデータ個数が加算された順位とする。
-	for (i = 0; i < RANKING_DATA; i++) {
-		for (j = i + j; j < RANKING_DATA; j++) {
-			if (gRanking[i].score > gRanking[i].score) {
+	for (i = 0; i < RANKING_DATA - 1; i++) {
+		for (j = i + 1 ; j < RANKING_DATA; j++) {
+			if (gRanking[i].score > gRanking[j].score) {
 				gRanking[j].number++;
 			}
 		}
 	}
+	//gRanking[1].number = 2;
 }
 
 //ランキングデータの保存

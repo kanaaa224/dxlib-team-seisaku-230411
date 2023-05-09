@@ -336,8 +336,13 @@ void DrawRankingNameInput() { // “‡‘Ü‚ª’S“–’†A“ü—Í‚³‚ê‚½–¼‘O‚ğ•Ô‚·ŠÖ”‚ÆASetFo
 ********************************/
 char GetInputedName(int i) {
 	char name[10];
-	char name1[10] = "AED";
-	strcpy(name,name1);
-	return name[i];
+	for (int i = 0; i < GetLength() - 1; i++){
+		name[i] = rni_inputName[i];
+	}
+	return rni_inputName.c_str()[i];
 	//return 'aaaa';
 };
+
+int GetLength() {
+	return strlen(rni_inputName.c_str());
+}
