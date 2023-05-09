@@ -184,6 +184,7 @@ int HitBox(void)
 
 }
 
+//ƒvƒŒƒCƒ„[‚ÆƒŠƒ“ƒS‚Ì“–‚½‚è”»’è
 int HitBoxPlayer(void) {
 	double sx1[10];
 	double sy1[10];
@@ -215,9 +216,9 @@ int HitBoxPlayer(void) {
 	}
 
 	px1 = ReturnPlayerX() - 30;
-	py1 = ReturnPlayerY() - 30;
+	py1 = ReturnPlayerY() - 90;
 	px2 = ReturnPlayerX() + 30;
-	py2 = ReturnPlayerY() + 30;
+	py2 = ReturnPlayerY() + 120;
 
 	DrawBox((int)px1, (int)py1, (int)px2, (int)py2, 0xffffff, TRUE);
 
