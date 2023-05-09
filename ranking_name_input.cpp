@@ -7,7 +7,6 @@ extern Image image;
 extern Font font;
 
 #include "ranking_name_input.h"
-//NameInput nameInput;
 
 #include "main.h"
 extern Game game;
@@ -216,7 +215,6 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	// Yボタンで入力終了
 	if (JudgeReleaseButton(XINPUT_BUTTON_Y) == 1) {
 		if (rni_inputName.length() > 0) {
-			//nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
@@ -322,26 +320,12 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 
 	if(CheckHitKey(KEY_INPUT_SPACE)) {
 		if (rni_inputName.length() > 0) {
-			//nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
 			// 何も入力されていないので警告
 		}
 	}
-
-	//RgScore = ReturnScore();
-
-	//if (RgScore > 0) {
-	//	for (int i = 0; i < 11; i++) {
-	//		gRanking[i].name = nameInput.inputedName;
-	//	}
-	//	gRanking[RANKING_DATA - 1].score = RgScore;	//ランキングデータにスコアを登録
-	//	SortRanking();								//ランキング並べ替え
-	//	SaveRanking();								//ランキングデータの保存
-	//	game.mode = RANKING;						//ゲームモードの変更
-	//}
-
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;
 	}
