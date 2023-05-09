@@ -46,6 +46,8 @@ void DrawResult() { // ñ¢äÆê¨
 	// îwåiï\é¶
 	DrawGraph(0, 0, image.title, TRUE);
 
+	DrawStringToHandle(320, 70, "RESULT", 0x000000, font.handle_1_64, 0xffffff);
+
 	DrawBox(300, 160, 800, 550, 0xFDF5E6, TRUE);
 	DrawBox(300, 160, 801, 551, 0x000000, FALSE);
 

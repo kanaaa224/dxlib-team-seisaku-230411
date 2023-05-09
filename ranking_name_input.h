@@ -3,6 +3,7 @@
 #pragma once
 
 void DrawRankingNameInput();
+void ResetRankingNameInput();
 char GetInputedName(int i);
 
 #include <string>
