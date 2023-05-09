@@ -3,7 +3,7 @@
 #pragma once
 
 void DrawRankingNameInput();
-char GetInputedName();
+char GetInputedName(int i);
 
 #include <string>
 using std::string;

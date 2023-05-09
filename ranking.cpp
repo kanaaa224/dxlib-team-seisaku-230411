@@ -42,8 +42,8 @@ void DrawRanking() {
 	if (ranking_state == 0) {
 		if (GetRankingFlg() == 1) {
 			// スコア書き込み処理
-			for (int i = 0; i < 11; i++){
-				gRanking[RANKING_DATA - 1].name[i] = GetInputedName() + i; //String->Char 変換問題
+			for (int i = 0; i < 10; i++){
+				gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i); //String->Char 変換問題
 			}
 			gRanking[RANKING_DATA - 1].score = ReturnScore();	// ランキングデータの最下位にスコアを登録
 			SortRanking();		// ランキング並べ替え
