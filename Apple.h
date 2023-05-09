@@ -4,12 +4,10 @@
 #define APPLE_H
 
 //マクロ定義
-#define REDAPPLE 0
-#define BLUEAPPLE 1
-#define GOLDAPPLE 2
-#define POISONAPPLE 3
-
-#define LINE_NUM 7
+#define REDAPPLE 0		//画像の配列番号（赤りんご）
+#define BLUEAPPLE 1		//画像の配列番号（青りんご）
+#define GOLDAPPLE 2		//画像の配列番号（金りんご）
+#define POISONAPPLE 3	//画像の配列番号（毒りんご）
 
 //型定義
 
@@ -34,7 +32,7 @@ extern int gScore;		//スコア
 /************************************************
 *　定数の宣言
 ************************************************/
-const int APPLE_MAX = 10;
+const int APPLE_MAX = 10;//りんごの最大個数
 
 /************************************************
 *　構造体
@@ -50,14 +48,40 @@ struct APPLE {
 static struct APPLE gApple[10];
 
 //プロトタイプ宣言
-//int LoadImges(void);		//画像読込
-void FallApple(void);		//リンゴ落下処理
-int CreateApple(void);		//リンゴ生成
+
+/**
+*void FallApple(void)
+*りんごの落下処理
+*引数	：なし
+*戻り値	：なし
+*/
+void FallApple(void);
+
+/**
+*int CreateApple(void)
+*りんごの生成とりんごの確率処理
+*引数	：なし
+*戻り値	：int型
+*戻り値はりんごの生成が成功した場合TRUE、失敗した場合FALSEがgAppleのflgに入る
+*/
+int CreateApple(void);
+
+/**
+*void AppleSpeed(int i)
+*りんごの落下速度
+*引数	：int型 i
+*戻り値	：なし
+*CreateApple関数から入ってくる関数
+*引数にはCreateApple関数から取ってきたgAppleの配列番号が入っている
+*/
 void AppleSpeed(int i);		//りんごの速度
-void AppleInit(int num);		//リンゴの変数の初期化
-int HitBox(void);
-int HitBoxPlayer(void);
+
+void AppleInit(int num);	//リンゴの変数の初期化
+int HitBox(void);			//りんごの当たり判定
+int HitBoxPlayer(void);		//プレイヤーの当たり判定
+
 void ApplePoint(int i);		//りんごのスコア処理
+
 int ReturnRA(void);			//gRACountがリザルト画面で使用したいので
 int ReturnBL(void);
 int ReturnGL(void);
@@ -67,7 +91,6 @@ int ReturnAppleX(int num);
 int ReturnAppleY(int num);
 int ReturnAppleImg(int num);
 int ReturnAppleFlg(int num);
-//int ReturnFPSCount(void);
 void SetAppleCount(int num);
 
 
