@@ -111,9 +111,9 @@ void SortRanking(void)
 	}
 	//得点が同じ場合は、同じ順位とする。
 	//同順位があった場合の次の順位はデータ個数が加算された順位とする。
-	for (i = 0; i < RANKING_DATA; i++) {
-		for (j = i + j; j < RANKING_DATA; j++) {
-			if (gRanking[i].score > gRanking[i].score) {
+	for (i = 0; i < RANKING_DATA - 1; i++) {
+		for (j = i + 1; j < RANKING_DATA; j++) {
+			if (gRanking[i].score > gRanking[j].score) {
 				gRanking[j].number++;
 			}
 		}
