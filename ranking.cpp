@@ -80,10 +80,10 @@ void DrawRanking() {
 	SetFontSize(18);
 	for (int i = 0; i < RANKING_DATA; i++) {
 
-		std::string str = std::to_string(gRanking[i].number) + "ˆÊ";
-		DrawStringToHandle(240, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
+		//std::string str = std::to_string(gRanking[i].number) + "ˆÊ" + std::to_string(gRanking[i].name) + std::to_string(gRanking[i].score);
+		//DrawStringToHandle(240, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
 
-		//DrawFormatStringFToHandle(240, 150 + i * 100, 0x000000, font.handle_1_64, "%2dˆÊ %10s %10d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
+		DrawFormatStringFToHandle(240, 150 + i * 100, 0x000000, font.handle_1_64, "%2dˆÊ %10s %10d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
 	}
 
 };
