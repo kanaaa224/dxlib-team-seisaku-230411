@@ -79,6 +79,9 @@ void DrawRanking() {
 	SetFontSize(18);
 	for (int i = 0; i < RANKING_DATA; i++) {
 
+		//std::string str = std::to_string(gRanking[i].number) + "位" + std::to_string(gRanking[i].name) + std::to_string(gRanking[i].score);
+		//DrawStringToHandle(240, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
+
 		DrawFormatStringFToHandle(240, 150 + i * 100, 0x000000, font.handle_1_64, "%2d位 %10s %10d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
 	}
 
@@ -108,13 +111,12 @@ void SortRanking(void)
 	//得点が同じ場合は、同じ順位とする。
 	//同順位があった場合の次の順位はデータ個数が加算された順位とする。
 	for (i = 0; i < RANKING_DATA - 1; i++) {
-		for (j = i + 1 ; j < RANKING_DATA; j++) {
+		for (j = i + 1; j < RANKING_DATA; j++) {
 			if (gRanking[i].score > gRanking[j].score) {
 				gRanking[j].number++;
 			}
 		}
 	}
-	//gRanking[1].number = 2;
 }
 
 //ランキングデータの保存
