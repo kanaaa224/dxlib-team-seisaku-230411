@@ -12,10 +12,14 @@
 #include <string>
 #include "main.h"
 
+#include "PadInput.h"
+
 extern Image image;
 extern Font font;
 
 extern Game game;
+
+extern NameInput nameInput;
 
 using std::string;
 using std::to_string;
@@ -42,9 +46,11 @@ void DrawRanking() {
 	if (ranking_state == 0) {
 		if (GetRankingFlg() == 1) {
 			// スコア書き込み処理
-			for (int i = 0; i < 10; i++){
-				gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i); //String->Char 変換問題
-			}
+			//for (int i = 0; i < 10; i++){
+			//	gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i); //String->Char 変換問題
+			//}
+			gRanking[RANKING_DATA - 1].name = nameInput.inputedName;
+			//gRanking[RANKING_DATA - 1].name = GetInputedName(); String -> Char 変換問題
 			gRanking[RANKING_DATA - 1].score = ReturnScore();	// ランキングデータの最下位にスコアを登録
 			SortRanking();		// ランキング並べ替え
 			SaveRanking();		// ランキングデータの保存
@@ -63,24 +69,13 @@ void DrawRanking() {
  
     // 戻る表示
     DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-
-    // 仮
-    if (CheckHitKey(KEY_INPUT_R)) {
-        game.mode = INPUTNAME;
-    };
-
-	// 仮
-	if (CheckHitKey(KEY_INPUT_R)) {
-		game.mode = END;
+	if (JudgeButton(XINPUT_BUTTON_A) == 1) {
+		game.mode = TITLE;
 	};
-
-    // 背景表示
-    DrawGraph(0, 0, image.title, TRUE);
-
-    DrawStringToHandle(340, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
- 
-    // 戻る表示
-    DrawStringToHandle(530, 670, "(仮)RボタンでEND画面へ", 0x000000, font.handle_1_32, 0xffffff);
+	// キーボード対応
+    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+        game.mode = TITLE;
+    };
 
 	SetFontSize(18);
 	for (int i = 0; i < RANKING_DATA; i++) {

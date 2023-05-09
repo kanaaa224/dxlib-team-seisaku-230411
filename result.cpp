@@ -7,7 +7,6 @@
 #include "ranking.h"
 #include "PadInput.h"
 
-
 extern Image image;
 extern Font font;
 
@@ -60,9 +59,8 @@ void DrawResult() { // 未完成
 	//カウント表示
 	//DrawFormatStringFToHandle(660, 180,  0x000000, font.handle_1_64,  "%d", RED_AppleCount);
 	
-	// 戻る表示
+	// 次へ
 	DrawStringToHandle(530, 670, "Bボタンですすむ", 0x000000, font.handle_1_32, 0xffffff);
-
 	// 仮、ボタンで分岐させる処理
 	if (JudgeButton(XINPUT_BUTTON_B) == 1) {
 		if (GetRankingFlg() == 1) {
@@ -72,7 +70,6 @@ void DrawResult() { // 未完成
 			game.mode = RANKING;
 		}
 	};
-
 	// キーボード対応
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (GetRankingFlg() == 1) {
