@@ -17,8 +17,6 @@ extern Font font;
 
 extern Game game;
 
-extern NameInput nameInput;
-
 using std::string;
 using std::to_string;
 

@@ -1,9 +1,5 @@
 // 作：島袋
 
-#include <string>
-using std::string;
-using std::to_string;
-
 #include "DxLib.h"
 
 #include "resourceLoad.h"
@@ -37,7 +33,7 @@ int rni_state = 0;
 /********************************
 * ランキング入力処理
 ********************************/
-void DrawRankingNameInput() { // 島袋が担当中、仮完成
+void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFontSize使用によるFPS低下問題以外完成
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
