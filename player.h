@@ -12,7 +12,7 @@
 
 struct PLAYER
 {
-	int flg;
+	int flg = TRUE;
 	int x;
 	int y = 600;
 	float speed = 0;
@@ -28,3 +28,4 @@ void DrawPlayerPause();
 int ReturnPlayerX();
 int ReturnPlayerY();
 void SetPlayerX(int x);
+void SetPlayerBlinkFlg(int x);

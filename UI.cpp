@@ -17,7 +17,6 @@ using std::to_string;
 
 
 
-
 void DrawUserInterFace()
 {
 	DrawBox(1000, 0, 1280, 780, 0xd5e458, TRUE);

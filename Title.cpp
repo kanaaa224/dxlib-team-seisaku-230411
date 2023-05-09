@@ -10,6 +10,7 @@ extern Image image;
 extern Font font;
 
 extern Game game;
+extern Sound sound;
 
 int title_state = 0;
 
@@ -54,6 +55,9 @@ void DrawTitle() {
 	********************************/
 	// コントローラー入力
 	if (title_selectstate = GetStickY() > 32000 && title_stickflg == 0) {
+		if (CheckSoundMem(sound.se_corsor) == 0) {
+			PlaySoundMem(sound.se_corsor, DX_PLAYTYPE_BACK, TRUE);
+		}
 		if (title_state <= 0) {
 			title_state = 3;
 		}
@@ -63,6 +67,9 @@ void DrawTitle() {
 		title_stickflg = 1;
 	}
 	else if (title_selectstate = GetStickY() < -32000 && title_stickflg == 0) {
+		if (CheckSoundMem(sound.se_corsor) == 0) {
+			PlaySoundMem(sound.se_corsor, DX_PLAYTYPE_BACK, TRUE);
+		}
 		if (title_state >= 3) {
 			title_state = 0;
 		}
@@ -79,6 +86,9 @@ void DrawTitle() {
 	};
 	// Bボタンで選択
 	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
+		if (CheckSoundMem(sound.se_selct) == 0) {
+			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		}
 		if (title_state == 0) {
 			// スタート選択
 			game.mode = INIT;

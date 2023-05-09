@@ -33,8 +33,11 @@ int LoadImages(void)
 int LoadSounds(void)
 {
 	if ((sound.mainbgm = LoadSoundMem("Resources/BGM/Natural_Green.wav")) == -1) return -1;
+	if ((sound.subbgm = LoadSoundMem("Resources/BGM/BGM_Odayaka.wav")) == -1) return -1;
 	if ((sound.se_apple = LoadSoundMem("Resources/SE/Apple.wav")) == -1) return -1;
 	if ((sound.se_poisonapple = LoadSoundMem("Resources/SE/PoisonApple.wav")) == -1) return -1;
+	if ((sound.se_corsor = LoadSoundMem("Resources/SE/btn02.wav")) == -1) return -1;
+	if ((sound.se_selct = LoadSoundMem("Resources/SE/btn10.wav")) == -1) return -1;
 
 	ChangeVolumeSoundMem(97, sound.mainbgm);
 	ChangeVolumeSoundMem(400, sound.se_apple);
