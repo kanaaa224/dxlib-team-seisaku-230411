@@ -42,6 +42,9 @@ int LoadSounds(void)
 	ChangeVolumeSoundMem(97, sound.mainbgm);
 	ChangeVolumeSoundMem(400, sound.se_apple);
 	ChangeVolumeSoundMem(450, sound.se_poisonapple);
+	ChangeVolumeSoundMem(150, sound.subbgm);
+	ChangeVolumeSoundMem(170, sound.se_corsor);
+	ChangeVolumeSoundMem(150, sound.se_selct);
 	return 0;
 }
 
