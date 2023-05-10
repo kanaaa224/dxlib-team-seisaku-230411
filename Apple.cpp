@@ -11,11 +11,11 @@
 /************************************************
 *　変数の初期化
 ************************************************/
-extern int gP = 0;
+extern int gP = 0;			//りんご確率
 
 extern int gTimeFlg = FALSE;//時間計測用の変数
 
-extern int gFPSCount = 0;
+extern int gFPSCount = 0;	//FPSカウント変数
 
 extern int gRACount = 0;	//赤りんごの個数
 extern int gBACount = 0;	//青りんごの個数
@@ -26,9 +26,9 @@ extern int gScore = 0;		//スコア
 using std::string;
 using std::to_string;
 
-extern Image image;		//りんごの画像変数
-extern Font font;
-extern Sound sound;
+extern Image image;			//りんごの画像
+extern Font font;			//フォント
+extern Sound sound;			//サウンド
 
 /************************************************
 *　リンゴ落下処理
@@ -169,7 +169,9 @@ int HitBox(void)
 
 }
 
-//プレイヤーとリンゴの当たり判定
+/******************************************************
+* プレイヤーの当たり判定＆プレイヤーとりんごの接触処理
+******************************************************/
 int HitBoxPlayer(void) {
 	double sx1[10];
 	double sy1[10];
@@ -190,7 +192,7 @@ int HitBoxPlayer(void) {
 				sy2[i] = gApple[i].y + 37;	//右下 Y
 			}
 		}
-		else {											//それ以外の当たり判定
+		else {											//毒りんご以外の当たり判定
 			if (gApple[i].flg == TRUE) {
 				sx1[i] = gApple[i].x - 46;	//左上 X
 				sy1[i] = gApple[i].y - 43;	//左上 Y
@@ -205,13 +207,15 @@ int HitBoxPlayer(void) {
 	px2 = ReturnPlayerX() + 30;
 	py2 = ReturnPlayerY() + 120;
 
-	DrawBox((int)px1, (int)py1, (int)px2, (int)py2, 0xffffff, FALSE);
+	//デバッグ用（プレイヤーの当たり判定表示）
+	//DrawBox((int)px1, (int)py1, (int)px2, (int)py2, 0xffffff, TRUE);
 
-	for (int i = 0; i < 10; i++) {
+	//デバッグ用（りんごの当たり判定表示）
+	/*for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
 			DrawBox((int)sx1[i], (int)sy1[i], (int)sx2[i], (int)sy2[i], 0xffffff, FALSE);
 		}
-	}
+	}*/
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
@@ -235,12 +239,13 @@ int HitBoxPlayer(void) {
 	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, font.handle_1_64, 0xffffff);
 	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, font.handle_1_64, 0xffffff);
 
-	SetFontSize(16);
+	//デバッグ用（りんごのスコア＆個数表示）
+	/*SetFontSize(16);
 	DrawFormatString(0, 100, 0xffffff, "Score:%d", gScore);
 	DrawFormatString(0, 120, 0xffffff, "RED:%d", gRACount);
 	DrawFormatString(0, 140, 0xffffff, "BLUE:%d", gBACount);
 	DrawFormatString(0, 160, 0xffffff, "GOLD:%d", gGACount);
-	DrawFormatString(0, 180, 0xffffff, "POISON:%d", gPACount);
+	DrawFormatString(0, 180, 0xffffff, "POISON:%d", gPACount);*/
 
 	return 0;
 }
@@ -321,5 +326,3 @@ void SetAppleCount(int num) {
 	gGACount = num;
 	gPACount = num;
 }
-
-
