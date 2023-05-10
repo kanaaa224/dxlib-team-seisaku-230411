@@ -1,5 +1,5 @@
  1 abbbccddee       1000
  2      Enter        600
  3 AAAAAAAAAA        300
- 4  kanaatooo        200
+ 4 shimabukur        200
  5         AB          0
