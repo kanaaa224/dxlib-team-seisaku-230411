@@ -1,5 +1,7 @@
 #include "Pause.h"
 
+int PauseFlg = 0;
+
 int GetPauseFlg() {
 	return PauseFlg;
 }
