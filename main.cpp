@@ -15,8 +15,6 @@
 #include "Apple.h"
 #include "Pause.h"
 
-
-
 extern Image image;
 extern Font font;
 extern Sound sound;
@@ -81,7 +79,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		switch (game.mode) {
 		case TITLE:
 			// タイトル
-			DrawTitle(); // 仮
+			DrawTitle();
 			if (CheckSoundMem(sound.subbgm) == 0) {
 				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_BACK, TRUE);
 			}
@@ -101,17 +99,15 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				game.mode = RESULT;
 			};
 			if (JudgeButton(XINPUT_BUTTON_START) == 1) { //ポーズ
-				if (PauseFlg == 0) {
+				if (GetPauseFlg() == 0) {
 					SetPauseFlg(1);
-					PauseFlg = 1;
 				}
 				else {
 					SetPauseFlg(0);
-					PauseFlg = 0;
 				}
 			}
 			// プレイヤー開始
-			if (PauseFlg == 0) {
+			if (GetPauseFlg() == 0) {
 				if (game.soundflg == 0) {		//最初だけはじめから再生
 					//BGM
 					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, TRUE);

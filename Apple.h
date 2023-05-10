@@ -52,6 +52,7 @@ static struct APPLE gApple[10];
 //プロトタイプ宣言
 
 /**
+*豊元一成 
 *void FallApple(void)
 *りんごの落下処理
 *引数	：なし
@@ -60,6 +61,7 @@ static struct APPLE gApple[10];
 void FallApple(void);
 
 /**
+*豊元一成 
 *int CreateApple(void)
 *りんごの生成とりんごの確率処理
 *引数	：なし
@@ -69,6 +71,7 @@ void FallApple(void);
 int CreateApple(void);
 
 /**
+*豊元一成 
 *void AppleSpeed(int i)
 *りんごの落下速度
 *引数	：int型 i
@@ -76,26 +79,132 @@ int CreateApple(void);
 *CreateApple関数から入ってくる関数
 *引数にはCreateApple関数から取ってきたgAppleの配列番号が入っている
 */
-void AppleSpeed(int i);		//りんごの速度
+void AppleSpeed(int i);
 
-void AppleInit(int num);	//リンゴの変数の初期化
-int HitBox(void);			//りんごの当たり判定
-int HitBoxPlayer(void);		//プレイヤーの当たり判定
+/**
+*void AppleInit(int num)
+*りんごのカウント変数とスコアの初期化
+*引数	：int型 num
+*戻り値	：なし
+*/
+void AppleInit(int num);
 
-void ApplePoint(int i);		//りんごのスコア処理
+/**
+* 北村隼士
+*int HitBox(void)
+*りんごの当たり判定処理
+*引数	：なし
+*戻り値	：int型　
+*/
+int HitBox(void);
 
-int ReturnRA(void);			//gRACountがリザルト画面で使用したいので
+/*
+* 北村隼士
+*int HitBoxPlayer(void)
+*りんごの当たり判定処理
+*引数	：なし
+*戻り値	：int型　
+*/
+int HitBoxPlayer(void);
+
+/**
+*豊元一成
+*void ApplePoint(int i)
+*りんごのスコア＆個数をカウント処理
+*引数	：int型
+*戻り値	：なし
+*引数でgAppleの配列番号をHitBoxPlayerから取ってきて、りんごの種類別にスコアと個数を入れる
+*/
+void ApplePoint(int i);
+
+/**
+* 新里滉規
+*int ReternRA(void)
+*赤りんごの個数を返す
+*引数	：int型
+*戻り値	：int型　
+*/
+int ReturnRA(void);
+
+/**
+* 新里滉規
+*int ReternBL(void)
+*青りんごの個数を返す
+*引数	：int型
+*戻り値	：int型　
+*/
 int ReturnBL(void);
+
+/**
+* 新里滉規
+*int ReternGL(void)
+*金りんごの個数を返す
+*引数	：int型
+*戻り値	：int型　
+*/
 int ReturnGL(void);
+
+/**
+* 新里滉規
+*int ReternPO(void)
+*毒りんごの個数を返す
+*引数	：int型
+*戻り値	：int型　
+*/
 int ReturnPO(void);
+
+/**
+* 新里滉規
+*int ReternRA(void)
+*スコアを返す
+*引数	：int型
+*戻り値	：int型　
+*/
 int ReturnScore(void);
+
+/**
+* 北村隼士
+*int ReternAppleX(int num)
+*りんごのX座標を返す
+*引数	：int型
+*戻り値	：int型　
+*/
 int ReturnAppleX(int num);
+
+/**
+* 北村隼士
+*int ReternAppleY(int num)
+*りんごのY座標を返す
+*引数	：int型
+*戻り値	：int型　
+*/
 int ReturnAppleY(int num);
+
+/**
+* 北村隼士
+*int ReternAppleImg(int num)
+*りんごのImgを返す
+*引数	：int型
+*戻り値	：int型　
+*/
 int ReturnAppleImg(int num);
+
+/**
+* 北村隼士
+*int ReternAppleFlg(int num)
+*りんごのFlgを返す
+*引数	：int型
+*戻り値	：int型　
+*/
 int ReturnAppleFlg(int num);
+
+/**
+* 北村隼士
+*void SetAppleCount(int num)
+*
+*引数	：なし
+*戻り値	：int型　
+*/
 void SetAppleCount(int num);
-
-
-
 
 #endif

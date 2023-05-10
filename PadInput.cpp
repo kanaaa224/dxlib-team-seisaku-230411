@@ -1,6 +1,10 @@
 #include"DxLib.h"
 #include"PadInput.h"
 
+XINPUT_STATE OldKey;
+XINPUT_STATE NowKey;
+XINPUT_STATE KeyFlg;
+
 //コントローラー入力を取得
 void InputController() {
 	for (int i = 0; i < 16; i++) {
