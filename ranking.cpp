@@ -146,7 +146,7 @@ int SaveRanking(void) {
 ********************************/
 int ReadRanking(void) {
 	FILE* fp;
-#pragma warning(disable:4996)
+	#pragma warning(disable:4996)
 
 	//ファイルオープン
 	if ((fp = fopen("Resources/dat/rankingdata.txt", "r")) == NULL) {
