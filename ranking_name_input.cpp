@@ -7,7 +7,7 @@ extern Image image;
 extern Font font;
 
 #include "ranking_name_input.h"
-NameInput nameInput;
+//NameInput nameInput;
 
 #include "main.h"
 extern Game game;
@@ -216,7 +216,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	// Yボタンで入力終了
 	if (JudgeReleaseButton(XINPUT_BUTTON_Y) == 1) {
 		if (rni_inputName.length() > 0) {
-			nameInput.inputedName = rni_inputName.c_str();
+			//nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
@@ -322,7 +322,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 
 	if(CheckHitKey(KEY_INPUT_SPACE)) {
 		if (rni_inputName.length() > 0) {
-			nameInput.inputedName = rni_inputName.c_str();
+			//nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
@@ -350,17 +350,19 @@ void ResetRankingNameInput() {
 };
 
 /********************************
-* 入力された名前を返す
+* 入力された名前の指定した文字を返す
 ********************************/
 char GetInputedName(int i) {
 	char name[10];
-	for (int i = 0; i < GetLength() - 1; i++){
+	for (int i = 0; i < GetInputedNameLength() - 1; i++) {
 		name[i] = rni_inputName[i];
-	}
+	};
 	return rni_inputName.c_str()[i];
-	//return 'aaaa';
 };
 
-int GetLength() {
+/********************************
+* 入力された名前の桁数を返す
+********************************/
+int GetInputedNameLength() {
 	return strlen(rni_inputName.c_str());
-}
+};

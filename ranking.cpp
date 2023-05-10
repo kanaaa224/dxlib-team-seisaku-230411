@@ -19,8 +19,6 @@ extern Font font;
 
 extern Game game;
 
-extern NameInput nameInput;
-
 using std::string;
 using std::to_string;
 
@@ -42,54 +40,54 @@ int ranking_state;
 * ランキング
 ********************************/
 void DrawRanking() {
+
 	if (ranking_state == 0) {
+		// プレイスコアがランキングの最下位スコアを超えていたら書き込み
 		if (GetRankingFlg() == 1) {
 			// スコア書き込み処理
-			for (int i = 0; i < GetLength(); i++) {
-				gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i); //String->Char 変換問題
-			}
-			gRanking[RANKING_DATA - 1].name[GetLength()] = '\0';
-			gRanking[RANKING_DATA - 1].score = ReturnScore();	// ランキングデータの最下位にスコアを登録
-			SortRanking();		// ランキング並べ替え
-			SaveRanking();		// ランキングデータの保存
+			for (int i = 0; i < GetInputedNameLength(); i++) {
+				// 一文字ずつ取得
+				gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i);
+			};
+			gRanking[RANKING_DATA - 1].name[GetInputedNameLength()] = '\0'; // Null文字付与
+			gRanking[RANKING_DATA - 1].score = ReturnScore(); // ランキングデータの最下位にスコアを登録
+			SortRanking(); // ランキング並べ替え
+			SaveRanking(); // ランキングデータの保存
 		};
-		//SetRankingState(1);
-		ranking_state = 1;
+		ranking_state = 1; // また実行しないように
 	};
 
 	int RgScore = 0;
-
 	RgScore = ReturnScore();
 
     // 背景表示
     DrawGraph(0, 0, image.title, TRUE);
 
-    DrawStringToHandle(340, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
- 
-    // 戻る表示
-    DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+    DrawStringToHandle(360, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
+
+	for (int i = 0; i < RANKING_DATA; i++) {
+		std::string str = std::to_string(gRanking[i].number) + "位";
+		DrawStringToHandle(200, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+		DrawStringToHandle(380, 150 + i * 100, gRanking[i].name, 0x000000, font.handle_1_64, 0xffffff);
+		str = std::to_string(gRanking[i].score);
+		DrawStringToHandle(1000, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	};
+
+	// 戻る表示
+	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 	if (JudgeButton(XINPUT_BUTTON_A) == 1) {
 		game.mode = TITLE;
 	};
 	// キーボード対応
-    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-        game.mode = TITLE;
-    };
-
-	SetFontSize(18);
-	for (int i = 0; i < RANKING_DATA; i++) {
-
-		//std::string str = std::to_string(gRanking[i].number) + "位" + std::to_string(gRanking[i].name) + std::to_string(gRanking[i].score);
-		//DrawStringToHandle(240, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
-
-		DrawFormatStringFToHandle(240, 150 + i * 100, 0x000000, font.handle_1_64, "%2d位 %10s %10d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
-	}
-
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		game.mode = TITLE;
+	};
 };
 
-//ランキング並べ替え
-void SortRanking(void)
-{
+/********************************
+* ランキング並べ替え
+********************************/
+void SortRanking(void) {
 	int i, j;
 	RankingData work;
 
@@ -100,51 +98,53 @@ void SortRanking(void)
 				work = gRanking[i];
 				gRanking[i] = gRanking[j];
 				gRanking[j] = work;
-			}
-		}
-	}
+			};
+		};
+	};
 
 	//順位付け
 	for (i = 0; i < RANKING_DATA; i++) {
 		gRanking[i].number = 1;
-	}
+	};
 	//得点が同じ場合は、同じ順位とする。
 	//同順位があった場合の次の順位はデータ個数が加算された順位とする。
 	for (i = 0; i < RANKING_DATA - 1; i++) {
 		for (j = i + 1; j < RANKING_DATA; j++) {
 			if (gRanking[i].score > gRanking[j].score) {
 				gRanking[j].number++;
-			}
-		}
-	}
-}
+			};
+		};
+	};
+};
 
-//ランキングデータの保存
-int SaveRanking(void)
-{
+/********************************
+* ランキングデータの保存
+********************************/
+int SaveRanking(void) {
 	FILE* fp;
-#pragma warning(disable:4996)
+	#pragma warning(disable:4996)
 
 	//ファイルオープン
 	if ((fp = fopen("Resources/dat/rankingdata.txt", "w")) == NULL) {
 		/*エラー処理*/
 		printf("Ranking Data Error\n");
 		return -1;
-	}
+	};
 
 	//ランキングデータ分配列データを書き込む
 	for (int i = 0; i < RANKING_DATA; i++) {
 		fprintf(fp, "%2d %10s %10d\n", gRanking[i].number, gRanking[i].name, gRanking[i].score);
-	}
+	};
 
 	//ファイルクローズ
 	fclose(fp);
 	return 0;
-}
+};
 
-//ランキングデータ読み込み
-int ReadRanking(void)
-{
+/********************************
+* ランキングデータ読み込み
+********************************/
+int ReadRanking(void) {
 	FILE* fp;
 #pragma warning(disable:4996)
 
@@ -153,18 +153,18 @@ int ReadRanking(void)
 		//エラー処理
 		printf("Ranking Data Error\n");
 		return -1;
-	}
+	};
 
 	//ランキングデータ配分列データを読み込む
 	for (int i = 0; i < RANKING_DATA; i++) {
 		int dammy = fscanf(fp, "%2d %10s %d10", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
-	}
+	};
 
 	//ファイルクローズ
 	fclose(fp);
 
 	return 0;
-}
+};
 
 /********************************
 * スコアがランキング最下位を超えたかの判断を返す関数
@@ -176,8 +176,7 @@ int GetRankingFlg() {
 	}
 	else {
 		return 0;
-	}
-	//return gRanking;
+	};
 };
 
 /********************************
