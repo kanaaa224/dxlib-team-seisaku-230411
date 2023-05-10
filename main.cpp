@@ -103,11 +103,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (JudgeButton(XINPUT_BUTTON_START) == 1) { //ポーズ
 				if (GetPauseFlg() == 0) {
 					SetPauseFlg(1);
-					//PauseFlg = 1;
 				}
 				else {
 					SetPauseFlg(0);
-					//PauseFlg = 0;
 				}
 			}
 			// プレイヤー開始

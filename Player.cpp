@@ -22,7 +22,10 @@ void PlayerControll() {
 	//右歩き
 	if (Stick > WALK_RIGHT && Stick < RUN_RIGHT) {
 		if (PlayerLimit() == 0) {
-			if (player.speed < WALK_SPEED) {
+			if (player.speed > WALK_SPEED) {
+				player.speed -= 0.5;
+			}
+			else if (player.speed < WALK_SPEED) {
 				player.speed += 0.5;
 			}
 			else{
@@ -34,7 +37,10 @@ void PlayerControll() {
 	//左歩き
 	else if (Stick < WALK_LEFT && Stick > RUN_LEFT) {
 		if (PlayerLimit() == 0) {
-			if (player.speed > WALK_SPEED * -1) {
+			if (player.speed < WALK_SPEED * -1) {
+				player.speed += 0.5;
+			}
+			else if (player.speed > WALK_SPEED * -1) {
 				player.speed -= 0.5;
 			}
 			else {
@@ -91,8 +97,6 @@ void PlayerControll() {
 
 	
 	DrawFormatString(100, 200, 0xffffff, "%d", player.x);
-	DrawCircle(player.x, player.y, 15, 0xffffff, TRUE);//(仮)
-	//DrawRotaGraph(player.x, player.y, 0.45f, 0,image.player[5] , TRUE, FALSE);
 	DrawFormatString(390, 30, 0xffffff, "%d", player.x);
 	DrawFormatString(390, 60, 0xffffff, "%f", player.speed);
 }
@@ -210,7 +214,6 @@ void DrawPlayerPause() {
 		//右ダッシュ
 		else if (player.speed > 2 && player.x != MOVE_RIGHT_LIMIT) {
 			DrawRotaGraph(player.x, player.y, IMAGE_RATE, 0, image.Run[Run], TRUE, TRUE);
-
 		}
 		//左歩き
 		else if (player.speed < 0 && player.speed > -3 && player.x != MOVE_LEFT_LIMIT) {
