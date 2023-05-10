@@ -220,11 +220,11 @@ int HitBoxPlayer(void) {
 	px2 = ReturnPlayerX() + 30;
 	py2 = ReturnPlayerY() + 120;
 
-	DrawBox((int)px1, (int)py1, (int)px2, (int)py2, 0xffffff, TRUE);
+	DrawBox((int)px1, (int)py1, (int)px2, (int)py2, 0xffffff, FALSE);
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
-			DrawBox((int)sx1[i], (int)sy1[i], (int)sx2[i], (int)sy2[i], 0xffffff, TRUE);
+			DrawBox((int)sx1[i], (int)sy1[i], (int)sx2[i], (int)sy2[i], 0xffffff, FALSE);
 		}
 	}
 
