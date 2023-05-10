@@ -11,7 +11,6 @@ extern Image image;
 extern Font font;
 
 extern Game game;
-extern UI ui;
 
 using std::string;
 using std::to_string;
