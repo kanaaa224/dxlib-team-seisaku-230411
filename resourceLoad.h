@@ -29,11 +29,14 @@ class Font {
 public:
 	//int s;
 	int state;
+	int handle_0_128;
+	int handle_0_64;
 	int handle_0_32;
 	int handle_0_16;
 	int handle_1_128;
 	int handle_1_64;
 	int handle_1_32;
+	int handle_1_16;
 	//int handle_2_128;
 	//int handle_2_64;
 	//int handle_2_32;

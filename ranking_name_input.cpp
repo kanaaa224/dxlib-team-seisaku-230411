@@ -7,6 +7,7 @@ extern Image image;
 extern Font font;
 
 #include "ranking_name_input.h"
+NameInput nameInput;
 
 #include "main.h"
 extern Game game;
@@ -24,7 +25,7 @@ char rni_alphabet[][26] = {
 
 std::string rni_inputName = "";
 int rni_selecter[] = { 90, 440, 35, 30, 0, 0 };
-int rni_state = 0;
+//int rni_state = 0;
 
 #include "Apple.h"
 #include "ranking.h"
@@ -80,7 +81,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	SetFontSize(32);
 	// アルファベット大文字・小文字の表示
 	for (int i = 0; i < 26; i++) {
-		//DrawStringToHandle(100 + (i * 42), 440, rni_alphabet[0][i], 0xffffff, font.handle_0_32, 0xffffff);
+		//DrawStringToHandle(100 + (i * 42), 440, rni_alphabet[0][i], 0xffffff, font.handle_0_32, 0xffffff); // 問題
 		DrawFormatString(100 + (i * 42), 440, 0xffffff,"%c", rni_alphabet[0][i]);
 		DrawFormatString(100 + (i * 42), 490, 0xffffff, "%c", rni_alphabet[1][i]);
 	}
@@ -215,6 +216,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	// Yボタンで入力終了
 	if (JudgeReleaseButton(XINPUT_BUTTON_Y) == 1) {
 		if (rni_inputName.length() > 0) {
+			nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
@@ -320,6 +322,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 
 	if(CheckHitKey(KEY_INPUT_SPACE)) {
 		if (rni_inputName.length() > 0) {
+			nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
 		}
 		else {
@@ -329,6 +332,21 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;
 	}
+};
+
+/********************************
+* リセット
+********************************/
+void ResetRankingNameInput() {
+	// 名前入力値のリセット
+	rni_inputName = "";
+	// カーソル位置のリセット
+	rni_selecter[0] = 90;
+	rni_selecter[1] = 440;
+	rni_selecter[2] = 35;
+	rni_selecter[3] = 30;
+	rni_selecter[4] = 0;
+	rni_selecter[5] = 0;
 };
 
 /********************************

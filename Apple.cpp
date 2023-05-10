@@ -38,12 +38,6 @@ void FallApple(void)
 	for (int i = 0; i < APPLE_MAX; i++) {
 
 		if (gApple[i].flg == TRUE) {
-
-			////テスト
-			//SetFontSize(16);
-			//DrawFormatString(0, 0, 0xffffff, "Y:%3d", gApple[i].y);
-			//DrawFormatString(100, 0, 0xffffff, "X:%3d", gApple[i].x);
-
 			//リンゴの表示
 			DrawRotaGraph((int)gApple[i].x, (int)gApple[i].y, 0.19, 0, gApple[i].img, TRUE);
 
@@ -59,17 +53,6 @@ void FallApple(void)
 		}
 
 	}
-
-	//gOldTime;//前時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数）
-	//gNowTime;//後時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数）
-	//gTimeFlg;
-
-	//if (gTimeFlg == FALSE) {
-	//	gOldTime = GetNowCount();
-	//	gTimeFlg = TRUE;
-	//}
-
-	//gNowTime = GetNowCount();
 
 	if ((gFPSCount++) % 25 == 0) {//２５フレームごとに生成されるりんごの数をチェック
 		CreateApple();
@@ -136,7 +119,11 @@ void AppleSpeed(int i)
 	}
 }
 
-void AppleInit(int num) {
+/************************************************
+*　各りんごのカウント変数の初期化
+************************************************/
+void AppleInit(int num) 
+{
 	for (int i = 0; i < APPLE_MAX; i++) {
 		gApple[i].flg = FALSE;
 	}
@@ -146,8 +133,6 @@ void AppleInit(int num) {
 	gPACount = num;
 	gScore = num;
 }
-
-
 
 /************************************************
 *　りんごの当たり判定
@@ -290,6 +275,9 @@ void ApplePoint(int i)
 	}
 }
 
+/************************************************
+*　その他関数
+************************************************/
 int ReturnRA(void) {
 	return gRACount;
 }

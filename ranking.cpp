@@ -12,10 +12,14 @@
 #include <string>
 #include "main.h"
 
+#include "PadInput.h"
+
 extern Image image;
 extern Font font;
 
 extern Game game;
+
+extern NameInput nameInput;
 
 using std::string;
 using std::to_string;
@@ -64,27 +68,19 @@ void DrawRanking() {
  
     // 戻る表示
     DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-
-    // 仮
-    if (CheckHitKey(KEY_INPUT_R)) {
-        game.mode = INPUTNAME;
-    };
-
-	// 仮
-	if (CheckHitKey(KEY_INPUT_R)) {
-		game.mode = END;
+	if (JudgeButton(XINPUT_BUTTON_A) == 1) {
+		game.mode = TITLE;
 	};
-
-    // 背景表示
-    DrawGraph(0, 0, image.title, TRUE);
-
-    DrawStringToHandle(340, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
- 
-    // 戻る表示
-    DrawStringToHandle(530, 670, "(仮)RボタンでEND画面へ", 0x000000, font.handle_1_32, 0xffffff);
+	// キーボード対応
+    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+        game.mode = TITLE;
+    };
 
 	SetFontSize(18);
 	for (int i = 0; i < RANKING_DATA; i++) {
+
+		//std::string str = std::to_string(gRanking[i].number) + "位" + std::to_string(gRanking[i].name) + std::to_string(gRanking[i].score);
+		//DrawStringToHandle(240, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
 
 		DrawFormatStringFToHandle(240, 150 + i * 100, 0x000000, font.handle_1_64, "%2d位 %10s %10d", gRanking[i].number, gRanking[i].name, gRanking[i].score);
 	}
@@ -115,13 +111,12 @@ void SortRanking(void)
 	//得点が同じ場合は、同じ順位とする。
 	//同順位があった場合の次の順位はデータ個数が加算された順位とする。
 	for (i = 0; i < RANKING_DATA - 1; i++) {
-		for (j = i + 1 ; j < RANKING_DATA; j++) {
+		for (j = i + 1; j < RANKING_DATA; j++) {
 			if (gRanking[i].score > gRanking[j].score) {
 				gRanking[j].number++;
 			}
 		}
 	}
-	//gRanking[1].number = 2;
 }
 
 //ランキングデータの保存
