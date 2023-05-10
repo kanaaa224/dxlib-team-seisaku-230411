@@ -11,11 +11,11 @@
 /************************************************
 *　変数の初期化
 ************************************************/
-extern int gP = 0;
+extern int gP = 0;			//りんご確率
 
 extern int gTimeFlg = FALSE;//時間計測用の変数
 
-extern int gFPSCount = 0;
+extern int gFPSCount = 0;	//FPSカウント変数
 
 extern int gRACount = 0;	//赤りんごの個数
 extern int gBACount = 0;	//青りんごの個数
@@ -26,9 +26,9 @@ extern int gScore = 0;		//スコア
 using std::string;
 using std::to_string;
 
-extern Image image;		//りんごの画像変数
-extern Font font;
-extern Sound sound;
+extern Image image;			//りんごの画像
+extern Font font;			//フォント
+extern Sound sound;			//サウンド
 
 /************************************************
 *　リンゴ落下処理
@@ -169,7 +169,9 @@ int HitBox(void)
 
 }
 
-//プレイヤーとリンゴの当たり判定
+/******************************************************
+* プレイヤーの当たり判定＆プレイヤーとりんごの接触処理
+******************************************************/
 int HitBoxPlayer(void) {
 	double sx1[10];
 	double sy1[10];
@@ -324,5 +326,3 @@ void SetAppleCount(int num) {
 	gGACount = num;
 	gPACount = num;
 }
-
-
