@@ -15,8 +15,6 @@
 #include "Apple.h"
 #include "Pause.h"
 
-
-
 extern Image image;
 extern Font font;
 extern Sound sound;
@@ -81,7 +79,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		switch (game.mode) {
 		case TITLE:
 			// ƒ^ƒCƒgƒ‹
-			DrawTitle(); // ‰¼
+			DrawTitle();
 			if (CheckSoundMem(sound.subbgm) == 0) {
 				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_BACK, TRUE);
 			}
