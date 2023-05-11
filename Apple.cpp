@@ -89,7 +89,7 @@ int CreateApple(void)
 		if (gApple[i].flg == FALSE) {
 			gApple[i].img = AppleImg;				//リンゴの画像
 			gApple[i].x = 70 + (GetRand(6) * 130);	//りんごのレーン決定
-			gApple[i].y = -150;						//リンゴの初期Y座標
+			gApple[i].y = -100;						//リンゴの初期Y座標
 			AppleSpeed(i);							//リンゴの速度
 
 			//成功
@@ -122,16 +122,16 @@ void AppleSpeed(int i)
 /************************************************
 *　各りんごのカウント変数の初期化
 ************************************************/
-void AppleInit(int num) 
+void AppleInit() 
 {
 	for (int i = 0; i < APPLE_MAX; i++) {
 		gApple[i].flg = FALSE;
 	}
-	gRACount = num;
-	gBACount = num;
-	gGACount = num;
-	gPACount = num;
-	gScore = num;
+	gRACount = 0;
+	gBACount = 0;
+	gGACount = 0;
+	gPACount = 0;
+	gScore = 0;
 }
 
 /************************************************

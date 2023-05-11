@@ -92,7 +92,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		case MAIN:
 			// 背景表示
 			DrawGraph(0, 0, image.title, TRUE);
-			DrawStringToHandle(340, 140, "r de リザルト画面", 0x000000, font.handle_1_32, 0xffffff);
+			//DrawStringToHandle(340, 140, "r de リザルト画面", 0x000000, font.handle_1_32, 0xffffff);
 			
 			// Space でリザルト
 			if (CheckHitKey(KEY_INPUT_R)) {
@@ -176,8 +176,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		}
 
 		// FPSの表示
-		SetFontSize(16);
-		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());
+		/*SetFontSize(16);
+		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());*/
 
 		/*PlayerControll();
 		DrawPlayer();*/

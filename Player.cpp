@@ -96,9 +96,9 @@ void PlayerControll() {
 	}
 
 	
-	DrawFormatString(100, 200, 0xffffff, "%d", player.x);
-	DrawFormatString(390, 30, 0xffffff, "%d", player.x);
-	DrawFormatString(390, 60, 0xffffff, "%f", player.speed);
+	//DrawFormatString(100, 200, 0xffffff, "%d", player.x);
+	//DrawFormatString(390, 30, 0xffffff, "%d", player.x);
+	//DrawFormatString(390, 60, 0xffffff, "%f", player.speed);
 }
 
 int PlayerLimit() {

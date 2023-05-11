@@ -87,7 +87,7 @@ void AppleSpeed(int i);
 *ˆø”	FintŒ^ num
 *–ß‚è’l	F‚È‚µ
 */
-void AppleInit(int num);
+void AppleInit();
 
 /**
 * –k‘º”¹m

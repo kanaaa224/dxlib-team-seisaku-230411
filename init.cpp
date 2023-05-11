@@ -25,7 +25,7 @@ void GameInit() { // 未完成
 
 	SetUI(0, 60);
 	SetPlayerX(600);
-	AppleInit(0);
+	AppleInit();
 
 	// ランキングの実行済みフラグをリセット
 	SetRankingState(0);
