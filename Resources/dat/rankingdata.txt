@@ -1,5 +1,5 @@
  1   moyakino       4400
- 2 AAAAAAAAAA       1000
- 2 abbbccddee       1000
- 4      Enter        600
- 5    AAAAAAA        500
+ 2        ABB       3450
+ 3       AAAA       3400
+ 4 abbbccddee       1000
+ 4 AAAAAAAAAA       1000
