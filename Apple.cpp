@@ -9,19 +9,22 @@
 #include<string>
 
 /************************************************
-*　変数の初期化
+*　変数の宣言（グローバル変数:Apple.cpp内）
 ************************************************/
-extern int gP = 0;			//りんご確率
+//int gAppleImg[20];	//りんごの画像変数
+int gP = 0;				//りんごの確率
 
-extern int gTimeFlg = FALSE;//時間計測用の変数
+int gOldTime;			//前時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
+int gNowTime;			//後時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
+int gTimeFlg = FALSE;	//時間計測用の変数
 
-extern int gFPSCount = 0;	//FPSカウント変数
+int gFPSCount = 0;
 
-extern int gRACount = 0;	//赤りんごの個数
-extern int gBACount = 0;	//青りんごの個数
-extern int gGACount = 0;	//金りんごの個数
-extern int gPACount = 0;	//毒りんごの個数
-extern int gScore = 0;		//スコア
+int gRACount = 0;		//赤りんごの個数
+int gBACount = 0;		//青りんごの個数
+int gGACount = 0;		//金りんごの個数
+int gPACount = 0;		//毒りんごの個数
+int gScore = 0;			//スコア
 
 using std::string;
 using std::to_string;
@@ -29,6 +32,11 @@ using std::to_string;
 extern Image image;			//りんごの画像
 extern Font font;			//フォント
 extern Sound sound;			//サウンド
+
+/************************************************
+*　定数の宣言
+************************************************/
+const int APPLE_MAX = 10;//りんごの最大個数
 
 /************************************************
 *　リンゴ落下処理
