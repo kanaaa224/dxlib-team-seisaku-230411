@@ -15,6 +15,9 @@ extern Font font;
 using std::string;
 using std::to_string;
 
+int gFpsCnt;	//FpsŒv‘ª
+int gTimeLimit;	//§ŒÀŠÔ
+
 void DrawUserInterFace()
 {
 	//UI‚Ì”wŒi

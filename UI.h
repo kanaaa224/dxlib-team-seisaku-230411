@@ -1,7 +1,5 @@
 #pragma once
 
-static int gFpsCnt;		//FpsŒv‘ª
-static int gTimeLimit;	//§ŒÀŠÔ
 /*
 *ŠÖ”–¼FDrawUserInterFace
 *ˆø”‚È‚µ
