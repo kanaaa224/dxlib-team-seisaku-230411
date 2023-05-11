@@ -20,7 +20,7 @@ void DrawEnd() { // 未完成
 		DrawGraph(0, 0, image.title, TRUE);
 
 		//背景BOX
-		DrawBox(165, 145, 1030, 650, 0xeee8aa, TRUE);
+		DrawBox(165, 145, 1030, 680, 0xeee8aa, TRUE);
 
 		// Thank you for playing
 		DrawStringToHandle(10, 10, "Thank you for playing", 0x000000, font.handle_1_128, 0xffffff);
@@ -39,16 +39,17 @@ void DrawEnd() { // 未完成
 		DrawStringToHandle(170, 360, "プレイヤー画像（走る）         pictogramming（北村隼士）https://pictogramming.org/?page_id=2919", 0x000000, font.handle_0_16, 0xffffff);
 		DrawStringToHandle(170, 390, "りんご画像                     illustAC（ゆゆこ）https://www.ac-illust.com/", 0x000000, font.handle_0_16, 0xffffff);
 		DrawStringToHandle(170, 420, "ゲーム背景画像                 いらすとや　https://www.irasutoya.com/", 0x000000, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(170, 450, "ゲームパッド画像               豊元一成", 0x000000, font.handle_0_16, 0xffffff);
 
-		DrawStringToHandle(170, 450, "フォント                       ＢＯＯＴＨ（ぼんのう堂）　https://booth.pm/ja", 0x000000, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(170, 480, "フォント                       ＢＯＯＴＨ（ぼんのう堂）　https://booth.pm/ja", 0x000000, font.handle_0_16, 0xffffff);
 
-		DrawStringToHandle(170, 480, "ゲームメインBGM                ＤＯＶＡーＳＹＮＤＲＯＭＥ　（shimtone） https://dova-s.jp/", 0x000000, font.handle_0_16, 0xffffff);
-		DrawStringToHandle(170, 510, "ゲームメイン外BGM              ＭｕｓＭＵｓ　https://musmus.main.jp/", 0x000000, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(170, 510, "ゲームメインBGM                ＤＯＶＡーＳＹＮＤＲＯＭＥ　（shimtone） https://dova-s.jp/", 0x000000, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(170, 540, "ゲームメイン外BGM              ＭｕｓＭＵｓ　https://musmus.main.jp/", 0x000000, font.handle_0_16, 0xffffff);
 
-		DrawStringToHandle(170, 540, "りんご取得時SE                 効果音ラボ　https://soundeffect-lab.info/", 0x000000, font.handle_0_16, 0xffffff);
-		DrawStringToHandle(170, 570, "毒りんご取得時SE               効果音ラボ　https://soundeffect-lab.info/", 0x000000, font.handle_0_16, 0xffffff);
-		DrawStringToHandle(170, 600, "タイトルでの選択時             効果音ラボ　https://soundeffect-lab.info/", 0x000000, font.handle_0_16, 0xffffff);
-		DrawStringToHandle(170, 630, "タイトルでのカーソル移動時SE   効果音ラボ　https://soundeffect-lab.info/", 0x000000, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(170, 570, "りんご取得時SE                 効果音ラボ　https://soundeffect-lab.info/", 0x000000, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(170, 600, "毒りんご取得時SE               効果音ラボ　https://soundeffect-lab.info/", 0x000000, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(170, 630, "タイトルでの選択時             効果音ラボ　https://soundeffect-lab.info/", 0x000000, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(170, 660, "タイトルでのカーソル移動時SE   効果音ラボ　https://soundeffect-lab.info/", 0x000000, font.handle_0_16, 0xffffff);
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 			game.mode = EXIT;
