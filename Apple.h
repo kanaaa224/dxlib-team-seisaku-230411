@@ -193,4 +193,17 @@ int ReturnAppleFlg(int num);
 */
 void SetAppleCount(int num);
 
+
+
+
+
+
+
+
+
+
+void GetPlayerX(int xPos);
+void GetPlayerY(int yPos);
+int GetBlinkFlg();
+int SetBlinkFlg(int flg);
 #endif

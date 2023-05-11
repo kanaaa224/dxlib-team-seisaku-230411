@@ -23,6 +23,13 @@ extern Image image;			//りんごの画像
 extern Font font;			//フォント
 extern Sound sound;			//サウンド
 
+int px1;
+int py1;
+int px2;
+int py2;
+
+int AppleBlinkFlg;
+
 /************************************************
 *　定数の宣言
 ************************************************/
@@ -158,7 +165,7 @@ int HitBox(void)
 			for (int j = 0; j < 10; j++) {
 				if (gApple[i].img == gApple[j].img) {
 					if (sx1[i] == sx1[j] && sx2[j] == sx2[i] && sy1[i] < sy1[j] && sy1[j] < sy2[i]) {
-						gApple[j].flg = FALSE;	//削除
+						gApple[i].flg = FALSE;	//削除
 					}
 				}
 			}
@@ -178,10 +185,7 @@ int HitBoxPlayer(void) {
 	double sx2[10];
 	double sy2[10];
 
-	double px1;
-	double py1;
-	double px2;
-	double py2;
+	
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんごの当たり判定
@@ -202,17 +206,18 @@ int HitBoxPlayer(void) {
 		}
 	}
 
-	px1 = ReturnPlayerX() - 30;
-	py1 = ReturnPlayerY() - 90;
-	px2 = ReturnPlayerX() + 30;
-	py2 = ReturnPlayerY() + 120;
+	/*px1 = player.ReturnPlayerX() - 30;
+	py1 = player.ReturnPlayerY() - 90;
+	px2 = player.ReturnPlayerX() + 30;
+	py2 = player.ReturnPlayerY() + 120;*/
 
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
 			
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
 				if (gApple[i].img == image.apple[POISONAPPLE]) {
-					SetPlayerBlinkFlg(1);
+					//player.SetPlayerBlinkFlg(1);
+					SetBlinkFlg(1);
 				}
 				gApple[i].flg = FALSE;	//削除
 				ApplePoint(i);//スコア処理
@@ -307,4 +312,28 @@ void SetAppleCount(int num) {
 	apple.gBACount = num;
 	apple.gGACount = num;
 	apple.gPACount = num;
+}
+
+
+void GetPlayerX(int xPos) {
+	px1 = xPos - 30;
+	/*py1 = player.ReturnPlayerY() - 90;*/
+	px2 = xPos + 30;
+	//py2 = player.ReturnPlayerY() + 120;
+}
+
+void GetPlayerY(int yPos) {
+	//px1 = player.ReturnPlayerX() - 30;
+	py1 = yPos - 90;
+	//px2 = player.ReturnPlayerX() + 30;
+	py2 = yPos + 120;
+}
+
+int GetBlinkFlg() {
+	return AppleBlinkFlg;
+}
+
+int SetBlinkFlg(int flg) {
+	AppleBlinkFlg = flg;
+	return AppleBlinkFlg;
 }
