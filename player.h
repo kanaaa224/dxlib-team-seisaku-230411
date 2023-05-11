@@ -9,43 +9,60 @@
 #define MOVE_RIGHT_LIMIT 970	//移動制限
 
 #define WALK_SPEED 1	//歩きのスピード
-#define SPEED_UP 1		//加速度
+#define SPEED_UP 0.2		//加速度
+#define SPEED_UP1 0.2		//加速度
 #define IMAGE_RATE 0.9f	//プレイヤー画像の拡大率
 
-struct PLAYER
+//struct PLAYER
+//{
+//	int flg = TRUE;
+//	int x;
+//	int y = 600;
+//	float speed = 0;
+//};
+
+class PLAYER
 {
-	int flg = TRUE;
+private:
+	int flg;
 	int x;
-	int y = 600;
-	float speed = 0;
+	int y;
+	float speed;
+	int BlinkFlg;
+
+public:
+	
+
+	//プレイヤーの移動制限
+	//プレイヤーが左または右端出会った場合１を返す
+	//移動可能であった場合０を返しplayer.xにplayer.speedを加算する
+	int PlayerLimit();
+
+	//プレイヤーの操作
+	void PlayerControll();
+	//プレイヤーの描画
+	void DrawPlayer();
+	//ポーズ中のプレイヤーの描画
+	void DrawPlayerPause();
+
+
+
+	//プレイヤーのX座標を取得
+	//戻り値でプレイヤーのX座標を返す
+	int ReturnPlayerX();
+
+	//プレイヤーのY座標を取得
+	//戻り値でプレイヤーのY座標を返す
+	int ReturnPlayerY();
+
+	//プレイヤーのX座標を設定
+	//引数で与えられた値をX座標に設定
+	void SetPlayerX(int xPos);
+
+	//毒リンゴ取得時の点滅
+	//引数で与えられた値をBlinkFlgに設定（TRUE or FALSE）
+	void SetPlayerBlinkFlg(int x);
+
+	PLAYER();
 };
 
-//プレイヤーの操作
-void PlayerControll();		
-
-//プレイヤーの移動制限
-//プレイヤーが左または右端出会った場合１を返す
-//移動可能であった場合０を返しplayer.xにplayer.speedを加算する
-int PlayerLimit();
-
-//プレイヤーの描画
-void DrawPlayer();		
-
-//ポーズ中のプレイヤーの描画
-void DrawPlayerPause();	
-
-//プレイヤーのX座標を取得
-//戻り値でプレイヤーのX座標を返す
-int ReturnPlayerX();	
-
-//プレイヤーのY座標を取得
-//戻り値でプレイヤーのY座標を返す
-int ReturnPlayerY();	
-
-//プレイヤーのX座標を設定
-//引数で与えられた値をX座標に設定
-void SetPlayerX(int x);	
-
-//毒リンゴ取得時の点滅
-//引数で与えられた値をBlinkFlgに設定（TRUE or FALSE）
-void SetPlayerBlinkFlg(int x);	
