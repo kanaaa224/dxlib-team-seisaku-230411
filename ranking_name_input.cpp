@@ -191,8 +191,13 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		rni_stickflg = 1;
 	};
 	// スティックが戻ると操作受付
-	if (rni_selectstate = GetStickY() < 1200 && rni_stickflg == 1) {
+	/*if (rni_selectstate = GetStickY() < 1200 && rni_stickflg == 1) {
 		if (rni_selectstate = GetStickY() > -1200) {
+			rni_stickflg = 0;
+		};
+	};*/
+	if (rni_selectstate = GetStickX() < 1200 && rni_stickflg == 1) {
+		if (rni_selectstate = GetStickX() > -1200) {
 			rni_stickflg = 0;
 		};
 	};
