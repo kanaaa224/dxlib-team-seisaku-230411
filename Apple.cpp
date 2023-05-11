@@ -14,17 +14,7 @@
 //int gAppleImg[20];	//りんごの画像変数
 int gP = 0;				//りんごの確率
 
-int gOldTime;			//前時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
-int gNowTime;			//後時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
-int gTimeFlg = FALSE;	//時間計測用の変数
-
 int gFPSCount = 0;
-
-int gRACount = 0;		//赤りんごの個数
-int gBACount = 0;		//青りんごの個数
-int gGACount = 0;		//金りんごの個数
-int gPACount = 0;		//毒りんごの個数
-int gScore = 0;			//スコア
 
 using std::string;
 using std::to_string;
@@ -37,6 +27,8 @@ extern Sound sound;			//サウンド
 *　定数の宣言
 ************************************************/
 const int APPLE_MAX = 10;//りんごの最大個数
+
+Apple apple;
 
 /************************************************
 *　リンゴ落下処理
@@ -135,11 +127,11 @@ void AppleInit()
 	for (int i = 0; i < APPLE_MAX; i++) {
 		gApple[i].flg = FALSE;
 	}
-	gRACount = 0;
-	gBACount = 0;
-	gGACount = 0;
-	gPACount = 0;
-	gScore = 0;
+	apple.gRACount = 0;
+	apple.gBACount = 0;
+	apple.gGACount = 0;
+	apple.gPACount = 0;
+	apple.gScore = 0;
 }
 
 /************************************************
@@ -215,17 +207,6 @@ int HitBoxPlayer(void) {
 	px2 = ReturnPlayerX() + 30;
 	py2 = ReturnPlayerY() + 120;
 
-	//デバッグ用（プレイヤーの当たり判定表示）
-	//DrawBox((int)px1, (int)py1, (int)px2, (int)py2, 0xffffff, FALSE);
-
-
-	//デバッグ用（りんごの当たり判定表示）
-	/*for (int i = 0; i < 10; i++) {
-		if (gApple[i].flg == TRUE) {
-			DrawBox((int)sx1[i], (int)sy1[i], (int)sx2[i], (int)sy2[i], 0xffffff, FALSE);
-		}
-	}*/
-
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
 			
@@ -240,21 +221,13 @@ int HitBoxPlayer(void) {
 		}
 
 	}
-	std::string str1 = std::to_string(gRACount);
-	std::string str2 = std::to_string(gBACount);
-	std::string str3 = std::to_string(gGACount);
+	std::string str1 = std::to_string(apple.gRACount);
+	std::string str2 = std::to_string(apple.gBACount);
+	std::string str3 = std::to_string(apple.gGACount);
 
 	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, font.handle_1_64, 0xffffff);
 	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, font.handle_1_64, 0xffffff);
 	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, font.handle_1_64, 0xffffff);
-
-	//デバッグ用（りんごのスコア＆個数表示）
-	/*SetFontSize(16);
-	DrawFormatString(0, 100, 0xffffff, "Score:%d", gScore);
-	DrawFormatString(0, 120, 0xffffff, "RED:%d", gRACount);
-	DrawFormatString(0, 140, 0xffffff, "BLUE:%d", gBACount);
-	DrawFormatString(0, 160, 0xffffff, "GOLD:%d", gGACount);
-	DrawFormatString(0, 180, 0xffffff, "POISON:%d", gPACount);*/
 
 	return 0;
 }
@@ -265,25 +238,25 @@ int HitBoxPlayer(void) {
 void ApplePoint(int i)
 {
 	if (gApple[i].img == image.apple[REDAPPLE]) {//赤りんご
-		gScore += 100;
-		gRACount += 1;
+		apple.gScore += 100;
+		apple.gRACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[BLUEAPPLE]) {//青りんご
-		gScore += 200;
-		gBACount += 1;
+		apple.gScore += 200;
+		apple.gBACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[GOLDAPPLE]) {//金りんご
-		gScore += 500;
-		gGACount += 1;
+		apple.gScore += 500;
+		apple.gGACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんご
-		gScore -= 750;
-		gPACount += 1;
-		if (gScore < 0) {
-			gScore = 0;
+		apple.gScore -= 750;
+		apple.gPACount += 1;
+		if (apple.gScore < 0) {
+			apple.gScore = 0;
 		}
 		PlaySoundMem(sound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
 	}
@@ -293,23 +266,23 @@ void ApplePoint(int i)
 *　その他関数
 ************************************************/
 int ReturnRA(void) {
-	return gRACount;
+	return apple.gRACount;
 }
 
 int ReturnBL(void) {
-	return gBACount;
+	return apple.gBACount;
 }
 
 int ReturnGL(void) {
-	return gGACount;
+	return apple.gGACount;
 }
 
 int ReturnPO(void) {
-	return gPACount;
+	return apple.gPACount;
 }
 
 int ReturnScore(void) {
-	return (int)gScore;
+	return (int)apple.gScore;
 }
 
 int ReturnAppleX(int num) {
@@ -330,8 +303,8 @@ int ReturnAppleFlg(int num) {
 }
 
 void SetAppleCount(int num) {
-	gRACount = num;
-	gBACount = num;
-	gGACount = num;
-	gPACount = num;
+	apple.gRACount = num;
+	apple.gBACount = num;
+	apple.gGACount = num;
+	apple.gPACount = num;
 }

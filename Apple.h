@@ -10,8 +10,17 @@
 #define GOLDAPPLE 2		//画像の配列番号（金りんご）
 #define POISONAPPLE 3	//画像の配列番号（毒りんご）
 
-
 //型定義
+
+//変数
+class Apple {
+public:
+	int gRACount = 0;		//赤りんごの個数
+	int gBACount = 0;		//青りんごの個数
+	int gGACount = 0;		//金りんごの個数
+	int gPACount = 0;		//毒りんごの個数
+	int gScore = 0;			//スコア
+};
 
 /************************************************
 *　構造体
