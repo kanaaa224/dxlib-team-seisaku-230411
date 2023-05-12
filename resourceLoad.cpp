@@ -10,8 +10,10 @@ Sound sound;
 Font font;
 ChageFont chageFont;
 
-int LoadImages(void)
-{
+/********************************
+* 画像を読み込む
+********************************/
+int LoadImages(void) {
 	if ((image.title = LoadGraph("Resources/Images/title.png")) == -1) return -1;
 	if ((image.controller = LoadGraph("Resources/Images/controller.png")) == -1) return -1;
 	if ((image.controller_s = LoadGraph("Resources/Images/controller_sokumen.png")) == -1) return -1;
@@ -28,10 +30,12 @@ int LoadImages(void)
 	image.Stop[0] = LoadGraph("Resources/Images/Stop.png");
 	image.Stop[1] = LoadGraph("Resources/Images/Stop2.png");
 	return 0;
-}
+};
 
-int LoadSounds(void)
-{
+/********************************
+* サウンドを読み込む
+********************************/
+int LoadSounds(void) {
 	if ((sound.mainbgm = LoadSoundMem("Resources/BGM/Natural_Green.wav")) == -1) return -1;
 	if ((sound.subbgm = LoadSoundMem("Resources/BGM/BGM_Odayaka.wav")) == -1) return -1;
 	if ((sound.se_apple = LoadSoundMem("Resources/SE/Apple.wav")) == -1) return -1;
@@ -46,15 +50,17 @@ int LoadSounds(void)
 	ChangeVolumeSoundMem(170, sound.se_corsor);
 	ChangeVolumeSoundMem(150, sound.se_selct);
 	return 0;
-}
+};
 
-int LoadFonts(void)
-{
+/********************************
+* フォントを読み込む
+********************************/
+int LoadFonts(void) {
 	LPCSTR font_path = "Resources/Fonts/syokakiutage.ttf"; // 読み込むフォントファイルのパス
 	if (AddFontResourceEx(font_path, FR_PRIVATE, NULL) < 0) {
 		// フォント読込エラー処理
 		MessageBox(NULL, "フォント読込失敗", "", MB_OK);
-	}
+	};
 	if (font.state == 0) {
 		font.handle_0_128 = CreateFontToHandle(NULL, 128, -1, DX_FONTTYPE_NORMAL);
 		font.handle_0_64 = CreateFontToHandle(NULL, 64, -1, DX_FONTTYPE_NORMAL);
@@ -66,21 +72,23 @@ int LoadFonts(void)
 		font.handle_1_16 = CreateFontToHandle("しょかきうたげ（無料版）", 16, 9, DX_FONTTYPE_EDGE);
 		//font.handle_3_ // 追加フォントのパスとサイズ
 		font.state = 1;
-	}
+	};
 	//if ((font.s = LoadFont("Resources/Fonts/syokakiutage.ttf")) == -1) return -1;
 	return 0;
-}
+};
 
-int ResourceLoad(void)
-{
+/********************************
+* アセットを読み込む
+********************************/
+int ResourceLoad(void) {
 	if (resourceload_state == 0) {
 		if (LoadImages() == -1) return -1;
 		if (LoadSounds() == -1) return -1;
 		if (LoadFonts() == -1) return -1;
 		resourceload_state = 1;
-	}
+	};
 	return 0;
-}
+};
 
 int ChangeFontSize(int size) {
 	if (chageFont.state != size) {
@@ -90,8 +98,20 @@ int ChangeFontSize(int size) {
 	}
 	else {
 		return 0;
-	}
-}
+	};
+};
+
+/********************************
+* 画像を取得する関数
+********************************/
+int GetImages(int code) {
+	return image.title;
+};
+
+
+
+
+
 
 
 
