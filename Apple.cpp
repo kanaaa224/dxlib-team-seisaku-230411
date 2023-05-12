@@ -196,10 +196,17 @@ int Apple::HitBoxPlayer() {
 		}
 	}
 
-	/*px1 = player.ReturnPlayerX() - 30;
-	py1 = player.ReturnPlayerY() - 90;
-	px2 = player.ReturnPlayerX() + 30;
-	py2 = player.ReturnPlayerY() + 120;*/
+	if (GetBlinkFlg() == 0) {	//点滅中は当たらないように
+		for (int i = 0; i < 10; i++) {
+			if (gApple[i].flg == TRUE) {
+
+				if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
+					if (gApple[i].img == image.apple[POISONAPPLE]) {
+						//player.SetPlayerBlinkFlg(1);
+						SetBlinkFlg(1);
+					}
+					gApple[i].flg = FALSE;	//削除
+					ApplePoint(i);//スコア処理
 
 	//プレイヤーとりんごが接触したらりんごが消える
 	for (int i = 0; i < 10; i++) {
@@ -210,12 +217,8 @@ int Apple::HitBoxPlayer() {
 					//player.SetPlayerBlinkFlg(1);
 					SetBlinkFlg(1);
 				}
-				gApple[i].flg = FALSE;	//削除
-				ApplePoint(i);//スコア処理
-	
 			}
 		}
-
 	}
 	std::string str1 = std::to_string(gRACount);
 	std::string str2 = std::to_string(gBACount);

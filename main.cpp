@@ -15,16 +15,21 @@
 #include "Apple.h"
 #include "Pause.h"
 
-extern Image image;
-extern Font font;
-extern Sound sound;
+Image image;
+Font font;
+Sound sound;
 
 Game game;
 PLAYER player;
+
 Apple apple;
 
 int playerx;
 int playery;
+
+//UI ui;
+Title title;
+
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -60,12 +65,18 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	fps = 0;
 	fpsCounter = 0;
 
-	int nextTime;
+	double nextTime;
 
 	//game.mode = TITLE;
 
 	// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
-	if (ResourceLoad() == -1) return -1;
+	//if (ResourceLoad() == -1) return -1;
+	if (image.LoadImages() == -1)return -1;
+	if (sound.LoadSounds() == -1)return -1;
+	if (font.LoadFonts() == -1)return -1;
+
+	//extrun消し
+	player.GetImagesClass(image);
 
 	// ランキングデータの読込
 	if (ReadRanking() == -1) return -1;
@@ -84,15 +95,18 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		switch (game.mode) {
 		case TITLE:
 			// タイトル
-			DrawTitle();
+			title.DrawTitle();
 			if (CheckSoundMem(sound.subbgm) == 0) {
-				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_BACK, TRUE);
+				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_LOOP, TRUE);
 			}
 			break;
 		case INIT:
 			// ゲーム初期化
 			GameInit();
 			StopSoundMem(sound.subbgm);
+			SetBlinkFlg(0);
+			player.SetPlayerX(600);
+			player.SetPlayerFlg(TRUE);
 			break;
 		case MAIN:
 			// 背景表示
@@ -114,17 +128,18 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (GetPauseFlg() == 0) {
 				if (game.soundflg == 0) {		//最初だけはじめから再生
 					//BGM
-					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, TRUE);
+					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_LOOP, TRUE);
 					game.soundflg = 1;
 				}
 				else {
 					//BGM
-					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, FALSE);
+					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_LOOP, FALSE);
 				}
 
 				player.PlayerControll();
 				player.DrawPlayer();
 				DrawUserInterFace();
+
 				apple.HitBoxPlayer();
 				
 				//リンゴ
@@ -134,6 +149,10 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				apple.GetPlayerX(playerx);
 				playery = player.ReturnPlayerY();
 				apple.GetPlayerY(playery);
+
+				GetPlayerX(player.ReturnPlayerX());
+				GetPlayerY(player.ReturnPlayerY());
+
 			}
 			else {
 				//BGM
@@ -160,7 +179,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			//BGM
 			StopSoundMem(sound.mainbgm);
 			if (CheckSoundMem(sound.subbgm) == 0) {
-				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_BACK, TRUE);
+				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_LOOP, TRUE);
 			}
 			game.soundflg = 0;
 			// リザルト画面
@@ -211,7 +230,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		// FPS60 固定
 		nextTime = GetNowCount();
-		nextTime += 16;
+		nextTime += 16.6666666666667;
 		if (nextTime > GetNowCount()) {
 			WaitTimer(nextTime - GetNowCount());
 		}

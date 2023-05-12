@@ -115,11 +115,11 @@ void DrawHelp() {
 		};
 	};
 	// Aボタンで終了
-	if (JudgeReleaseButton(XINPUT_BUTTON_A) == 1) {
+	if (JudgeButton(XINPUT_BUTTON_A) == 1) {
 		game.mode = TITLE;
 	};
 	// Bボタンでゲーム開始
-	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
+	if (JudgeButton(XINPUT_BUTTON_B) == 1) {
 		game.mode = INIT;
 	};
 

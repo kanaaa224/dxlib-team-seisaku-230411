@@ -6,13 +6,14 @@ class Image {
 public:
 	int title;
 	int apple[20];
-	int player[16];
 	int Walk[3];
 	int Run[8];
 	int Stop[2];
 	int end;
 	int controller;
 	int controller_s;
+public:
+	int LoadImages(void);
 };
 
 class Sound {
@@ -23,6 +24,8 @@ public:
 	int se_poisonapple;
 	int se_corsor;
 	int se_selct;
+public:
+	int LoadSounds(void);
 };
 
 class Font {
@@ -40,6 +43,8 @@ public:
 	//int handle_2_128;
 	//int handle_2_64;
 	//int handle_2_32;
+public:
+	int LoadFonts(void);
 };
 
 class ChageFont {

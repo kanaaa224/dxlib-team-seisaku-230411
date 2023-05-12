@@ -21,8 +21,8 @@ void DrawTest() {
 	DrawStringToHandle(400, 90, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, font.handle_1_64, 0xffffff);
 	DrawStringToHandle(400, 150, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, font.handle_1_128, 0xffffff);
 
-	DrawRotaGraph(100, 150, 0.5f, 0, image.player[0], TRUE);
-	DrawRotaGraph(150, 400, 0.5f, 0, image.apple[0], TRUE);
+	/*DrawRotaGraph(100, 150, 0.5f, 0, image.player[0], TRUE);
+	DrawRotaGraph(150, 400, 0.5f, 0, image.apple[0], TRUE);*/
 
 	// –ß‚é•\Ž¦
 	DrawStringToHandle(530, 670, "Aƒ{ƒ^ƒ“‚Å‚à‚Ç‚é", 0x000000, font.handle_1_32, 0xffffff);
