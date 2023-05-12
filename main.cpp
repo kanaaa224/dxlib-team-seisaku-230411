@@ -87,7 +87,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// タイトル
 			title.DrawTitle();
 			if (CheckSoundMem(sound.subbgm) == 0) {
-				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_BACK, TRUE);
+				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_LOOP, TRUE);
 			}
 			break;
 		case INIT:
@@ -118,12 +118,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (GetPauseFlg() == 0) {
 				if (game.soundflg == 0) {		//最初だけはじめから再生
 					//BGM
-					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, TRUE);
+					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_LOOP, TRUE);
 					game.soundflg = 1;
 				}
 				else {
 					//BGM
-					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, FALSE);
+					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_LOOP, FALSE);
 				}
 
 				player.PlayerControll();
@@ -163,7 +163,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			//BGM
 			StopSoundMem(sound.mainbgm);
 			if (CheckSoundMem(sound.subbgm) == 0) {
-				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_BACK, TRUE);
+				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_LOOP, TRUE);
 			}
 			game.soundflg = 0;
 			// リザルト画面
