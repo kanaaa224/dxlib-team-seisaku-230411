@@ -21,6 +21,7 @@ extern Sound sound;
 
 Game game;
 PLAYER player;
+Apple apple;
 
 int playerx;
 int playery;
@@ -124,23 +125,23 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				player.PlayerControll();
 				player.DrawPlayer();
 				DrawUserInterFace();
-				HitBoxPlayer();
+				apple.HitBoxPlayer();
 				
 				//ƒŠƒ“ƒS
-				FallApple();
+				apple.FallApple();
 				
 				playerx = player.ReturnPlayerX();
-				GetPlayerX(playerx);
+				apple.GetPlayerX(playerx);
 				playery = player.ReturnPlayerY();
-				GetPlayerY(playery);
+				apple.GetPlayerY(playery);
 			}
 			else {
 				//BGM
 				StopSoundMem(sound.mainbgm);
 				for (int i = 0; i < 10; i++) {
-					if (ReturnAppleFlg(i) == TRUE) {
+					if (apple.ReturnAppleFlg(i) == TRUE) {
 						//ƒŠƒ“ƒS‚Ì•\Ž¦
-						DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
+						DrawRotaGraph(apple.ReturnAppleX(i), apple.ReturnAppleY(i), 0.19, 0, apple.ReturnAppleImg(i), TRUE);
 					}
 				}
 				player.DrawPlayerPause();

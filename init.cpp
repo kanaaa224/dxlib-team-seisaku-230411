@@ -13,6 +13,7 @@ extern Font font;
 
 extern Game game;
 
+Apple apple;
 Init ini;
 
 /********************************
@@ -25,7 +26,7 @@ void GameInit() { // 未完成
 
 	SetUI(0, 60);
 	/*SetPlayerX(600);*/
-	AppleInit();
+	apple.AppleInit();
 
 	// ランキングの実行済みフラグをリセット
 	SetRankingState(0);

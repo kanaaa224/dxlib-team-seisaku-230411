@@ -13,6 +13,8 @@ int FPS = 0;
 //PLAYER player;
 int BlinkFPSFlg = 0;
 
+Apple apple;
+
 void PLAYER::PlayerControll() {
 	Stick = GetStickX();	//スティックの状態取得
 
@@ -178,12 +180,12 @@ void PLAYER::DrawPlayer() {
 
 	if (BlinkFlg == 0) {
 		FPS++;
-		HitBoxPlayer();
+		apple.HitBoxPlayer();
 	}
 	
 
 	//毒リンゴ取得時の点滅
-	SetPlayerBlinkFlg(GetBlinkFlg());
+	SetPlayerBlinkFlg(apple.GetBlinkFlg());
 	if (BlinkFlg == 1) {
 		//FPSカウント初期化(一度だけ)
 		if (BlinkFPSFlg == 0) {
@@ -205,7 +207,7 @@ void PLAYER::DrawPlayer() {
 			SetPlayerBlinkFlg(0);
 			BlinkFPSFlg = 0;
 			flg = TRUE;
-			SetBlinkFlg(0);
+			apple.SetBlinkFlg(0);
 		}
 	}
 }
