@@ -1,5 +1,8 @@
 // ìF“‡‘Ü
 
 #pragma once
-
-void DrawTitle();
+class Title
+{
+public:
+	void DrawTitle();
+};
