@@ -20,7 +20,7 @@ void InputController() {
 
 //ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ì”»’è
 int JudgeButton(unsigned char data) {
-	if (KeyFlg.Buttons[data]) {
+	if (/*KeyFlg.Buttons[data]*/OldKey.Buttons[data] == 0 && NowKey.Buttons[data] == 1) {
 		return 1;
 	}
 	else{

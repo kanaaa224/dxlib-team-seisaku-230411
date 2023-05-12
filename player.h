@@ -13,19 +13,12 @@
 #define SPEED_UP1 0.2		//加速度
 #define IMAGE_RATE 0.9f	//プレイヤー画像の拡大率
 
-//struct PLAYER
-//{
-//	int flg = TRUE;
-//	int x;
-//	int y = 600;
-//	float speed = 0;
-//};
 
 class PLAYER
 {
 private:
 	int flg;
-	int x;
+	float x;
 	int y;
 	float speed;
 	int BlinkFlg;
@@ -62,6 +55,9 @@ public:
 	//毒リンゴ取得時の点滅
 	//引数で与えられた値をBlinkFlgに設定（TRUE or FALSE）
 	void SetPlayerBlinkFlg(int x);
+
+	void SetPlayerFlg(int Pflg);
+	int GetPlayerBlinkFlg();
 
 	PLAYER();
 };

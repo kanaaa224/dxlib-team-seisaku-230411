@@ -15,15 +15,12 @@
 #include "Apple.h"
 #include "Pause.h"
 
-extern Image image;
-extern Font font;
-extern Sound sound;
+Image image;
+Font font;
+Sound sound;
 
 Game game;
 PLAYER player;
-
-int playerx;
-int playery;
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -59,12 +56,15 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	fps = 0;
 	fpsCounter = 0;
 
-	int nextTime;
+	double nextTime;
 
 	//game.mode = TITLE;
 
 	// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
-	if (ResourceLoad() == -1) return -1;
+	//if (ResourceLoad() == -1) return -1;
+	if (image.LoadImages() == -1)return -1;
+	if (sound.LoadSounds() == -1)return -1;
+	if (font.LoadFonts() == -1)return -1;
 
 	// ランキングデータの読込
 	if (ReadRanking() == -1) return -1;
@@ -92,6 +92,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// ゲーム初期化
 			GameInit();
 			StopSoundMem(sound.subbgm);
+			SetBlinkFlg(0);
+			player.SetPlayerX(600);
+			player.SetPlayerFlg(TRUE);
 			break;
 		case MAIN:
 			// 背景表示
@@ -124,15 +127,14 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				player.PlayerControll();
 				player.DrawPlayer();
 				DrawUserInterFace();
+
 				HitBoxPlayer();
 				
 				//リンゴ
 				FallApple();
 				
-				playerx = player.ReturnPlayerX();
-				GetPlayerX(playerx);
-				playery = player.ReturnPlayerY();
-				GetPlayerY(playery);
+				GetPlayerX(player.ReturnPlayerX());
+				GetPlayerY(player.ReturnPlayerY());
 			}
 			else {
 				//BGM
@@ -210,7 +212,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		// FPS60 固定
 		nextTime = GetNowCount();
-		nextTime += 16;
+		nextTime += 16.6666666666667;
 		if (nextTime > GetNowCount()) {
 			WaitTimer(nextTime - GetNowCount());
 		}

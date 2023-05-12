@@ -56,7 +56,7 @@ void PLAYER::PlayerControll() {
 				speed += 0.2;
 			}
 			else {
-				if (FPScount < 25 && FPScount % 3 == 0) {
+				if (FPScount < 30 && FPScount % 2 == 0) {
 					speed += SPEED_UP;
 				}
 				FPScount++;
@@ -70,7 +70,7 @@ void PLAYER::PlayerControll() {
 				speed -= 0.2;
 			}
 			else {
-				if (FPScount < 25 && FPScount % 3 == 0) {
+				if (FPScount < 30 && FPScount % 2 == 0) {
 					speed -= SPEED_UP;
 				}
 				FPScount++;
@@ -191,7 +191,7 @@ void PLAYER::DrawPlayer() {
 			BlinkFPSFlg = 1;
 		}
 		//20f‚²‚Æ‚ÉØ‚è‘Ö‚¦
-		if (FPS % 30 == 0) {
+		if (FPS % 21 == 0) {
 			if (flg == TRUE) {
 				flg = FALSE;
 			}
@@ -262,4 +262,12 @@ PLAYER::PLAYER() {
 	y = 600;
 	speed = 0;
 	BlinkFlg = 0;
+}
+
+void PLAYER::SetPlayerFlg(int Pflg) {
+	flg = Pflg;
+}
+
+int PLAYER::GetPlayerBlinkFlg() {
+	return BlinkFlg;
 }

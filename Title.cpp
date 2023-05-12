@@ -85,7 +85,7 @@ void DrawTitle() {
 		};
 	};
 	// Bƒ{ƒ^ƒ“‚Å‘I‘ð
-	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
+	if (JudgeButton(XINPUT_BUTTON_B) == 1) {
 		if (CheckSoundMem(sound.se_selct) == 0) {
 			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
 		}
