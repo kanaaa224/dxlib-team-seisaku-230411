@@ -18,11 +18,10 @@ class PLAYER
 {
 private:
 	int flg;
-	float x;
+	int x;
 	int y;
 	float speed;
 	int BlinkFlg;
-
 public:
 	
 
@@ -58,6 +57,8 @@ public:
 
 	void SetPlayerFlg(int Pflg);
 	int GetPlayerBlinkFlg();
+	
+	void GetImagesClass(Image& player);
 
 	PLAYER();
 };

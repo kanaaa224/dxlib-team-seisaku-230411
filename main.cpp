@@ -21,7 +21,7 @@ Sound sound;
 
 Game game;
 PLAYER player;
-UI ui;
+//UI ui;
 Title title;
 
 // プログラムの開始
@@ -67,6 +67,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	if (image.LoadImages() == -1)return -1;
 	if (sound.LoadSounds() == -1)return -1;
 	if (font.LoadFonts() == -1)return -1;
+
+	//extrun消し
+	player.GetImagesClass(image);
 
 	// ランキングデータの読込
 	if (ReadRanking() == -1) return -1;

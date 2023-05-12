@@ -19,14 +19,14 @@ int Image::LoadImages(void)
 	if ((apple[1] = LoadGraph("Resources/Images/BLUEApple.png")) == -1) return -1;
 	if ((apple[2] = LoadGraph("Resources/Images/GOLDApple.png")) == -1) return -1;
 	if ((apple[3] = LoadGraph("Resources/Images/POISONApple.png")) == -1) return -1;
-	LoadDivGraph("Resources/Images/player.png", 15, 5, 3, 515, 612, player);
-	player[15] = LoadGraph("Resources/Images/human.png");
 	LoadDivGraph("Resources/Images/Run.png", 8, 4, 2, 300, 300, Run);
 	LoadDivGraph("Resources/Images/Walk.png", 3, 3, 1, 300, 300, Walk);
 	Stop[0] = LoadGraph("Resources/Images/Stop.png");
 	Stop[1] = LoadGraph("Resources/Images/Stop2.png");
 	return 0;
 }
+
+
 
 int Sound::LoadSounds(void)
 {
