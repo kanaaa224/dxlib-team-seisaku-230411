@@ -38,7 +38,7 @@ void AppleInit(void) {
 		apple.gApple[i].x = 0;
 		apple.gApple[i].y = 0;
 		apple.gApple[i].w = 0;
-		apple.gApple[i].h  =0;
+		apple.gApple[i].h = 0;
 		apple.gApple[i].speed = 0;
 		apple.gApple[i].point = 0;
 	}
@@ -64,6 +64,7 @@ void FallApple(void)
 				apple.gApple[i].flg = FALSE;
 			}
 		}
+
 	}
 
 	if ((gFPSCount++) % 25 == 0) {//２５フレームごとに生成されるりんごの数をチェック
@@ -130,21 +131,6 @@ void AppleSpeed(int i)
 		apple.gApple[i].speed = 0.5;//毒リンゴ
 	}
 }
-
-/************************************************
-*　各りんごのカウント変数の初期化
-************************************************/
-//void AppleInit(void) 
-//{
-//	for (int i = 0; i < APPLE_MAX; i++) {
-//		apple.flg[9] = FALSE;
-//	}
-//	apple.gRACount = 0;
-//	apple.gBACount = 0;
-//	apple.gGACount = 0;
-//	apple.gPACount = 0;
-//	apple.gScore = 0;
-//}
 
 /************************************************
 *　りんごの当たり判定

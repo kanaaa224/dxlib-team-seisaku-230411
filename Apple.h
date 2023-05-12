@@ -13,7 +13,7 @@
 
 //ƒNƒ‰ƒXéŒ¾
 class Apple {
-public:
+private:
 	int gRACount = 0;				//Ô‚è‚ñ‚²‚ÌŒÂ”
 	int gBACount = 0;				//Â‚è‚ñ‚²‚ÌŒÂ”
 	int gGACount = 0;				//‹à‚è‚ñ‚²‚ÌŒÂ”
