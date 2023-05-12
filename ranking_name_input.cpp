@@ -12,8 +12,10 @@ extern Font font;
 extern Game game;
 
 #include "PadInput.h"
-int rni_selectstate;
-int rni_stickflg = 0;
+int rni_selectstateX;
+int rni_selectstateY;
+int rni_stickflgX = 0;
+int rni_stickflgY = 0;
 
 char rni_alphabet[][26] = {
 	{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' },
@@ -28,9 +30,6 @@ int rni_state = 0;
 
 #include "Apple.h"
 #include "ranking.h"
-
-// 開発
-int mirutame[4];
 
 /********************************
 * ランキング入力処理
@@ -57,7 +56,8 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	//ChangeFontSize(40); // ループ内で一回のみ機能、二回目は激重になる → バグ発生中、機能しません
 
 	// 開発用
-	DrawFormatString(600, 20, 0x000000, "%d - %d / %d - %d / %d - %d / %c / %d", rni_selector[0], rni_selector[1], rni_selector[2], rni_selector[3], rni_selector[4], rni_selector[5], rni_alphabet[rni_selector[4]][rni_selector[5]], strlen(rni_inputName.c_str()));
+	//DrawFormatString(600, 20, 0x000000, "%d - %d / %d - %d / %d - %d / %c / %d", rni_selector[0], rni_selector[1], rni_selector[2], rni_selector[3], rni_selector[4], rni_selector[5], rni_alphabet[rni_selector[4]][rni_selector[5]], strlen(rni_inputName.c_str()));
+	DrawFormatString(600, 20, 0x000000, "%d - %d", GetStickX(), GetStickY());
 
 	/********************************
 	* キーボード描画
@@ -95,13 +95,13 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		DrawFormatString(435 + (i * 42), 540, 0xffffff, "%c", rni_alphabet[2][i]);
 	};
 	// 入力確定ボタン
-	if (GetInputedNameLength() <= 0) {
+	if (rni_inputName.length() > 0) {
+		DrawStringToHandle(597, 595, "入力確定", 0xffffff, font.handle_0_16, 0xffffff);
+	}
+	else {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
 		DrawStringToHandle(597, 595, "入力確定", 0xffffff, font.handle_0_16, 0xffffff);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	}
-	else {
-		DrawStringToHandle(597, 595, "入力確定", 0xffffff, font.handle_0_16, 0xffffff);
 	};
 
 	// セレクター表示
@@ -110,7 +110,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	/********************************
 	* セレクター・入力処理
 	********************************/
-	if (rni_selectstate = GetStickY() > 32000 && rni_stickflg == 0) { // 左スティック上
+	if (rni_selectstateY = GetStickY() > 20000 && rni_stickflgY == 0) { // 左スティック上
 		if (rni_selector[1] != 440) { // 最上段じゃないなら
 			if (rni_selector[1] == 540) { // ３段目から２段目へ
 				rni_selector[5] = (rni_selector[5] + 8); // ３段目から２段目へ移動したら差を足す
@@ -122,9 +122,9 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 			rni_selector[1] -= 50; // 前（上）の段へ
 			rni_selector[4] -= 1; // 文字配列指定用アドレスの更新
 		};
-		rni_stickflg = 1;
+		rni_stickflgY = 1;
 	}
-	else if (rni_selectstate = GetStickY() < -32000 && rni_stickflg == 0) { // 左スティック下
+	else if (rni_selectstateY = GetStickY() < -20000 && rni_stickflgY == 0) { // 左スティック下
 		if (rni_selector[1] != 590) { // 最下段じゃないなら
 			if (rni_selector[1] == 490) { // ２段目から３段目へ
 				rni_selector[5] = (rni_selector[5] - 8); // ２段目から３段目へ移動したら差を引く
@@ -148,10 +148,9 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 			rni_selector[1] += 50; // 次（下）の段へ
 			rni_selector[4] += 1; // 文字配列指定用アドレスの更新
 		};
-		rni_stickflg = 1;
+		rni_stickflgY = 1;
 	}
-	else if (rni_selectstate = GetStickX() > 32000 && rni_stickflg == 0) { // 左スティック左
-		
+	else if (rni_selectstateX = GetStickX() > 20000 && rni_stickflgX == 0) { // 左スティック左
 		if (rni_selector[1] == 440) { // １段目のとき
 			if (rni_selector[0] < 1140) {
 				// 右端なら破棄、それ以外なら移動
@@ -173,10 +172,9 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 				rni_selector[5] += 1;
 			};
 		};
-		rni_stickflg = 1;
+		rni_stickflgX = 1;
 	}
-	else if (rni_selectstate = GetStickX() < -32000 && rni_stickflg == 0) {
-		// 左スティック右
+	else if (rni_selectstateX = GetStickX() < -20000 && rni_stickflgX == 0) { // 左スティック右
 		if (rni_selector[1] == 440) { // １段目のとき
 			if (rni_selector[0] > 90) {
 				// 左端なら破棄、それ以外なら移動
@@ -198,16 +196,18 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 				rni_selector[5] -= 1;
 			};
 		};
-		rni_stickflg = 1;
+		rni_stickflgX = 1;
 	};
+
 	// スティックが戻ると操作受付
-	if (rni_selectstate = GetStickY() < 1200 && rni_stickflg == 1) {
-		if (rni_selectstate = GetStickY() > -1200) {
-			rni_stickflg = 0;
+	if (rni_selectstateY = GetStickY() < 1200 && rni_stickflgY == 1) {
+		if (rni_selectstateY = GetStickY() > -1200) {
+			rni_stickflgY = 0;
 		};
-	} else if (rni_selectstate = GetStickX() < 1200 && rni_stickflg == 1) {
-		if (rni_selectstate = GetStickX() > -1200) {
-			rni_stickflg = 0;
+	};
+	if (rni_selectstateX = GetStickX() < 1200 && rni_stickflgX == 1) {
+		if (rni_selectstateX = GetStickX() > -1200) {
+			rni_stickflgX = 0;
 		};
 	};
 
@@ -224,7 +224,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		}
 		else {
 			// Char１文字を１バイトとして考えて１０バイトまで
-			if (strlen(rni_inputName.c_str()) < 10) {
+			if (GetInputedNameLength() < 10) {
 				rni_inputName += rni_alphabet[rni_selector[4]][rni_selector[5]];
 			}
 			else {
@@ -232,151 +232,136 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 			};
 		};
 	};
+
 	// Bボタンで一文字削除
 	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
 		// １文字削除
 		if (rni_inputName.length() > 0) {
 			rni_inputName.erase(rni_inputName.length() - 1);
-		}
+		};
 	};
 
-
-
-	// キーボード入力
-	if (CheckHitKey(KEY_INPUT_LEFT)) {
-		if (rni_selector[1] == 440) {
-			// １段目のとき
-			if (rni_selector[0] > 90) {
-				// 左端なら破棄、それ以外なら移動
-				rni_selector[0] -= 42;
-				rni_selector[5] -= 1;
+	/********************************
+	* セレクター・入力処理（キーボード）
+	********************************/
+	if (CheckHitKey(KEY_INPUT_UP)) { // 上
+		if (rni_selector[1] != 440) { // 最上段じゃないなら
+			if (rni_selector[1] == 540) { // ３段目から２段目へ
+				rni_selector[5] = (rni_selector[5] + 8); // ３段目から２段目へ移動したら差を足す
 			}
-		}
-		else if (rni_selector[1] == 490) {
-			// ２段目のとき
-			if (rni_selector[0] > 90) {
-				// 左端なら破棄、それ以外なら移動
-				rni_selector[0] -= 42;
-				rni_selector[5] -= 1;
+			else if (rni_selector[1] == 590) { // ４段目から３段目へ
+				rni_selector[2] = 35; // カーソル幅を修正
+				rni_selector[5] = 4;
+			};
+			rni_selector[1] -= 50; // 前（上）の段へ
+			rni_selector[4] -= 1; // 文字配列指定用アドレスの更新
+		};
+	}
+	else if (CheckHitKey(KEY_INPUT_DOWN)) { // 下
+		if (rni_selector[1] != 590) { // 最下段じゃないなら
+			if (rni_selector[1] == 490) { // ２段目から３段目へ
+				rni_selector[5] = (rni_selector[5] - 8); // ２段目から３段目へ移動したら差を引く
+				if (rni_selector[0] >= 846) {
+					// ９より右にカーソルがあったら文字配列指定用アドレスを９に
+					rni_selector[0] = 804;
+					rni_selector[5] = 9;
+				}
+				else if (rni_selector[0] <= 384) {
+					//	０より左にカーソルがあったら文字配列指定用アドレスを０に
+					rni_selector[0] = 426;
+					rni_selector[5] = 0;
+				};
 			}
-		}
-		else if (rni_selector[1] == 540) {
-			// ３段目のとき
-			if (rni_selector[0] > 426) {
-				// 左端なら破棄、それ以外なら移動
-				rni_selector[0] -= 42;
-				rni_selector[5] -= 1;
-			}
-		}
-	} else if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		if (rni_selector[1] == 440) {
-			// １段目のとき
+			else if (rni_selector[1] == 540) { // ３段目から４段目へ
+				rni_selector[2] = 75; // カーソル幅をボタンに合わせて更新
+				// 「入力確定」ボタンに合わせて
+				rni_selector[0] = 594;
+				rni_selector[5] = 0;
+			};
+			rni_selector[1] += 50; // 次（下）の段へ
+			rni_selector[4] += 1; // 文字配列指定用アドレスの更新
+		};
+	}
+	else if (CheckHitKey(KEY_INPUT_RIGHT)) { // 左
+		if (rni_selector[1] == 440) { // １段目のとき
 			if (rni_selector[0] < 1140) {
 				// 右端なら破棄、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
-			}
+			};
 		}
-		else if (rni_selector[1] == 490) {
-			// ２段目のとき
+		else if (rni_selector[1] == 490) { // ２段目のとき
 			if (rni_selector[0] < 1140) {
 				// 右端なら破棄、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
-			}
+			};
 		}
-		else if (rni_selector[1] == 540) {
-			// ３段目のとき
+		else if (rni_selector[1] == 540) { // ３段目のとき
 			if (rni_selector[0] < 804) {
 				// 右端なら破棄、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
-			}
-		}
-	} else if (CheckHitKey(KEY_INPUT_UP)) {
-		if (rni_selector[1] != 440) {
-			// １段目じゃないなら
-			if (rni_selector[1] == 540) {
-				// ３段目から２段目へ移動したら差を足す
-				rni_selector[5] = (rni_selector[5] + 8);
-			}
-			rni_selector[1] -= 50;
-			rni_selector[4] -= 1;
-		}
-	} else if (CheckHitKey(KEY_INPUT_DOWN)) {
-		if (rni_selector[1] != 540) {
-			// ３段目じゃないなら
-			if (rni_selector[1] == 490) {
-				// ２段目から３段目へ移動したら差を引く
-				rni_selector[5] = (rni_selector[5] - 8);
-				if (rni_selector[0] >= 846) {
-					// ９より右にカーソルがあったら９にする
-					rni_selector[0] = 804;
-					rni_selector[5] = 9;
-				} else if(rni_selector[0] <= 384) {
-					//	０より左にカーソルがあったら０にする
-					rni_selector[0] = 426;
-					rni_selector[5] = 0;
-				}
-			}
-			rni_selector[1] += 50;
-			rni_selector[4] += 1;
-		}
+			};
+		};
 	}
+	else if (CheckHitKey(KEY_INPUT_LEFT)) { // 右
+		if (rni_selector[1] == 440) { // １段目のとき
+			if (rni_selector[0] > 90) {
+				// 左端なら破棄、それ以外なら移動
+				rni_selector[0] -= 42;
+				rni_selector[5] -= 1;
+			};
+		}
+		else if (rni_selector[1] == 490) { // ２段目のとき
+			if (rni_selector[0] > 90) {
+				// 左端なら破棄、それ以外なら移動
+				rni_selector[0] -= 42;
+				rni_selector[5] -= 1;
+			};
+		}
+		else if (rni_selector[1] == 540) { // ３段目のとき
+			if (rni_selector[0] > 426) {
+				// 左端なら破棄、それ以外なら移動
+				rni_selector[0] -= 42;
+				rni_selector[5] -= 1;
+			};
+		};
+	};
+
+	// エンターキーでキーボードカーソル位置ボタンの決定
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
-		// Char１文字を１バイトとして考えて１０バイトまで
-		if (strlen(rni_inputName.c_str()) < 10) {
-			rni_inputName += rni_alphabet[rni_selector[4]][rni_selector[5]];
+		// 入力確定が押されたら
+		if (rni_selector[4] == 3) {
+			if (rni_inputName.length() > 0) {
+				game.mode = RANKING;
+			}
+			else {
+				// 何も入力されていないので警告
+			};
 		}
 		else {
-			// １０文字超えてるので警告
-		}
-	}
+			// Char１文字を１バイトとして考えて１０バイトまで
+			if (GetInputedNameLength() < 10) {
+				rni_inputName += rni_alphabet[rni_selector[4]][rni_selector[5]];
+			}
+			else {
+				// 10文字超えてるので警告
+			};
+		};
+	};
+
+	// バックキーで一文字削除
 	if (CheckHitKey(KEY_INPUT_BACK)) {
+		// １文字削除
 		if (rni_inputName.length() > 0) {
 			rni_inputName.erase(rni_inputName.length() - 1);
-		}
-	}
+		};
+	};
 
-	if(CheckHitKey(KEY_INPUT_SPACE)) {
-		if (rni_inputName.length() > 0) {
-			game.mode = RANKING;
-		}
-		else {
-			// 何も入力されていないので警告
-		}
-	}
+	// ESCキーで強制終了
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;
-	};
-
-	// 開発用
-	//DrawCircle(mirutame[0], mirutame[1], mirutame[2], 0xffffff, FALSE);
-	DrawBox(mirutame[0], mirutame[1], mirutame[0] + mirutame[2], mirutame[1] + mirutame[3], 0xffffff, FALSE);
-	DrawFormatString(mirutame[0], mirutame[1], 0xffffff, "%d - %d", mirutame[0], mirutame[1]);
-	if (CheckHitKey(KEY_INPUT_W)) {
-		mirutame[1]--;
-	};
-	if (CheckHitKey(KEY_INPUT_S)) {
-		mirutame[1]++;
-	};
-	if (CheckHitKey(KEY_INPUT_A)) {
-		mirutame[0]--;
-	};
-	if (CheckHitKey(KEY_INPUT_D)) {
-		mirutame[0]++;
-	};
-	if (CheckHitKey(KEY_INPUT_Q)) {
-		mirutame[2]--;
-	};
-	if (CheckHitKey(KEY_INPUT_E)) {
-		mirutame[2]++;
-	};
-	if (CheckHitKey(KEY_INPUT_R)) {
-		mirutame[3]--;
-	};
-	if (CheckHitKey(KEY_INPUT_F)) {
-		mirutame[3]++;
 	};
 };
 
@@ -401,7 +386,7 @@ void ResetRankingNameInput() {
 * 入力された名前の指定した文字を返す
 ********************************/
 char GetInputedName(int i) {
-	if (GetInputedNameLength() <= 0) {
+	if (GetInputedNameLength() > 0) {
 		char name[10];
 		for (int i = 0; i < GetInputedNameLength() - 1; i++) {
 			name[i] = rni_inputName[i];

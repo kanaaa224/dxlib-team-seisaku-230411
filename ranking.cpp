@@ -45,7 +45,7 @@ void DrawRanking() {
 		if (GetRankingFlg() == 1) {
 			// 名前入力されたか
 			if (GetRankingNameInputState() == 1) {
-				if (GetInputedNameLength() <= 1) {
+				if (GetInputedNameLength() > 0) {
 					// スコア書き込み処理
 					for (int i = 0; i < GetInputedNameLength(); i++) {
 						// 一文字ずつ取得
