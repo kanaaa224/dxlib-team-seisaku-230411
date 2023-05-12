@@ -10,31 +10,17 @@
 #define GOLDAPPLE 2		//画像の配列番号（金りんご）
 #define POISONAPPLE 3	//画像の配列番号（毒りんご）
 
-
 //型定義
 
-/************************************************
-*　変数の宣言（グローバル変数:Apple.cpp内）
-************************************************/
-//int gAppleImg[20];	//りんごの画像変数
-extern int gP;			//りんごの確率
-
-extern int gOldTime;	//前時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
-extern int gNowTime;	//後時間（前時間と後時間を比較してりんごが表示されてから何秒たった計測する変数
-extern int gTimeFlg;	//時間計測用の変数
-
-extern int gFPSCount;
-
-extern int gRACount;	//赤りんごの個数
-extern int gBACount;	//青りんごの個数
-extern int gGACount;	//金りんごの個数
-extern int gPACount;	//毒りんごの個数
-extern int gScore;		//スコア
-
-/************************************************
-*　定数の宣言
-************************************************/
-const int APPLE_MAX = 10;//りんごの最大個数
+//変数
+class Apple {
+public:
+	int gRACount = 0;		//赤りんごの個数
+	int gBACount = 0;		//青りんごの個数
+	int gGACount = 0;		//金りんごの個数
+	int gPACount = 0;		//毒りんごの個数
+	int gScore = 0;			//スコア
+};
 
 /************************************************
 *　構造体
@@ -207,4 +193,17 @@ int ReturnAppleFlg(int num);
 */
 void SetAppleCount(int num);
 
+
+
+
+
+
+
+
+
+
+void GetPlayerX(int xPos);
+void GetPlayerY(int yPos);
+int GetBlinkFlg();
+int SetBlinkFlg(int flg);
 #endif

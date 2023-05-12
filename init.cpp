@@ -24,7 +24,7 @@ void GameInit() { // 未完成
 	ini.StartTime = GetNowCount();
 
 	SetUI(0, 60);
-	SetPlayerX(600);
+	/*SetPlayerX(600);*/
 	AppleInit();
 
 	// ランキングの実行済みフラグをリセット

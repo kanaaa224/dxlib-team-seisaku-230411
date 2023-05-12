@@ -36,7 +36,7 @@ void DrawEnd() { // 未完成
 		//SetFontSize(32);
 		DrawStringToHandle(170, 270, "使用した素材", 0x000000, font.handle_0_32, 0xffffff);
 		DrawStringToHandle(170, 330, "プレイヤー画像（歩く）         pictogramming（豊元一成）https://pictogramming.org/?page_id=2919", 0x000000, font.handle_0_16, 0xffffff);
-		DrawStringToHandle(170, 360, "プレイヤー画像（走る）         pictogramming（北村隼士）https://pictogramming.org/?page_id=2919", 0x000000, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(170, 360, "プレイヤー画像（走る)          pictogramming（北村隼士）https://pictogramming.org/?page_id=2919", 0x000000, font.handle_0_16, 0xffffff);
 		DrawStringToHandle(170, 390, "りんご画像                     illustAC（ゆゆこ）https://www.ac-illust.com/", 0x000000, font.handle_0_16, 0xffffff);
 		DrawStringToHandle(170, 420, "ゲーム背景画像                 いらすとや　https://www.irasutoya.com/", 0x000000, font.handle_0_16, 0xffffff);
 

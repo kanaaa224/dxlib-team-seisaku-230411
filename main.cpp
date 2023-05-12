@@ -20,6 +20,10 @@ extern Font font;
 extern Sound sound;
 
 Game game;
+PLAYER player;
+
+int playerx;
+int playery;
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -92,7 +96,6 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		case MAIN:
 			// 背景表示
 			DrawGraph(0, 0, image.title, TRUE);
-			//DrawStringToHandle(340, 140, "r de リザルト画面", 0x000000, font.handle_1_32, 0xffffff);
 			
 			// Space でリザルト
 			if (CheckHitKey(KEY_INPUT_R)) {
@@ -118,13 +121,18 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_BACK, FALSE);
 				}
 
-				PlayerControll();
-				DrawPlayer();
+				player.PlayerControll();
+				player.DrawPlayer();
 				DrawUserInterFace();
 				HitBoxPlayer();
 				
 				//リンゴ
 				FallApple();
+				
+				playerx = player.ReturnPlayerX();
+				GetPlayerX(playerx);
+				playery = player.ReturnPlayerY();
+				GetPlayerY(playery);
 			}
 			else {
 				//BGM
@@ -135,9 +143,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 						DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
 					}
 				}
-				DrawPlayerPause();
+				player.DrawPlayerPause();
 				DrawUserInterFace();
-				HitBoxPlayer();
+				//HitBoxPlayer();
 				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, font.handle_1_128, 0xffffff);
 				//リンゴ
 				//FallApple();
