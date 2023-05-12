@@ -9,31 +9,36 @@
 #define BLUEAPPLE 1		//画像の配列番号（青りんご）
 #define GOLDAPPLE 2		//画像の配列番号（金りんご）
 #define POISONAPPLE 3	//画像の配列番号（毒りんご）
+#define APPLE_MAX 10
 
-//型定義
-
-//変数
+//クラス宣言
 class Apple {
 public:
-	int gRACount = 0;		//赤りんごの個数
-	int gBACount = 0;		//青りんごの個数
-	int gGACount = 0;		//金りんごの個数
-	int gPACount = 0;		//毒りんごの個数
-	int gScore = 0;			//スコア
+	int gRACount = 0;				//赤りんごの個数
+	int gBACount = 0;				//青りんごの個数
+	int gGACount = 0;				//金りんごの個数
+	int gPACount = 0;				//毒りんごの個数
+	int gScore = 0;					//スコア
+	int gP = 0;						//りんごの確率	
+
+	struct APPLE {
+		int flg;			//使用フラグ
+		int img;			//画像
+		double x, y, w, h;	//座標、幅、高さ
+		double speed;		//移動速度
+		int point;			//スコア加算ポイント
+	};
+
+	APPLE gApple[APPLE_MAX];
 };
 
-/************************************************
-*　構造体
-************************************************/
-struct APPLE {
-	int flg;			//使用フラグ
-	int img;			//画像
-	double x, y, w, h;	//座標、幅、高さ
-	double speed;		//移動速度
-	int point;			//スコア加算ポイント
+class PlayerBox {
+public:
+	int px1;
+	int py1;
+	int px2;
+	int py2;
 };
-
-static struct APPLE gApple[10];
 
 //プロトタイプ宣言
 
@@ -73,7 +78,7 @@ void AppleSpeed(int i);
 *引数	：int型 num
 *戻り値	：なし
 */
-void AppleInit();
+void AppleInit(void);
 
 /**
 * 北村隼士
@@ -192,16 +197,6 @@ int ReturnAppleFlg(int num);
 *戻り値	：int型　
 */
 void SetAppleCount(int num);
-
-
-
-
-
-
-
-
-
-
 void GetPlayerX(int xPos);
 void GetPlayerY(int yPos);
 int GetBlinkFlg();
