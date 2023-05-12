@@ -3,7 +3,6 @@
 #define _USE_MATH_DEFINES
 #include <stdio.h>
 #include <math.h>
-
 #include "DxLib.h"
 #include "resourceLoad.h"
 #include "ranking_name_input.h"
@@ -11,7 +10,6 @@
 #include "Apple.h"
 #include <string>
 #include "main.h"
-
 #include "PadInput.h"
 
 extern Image image;
