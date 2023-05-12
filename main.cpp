@@ -21,6 +21,8 @@ Sound sound;
 
 Game game;
 PLAYER player;
+UI ui;
+Title title;
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -83,7 +85,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		switch (game.mode) {
 		case TITLE:
 			// タイトル
-			DrawTitle();
+			title.DrawTitle();
 			if (CheckSoundMem(sound.subbgm) == 0) {
 				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_BACK, TRUE);
 			}
