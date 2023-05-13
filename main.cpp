@@ -104,7 +104,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// ÉQÅ[ÉÄèâä˙âª
 			GameInit();
 			StopSoundMem(sound.subbgm);
-			SetBlinkFlg(0);
+			apple.SetBlinkFlg(0);
 			player.SetPlayerX(600);
 			player.SetPlayerFlg(TRUE);
 			break;
@@ -150,8 +150,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				playery = player.ReturnPlayerY();
 				apple.GetPlayerY(playery);
 
-				GetPlayerX(player.ReturnPlayerX());
-				GetPlayerY(player.ReturnPlayerY());
+				apple.GetPlayerX(player.ReturnPlayerX());
+				apple.GetPlayerY(player.ReturnPlayerY());
 
 			}
 			else {

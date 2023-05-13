@@ -28,7 +28,7 @@ int rni_selecter[] = { 90, 440, 35, 30, 0, 0 };
 //int rni_state = 0;
 
 #include "Apple.h"
-Apple apple;
+extern Apple apple;
 #include "ranking.h"
 
 /********************************

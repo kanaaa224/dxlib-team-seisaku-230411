@@ -12,7 +12,7 @@ int FPS = 0;
 //PLAYER player;
 int BlinkFPSFlg = 0;
 
-Apple apple;
+extern Apple apple;
 
 Image playerimage;
 

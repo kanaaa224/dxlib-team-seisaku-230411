@@ -13,7 +13,7 @@ extern Font font;
 
 extern Game game;
 
-Apple apple;
+extern Apple apple;
 Init ini;
 
 /********************************

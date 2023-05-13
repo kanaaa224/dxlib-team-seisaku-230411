@@ -20,7 +20,7 @@ extern Game game;
 using std::string;
 using std::to_string;
 
-Apple apple;
+extern Apple apple;
 
 int gRankingImg;	//ƒ‰ƒ“ƒLƒ“ƒO‰æ–Ê”wŒi
 

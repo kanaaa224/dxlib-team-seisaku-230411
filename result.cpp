@@ -16,7 +16,7 @@ extern Game game;
 using std::string;
 using std::to_string;
 
-Apple apple;
+extern Apple apple;
 
 /********************************
 * ƒŠƒUƒ‹ƒg‰æ–Ê
