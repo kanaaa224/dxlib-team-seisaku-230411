@@ -23,7 +23,6 @@ void GameInit() { // ñ¢äÆê¨
 
 	ini.StartTime = GetNowCount();
 
-	SetUI(0, 60);
 	/*SetPlayerX(600);*/
 	AppleInit();
 
