@@ -1,9 +1,9 @@
 #include"DxLib.h"
 #include"PadInput.h"
 
-XINPUT_STATE OldKey;
-XINPUT_STATE NowKey;
-XINPUT_STATE KeyFlg;
+static XINPUT_STATE OldKey;
+static XINPUT_STATE NowKey;
+static XINPUT_STATE KeyFlg;
 
 //コントローラー入力を取得
 void InputController() {
@@ -20,7 +20,7 @@ void InputController() {
 
 //ボタンが押されているかの判定
 int JudgeButton(unsigned char data) {
-	if (/*KeyFlg.Buttons[data]*/OldKey.Buttons[data] == 0 && NowKey.Buttons[data] == 1) {
+	if (/*KeyFlg.Buttons[data] & data*/OldKey.Buttons[data] == 0 && NowKey.Buttons[data] == 1) {
 		return 1;
 	}
 	else{
