@@ -171,7 +171,7 @@ int Apple::HitBox()
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
 			for (int j = 0; j < 10; j++) {
-				if (gApple[i].img == gApple[i].img) {
+				if (gApple[i].speed == gApple[i].speed) {
 					if (sx1[i] == sx1[j] && sx2[j] == sx2[i] && sy1[i] < sy1[j] && sy1[j] < sy2[i]) {
 						gApple[i].flg = FALSE;	//íœ
 					}
