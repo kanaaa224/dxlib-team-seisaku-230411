@@ -57,7 +57,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 
 	// 開発用
 	//DrawFormatString(600, 20, 0x000000, "%d - %d / %d - %d / %d - %d / %c / %d", rni_selector[0], rni_selector[1], rni_selector[2], rni_selector[3], rni_selector[4], rni_selector[5], rni_alphabet[rni_selector[4]][rni_selector[5]], strlen(rni_inputName.c_str()));
-	DrawFormatString(600, 20, 0x000000, "%d - %d", GetStickX(), GetStickY());
+	//DrawFormatString(600, 20, 0x000000, "%d - %d", GetStickX(), GetStickY());
 
 	/********************************
 	* キーボード描画
