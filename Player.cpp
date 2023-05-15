@@ -14,7 +14,7 @@ int FPS = 0;
 int BlinkFPSFlg = 0;
 
 void PLAYER::PlayerControll() {
-	Stick = GetStickX();	//スティックの状態取得
+	Stick = PAD_INPUT::GetStickX();	//スティックの状態取得
 
 	PlayerLimit();
 

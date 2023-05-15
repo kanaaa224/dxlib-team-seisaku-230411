@@ -100,26 +100,26 @@ void DrawHelp() {
 	* 説明表示切替
 	********************************/
 	// コントローラー入力
-	if (help_selectstate = GetStickX() > 32000 && help_stickflg == 0) {
+	if (help_selectstate = PAD_INPUT::GetStickX() > 32000 && help_stickflg == 0) {
 		help_state = 1;
 		help_stickflg = 1;
 	}
-	else if (help_selectstate = GetStickX() < -32000 && help_stickflg == 0) {
+	else if (help_selectstate = PAD_INPUT::GetStickX() < -32000 && help_stickflg == 0) {
 		help_state = 0;
 		help_stickflg = 1;
 	};
 	// スティックが戻ると操作受付
-	if (help_selectstate = GetStickX() < 1200 && help_stickflg == 1) {
-		if (help_selectstate = GetStickX() > -1200) {
+	if (help_selectstate = PAD_INPUT::GetStickX() < 1200 && help_stickflg == 1) {
+		if (help_selectstate = PAD_INPUT::GetStickX() > -1200) {
 			help_stickflg = 0;
 		};
 	};
 	// Aボタンで終了
-	if (JudgeButton(XINPUT_BUTTON_A) == 1) {
+	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_A) == 1) {
 		game.mode = TITLE;
 	};
 	// Bボタンでゲーム開始
-	if (JudgeButton(XINPUT_BUTTON_B) == 1) {
+	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_B) == 1) {
 		game.mode = INIT;
 	};
 

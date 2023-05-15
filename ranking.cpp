@@ -75,7 +75,7 @@ void DrawRanking() {
 
 	// 戻る表示
 	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-	if (JudgeButton(XINPUT_BUTTON_A) == 1) {
+	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_A) == 1) {
 		game.mode = TITLE;
 	};
 	// キーボード対応

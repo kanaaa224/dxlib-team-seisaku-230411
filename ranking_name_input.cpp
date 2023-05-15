@@ -98,7 +98,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	* 入力処理
 	********************************/
 	// コントローラー入力
-	if (rni_selectstate = GetStickY() > 32000 && rni_stickflg == 0) {
+	if (rni_selectstate = PAD_INPUT::GetStickY() > 32000 && rni_stickflg == 0) {
 		// 左スティック上
 		if (rni_selecter[1] != 440) {
 			// １段目じゃないなら
@@ -111,7 +111,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		}
 		rni_stickflg = 1;
 	}
-	else if (rni_selectstate = GetStickY() < -32000 && rni_stickflg == 0) {
+	else if (rni_selectstate = PAD_INPUT::GetStickY() < -32000 && rni_stickflg == 0) {
 		// 左スティック下
 		if (rni_selecter[1] != 540) {
 			// ３段目じゃないなら
@@ -134,7 +134,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		}
 		rni_stickflg = 1;
 	}
-	else if (rni_selectstate = GetStickX() > 32000 && rni_stickflg == 0) {
+	else if (rni_selectstate = PAD_INPUT::GetStickX() > 32000 && rni_stickflg == 0) {
 		// 左スティック左
 		if (rni_selecter[1] == 440) {
 			// １段目のとき
@@ -162,7 +162,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		}
 		rni_stickflg = 1;
 	}
-	else if (rni_selectstate = GetStickX() < -32000 && rni_stickflg == 0) {
+	else if (rni_selectstate = PAD_INPUT::GetStickX() < -32000 && rni_stickflg == 0) {
 		// 左スティック右
 		if (rni_selecter[1] == 440) {
 			// １段目のとき
@@ -196,13 +196,13 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 			rni_stickflg = 0;
 		};
 	};*/
-	if (rni_selectstate = GetStickX() < 1200 && rni_stickflg == 1) {
-		if (rni_selectstate = GetStickX() > -1200) {
+	if (rni_selectstate = PAD_INPUT::GetStickX() < 1200 && rni_stickflg == 1) {
+		if (rni_selectstate = PAD_INPUT::GetStickX() > -1200) {
 			rni_stickflg = 0;
 		};
 	};
 	// Bボタンで入力
-	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
+	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
 		// Char１文字を１バイトとして考えて１０バイトまで
 		if (strlen(rni_inputName.c_str()) < 10) {
 			rni_inputName += rni_alphabet[rni_selecter[4]][rni_selecter[5]];
@@ -212,14 +212,14 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		}
 	};
 	// Xボタンで一文字削除
-	if (JudgeReleaseButton(XINPUT_BUTTON_X) == 1) {
+	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_X) == 1) {
 		// １文字削除
 		if (rni_inputName.length() > 0) {
 			rni_inputName.erase(rni_inputName.length() - 1);
 		}
 	};
 	// Yボタンで入力終了
-	if (JudgeReleaseButton(XINPUT_BUTTON_Y) == 1) {
+	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_Y) == 1) {
 		if (rni_inputName.length() > 0) {
 			//nameInput.inputedName = rni_inputName.c_str();
 			game.mode = RANKING;
