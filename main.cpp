@@ -106,7 +106,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// 背景表示
 			DrawGraph(0, 0, image.title, TRUE);
 			
-			// Space でリザルト
+			// デバッグ - Rキーで強制リザルト
 			if (CheckHitKey(KEY_INPUT_R)) {
 				game.mode = RESULT;
 			};
