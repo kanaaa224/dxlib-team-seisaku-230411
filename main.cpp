@@ -92,9 +92,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		case MAIN:
 			// 背景表示
 			DrawGraph(0, 0, image.title, TRUE);
-			DrawStringToHandle(340, 140, "r de リザルト画面", 0x000000, font.handle_1_32, 0xffffff);
 			
-			// Space でリザルト
+			// デバッグ - Rキーで強制リザルト
 			if (CheckHitKey(KEY_INPUT_R)) {
 				game.mode = RESULT;
 			};
