@@ -78,8 +78,8 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 
 	DrawStringToHandle(680, 370, ">", 0xffffff, font.handle_0_16, 0xffffff);
 	DrawStringToHandle(250, 360, "名前を英数字で入力してください", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(250, 380, "左スティックでカーソル移動、Aボタンで入力", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(250, 400, "Bボタンで一字削除", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(250, 380, "十字キー・左スティックでカーソル移動、", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(250, 400, "Aボタンで入力、Bボタンで一字削除", 0xffffff, font.handle_0_16, 0xffffff);
 
 	DrawStringToHandle(700, 370, rni_inputName.c_str(), 0xffffff, font.handle_0_16, 0xffffff);
 
@@ -152,48 +152,66 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	}
 	else if ((JudgeButton(XINPUT_BUTTON_DPAD_RIGHT) == 1) || (rni_selectstateX = GetStickX() > 20000 && rni_stickflgX == 0)) { // 左スティック右
 		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] < 1140) {
-				// 右端なら破棄、それ以外なら移動
+			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
+			}
+			else {
+				rni_selector[0] -= 42 * 25;
+				rni_selector[5] = 0;
 			};
 		}
 		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] < 1140) {
-				// 右端なら破棄、それ以外なら移動
+			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
+			}
+			else {
+				rni_selector[0] -= 42 * 25;
+				rni_selector[5] = 0;
 			};
 		}
 		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] < 804) {
-				// 右端なら破棄、それ以外なら移動
+			if (rni_selector[0] < 804) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
+			}
+			else {
+				rni_selector[0] -= 42 * 9;
+				rni_selector[5] = 0;
 			};
 		};
 		rni_stickflgX = 1;
 	}
 	else if ((JudgeButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (rni_selectstateX = GetStickX() < -20000 && rni_stickflgX == 0)) { // 左スティック左
 		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] > 90) {
-				// 左端なら破棄、それ以外なら移動
+			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
 				rni_selector[5] -= 1;
+			}
+			else {
+				rni_selector[0] += 42 * 25;
+				rni_selector[5] = 25;
 			};
 		}
 		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] > 90) {
-				// 左端なら破棄、それ以外なら移動
+			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
 				rni_selector[5] -= 1;
+			}
+			else {
+				rni_selector[0] += 42 * 25;
+				rni_selector[5] = 25;
 			};
 		}
 		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] > 426) {
-				// 左端なら破棄、それ以外なら移動
+			if (rni_selector[0] > 426) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
 				rni_selector[5] -= 1;
+			}
+			else {
+				rni_selector[0] += 42 * 9;
+				rni_selector[5] = 9;
 			};
 		};
 		rni_stickflgX = 1;
