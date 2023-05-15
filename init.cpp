@@ -19,14 +19,16 @@ Init ini;
 /********************************
 * ゲーム初期化
 ********************************/
-void GameInit() { // 未完成
+void GameInit() { // 未完成gg
 	game.mode = MAIN;
 
 	ini.StartTime = GetNowCount();
 
-	SetUI(0, 60);
+	SetUI(0, 10000);
 	/*SetPlayerX(600);*/
-	apple.AppleInit();
+	/*apple.AppleInit();*/
+	
+	apple.MainAppleInit();
 
 	// ランキングの実行済みフラグをリセット
 	SetRankingState(0);

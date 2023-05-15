@@ -40,6 +40,14 @@ private:
 	/*メンバ関数*/
 
 public:
+	/**
+	*豊元一成
+	*void AppleInit(void)
+	*りんごの初期化
+	*引数	：なし
+	*戻り値	：なし
+	* メンバ変数を初期化
+	*/
 	void AppleInit();
 
 	/**
@@ -184,15 +192,25 @@ public:
 	/**
 	* 北村隼士
 	*void SetAppleCount(int num)
-	*
 	*引数	：なし
 	*戻り値	：int型　
 	*/
 	void SetAppleCount(int num);
+
 	void GetPlayerX(int xPos);
 	void GetPlayerY(int yPos);
 	int GetBlinkFlg();
 	int SetBlinkFlg(int flg);
+
+	/**
+	*豊元一成
+	*void MainAppleInit(void)
+	*りんごの初期化
+	*引数	：なし
+	*戻り値	：なし
+	*りんごのカウント、スコアを初期化
+	*/
+	void MainAppleInit();
 };
 
 #endif

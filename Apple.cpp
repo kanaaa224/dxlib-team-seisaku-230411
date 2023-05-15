@@ -30,9 +30,10 @@ extern Apple apple;
 /************************************************
 *　初期化
 ************************************************/
-void Apple::AppleInit() {
+void Apple::AppleInit() 
+{
 	for (int i = 0; i < APPLE_MAX; i++) {
-		gApple[i].flg = 0;						
+		gApple[i].flg = FALSE;
 		gApple[i].img = 0;
 		gApple[i].x = 0;
 		gApple[i].y = 0;
@@ -40,6 +41,21 @@ void Apple::AppleInit() {
 		gApple[i].h = 0;
 		gApple[i].speed = 0;
 		gApple[i].point = 0;
+	}
+}
+/************************************************
+*　りんごのカウント、スコア初期化
+************************************************/
+void Apple::MainAppleInit() 
+{
+	gRACount = 0;
+	gBACount = 0;
+	gGACount = 0;
+	gPACount = 0;
+	gScore = 0;
+
+	for (int i = 0; i < APPLE_MAX; i++) {
+		gApple[i].flg = FALSE;
 	}
 }
 
@@ -62,14 +78,16 @@ void Apple::FallApple()
 			if (gApple[i].y > 1000 + gApple[i].h) {
 				gApple[i].flg = FALSE;
 			}
-		}
 
+			DrawFormatString(5, 20*i, 0xffffff, "x[%d]=%lf,y[%d]=%lf,flg=%d", i, gApple[i].x, i, gApple[i].y, gApple[i].flg);
+		}
 	}
 
 	if ((gFPSCount++) % 25 == 0) {//２５フレームごとに生成されるりんごの数をチェック
 		CreateApple();
 		HitBox();
 	}
+
 
 }
 
