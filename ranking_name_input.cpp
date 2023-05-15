@@ -73,7 +73,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	if (rni_inputName.length() > 12) {
 		int len = (rni_inputName.length()) - 12;
 		inputName_Box_Width += (9 * len);
-	}
+	};
 	DrawBox(690, 360, inputName_Box_Width, 398, 0xffffff, FALSE);
 
 	DrawStringToHandle(680, 370, ">", 0xffffff, font.handle_0_16, 0xffffff);
@@ -110,7 +110,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	/********************************
 	* セレクター・入力処理
 	********************************/
-	if (rni_selectstateY = GetStickY() > 20000 && rni_stickflgY == 0) { // 左スティック上
+	if ((JudgeButton(XINPUT_BUTTON_DPAD_UP) == 1) || (rni_selectstateY = GetStickY() > 20000 && rni_stickflgY == 0)) { // 左スティック上
 		if (rni_selector[1] != 440) { // 最上段じゃないなら
 			if (rni_selector[1] == 540) { // ３段目から２段目へ
 				rni_selector[5] = (rni_selector[5] + 8); // ３段目から２段目へ移動したら差を足す
@@ -124,7 +124,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		};
 		rni_stickflgY = 1;
 	}
-	else if (rni_selectstateY = GetStickY() < -20000 && rni_stickflgY == 0) { // 左スティック下
+	else if ((JudgeButton(XINPUT_BUTTON_DPAD_DOWN) == 1) || (rni_selectstateY = GetStickY() < -20000 && rni_stickflgY == 0)) { // 左スティック下
 		if (rni_selector[1] != 590) { // 最下段じゃないなら
 			if (rni_selector[1] == 490) { // ２段目から３段目へ
 				rni_selector[5] = (rni_selector[5] - 8); // ２段目から３段目へ移動したら差を引く
@@ -150,7 +150,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		};
 		rni_stickflgY = 1;
 	}
-	else if (rni_selectstateX = GetStickX() > 20000 && rni_stickflgX == 0) { // 左スティック左
+	else if ((JudgeButton(XINPUT_BUTTON_DPAD_RIGHT) == 1) || (rni_selectstateX = GetStickX() > 20000 && rni_stickflgX == 0)) { // 左スティック右
 		if (rni_selector[1] == 440) { // １段目のとき
 			if (rni_selector[0] < 1140) {
 				// 右端なら破棄、それ以外なら移動
@@ -174,7 +174,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		};
 		rni_stickflgX = 1;
 	}
-	else if (rni_selectstateX = GetStickX() < -20000 && rni_stickflgX == 0) { // 左スティック右
+	else if ((JudgeButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (rni_selectstateX = GetStickX() < -20000 && rni_stickflgX == 0)) { // 左スティック左
 		if (rni_selector[1] == 440) { // １段目のとき
 			if (rni_selector[0] > 90) {
 				// 左端なら破棄、それ以外なら移動
@@ -209,6 +209,12 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		if (rni_selectstateX = GetStickX() > -1200) {
 			rni_stickflgX = 0;
 		};
+	};
+
+	// 十字キーが戻ると操作受付
+	if ((JudgeReleaseButton(XINPUT_BUTTON_DPAD_UP) == 1) || (JudgeReleaseButton(XINPUT_BUTTON_DPAD_DOWN) == 1) || (JudgeReleaseButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (JudgeReleaseButton(XINPUT_BUTTON_DPAD_RIGHT) == 1)) {
+		rni_stickflgY = 0;
+		rni_stickflgX = 0;
 	};
 
 	// Aボタンでキーボードカーソル位置ボタンの決定
@@ -282,7 +288,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 			rni_selector[4] += 1; // 文字配列指定用アドレスの更新
 		};
 	}
-	else if (CheckHitKey(KEY_INPUT_RIGHT)) { // 左
+	else if (CheckHitKey(KEY_INPUT_RIGHT)) { // 右
 		if (rni_selector[1] == 440) { // １段目のとき
 			if (rni_selector[0] < 1140) {
 				// 右端なら破棄、それ以外なら移動
@@ -305,7 +311,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 			};
 		};
 	}
-	else if (CheckHitKey(KEY_INPUT_LEFT)) { // 右
+	else if (CheckHitKey(KEY_INPUT_LEFT)) { // 左
 		if (rni_selector[1] == 440) { // １段目のとき
 			if (rni_selector[0] > 90) {
 				// 左端なら破棄、それ以外なら移動
