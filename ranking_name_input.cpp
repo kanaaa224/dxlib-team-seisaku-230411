@@ -42,11 +42,11 @@ void DrawRankingNameInput() {
     DrawGraph(0, 0, image.title, TRUE);
 
 	// タイトル
-	DrawStringToHandle(250, 50, "ランキングに登録", 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(270, 50, "ランキングに登録", 0x000000, font.handle_1_64, 0xffffff);
 
 	// 本文
 	std::string str = "スコア：" + std::to_string(ReturnScore());
-	DrawStringToHandle(750, 70, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(770, 70, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
 
 	DrawStringToHandle(140, 150, "あなたのスコアが上位５位内に入りました！おめでとうございます。", 0x000000, font.handle_1_32, 0xffffff);
 
@@ -69,19 +69,19 @@ void DrawRankingNameInput() {
 
 	// キーボードの要素を表示
 	// テキストボックスの幅を入力文字数に追従
-	int inputName_Box_Width = 820;
+	int inputName_Box_Width = 900;
 	if (rni_inputName.length() > 12) {
 		int len = (rni_inputName.length()) - 12;
 		inputName_Box_Width += (9 * len);
 	};
-	DrawBox(690, 360, inputName_Box_Width, 398, 0xffffff, FALSE);
+	DrawBox(770, 360, inputName_Box_Width, 398, 0xffffff, FALSE);
 
-	DrawStringToHandle(680, 370, ">", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(250, 360, "名前を英数字で入力してください", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(250, 380, "十字キー・左スティックでカーソル移動、", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(250, 400, "Aボタンで入力、Bボタンで一字削除", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(760, 370, ">", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(350, 360, "名前を英数字で入力してください", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(350, 380, "十字キー・左スティックでカーソル移動、", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(350, 400, "Aボタンで入力、Bボタンで一字削除", 0xffffff, font.handle_0_16, 0xffffff);
 
-	DrawStringToHandle(700, 370, rni_inputName.c_str(), 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(780, 370, rni_inputName.c_str(), 0xffffff, font.handle_0_16, 0xffffff);
 
 	SetFontSize(32);
 	// アルファベット大文字・小文字の表示
