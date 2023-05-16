@@ -40,19 +40,29 @@ int ranking_state;
 * ランキング
 ********************************/
 void DrawRanking() {
-
 	if (ranking_state == 0) {
 		// プレイスコアがランキングの最下位スコアを超えていたら書き込み
 		if (GetRankingFlg() == 1) {
-			// スコア書き込み処理
-			for (int i = 0; i < GetInputedNameLength(); i++) {
-				// 一文字ずつ取得
-				gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i);
+			// 名前入力されたか
+			if (GetRankingNameInputState() == 1) {
+				if (GetInputedNameLength() > 0) {
+					// スコア書き込み処理
+					for (int i = 0; i < GetInputedNameLength(); i++) {
+						// 一文字ずつ取得
+						gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i);
+					};
+					gRanking[RANKING_DATA - 1].name[GetInputedNameLength()] = '\0'; // Null文字付与
+					gRanking[RANKING_DATA - 1].score = ReturnScore(); // ランキングデータの最下位にスコアを登録
+					SortRanking(); // ランキング並べ替え
+					SaveRanking(); // ランキングデータの保存
+				};
 			};
+
 			gRanking[RANKING_DATA - 1].name[GetInputedNameLength()] = '\0'; // Null文字付与
 			gRanking[RANKING_DATA - 1].score = apple.ReturnScore(); // ランキングデータの最下位にスコアを登録
 			SortRanking(); // ランキング並べ替え
 			SaveRanking(); // ランキングデータの保存
+
 		};
 		ranking_state = 1; // また実行しないように
 	};
@@ -75,7 +85,7 @@ void DrawRanking() {
 
 	// 戻る表示
 	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
-	if (JudgeButton(XINPUT_BUTTON_A) == 1) {
+	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_A) == 1) {
 		game.mode = TITLE;
 	};
 	// キーボード対応
@@ -133,7 +143,7 @@ int SaveRanking(void) {
 
 	//ランキングデータ分配列データを書き込む
 	for (int i = 0; i < RANKING_DATA; i++) {
-		fprintf(fp, "%2d %10s %10d\n", gRanking[i].number, gRanking[i].name, gRanking[i].score);
+		fprintf(fp, "%2d %10s %d\n", gRanking[i].number, gRanking[i].name, gRanking[i].score);
 	};
 
 	//ファイルクローズ
@@ -157,7 +167,7 @@ int ReadRanking(void) {
 
 	//ランキングデータ配分列データを読み込む
 	for (int i = 0; i < RANKING_DATA; i++) {
-		int dammy = fscanf(fp, "%2d %10s %d10", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
+		int dammy = fscanf(fp, "%2d %10s %d", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
 	};
 
 	//ファイルクローズ
@@ -171,7 +181,8 @@ int ReadRanking(void) {
 ********************************/
 int GetRankingFlg() {
 	// 最下位と現在のスコアを比較
-	if (gRanking[RANKING_DATA - 1].score < apple.ReturnScore()) {
+
+	if (gRanking[RANKING_DATA - 1].score <= ReturnScore()) {
 		return 1;
 	}
 	else {

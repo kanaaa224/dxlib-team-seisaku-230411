@@ -28,7 +28,7 @@ void DrawTest() {
 	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
 
 	// Aボタンで終了
-	if (JudgeReleaseButton(XINPUT_BUTTON_A) == 1) {
+	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_A) == 1) {
 		game.mode = TITLE;
 	};
 

@@ -53,7 +53,7 @@ void Title::DrawTitle() {
 	* ゲームモードセレクト処理
 	********************************/
 	// コントローラー入力
-	if (title_selectstate = GetStickY() > 32000 && title_stickflg == 0) {
+	if (title_selectstate = PAD_INPUT::GetStickY() > 32000 && title_stickflg == 0) {
 		PlaySoundMem(sound.se_corsor, DX_PLAYTYPE_BACK, TRUE);
 		if (title_state <= 0) {
 			title_state = 3;
@@ -63,7 +63,7 @@ void Title::DrawTitle() {
 		};
 		title_stickflg = 1;
 	}
-	else if (title_selectstate = GetStickY() < -32000 && title_stickflg == 0) {
+	else if (title_selectstate = PAD_INPUT::GetStickY() < -32000 && title_stickflg == 0) {
 		PlaySoundMem(sound.se_corsor, DX_PLAYTYPE_BACK, TRUE);
 		if (title_state >= 3) {
 			title_state = 0;
@@ -74,16 +74,16 @@ void Title::DrawTitle() {
 		title_stickflg = 1;
 	};
 	// スティックが戻ると操作受付
-	if (title_selectstate = GetStickY() < 1200 && title_stickflg == 1) {
-		if (title_selectstate = GetStickY() > -1200) {
+	if (title_selectstate = PAD_INPUT::GetStickY() < 32000 && title_stickflg == 1) {
+		if (title_selectstate = PAD_INPUT::GetStickY() > -32000) {
 			title_stickflg = 0;
 		};
 	};
 	// Bボタンで選択
-	if (JudgeButton(XINPUT_BUTTON_B) == 1) {
+	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_B) == 1) {
 		if (CheckSoundMem(sound.se_selct) == 0) {
 			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
-		}
+		};
 		if (title_state == 0) {
 			// スタート選択
 			game.mode = INIT;
@@ -113,6 +113,9 @@ void Title::DrawTitle() {
 		title_state = 3;
 	};
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		if (CheckSoundMem(sound.se_selct) == 0) {
+			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		};
 		if (title_state == 0) {
 			// スタート選択
 			game.mode = INIT;
@@ -131,6 +134,9 @@ void Title::DrawTitle() {
 		};
 	};
 	if (CheckHitKey(KEY_INPUT_T)) {
+		if (CheckSoundMem(sound.se_selct) == 0) {
+			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		};
 		game.mode = TEST;
 	};
 };
