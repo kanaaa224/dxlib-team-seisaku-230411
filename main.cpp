@@ -75,14 +75,14 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	if (ReadRanking() == -1) return -1;
 
 	// ゲームループ
-	while (ProcessMessage() == 0 && game.mode != 99&& !(JudgeButton(XINPUT_BUTTON_BACK)))
+	while (ProcessMessage() == 0 && game.mode != 99&& !(PAD_INPUT::JudgeButton(XINPUT_BUTTON_BACK)))
 	{
 		// 画面の初期化
 		ClearDrawScreen();
 
 		//コントローラーの入力を取得
 		//コントローラーのMODEを押すと左スティックと十字ボタンの入力が逆になる
-		InputController();
+		PAD_INPUT::InputController();
 
 		//ゲームモードと画面遷移
 		switch (game.mode) {
@@ -110,7 +110,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (CheckHitKey(KEY_INPUT_R)) {
 				game.mode = RESULT;
 			};
-			if (JudgeButton(XINPUT_BUTTON_START) == 1) { //ポーズ
+			if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_START) == 1) { //ポーズ
 				if (GetPauseFlg() == 0) {
 					SetPauseFlg(1);
 				}

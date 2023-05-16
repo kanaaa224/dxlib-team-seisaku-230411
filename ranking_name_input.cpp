@@ -34,7 +34,7 @@ int rni_state = 0;
 /********************************
 * ランキング入力処理
 ********************************/
-void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFontSize使用によるFPS低下問題以外完成
+void DrawRankingNameInput() {
 	// 開始フラグ設定
 	rni_state = 1;
 
@@ -56,8 +56,8 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	//ChangeFontSize(40); // ループ内で一回のみ機能、二回目は激重になる → バグ発生中、機能しません
 
 	// 開発用
-	DrawFormatString(50, 10, 0x000000, "%d - %d / %d - %d / %d - %d / %c / %d", rni_selector[0], rni_selector[1], rni_selector[2], rni_selector[3], rni_selector[4], rni_selector[5], rni_alphabet[rni_selector[4]][rni_selector[5]], strlen(rni_inputName.c_str()));
-	DrawFormatString(50, 30, 0x000000, "%d - %d", GetStickX(), GetStickY());
+	//DrawFormatString(50, 10, 0x000000, "%d - %d / %d - %d / %d - %d / %c / %d", rni_selector[0], rni_selector[1], rni_selector[2], rni_selector[3], rni_selector[4], rni_selector[5], rni_alphabet[rni_selector[4]][rni_selector[5]], strlen(rni_inputName.c_str()));
+	//DrawFormatString(50, 30, 0x000000, "%d - %d", PAD_INPUT::GetStickX(), PAD_INPUT::GetStickY());
 
 	/********************************
 	* キーボード描画
@@ -110,7 +110,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	/********************************
 	* セレクター・入力処理
 	********************************/
-	if ((JudgeButton(XINPUT_BUTTON_DPAD_UP) == 1) || (rni_selectstateY = GetStickY() > 20000 && rni_stickflgY == 0)) { // 左スティック上
+	if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_UP) == 1) || (rni_selectstateY = PAD_INPUT::GetStickY() > 20000 && rni_stickflgY == 0)) { // 左スティック上
 		if (rni_selector[1] != 440) { // 最上段じゃないなら
 			if (rni_selector[1] == 540) { // ３段目から２段目へ
 				rni_selector[5] = (rni_selector[5] + 8); // ３段目から２段目へ移動したら差を足す
@@ -124,7 +124,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		};
 		rni_stickflgY = 1;
 	}
-	else if ((JudgeButton(XINPUT_BUTTON_DPAD_DOWN) == 1) || (rni_selectstateY = GetStickY() < -20000 && rni_stickflgY == 0)) { // 左スティック下
+	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_DOWN) == 1) || (rni_selectstateY = PAD_INPUT::GetStickY() < -20000 && rni_stickflgY == 0)) { // 左スティック下
 		if (rni_selector[1] != 590) { // 最下段じゃないなら
 			if (rni_selector[1] == 490) { // ２段目から３段目へ
 				rni_selector[5] = (rni_selector[5] - 8); // ２段目から３段目へ移動したら差を引く
@@ -150,7 +150,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		};
 		rni_stickflgY = 1;
 	}
-	else if ((JudgeButton(XINPUT_BUTTON_DPAD_RIGHT) == 1) || (rni_selectstateX = GetStickX() > 20000 && rni_stickflgX == 0)) { // 左スティック右
+	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_RIGHT) == 1) || (rni_selectstateX = PAD_INPUT::GetStickX() > 20000 && rni_stickflgX == 0)) { // 左スティック右
 		if (rni_selector[1] == 440) { // １段目のとき
 			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
@@ -183,7 +183,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 		};
 		rni_stickflgX = 1;
 	}
-	else if ((JudgeButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (rni_selectstateX = GetStickX() < -20000 && rni_stickflgX == 0)) { // 左スティック左
+	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (rni_selectstateX = PAD_INPUT::GetStickX() < -20000 && rni_stickflgX == 0)) { // 左スティック左
 		if (rni_selector[1] == 440) { // １段目のとき
 			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
@@ -218,25 +218,25 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	};
 
 	// スティックが戻ると操作受付
-	if (rni_selectstateY = GetStickY() < 1200 && rni_stickflgY == 1) {
-		if (rni_selectstateY = GetStickY() > -1200) {
+	if (rni_selectstateY = PAD_INPUT::GetStickY() < 1200 && rni_stickflgY == 1) {
+		if (rni_selectstateY = PAD_INPUT::GetStickY() > -1200) {
 			rni_stickflgY = 0;
 		};
 	};
-	if (rni_selectstateX = GetStickX() < 1200 && rni_stickflgX == 1) {
-		if (rni_selectstateX = GetStickX() > -1200) {
+	if (rni_selectstateX = PAD_INPUT::GetStickX() < 1200 && rni_stickflgX == 1) {
+		if (rni_selectstateX = PAD_INPUT::GetStickX() > -1200) {
 			rni_stickflgX = 0;
 		};
 	};
 
 	// 十字キーが戻ると操作受付
-	if ((JudgeReleaseButton(XINPUT_BUTTON_DPAD_UP) == 1) || (JudgeReleaseButton(XINPUT_BUTTON_DPAD_DOWN) == 1) || (JudgeReleaseButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (JudgeReleaseButton(XINPUT_BUTTON_DPAD_RIGHT) == 1)) {
+	if ((PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_DPAD_UP) == 1) || (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_DPAD_DOWN) == 1) || (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_DPAD_RIGHT) == 1)) {
 		rni_stickflgY = 0;
 		rni_stickflgX = 0;
 	};
 
 	// Aボタンでキーボードカーソル位置ボタンの決定
-	if (JudgeReleaseButton(XINPUT_BUTTON_A) == 1) {
+	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_A) == 1) {
 		// 入力確定が押されたら
 		if (rni_selector[4] == 3) {
 			if (rni_inputName.length() > 0) {
@@ -258,7 +258,7 @@ void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFo
 	};
 
 	// Bボタンで一文字削除
-	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
+	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
 		// １文字削除
 		if (rni_inputName.length() > 0) {
 			rni_inputName.erase(rni_inputName.length() - 1);

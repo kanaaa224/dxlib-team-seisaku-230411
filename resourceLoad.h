@@ -46,12 +46,3 @@ public:
 public:
 	int LoadFonts(void);
 };
-
-class ChageFont {
-public:
-	int state;
-};
-
-int ResourceLoad(void);
-
-int ChangeFontSize(int size);

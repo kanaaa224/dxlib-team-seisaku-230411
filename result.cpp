@@ -49,7 +49,7 @@ void DrawResult() { // 未完成
 	// 次へ
 	DrawStringToHandle(530, 670, "Bボタンですすむ", 0x000000, font.handle_1_32, 0xffffff);
 	// 仮、ボタンで分岐させる処理
-	if (JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
+	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
 		if (GetRankingFlg() == 1) {
 			game.mode = INPUTNAME;
 		}
