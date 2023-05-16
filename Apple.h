@@ -197,9 +197,44 @@ public:
 	*/
 	void SetAppleCount(int num);
 
+    /**
+    *
+    *void GetPlayerX(int xPos)
+    *引数    ：
+    *戻り値  ：なし
+    * 
+    * 
+    * 
+    */
 	void GetPlayerX(int xPos);
+
+    /**
+    *
+    *void GetPlayerX(int xPos)
+    *引数    ：
+    *戻り値  ：なし
+    *
+    *
+    *
+    */
 	void GetPlayerY(int yPos);
+
+    /**
+    *
+    *int GetBlinkFlg(void)
+    *引数    ：
+    *戻り値  ：
+    * 
+    */
 	int GetBlinkFlg();
+
+    /**
+    *
+    *int GetBlinkFlg(void)
+    *引数    ：
+    *戻り値  ：
+    *
+    */
 	int SetBlinkFlg(int flg);
 
 	/**
@@ -208,7 +243,7 @@ public:
 	*りんごの初期化
 	*引数	：なし
 	*戻り値	：なし
-	*りんごのカウント、スコアを初期化
+	*りんごのカウント、スコア、フラグを初期化
 	*/
 	void MainAppleInit();
 };
