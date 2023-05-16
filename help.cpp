@@ -13,9 +13,6 @@ extern Game game;
 
 int help_state = 0;
 
-int help_selectstate;
-int help_stickflg = 0;
-
 /********************************
 * ヘルプ画面描画
 ********************************/
@@ -100,19 +97,11 @@ void DrawHelp() {
 	* 説明表示切替
 	********************************/
 	// コントローラー入力
-	if (help_selectstate = PAD_INPUT::GetStickX() > 32000 && help_stickflg == 0) {
+	if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_RIGHT) == 1) || (PAD_INPUT::GetStickX() > 3200)) {
 		help_state = 1;
-		help_stickflg = 1;
 	}
-	else if (help_selectstate = PAD_INPUT::GetStickX() < -32000 && help_stickflg == 0) {
+	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (PAD_INPUT::GetStickX() < -32000)) {
 		help_state = 0;
-		help_stickflg = 1;
-	};
-	// スティックが戻ると操作受付
-	if (help_selectstate = PAD_INPUT::GetStickX() < 1200 && help_stickflg == 1) {
-		if (help_selectstate = PAD_INPUT::GetStickX() > -1200) {
-			help_stickflg = 0;
-		};
 	};
 	// Aボタンで終了
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_A) == 1) {
