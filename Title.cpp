@@ -83,7 +83,7 @@ void Title::DrawTitle() {
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_B) == 1) {
 		if (CheckSoundMem(sound.se_selct) == 0) {
 			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
-		}
+		};
 		if (title_state == 0) {
 			// スタート選択
 			game.mode = INIT;
@@ -113,6 +113,9 @@ void Title::DrawTitle() {
 		title_state = 3;
 	};
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		if (CheckSoundMem(sound.se_selct) == 0) {
+			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		};
 		if (title_state == 0) {
 			// スタート選択
 			game.mode = INIT;
@@ -131,6 +134,9 @@ void Title::DrawTitle() {
 		};
 	};
 	if (CheckHitKey(KEY_INPUT_T)) {
+		if (CheckSoundMem(sound.se_selct) == 0) {
+			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		};
 		game.mode = TEST;
 	};
 };
