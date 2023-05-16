@@ -308,47 +308,65 @@ void DrawRankingNameInput() {
 	}
 	else if (CheckHitKey(KEY_INPUT_RIGHT)) { // 右
 		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] < 1140) {
-				// 右端なら破棄、それ以外なら移動
+			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
+			}
+			else {
+				rni_selector[0] -= 42 * 25;
+				rni_selector[5] = 0;
 			};
 		}
 		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] < 1140) {
-				// 右端なら破棄、それ以外なら移動
+			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
+			}
+			else {
+				rni_selector[0] -= 42 * 25;
+				rni_selector[5] = 0;
 			};
 		}
 		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] < 804) {
-				// 右端なら破棄、それ以外なら移動
+			if (rni_selector[0] < 804) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
+			}
+			else {
+				rni_selector[0] -= 42 * 9;
+				rni_selector[5] = 0;
 			};
 		};
 	}
 	else if (CheckHitKey(KEY_INPUT_LEFT)) { // 左
 		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] > 90) {
-				// 左端なら破棄、それ以外なら移動
+			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
 				rni_selector[5] -= 1;
+			}
+			else {
+				rni_selector[0] += 42 * 25;
+				rni_selector[5] = 25;
 			};
 		}
 		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] > 90) {
-				// 左端なら破棄、それ以外なら移動
+			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
 				rni_selector[5] -= 1;
+			}
+			else {
+				rni_selector[0] += 42 * 25;
+				rni_selector[5] = 25;
 			};
 		}
 		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] > 426) {
-				// 左端なら破棄、それ以外なら移動
+			if (rni_selector[0] > 426) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
 				rni_selector[5] -= 1;
+			}
+			else {
+				rni_selector[0] += 42 * 9;
+				rni_selector[5] = 9;
 			};
 		};
 	};
