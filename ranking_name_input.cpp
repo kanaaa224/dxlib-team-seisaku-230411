@@ -34,7 +34,7 @@ int rni_state = 0;
 /********************************
 * ランキング入力処理
 ********************************/
-void DrawRankingNameInput() { // 島袋が担当中、入力された名前を返す関数と、SetFontSize使用によるFPS低下問題以外完成
+void DrawRankingNameInput() {
 	// 開始フラグ設定
 	rni_state = 1;
 
