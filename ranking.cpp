@@ -52,7 +52,7 @@ void DrawRanking() {
 						gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i);
 					};
 					gRanking[RANKING_DATA - 1].name[GetInputedNameLength()] = '\0'; // Null文字付与
-					gRanking[RANKING_DATA - 1].score = ReturnScore(); // ランキングデータの最下位にスコアを登録
+					gRanking[RANKING_DATA - 1].score = apple.ReturnScore(); // ランキングデータの最下位にスコアを登録
 					SortRanking(); // ランキング並べ替え
 					SaveRanking(); // ランキングデータの保存
 				};
@@ -182,7 +182,7 @@ int ReadRanking(void) {
 int GetRankingFlg() {
 	// 最下位と現在のスコアを比較
 
-	if (gRanking[RANKING_DATA - 1].score <= ReturnScore()) {
+	if (gRanking[RANKING_DATA - 1].score <= apple.ReturnScore()) {
 		return 1;
 	}
 	else {

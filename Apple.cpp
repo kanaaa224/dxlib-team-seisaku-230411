@@ -16,7 +16,7 @@ int gFPSCount = 0;
 using std::string;
 using std::to_string;
 
-Image Appleimage;			    //りんごの画像
+Image Appleimage;			  //りんごの画像
 extern Font font;			//フォント
 extern Sound sound;			//サウンド
 
