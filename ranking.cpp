@@ -80,7 +80,7 @@ void DrawRanking() {
 		DrawStringToHandle(200, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
 		DrawStringToHandle(380, 150 + i * 100, gRanking[i].name, 0x000000, font.handle_1_64, 0xffffff);
 		str = std::to_string(gRanking[i].score);
-		DrawStringToHandle(1000, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+		DrawStringToHandle(900, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
 	};
 
 	// –ß‚é•\Ž¦

@@ -43,7 +43,7 @@ void DrawRankingNameInput() {
     DrawGraph(0, 0, image.title, TRUE);
 
 	// タイトル
-	DrawStringToHandle(250, 50, "ランキングに登録", 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(270, 50, "ランキングに登録", 0x000000, font.handle_1_64, 0xffffff);
 
 	// 本文
 	std::string str = "スコア：" + std::to_string(apple.ReturnScore());
@@ -70,19 +70,19 @@ void DrawRankingNameInput() {
 
 	// キーボードの要素を表示
 	// テキストボックスの幅を入力文字数に追従
-	int inputName_Box_Width = 820;
+	int inputName_Box_Width = 900;
 	if (rni_inputName.length() > 12) {
 		int len = (rni_inputName.length()) - 12;
 		inputName_Box_Width += (9 * len);
 	};
-	DrawBox(690, 360, inputName_Box_Width, 398, 0xffffff, FALSE);
+	DrawBox(770, 360, inputName_Box_Width, 398, 0xffffff, FALSE);
 
-	DrawStringToHandle(680, 370, ">", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(250, 360, "名前を英数字で入力してください", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(250, 380, "十字キー・左スティックでカーソル移動、", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(250, 400, "Aボタンで入力、Bボタンで一字削除", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(760, 370, ">", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(350, 360, "名前を英数字で入力してください", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(350, 380, "十字キー・左スティックでカーソル移動、", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(350, 400, "Aボタンで入力、Bボタンで一字削除", 0xffffff, font.handle_0_16, 0xffffff);
 
-	DrawStringToHandle(700, 370, rni_inputName.c_str(), 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(780, 370, rni_inputName.c_str(), 0xffffff, font.handle_0_16, 0xffffff);
 
 	SetFontSize(32);
 	// アルファベット大文字・小文字の表示
@@ -309,47 +309,65 @@ void DrawRankingNameInput() {
 	}
 	else if (CheckHitKey(KEY_INPUT_RIGHT)) { // 右
 		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] < 1140) {
-				// 右端なら破棄、それ以外なら移動
+			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
+			}
+			else {
+				rni_selector[0] -= 42 * 25;
+				rni_selector[5] = 0;
 			};
 		}
 		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] < 1140) {
-				// 右端なら破棄、それ以外なら移動
+			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
+			}
+			else {
+				rni_selector[0] -= 42 * 25;
+				rni_selector[5] = 0;
 			};
 		}
 		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] < 804) {
-				// 右端なら破棄、それ以外なら移動
+			if (rni_selector[0] < 804) { // 右端ならマリオUSA、それ以外なら移動
 				rni_selector[0] += 42;
 				rni_selector[5] += 1;
+			}
+			else {
+				rni_selector[0] -= 42 * 9;
+				rni_selector[5] = 0;
 			};
 		};
 	}
 	else if (CheckHitKey(KEY_INPUT_LEFT)) { // 左
 		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] > 90) {
-				// 左端なら破棄、それ以外なら移動
+			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
 				rni_selector[5] -= 1;
+			}
+			else {
+				rni_selector[0] += 42 * 25;
+				rni_selector[5] = 25;
 			};
 		}
 		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] > 90) {
-				// 左端なら破棄、それ以外なら移動
+			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
 				rni_selector[5] -= 1;
+			}
+			else {
+				rni_selector[0] += 42 * 25;
+				rni_selector[5] = 25;
 			};
 		}
 		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] > 426) {
-				// 左端なら破棄、それ以外なら移動
+			if (rni_selector[0] > 426) { // 左端ならマリオUSA、それ以外なら移動
 				rni_selector[0] -= 42;
 				rni_selector[5] -= 1;
+			}
+			else {
+				rni_selector[0] += 42 * 9;
+				rni_selector[5] = 9;
 			};
 		};
 	};
