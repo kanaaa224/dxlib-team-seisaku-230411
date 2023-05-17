@@ -1,17 +1,21 @@
-// 作：島袋
-
+/********************************
+* ヘルプ画面処理
+* 作者：島袋
+********************************/
 #include "DxLib.h"
 #include "resourceLoad.h"
-
 #include "main.h"
 #include "PadInput.h"
 
+/********************************
+* 変数宣言
+********************************/
+int help_state = 0;
+
 extern Image image;
 extern Font font;
-
 extern Game game;
 
-int help_state = 0;
 
 /********************************
 * ヘルプ画面描画
@@ -75,7 +79,7 @@ void DrawHelp() {
 		DrawStringToHandle(300, 320, "他のリンゴを取ってポイントをかせいでください。", 0x000000, font.handle_1_32, 0xffffff);
 		DrawStringToHandle(100, 370, "落下してくるリンゴは４種類です。", 0x000000, font.handle_1_32, 0xffffff);
 
-		/* https://chat.openai.com/chat
+		/*
 		時は20XX年。IT技術が急成長を遂げるこの世の中で、ある企業が開発した最先端なAIが暴走してしまい、我々人類を敵とみなしてしまう。
 		そのAIは政府の防衛システムや民衆のPCを乗っ取り、今にも機械VS人類の戦争が起ころうとしていた。
 		
