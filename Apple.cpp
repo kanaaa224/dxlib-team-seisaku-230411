@@ -16,16 +16,15 @@ int gFPSCount = 0;
 using std::string;
 using std::to_string;
 
-Image Appleimage;			  //りんごの画像
-extern Font font;			//フォント
-extern Sound sound;			//サウンド
-
 int AppleBlinkFlg;
 
 /************************************************
 *　オブジェクト宣言
 ************************************************/
-extern Apple apple;
+extern Apple apple;         //りんご
+extern Image image;			//画像
+extern Font font;			//フォント
+extern Sound sound;			//サウンド
 
 /************************************************
 *　初期化
@@ -87,8 +86,6 @@ void Apple::FallApple()
 		CreateApple();
 		HitBox();
 	}
-
-
 }
 
 /************************************************
@@ -98,21 +95,21 @@ int Apple::CreateApple()
 {
 
 	//りんご確率
-	int AppleImg = Appleimage.apple[0];
+	int AppleImg = image.apple[0];
 
 	gP = GetRand(99);//100%
 
 	if (gP < 59) {
-		AppleImg = Appleimage.apple[REDAPPLE];//赤リンゴ
+		AppleImg = image.apple[REDAPPLE];//赤リンゴ
 	}
 	else if (gP >= 60 && gP < 84) {
-		AppleImg = Appleimage.apple[BLUEAPPLE];//青リンゴ
+		AppleImg = image.apple[BLUEAPPLE];//青リンゴ
 	}
 	else if (gP >= 85 && gP < 94) {
-		AppleImg = Appleimage.apple[GOLDAPPLE];//金リンゴ
+		AppleImg = image.apple[GOLDAPPLE];//金リンゴ
 	}
 	else if (gP >= 95 && gP < 99) {
-		AppleImg = Appleimage.apple[POISONAPPLE];//毒リンゴ
+		AppleImg = image.apple[POISONAPPLE];//毒リンゴ
 	}
 
 	for (int i = 0; i < APPLE_MAX; i++) {
@@ -135,16 +132,16 @@ int Apple::CreateApple()
 ************************************************/
 void Apple::AppleSpeed(int i)
 {
-	if (gApple[i].img == Appleimage.apple[REDAPPLE]) {
+	if (gApple[i].img == image.apple[REDAPPLE]) {
 		gApple[i].speed = 1;//赤リンゴ
 	}
-	else if (gApple[i].img == Appleimage.apple[BLUEAPPLE]) {
+	else if (gApple[i].img == image.apple[BLUEAPPLE]) {
 		gApple[i].speed = 2;//青リンゴ
 	}
-	else if (gApple[i].img == Appleimage.apple[GOLDAPPLE]) {
+	else if (gApple[i].img == image.apple[GOLDAPPLE]) {
 		gApple[i].speed = 3.5;//金リンゴ
 	}
-	else if (gApple[i].img == Appleimage.apple[POISONAPPLE]) {
+	else if (gApple[i].img == image.apple[POISONAPPLE]) {
 		gApple[i].speed = 0.5;//毒リンゴ
 	}
 }
@@ -168,17 +165,17 @@ int Apple::HitBox()
 		}
 	}
 
-	for (int i = 0; i < 10; i++) {
-		if (gApple[i].flg == TRUE) {
-			for (int j = 0; j < 10; j++) {
-				if (gApple[i].speed == gApple[i].speed) {
-					if (sx1[i] == sx1[j] && sx2[j] == sx2[i] && sy1[i] < sy1[j] && sy1[j] < sy2[i]) {
-						gApple[i].flg = FALSE;	//削除
-					}
-				}
-			}
-		}
-	}
+    for (int i = 0; i < APPLE_MAX; i++) {
+        if (gApple[i].flg == TRUE) {
+            for (int j = 0; j < APPLE_MAX; j++) {
+                if (sx1[i] == sx1[j] && sx2[j] == sx2[i] && sy1[i] < sy1[j] && sy1[j] < sy2[i]) {
+                    if (gApple[i].img == gApple[j].img) {
+                        gApple[i].flg = FALSE;	//削除
+                    }
+                }
+            }
+        }
+    }
 
 	return 0;
 
@@ -196,7 +193,7 @@ int Apple::HitBoxPlayer() {
 	
 
 	for (int i = 0; i < 10; i++) {
-		if (gApple[i].img == Appleimage.apple[POISONAPPLE]) {//毒りんごの当たり判定
+		if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんごの当たり判定
 			if (gApple[i].flg == TRUE) {
 				sx1[i] = gApple[i].x - 40;	//左上 X
 				sy1[i] = gApple[i].y - 37;	//左上 Y
@@ -219,7 +216,7 @@ int Apple::HitBoxPlayer() {
 			if (gApple[i].flg == TRUE) {
 
 				if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
-					if (gApple[i].img == Appleimage.apple[POISONAPPLE]) {
+					if (gApple[i].img == image.apple[POISONAPPLE]) {
 						//player.SetPlayerBlinkFlg(1);
 						SetBlinkFlg(1);
 					}
@@ -234,7 +231,7 @@ int Apple::HitBoxPlayer() {
 		if (gApple[i].flg == TRUE) {
 			
 			if (apple.px1 < sx2[i] && sx1[i] < apple.px2 && apple.py1 < sy2[i] && sy1[i] < apple.py2) {
-				if (gApple[i].img == Appleimage.apple[POISONAPPLE]) {
+				if (gApple[i].img == image.apple[POISONAPPLE]) {
 					//player.SetPlayerBlinkFlg(1);
 					SetBlinkFlg(1);
 				}
@@ -257,22 +254,22 @@ int Apple::HitBoxPlayer() {
 ************************************************/
 void Apple::ApplePoint(int i)
 {
-	if (gApple[i].img == Appleimage.apple[REDAPPLE]) {//赤りんご
+	if (gApple[i].img == image.apple[REDAPPLE]) {//赤りんご
 		gScore += 100;
 		gRACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == Appleimage.apple[BLUEAPPLE]) {//青りんご
+	if (gApple[i].img == image.apple[BLUEAPPLE]) {//青りんご
 		gScore += 200;
 		gBACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == Appleimage.apple[GOLDAPPLE]) {//金りんご
+	if (gApple[i].img == image.apple[GOLDAPPLE]) {//金りんご
 		gScore += 500;
 		gGACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == Appleimage.apple[POISONAPPLE]) {//毒りんご
+	if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんご
 		gScore -= 750;
 		gPACount += 1;
 		if (gScore < 0) {
