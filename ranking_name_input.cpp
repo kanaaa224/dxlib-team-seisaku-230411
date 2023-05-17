@@ -52,9 +52,6 @@ void DrawRankingNameInput() {
 
 	DrawStringToHandle(110, 200, "ということで、ランキングに追加します。あなたの名前をどうぞ（強制）", 0x000000, font.handle_1_32, 0xffffff);
 
-	// フォントサイズの設定
-	//ChangeFontSize(40); // ループ内で一回のみ機能、二回目は激重になる → バグ発生中、機能しません
-
 	// 開発用
 	//DrawFormatString(50, 10, 0x000000, "%d - %d / %d - %d / %d - %d / %c / %d", rni_selector[0], rni_selector[1], rni_selector[2], rni_selector[3], rni_selector[4], rni_selector[5], rni_alphabet[rni_selector[4]][rni_selector[5]], strlen(rni_inputName.c_str()));
 	//DrawFormatString(50, 30, 0x000000, "%d - %d", PAD_INPUT::GetStickX(), PAD_INPUT::GetStickY());
@@ -83,16 +80,17 @@ void DrawRankingNameInput() {
 
 	DrawStringToHandle(780, 370, rni_inputName.c_str(), 0xffffff, font.handle_0_16, 0xffffff);
 
-	SetFontSize(32);
 	// アルファベット大文字・小文字の表示
 	for (int i = 0; i < 26; i++) {
-		//DrawStringToHandle(100 + (i * 42), 440, rni_alphabet[0][i], 0xffffff, font.handle_0_32, 0xffffff); // 問題
-		DrawFormatString(100 + (i * 42), 440, 0xffffff, "%c", rni_alphabet[0][i]);
-		DrawFormatString(100 + (i * 42), 490, 0xffffff, "%c", rni_alphabet[1][i]);
+		str = rni_alphabet[0][i];
+		DrawStringToHandle(100 + (i * 42), 440, str.c_str(), 0xffffff, font.handle_0_32, 0xffffff);
+		str = rni_alphabet[1][i];
+		DrawStringToHandle(100 + (i * 42), 490, str.c_str(), 0xffffff, font.handle_0_32, 0xffffff);
 	};
 	// 数字キーパッド表示
 	for (int i = 0; i < 10; i++) {
-		DrawFormatString(435 + (i * 42), 540, 0xffffff, "%c", rni_alphabet[2][i]);
+		str = rni_alphabet[2][i];
+		DrawStringToHandle(435 + (i * 42), 540, str.c_str(), 0xffffff, font.handle_0_32, 0xffffff);
 	};
 	// 入力確定ボタン
 	if (rni_inputName.length() > 0) {
