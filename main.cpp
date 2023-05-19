@@ -21,8 +21,15 @@ Sound sound;
 
 Game game;
 PLAYER player;
-UI ui;
+
+Apple apple;
+
+int playerx;
+int playery;
+
+//UI ui;
 Title title;
+
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -97,7 +104,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// ゲーム初期化
 			GameInit();
 			StopSoundMem(sound.subbgm);
-			SetBlinkFlg(0);
+			apple.SetBlinkFlg(0);
 			player.SetPlayerX(600);
 			player.SetPlayerFlg(TRUE);
 			ui.SetUI(0,60);
@@ -135,21 +142,27 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				ui.DrawImg();
 				ui.DrawTimeLimit();
 
-				HitBoxPlayer();
+				apple.HitBoxPlayer();
 				
 				//リンゴ
-				FallApple();
+				apple.FallApple();
 				
-				GetPlayerX(player.ReturnPlayerX());
-				GetPlayerY(player.ReturnPlayerY());
+				playerx = player.ReturnPlayerX();
+				apple.GetPlayerX(playerx);
+				playery = player.ReturnPlayerY();
+				apple.GetPlayerY(playery);
+
+				apple.GetPlayerX(player.ReturnPlayerX());
+				apple.GetPlayerY(player.ReturnPlayerY());
+
 			}
 			else {
 				//BGM
 				StopSoundMem(sound.mainbgm);
 				for (int i = 0; i < 10; i++) {
-					if (ReturnAppleFlg(i) == TRUE) {
+					if (apple.ReturnAppleFlg(i) == TRUE) {
 						//リンゴの表示
-						DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
+						DrawRotaGraph(apple.ReturnAppleX(i), apple.ReturnAppleY(i), 0.19, 0, apple.ReturnAppleImg(i), TRUE);
 					}
 				}
 				player.DrawPlayerPause();

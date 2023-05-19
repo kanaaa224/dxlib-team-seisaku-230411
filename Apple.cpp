@@ -9,38 +9,60 @@
 #include<string>
 
 /************************************************
-*　変数の宣言（グローバル変数:Apple.cpp内）
+*　変数の宣言
 ************************************************/
-//int gAppleImg[20];	//りんごの画像変数
-int gP = 0;				//りんごの確率
-
 int gFPSCount = 0;
 
 using std::string;
 using std::to_string;
 
-extern Image image;			//りんごの画像
-extern Font font;			//フォント
-extern Sound sound;			//サウンド
-
-int px1;
-int py1;
-int px2;
-int py2;
-
 int AppleBlinkFlg;
 
 /************************************************
-*　定数の宣言
+*　オブジェクト宣言
 ************************************************/
-const int APPLE_MAX = 10;//りんごの最大個数
+extern Apple apple;         //りんご
+extern Image image;			//画像
+extern Font font;			//フォント
+extern Sound sound;			//サウンド
 
-Apple apple;
+/************************************************
+*　初期化
+************************************************/
+void Apple::AppleInit() 
+{
+	for (int i = 0; i < APPLE_MAX; i++) {
+		gApple[i].flg = FALSE;
+		gApple[i].img = 0;
+		gApple[i].x = 0;
+		gApple[i].y = 0;
+		gApple[i].w = 0;
+		gApple[i].h = 0;
+		gApple[i].speed = 0;
+		gApple[i].point = 0;
+	}
+}
+/************************************************
+*　りんごのカウント、スコア、フラグ初期化
+************************************************/
+void Apple::MainAppleInit() 
+{
+	gRACount = 0;
+	gBACount = 0;
+	gGACount = 0;
+	gPACount = 0;
+	gScore = 0;
+
+	for (int i = 0; i < APPLE_MAX; i++) {
+		gApple[i].flg = FALSE;
+	}
+}
+
 
 /************************************************
 *　リンゴ落下処理
 ************************************************/
-void FallApple(void)
+void Apple::FallApple()
 {
 	for (int i = 0; i < APPLE_MAX; i++) {
 
@@ -54,24 +76,22 @@ void FallApple(void)
 			//りんごの座標が１０００になったらりんごをけす
 			if (gApple[i].y > 1000 + gApple[i].h) {
 				gApple[i].flg = FALSE;
-				gApple[i].y = 0;
 			}
 
+			DrawFormatString(5, 20*i, 0xffffff, "x[%d]=%lf,y[%d]=%lf,flg=%d", i, gApple[i].x, i, gApple[i].y, gApple[i].flg);
 		}
-
 	}
 
 	if ((gFPSCount++) % 25 == 0) {//２５フレームごとに生成されるりんごの数をチェック
 		CreateApple();
 		HitBox();
 	}
-
 }
 
 /************************************************
 *　リンゴ生成＆確率
 ************************************************/
-int CreateApple(void)
+int Apple::CreateApple()
 {
 
 	//りんご確率
@@ -96,7 +116,7 @@ int CreateApple(void)
 		if (gApple[i].flg == FALSE) {
 			gApple[i].img = AppleImg;				//リンゴの画像
 			gApple[i].x = 70 + (GetRand(6) * 130);	//りんごのレーン決定
-			gApple[i].y = -100;						//リンゴの初期Y座標
+			gApple[i].y = -50;						//リンゴの初期Y座標
 			AppleSpeed(i);							//リンゴの速度
 			gApple[i].flg = TRUE;
 			//HitBox();
@@ -111,7 +131,7 @@ int CreateApple(void)
 /************************************************
 *　リンゴの速度
 ************************************************/
-void AppleSpeed(int i)
+void Apple::AppleSpeed(int i)
 {
 	if (gApple[i].img == image.apple[REDAPPLE]) {
 		gApple[i].speed = 1;//赤リンゴ
@@ -128,24 +148,9 @@ void AppleSpeed(int i)
 }
 
 /************************************************
-*　各りんごのカウント変数の初期化
-************************************************/
-void AppleInit() 
-{
-	for (int i = 0; i < APPLE_MAX; i++) {
-		gApple[i].flg = FALSE;
-	}
-	apple.gRACount = 0;
-	apple.gBACount = 0;
-	apple.gGACount = 0;
-	apple.gPACount = 0;
-	apple.gScore = 0;
-}
-
-/************************************************
 *　りんごの当たり判定
 ************************************************/
-int HitBox(void)
+int Apple::HitBox()
 {
 	double sx1[10];
 	double sy1[10];
@@ -161,17 +166,17 @@ int HitBox(void)
 		}
 	}
 
-	for (int i = 0; i < 10; i++) {
-		if (gApple[i].flg == TRUE) {
-			for (int j = 0; j < 10; j++) {
-				if (gApple[i].img == gApple[j].img) {
-					if (sx1[i] == sx1[j] && sx2[j] == sx2[i] && sy1[i] < sy1[j] && sy1[j] < sy2[i]) {
-						gApple[i].flg = FALSE;	//削除
-					}
-				}
-			}
-		}
-	}
+    for (int i = 0; i < APPLE_MAX; i++) {
+        if (gApple[i].flg == TRUE) {
+            for (int j = 0; j < APPLE_MAX; j++) {
+                if (sx1[i] == sx1[j] && sx2[j] == sx2[i] && sy1[i] < sy1[j] && sy1[j] < sy2[i]) {
+                    if (gApple[i].img == gApple[j].img) {
+                        gApple[i].flg = FALSE;	//削除
+                    }
+                }
+            }
+        }
+    }
 
 	return 0;
 
@@ -180,7 +185,7 @@ int HitBox(void)
 /******************************************************
 * プレイヤーの当たり判定＆プレイヤーとりんごの接触処理
 ******************************************************/
-int HitBoxPlayer(void) {
+int Apple::HitBoxPlayer() {
 	double sx1[10];
 	double sy1[10];
 	double sx2[10];
@@ -218,14 +223,25 @@ int HitBoxPlayer(void) {
 					}
 					gApple[i].flg = FALSE;	//削除
 					ApplePoint(i);//スコア処理
-
 				}
 			}
 		}
 	}
-	std::string str1 = std::to_string(apple.gRACount);
-	std::string str2 = std::to_string(apple.gBACount);
-	std::string str3 = std::to_string(apple.gGACount);
+	//プレイヤーとりんごが接触したらりんごが消える
+	for (int i = 0; i < 10; i++) {
+		if (gApple[i].flg == TRUE) {
+			
+			if (apple.px1 < sx2[i] && sx1[i] < apple.px2 && apple.py1 < sy2[i] && sy1[i] < apple.py2) {
+				if (gApple[i].img == image.apple[POISONAPPLE]) {
+					//player.SetPlayerBlinkFlg(1);
+					SetBlinkFlg(1);
+				}
+			}
+		}
+	}
+	std::string str1 = std::to_string(gRACount);
+	std::string str2 = std::to_string(gBACount);
+	std::string str3 = std::to_string(gGACount);
 
 	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, font.handle_1_64, 0xffffff);
 	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, font.handle_1_64, 0xffffff);
@@ -237,28 +253,28 @@ int HitBoxPlayer(void) {
 /************************************************
 *　りんごのスコア処理
 ************************************************/
-void ApplePoint(int i)
+void Apple::ApplePoint(int i)
 {
 	if (gApple[i].img == image.apple[REDAPPLE]) {//赤りんご
-		apple.gScore += 100;
-		apple.gRACount += 1;
+		gScore += 100;
+		gRACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[BLUEAPPLE]) {//青りんご
-		apple.gScore += 200;
-		apple.gBACount += 1;
+		gScore += 200;
+		gBACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[GOLDAPPLE]) {//金りんご
-		apple.gScore += 500;
-		apple.gGACount += 1;
+		gScore += 500;
+		gGACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんご
-		apple.gScore -= 750;
-		apple.gPACount += 1;
-		if (apple.gScore < 0) {
-			apple.gScore = 0;
+		gScore -= 750;
+		gPACount += 1;
+		if (gScore < 0) {
+			gScore = 0;
 		}
 		PlaySoundMem(sound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
 	}
@@ -267,70 +283,70 @@ void ApplePoint(int i)
 /************************************************
 *　その他関数
 ************************************************/
-int ReturnRA(void) {
-	return apple.gRACount;
+int Apple::ReturnRA() {
+	return gRACount;
 }
 
-int ReturnBL(void) {
-	return apple.gBACount;
+int Apple::ReturnBL() {
+	return gBACount;
 }
 
-int ReturnGL(void) {
-	return apple.gGACount;
+int Apple::ReturnGL() {
+	return gGACount;
 }
 
-int ReturnPO(void) {
-	return apple.gPACount;
+int Apple::ReturnPO() {
+	return gPACount;
 }
 
-int ReturnScore(void) {
-	return (int)apple.gScore;
+int Apple::ReturnScore() {
+	return (int)gScore;
 }
 
-int ReturnAppleX(int num) {
+int Apple::ReturnAppleX(int num) {
 	return (int)gApple[num].x;
 }
 
-int ReturnAppleY(int num) {
+int Apple::ReturnAppleY(int num) {
 	return (int)gApple[num].y;
 }
 
-int ReturnAppleImg(int num) {
+int Apple::ReturnAppleImg(int num) {
 	return gApple[num].img;
 }
 
 
-int ReturnAppleFlg(int num) {
+int Apple::ReturnAppleFlg(int num) {
 	return gApple[num].flg;
 }
 
-void SetAppleCount(int num) {
-	apple.gRACount = num;
-	apple.gBACount = num;
-	apple.gGACount = num;
-	apple.gPACount = num;
+void Apple::SetAppleCount(int num) {
+	gRACount = num;
+	gBACount = num;
+	gGACount = num;
+	gPACount = num;
 }
 
 
-void GetPlayerX(int xPos) {
-	px1 = xPos - 30;
+void Apple::GetPlayerX(int xPos) {
+	apple.px1 = xPos - 30;
 	/*py1 = player.ReturnPlayerY() - 90;*/
-	px2 = xPos + 30;
+	apple.px2 = xPos + 30;
 	//py2 = player.ReturnPlayerY() + 120;
 }
 
-void GetPlayerY(int yPos) {
+void Apple::GetPlayerY(int yPos) {
 	//px1 = player.ReturnPlayerX() - 30;
-	py1 = yPos - 90;
+	apple.py1 = yPos - 90;
 	//px2 = player.ReturnPlayerX() + 30;
-	py2 = yPos + 120;
+	apple.py2 = yPos + 120;
 }
 
-int GetBlinkFlg() {
+int Apple::GetBlinkFlg() {
 	return AppleBlinkFlg;
 }
 
-int SetBlinkFlg(int flg) {
+int Apple::SetBlinkFlg(int flg) {
 	AppleBlinkFlg = flg;
 	return AppleBlinkFlg;
 }

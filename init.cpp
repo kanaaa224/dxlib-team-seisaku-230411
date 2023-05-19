@@ -13,18 +13,21 @@ extern Font font;
 
 extern Game game;
 
+extern Apple apple;
 Init ini;
 
 /********************************
 * ゲーム初期化
 ********************************/
-void GameInit() { // 未完成
+void GameInit() { // 未完成gg
 	game.mode = MAIN;
 
 	ini.StartTime = GetNowCount();
 
 	/*SetPlayerX(600);*/
-	AppleInit();
+	/*apple.AppleInit();*/
+	
+	apple.MainAppleInit();
 
 	// ランキングの実行済みフラグをリセット
 	SetRankingState(0);
