@@ -25,7 +25,10 @@ void Title::DrawTitle() {
 	DrawGraph(0, 0, image.title, TRUE);
 
 	// タイトル表示
-	DrawStringToHandle(350, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
+	DrawStringToHandle(330, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
+
+	// バージョン表示（仮）
+	DrawStringToHandle(20, 690, "v1.2.3", 0x000000, font.handle_0_16, 0xffffff);
 
 	// ゲームモードセレクトの項目
 	DrawStringToHandle(630, 350, "スタート", 0x000000, font.handle_1_32, 0xffffff);
@@ -83,7 +86,7 @@ void Title::DrawTitle() {
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_B) == 1) {
 		if (CheckSoundMem(sound.se_selct) == 0) {
 			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
-		}
+		};
 		if (title_state == 0) {
 			// スタート選択
 			game.mode = INIT;
@@ -113,6 +116,9 @@ void Title::DrawTitle() {
 		title_state = 3;
 	};
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		if (CheckSoundMem(sound.se_selct) == 0) {
+			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		};
 		if (title_state == 0) {
 			// スタート選択
 			game.mode = INIT;
@@ -131,6 +137,9 @@ void Title::DrawTitle() {
 		};
 	};
 	if (CheckHitKey(KEY_INPUT_T)) {
+		if (CheckSoundMem(sound.se_selct) == 0) {
+			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		};
 		game.mode = TEST;
 	};
 };

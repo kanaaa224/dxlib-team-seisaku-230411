@@ -1,20 +1,21 @@
-// 作：島袋
-
+/********************************
+* ヘルプ画面処理
+* 作者：島袋
+********************************/
 #include "DxLib.h"
 #include "resourceLoad.h"
-
 #include "main.h"
 #include "PadInput.h"
 
-extern Image image;
-extern Font font;
-
-extern Game game;
-
+/********************************
+* 変数宣言
+********************************/
 int help_state = 0;
 
-int help_selectstate;
-int help_stickflg = 0;
+extern Image image;
+extern Font font;
+extern Game game;
+
 
 /********************************
 * ヘルプ画面描画
@@ -78,6 +79,14 @@ void DrawHelp() {
 		DrawStringToHandle(300, 320, "他のリンゴを取ってポイントをかせいでください。", 0x000000, font.handle_1_32, 0xffffff);
 		DrawStringToHandle(100, 370, "落下してくるリンゴは４種類です。", 0x000000, font.handle_1_32, 0xffffff);
 
+		/*
+		時は20XX年。IT技術が急成長を遂げるこの世の中で、ある企業が開発した最先端なAIが暴走してしまい、我々人類を敵とみなしてしまう。
+		そのAIは政府の防衛システムや民衆のPCを乗っ取り、今にも機械VS人類の戦争が起ころうとしていた。
+		
+		そしてその頃、そんな事しるはずもなかった主人公、モヤキンは自分の体が全身黒染めであることに悩みを持っており、特に何もしていない魔王を私情で討伐しようと考えていた。
+		そんなある日、彼はC++の最初の難問である「ポインタ」を理解するための修行を行うため「りんごおとしの森」へと向かった。その後の彼の運命とは...
+		*/
+
 		// リンゴ画像表示
 		DrawLine(640, 420, 640, 620, 0x000000);
 		DrawLine(200, 520, 1080, 520, 0x000000);
@@ -100,19 +109,11 @@ void DrawHelp() {
 	* 説明表示切替
 	********************************/
 	// コントローラー入力
-	if (help_selectstate = PAD_INPUT::GetStickX() > 32000 && help_stickflg == 0) {
+	if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_RIGHT) == 1) || (PAD_INPUT::GetStickX() > 3200)) {
 		help_state = 1;
-		help_stickflg = 1;
 	}
-	else if (help_selectstate = PAD_INPUT::GetStickX() < -32000 && help_stickflg == 0) {
+	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (PAD_INPUT::GetStickX() < -32000)) {
 		help_state = 0;
-		help_stickflg = 1;
-	};
-	// スティックが戻ると操作受付
-	if (help_selectstate = PAD_INPUT::GetStickX() < 1200 && help_stickflg == 1) {
-		if (help_selectstate = PAD_INPUT::GetStickX() > -1200) {
-			help_stickflg = 0;
-		};
 	};
 	// Aボタンで終了
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_A) == 1) {

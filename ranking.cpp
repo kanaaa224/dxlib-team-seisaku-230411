@@ -72,7 +72,7 @@ void DrawRanking() {
 		DrawStringToHandle(200, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
 		DrawStringToHandle(380, 150 + i * 100, gRanking[i].name, 0x000000, font.handle_1_64, 0xffffff);
 		str = std::to_string(gRanking[i].score);
-		DrawStringToHandle(1000, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+		DrawStringToHandle(900, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
 	};
 
 	// 戻る表示
@@ -135,7 +135,7 @@ int SaveRanking(void) {
 
 	//ランキングデータ分配列データを書き込む
 	for (int i = 0; i < RANKING_DATA; i++) {
-		fprintf(fp, "%2d %10s %10d\n", gRanking[i].number, gRanking[i].name, gRanking[i].score);
+		fprintf(fp, "%2d %10s %d\n", gRanking[i].number, gRanking[i].name, gRanking[i].score);
 	};
 
 	//ファイルクローズ
@@ -159,7 +159,7 @@ int ReadRanking(void) {
 
 	//ランキングデータ配分列データを読み込む
 	for (int i = 0; i < RANKING_DATA; i++) {
-		int dammy = fscanf(fp, "%2d %10s %d10", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
+		int dammy = fscanf(fp, "%2d %10s %d", &gRanking[i].number, gRanking[i].name, &gRanking[i].score);
 	};
 
 	//ファイルクローズ
