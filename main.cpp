@@ -78,6 +78,10 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	//extrun消し
 	player.GetImagesClass(image);
 
+    apple.GetAppleImgClass(image);
+    apple.GetSoundClass(sound);
+    apple.GetFontClass(font);
+
 	// ランキングデータの読込
 	if (ReadRanking() == -1) return -1;
 
@@ -205,7 +209,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		// FPSの表示
 		/*SetFontSize(16);
-		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());*/
+		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec", fps, deltaTime);*/
 
 		/*PlayerControll();
 		DrawPlayer();*/

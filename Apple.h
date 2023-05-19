@@ -245,7 +245,10 @@ public:
 	*戻り値	：なし
 	*りんごのカウント、スコア、フラグを初期化
 	*/
-	void MainAppleInit();
-};
+	void AppleMainInit();
 
+    void GetAppleImgClass(Image& AppleImg);
+    void GetSoundClass(Sound& AppleSound);
+    void GetFontClass(Font& AppleFont);
+};
 #endif

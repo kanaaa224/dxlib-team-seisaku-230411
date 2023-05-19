@@ -28,7 +28,7 @@ void GameInit() { // 未完成gg
 	/*SetPlayerX(600);*/
 	/*apple.AppleInit();*/
 	
-	apple.MainAppleInit();
+	apple.AppleMainInit();
 
 	// ランキングの実行済みフラグをリセット
 	SetRankingState(0);

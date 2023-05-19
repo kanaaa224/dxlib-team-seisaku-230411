@@ -3,8 +3,8 @@
 *　制作：豊元、新里
 ************************************************/
 #include "DxLib.h"
-#include "Apple.h"
 #include "resourceLoad.h"
+#include "Apple.h"
 #include "player.h"
 #include<string>
 
@@ -21,10 +21,9 @@ int AppleBlinkFlg;
 /************************************************
 *　オブジェクト宣言
 ************************************************/
-extern Apple apple;         //りんご
-extern Image image;			//画像
-extern Font font;			//フォント
-extern Sound sound;			//サウンド
+Image appleimage;			//画像
+Font applefont;			    //フォント
+Sound applesound;			//サウンド
 
 /************************************************
 *　初期化
@@ -45,7 +44,7 @@ void Apple::AppleInit()
 /************************************************
 *　りんごのカウント、スコア、フラグ初期化
 ************************************************/
-void Apple::MainAppleInit() 
+void Apple::AppleMainInit()
 {
 	gRACount = 0;
 	gBACount = 0;
@@ -93,21 +92,21 @@ int Apple::CreateApple()
 {
 
 	//りんご確率
-	int AppleImg = image.apple[0];
+	int AppleImg = appleimage.apple[0];
 
 	gP = GetRand(99);//100%
 
 	if (gP < 59) {
-		AppleImg = image.apple[REDAPPLE];//赤リンゴ
+		AppleImg = appleimage.apple[REDAPPLE];//赤リンゴ
 	}
 	else if (gP >= 60 && gP < 84) {
-		AppleImg = image.apple[BLUEAPPLE];//青リンゴ
+		AppleImg = appleimage.apple[BLUEAPPLE];//青リンゴ
 	}
 	else if (gP >= 85 && gP < 94) {
-		AppleImg = image.apple[GOLDAPPLE];//金リンゴ
+		AppleImg = appleimage.apple[GOLDAPPLE];//金リンゴ
 	}
 	else if (gP >= 95 && gP < 99) {
-		AppleImg = image.apple[POISONAPPLE];//毒リンゴ
+		AppleImg = appleimage.apple[POISONAPPLE];//毒リンゴ
 	}
 
 	for (int i = 0; i < APPLE_MAX; i++) {
@@ -130,16 +129,16 @@ int Apple::CreateApple()
 ************************************************/
 void Apple::AppleSpeed(int i)
 {
-	if (gApple[i].img == image.apple[REDAPPLE]) {
+	if (gApple[i].img == appleimage.apple[REDAPPLE]) {
 		gApple[i].speed = 1;//赤リンゴ
 	}
-	else if (gApple[i].img == image.apple[BLUEAPPLE]) {
+	else if (gApple[i].img == appleimage.apple[BLUEAPPLE]) {
 		gApple[i].speed = 2;//青リンゴ
 	}
-	else if (gApple[i].img == image.apple[GOLDAPPLE]) {
+	else if (gApple[i].img == appleimage.apple[GOLDAPPLE]) {
 		gApple[i].speed = 3.5;//金リンゴ
 	}
-	else if (gApple[i].img == image.apple[POISONAPPLE]) {
+	else if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
 		gApple[i].speed = 0.5;//毒リンゴ
 	}
 }
@@ -191,7 +190,7 @@ int Apple::HitBoxPlayer() {
 	
 
 	for (int i = 0; i < 10; i++) {
-		if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんごの当たり判定
+		if (gApple[i].img == appleimage.apple[POISONAPPLE]) {//毒りんごの当たり判定
 			if (gApple[i].flg == TRUE) {
 				sx1[i] = gApple[i].x - 40;	//左上 X
 				sy1[i] = gApple[i].y - 37;	//左上 Y
@@ -214,7 +213,7 @@ int Apple::HitBoxPlayer() {
 			if (gApple[i].flg == TRUE) {
 
 				if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
-					if (gApple[i].img == image.apple[POISONAPPLE]) {
+					if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
 						//player.SetPlayerBlinkFlg(1);
 						SetBlinkFlg(1);
 					}
@@ -228,8 +227,8 @@ int Apple::HitBoxPlayer() {
 	for (int i = 0; i < 10; i++) {
 		if (gApple[i].flg == TRUE) {
 			
-			if (apple.px1 < sx2[i] && sx1[i] < apple.px2 && apple.py1 < sy2[i] && sy1[i] < apple.py2) {
-				if (gApple[i].img == image.apple[POISONAPPLE]) {
+			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
+				if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
 					//player.SetPlayerBlinkFlg(1);
 					SetBlinkFlg(1);
 				}
@@ -240,9 +239,9 @@ int Apple::HitBoxPlayer() {
 	std::string str2 = std::to_string(gBACount);
 	std::string str3 = std::to_string(gGACount);
 
-	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
+	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
+	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
 
 	return 0;
 }
@@ -252,28 +251,28 @@ int Apple::HitBoxPlayer() {
 ************************************************/
 void Apple::ApplePoint(int i)
 {
-	if (gApple[i].img == image.apple[REDAPPLE]) {//赤りんご
+	if (gApple[i].img == appleimage.apple[REDAPPLE]) {//赤りんご
 		gScore += 100;
 		gRACount += 1;
-		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == image.apple[BLUEAPPLE]) {//青りんご
+	if (gApple[i].img == appleimage.apple[BLUEAPPLE]) {//青りんご
 		gScore += 200;
 		gBACount += 1;
-		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == image.apple[GOLDAPPLE]) {//金りんご
+	if (gApple[i].img == appleimage.apple[GOLDAPPLE]) {//金りんご
 		gScore += 500;
 		gGACount += 1;
-		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == image.apple[POISONAPPLE]) {//毒りんご
+	if (gApple[i].img == appleimage.apple[POISONAPPLE]) {//毒りんご
 		gScore -= 750;
 		gPACount += 1;
 		if (gScore < 0) {
 			gScore = 0;
 		}
-		PlaySoundMem(sound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(applesound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
 	}
 }
 
@@ -326,17 +325,17 @@ void Apple::SetAppleCount(int num) {
 
 
 void Apple::GetPlayerX(int xPos) {
-	apple.px1 = xPos - 30;
+	px1 = xPos - 30;
 	/*py1 = player.ReturnPlayerY() - 90;*/
-	apple.px2 = xPos + 30;
+	px2 = xPos + 30;
 	//py2 = player.ReturnPlayerY() + 120;
 }
 
 void Apple::GetPlayerY(int yPos) {
 	//px1 = player.ReturnPlayerX() - 30;
-	apple.py1 = yPos - 90;
+	py1 = yPos - 90;
 	//px2 = player.ReturnPlayerX() + 30;
-	apple.py2 = yPos + 120;
+	py2 = yPos + 120;
 }
 
 int Apple::GetBlinkFlg() {
@@ -346,4 +345,16 @@ int Apple::GetBlinkFlg() {
 int Apple::SetBlinkFlg(int flg) {
 	AppleBlinkFlg = flg;
 	return AppleBlinkFlg;
+}
+
+void Apple::GetAppleImgClass(Image& AppleImg){
+   appleimage = AppleImg;
+}
+
+void Apple::GetFontClass(Font& AppleFont) {
+    applefont = AppleFont;
+}
+
+void Apple::GetSoundClass(Sound& AppleSound) {
+    applesound = AppleSound;
 }
