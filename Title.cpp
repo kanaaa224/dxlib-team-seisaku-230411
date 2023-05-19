@@ -25,7 +25,10 @@ void Title::DrawTitle() {
 	DrawGraph(0, 0, image.title, TRUE);
 
 	// タイトル表示
-	DrawStringToHandle(350, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
+	DrawStringToHandle(330, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
+
+	// バージョン表示（仮）
+	DrawStringToHandle(20, 690, "v1.2.3", 0x000000, font.handle_0_16, 0xffffff);
 
 	// ゲームモードセレクトの項目
 	DrawStringToHandle(630, 350, "スタート", 0x000000, font.handle_1_32, 0xffffff);

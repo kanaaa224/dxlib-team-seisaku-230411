@@ -8,7 +8,6 @@ int resourceload_state;
 //Image image;
 //Sound sound;
 //Font font;
-ChageFont chageFont;
 
 /********************************
 * ‰æ‘œ‚ğ“Ç‚İ‚Ş
