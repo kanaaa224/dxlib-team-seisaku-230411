@@ -77,8 +77,6 @@ void Apple::FallApple()
 			if (gApple[i].y > 1000 + gApple[i].h) {
 				gApple[i].flg = FALSE;
 			}
-
-			DrawFormatString(5, 20*i, 0xffffff, "x[%d]=%lf,y[%d]=%lf,flg=%d", i, gApple[i].x, i, gApple[i].y, gApple[i].flg);
 		}
 	}
 
