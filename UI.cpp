@@ -15,20 +15,7 @@ extern Font font;
 using std::string;
 using std::to_string;
 
-int gFpsCnt;	//FpsŒv‘ª
-int gTimeLimit;	//§ŒÀŠÔ
-
-void DrawUserInterFace()
-{
-	//UI‚Ì”wŒi
-	DrawBox(1000, 0, 1280, 780, 0xd5e458, TRUE);
-	DrawBox(1000, 0, 1280, 780, 0x000000, FALSE);
-
-	DrawTimeLimit();
-	DrawImg();
-}
-
-void DrawTimeLimit()
+void UI::DrawTimeLimit()
 {
 	//•Ï”‚ğ•¶š—ñ‚É•ÏŠ·
 	std::string str = std::to_string(gTimeLimit);
@@ -50,15 +37,18 @@ void DrawTimeLimit()
 	}
 }
 
-void DrawImg()
+void UI::DrawImg()
 {
+	//UI‚Ì”wŒi
+	DrawBox(1000, 0, 1280, 780, 0xd5e458, TRUE);
+	DrawBox(1000, 0, 1280, 780, 0x000000, FALSE);
 	//‚è‚ñ‚²‚Ì‰æ‘œ
 	DrawRotaGraph(1030, 350, 0.125, 0, image.apple[REDAPPLE], TRUE);
 	DrawRotaGraph(1140, 350, 0.125, 0, image.apple[BLUEAPPLE], TRUE);
 	DrawRotaGraph(1250, 350, 0.125, 0, image.apple[GOLDAPPLE], TRUE);
 }
 
-void SetUI(int cnt, int time) {
+void UI::SetUI(int cnt, int time) {
 	gFpsCnt = cnt;
 	gTimeLimit = time;
 }

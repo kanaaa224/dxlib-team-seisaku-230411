@@ -21,7 +21,7 @@ Sound sound;
 
 Game game;
 PLAYER player;
-//UI ui;
+UI ui;
 Title title;
 
 // プログラムの開始
@@ -100,6 +100,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			SetBlinkFlg(0);
 			player.SetPlayerX(600);
 			player.SetPlayerFlg(TRUE);
+			ui.SetUI(0,60);
 			break;
 		case MAIN:
 			// 背景表示
@@ -131,7 +132,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 				player.PlayerControll();
 				player.DrawPlayer();
-				DrawUserInterFace();
+				ui.DrawImg();
+				ui.DrawTimeLimit();
 
 				HitBoxPlayer();
 				
@@ -151,7 +153,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 					}
 				}
 				player.DrawPlayerPause();
-				DrawUserInterFace();
+				ui.DrawImg();
+				ui.DrawTimeLimit();
 				//HitBoxPlayer();
 				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, font.handle_1_128, 0xffffff);
 				//リンゴ
