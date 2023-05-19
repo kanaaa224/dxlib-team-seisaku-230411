@@ -98,9 +98,10 @@ int CreateApple(void)
 			gApple[i].x = 70 + (GetRand(6) * 130);	//‚è‚ñ‚²‚ÌƒŒ[ƒ“Œˆ’è
 			gApple[i].y = -100;						//ƒŠƒ“ƒS‚Ì‰ŠúYÀ•W
 			AppleSpeed(i);							//ƒŠƒ“ƒS‚Ì‘¬“x
-
+			gApple[i].flg = TRUE;
+			//HitBox();
 			//¬Œ÷
-			return gApple[i].flg = TRUE;
+			return TRUE;
 		}
 	}
 	//¸”s
