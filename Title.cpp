@@ -6,7 +6,7 @@
 #include "PadInput.h"
 #include"Title.h"
 
-extern Image image;
+//extern Image image;
 extern Font font;
 
 extern Game game;
@@ -22,7 +22,7 @@ int title_stickflg = 0;
 ********************************/
 void Title::DrawTitle() {
 	// 背景表示
-	DrawGraph(0, 0, image.title, TRUE);
+	DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
 	// タイトル表示
 	DrawStringToHandle(330, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);

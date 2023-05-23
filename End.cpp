@@ -3,7 +3,7 @@
 
 #include "main.h"
 
-extern Image image;
+//extern Image image;
 extern Font font;
 
 extern Game game;
@@ -17,7 +17,7 @@ void DrawEnd() { // –¢Š®¬
 	if (FPSCount++ < 300) {
 
 		// ”wŒi•\¦
-		DrawGraph(0, 0, image.title, TRUE);
+		DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
 		//”wŒiBOX
 		DrawBox(165, 145, 1030, 650, 0xeee8aa, TRUE);

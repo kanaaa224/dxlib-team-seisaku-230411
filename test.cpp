@@ -6,7 +6,7 @@
 #include "main.h"
 #include "PadInput.h"
 
-extern Image image;
+//extern Image image;
 extern Font font;
 
 extern Game game;
@@ -15,7 +15,7 @@ extern Game game;
 * ƒeƒXƒg
 ********************************/
 void DrawTest() {
-    DrawGraph(0, 0, image.title, TRUE);
+    DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 	
 	DrawStringToHandle(400, 40, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, font.handle_1_32, 0xffffff);
 	DrawStringToHandle(400, 90, "‚è‚ñ‚²‚¨‚Æ‚µ", 0x000000, font.handle_1_64, 0xffffff);

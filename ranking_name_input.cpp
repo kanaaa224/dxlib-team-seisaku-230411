@@ -31,7 +31,7 @@ std::string rni_inputName = "";
 int rni_selector[] = { 90, 440, 35, 30, 0, 0 };
 int rni_state = 0;
 
-extern Image image;
+//extern Image image;
 extern Font font;
 extern Game game;
 
@@ -44,7 +44,7 @@ void DrawRankingNameInput() {
 	rni_state = 1;
 
     // ”wŒi•\Ž¦
-    DrawGraph(0, 0, image.title, TRUE);
+    DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
 	// ƒ^ƒCƒgƒ‹
 	DrawStringToHandle(270, 50, "ƒ‰ƒ“ƒLƒ“ƒO‚É“o˜^", 0x000000, font.handle_1_64, 0xffffff);
