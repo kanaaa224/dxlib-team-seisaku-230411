@@ -71,7 +71,7 @@ void DrawRanking() {
 	RgScore = apple.ReturnScore();
 
     // ”wŒi•\Ž¦
-    DrawGraph(0, 0, Image::GetImages(TITLE,0), TRUE);
+    DrawGraph(0, 0, Image::GetImages(0, 0), TRUE);
 
     DrawStringToHandle(360, 10, "ƒ‰ƒ“ƒLƒ“ƒO", 0x000000, font.handle_1_128, 0xffffff);
 
