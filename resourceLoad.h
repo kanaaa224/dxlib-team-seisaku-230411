@@ -16,6 +16,8 @@
 #define SND_SE_CURSOR 4
 #define SND_SE_SELECT 5
 
+#define FONT_0_128 0
+
 class Image {
 private:
 	static int title;
@@ -43,8 +45,9 @@ public:
 };
 
 class Font {
+private:
+	static int handle_0_128;
 public:
-	int handle_0_128;
 	int handle_0_64;
 	int handle_0_32;
 	int handle_0_16;

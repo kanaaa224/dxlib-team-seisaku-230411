@@ -121,6 +121,8 @@ int Sound::GetSounds(int num) {
 /********************************
 * フォントを読み込む
 ********************************/
+int Font::handle_0_128 = 0;
+
 int Font::LoadFonts(void) {
 	LPCSTR font_path = "Resources/Fonts/syokakiutage.ttf"; // 読み込むフォントファイルのパス
 	if (AddFontResourceEx(font_path, FR_PRIVATE, NULL) < 0) {
@@ -132,6 +134,7 @@ int Font::LoadFonts(void) {
     handle_0_64 = CreateFontToHandle(NULL, 64, -1, DX_FONTTYPE_NORMAL);
     handle_0_16 = CreateFontToHandle(NULL, 16, -1, DX_FONTTYPE_NORMAL);
     handle_0_32 = CreateFontToHandle(NULL, 32, -1, DX_FONTTYPE_NORMAL);
+
     handle_1_128 = CreateFontToHandle("しょかきうたげ（無料版）", 128, 9, DX_FONTTYPE_EDGE);
     handle_1_64 = CreateFontToHandle("しょかきうたげ（無料版）", 64, 9, DX_FONTTYPE_EDGE);
     handle_1_32 = CreateFontToHandle("しょかきうたげ（無料版）", 32, 9, DX_FONTTYPE_EDGE);
@@ -144,11 +147,11 @@ int Font::LoadFonts(void) {
 };
 
 /********************************
-* サウンドを取得する関数
+* フォントを取得する関数
 ********************************/
 int Font::GetFonts(int num) {
     switch (num) {
-    case 0:
-        return 0;
+    case FONT_0_128:
+        return handle_0_128;
     };
 };
