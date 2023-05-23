@@ -228,7 +228,7 @@ int Apple::HitBoxPlayer() {
 		if (gApple[i].flg == TRUE) {
 			
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
-				if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
+				if (gApple[i].img == Image::GetImages(IMG_APPLE,POISONAPPLE)) {
 					SetBlinkFlg(1);
 				}
 			}
@@ -251,25 +251,25 @@ int Apple::HitBoxPlayer() {
 void Apple::ApplePoint(int i)
 {
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, REDAPPLE)) {//Ô‚è‚ñ‚²
-		apple.gScore += 100;
-		apple.gRACount += 1;
+		gScore += 100;
+		gRACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, BLUEAPPLE)) {//Â‚è‚ñ‚²
-		apple.gScore += 200;
-		apple.gBACount += 1;
+		gScore += 200;
+		gBACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, GOLDAPPLE)) {//‹à‚è‚ñ‚²
-		apple.gScore += 500;
-		apple.gGACount += 1;
+		gScore += 500;
+		gGACount += 1;
 		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {//“Å‚è‚ñ‚²
-		apple.gScore -= 750;
-		apple.gPACount += 1;
-		if (apple.gScore < 0) {
-			apple.gScore = 0;
+		gScore -= 750;
+		gPACount += 1;
+		if (gScore < 0) {
+			gScore = 0;
 		}
 		PlaySoundMem(applesound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
 	}
