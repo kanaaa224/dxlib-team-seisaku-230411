@@ -11,8 +11,6 @@ int Walk = 0;
 int FPS = 0;
 int BlinkFPSFlg = 0;
 
-extern Apple apple;
-
 Image playerimage;
 
 
@@ -202,7 +200,7 @@ void PLAYER::DrawPlayer() {
 			SetPlayerBlinkFlg(0);
 			BlinkFPSFlg = 0;
 			flg = TRUE;
-			apple.SetBlinkFlg(0);
+            Apple::SetBlinkFlg(0);
 		}
 	}
 }

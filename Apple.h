@@ -235,7 +235,7 @@ public:
     *–ß‚è’l  F
     *
     */
-	int SetBlinkFlg(int flg);
+	static int SetBlinkFlg(int flg);
 
 	/**
 	*–LŒ³ˆê¬
