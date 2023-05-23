@@ -2,16 +2,21 @@
 
 #pragma once
 
+#define IMG_TITLE 0
+#define IMG_APPLE 1
+#define IMG_WALK 2
+#define IMG_RUN 3
+#define IMG_STOP 4
+#define IMG_CONTROLLER 5
+
 class Image {
-public:
+private:
 	static int title;
-	int apple[20];
-	int Walk[3];
-	int Run[8];
-	int Stop[2];
-	int end;
-	int controller;
-	int controller_s;
+	static int apple[20];
+	static int Walk[3];
+	static int Run[8];
+	static int Stop[2];
+	static int controller;
 public:
 	int LoadImages(void);
 	static int GetImages(int, int);
@@ -31,7 +36,6 @@ public:
 
 class Font {
 public:
-	//int s;
 	int state;
 	int handle_0_128;
 	int handle_0_64;
@@ -41,9 +45,6 @@ public:
 	int handle_1_64;
 	int handle_1_32;
 	int handle_1_16;
-	//int handle_2_128;
-	//int handle_2_64;
-	//int handle_2_32;
 public:
 	int LoadFonts(void);
 };

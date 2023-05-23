@@ -43,9 +43,9 @@ void UI::DrawImg()
 	DrawBox(1000, 0, 1280, 780, 0xd5e458, TRUE);
 	DrawBox(1000, 0, 1280, 780, 0x000000, FALSE);
 	//‚è‚ñ‚²‚Ì‰æ‘œ
-	DrawRotaGraph(1030, 350, 0.125, 0, image.apple[REDAPPLE], TRUE);
-	DrawRotaGraph(1140, 350, 0.125, 0, image.apple[BLUEAPPLE], TRUE);
-	DrawRotaGraph(1250, 350, 0.125, 0, image.apple[GOLDAPPLE], TRUE);
+	DrawRotaGraph(1030, 350, 0.125, 0, Image::GetImages(IMG_APPLE, REDAPPLE), TRUE);
+	DrawRotaGraph(1140, 350, 0.125, 0, Image::GetImages(IMG_APPLE, BLUEAPPLE), TRUE);
+	DrawRotaGraph(1250, 350, 0.125, 0, Image::GetImages(IMG_APPLE, GOLDAPPLE), TRUE);
 }
 
 void UI::SetUI(int cnt, int time) {
