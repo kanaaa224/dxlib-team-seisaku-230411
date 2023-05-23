@@ -2,9 +2,20 @@
 
 #pragma once
 
+#define TITLE 0
+#define INIT 1
+#define MAIN 2
+#define HELP 3
+#define RESULT 4
+#define INPUTNAME 5
+#define RANKING 6
+#define END 7
+#define TEST 8
+#define EXIT 99
+
 class Image {
 public:
-	int title;
+	static int title;
 	int apple[20];
 	int Walk[3];
 	int Run[8];
@@ -14,6 +25,7 @@ public:
 	int controller_s;
 public:
 	int LoadImages(void);
+	static int GetImages(int, int);
 };
 
 class Sound {
