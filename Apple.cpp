@@ -21,7 +21,7 @@ int AppleBlinkFlg;
 /************************************************
 *　オブジェクト宣言
 ************************************************/
-Image appleimage;			//画像
+//Image appleimage;			//画像
 Font applefont;			    //フォント
 Sound applesound;			//サウンド
 
@@ -253,17 +253,17 @@ void Apple::ApplePoint(int i)
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, REDAPPLE)) {//赤りんご
 		gScore += 100;
 		gRACount += 1;
-		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, BLUEAPPLE)) {//青りんご
 		gScore += 200;
 		gBACount += 1;
-		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, GOLDAPPLE)) {//金りんご
 		gScore += 500;
 		gGACount += 1;
-		PlaySoundMem(sound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {//毒りんご
 		gScore -= 750;
@@ -346,9 +346,9 @@ int Apple::SetBlinkFlg(int flg) {
 	return AppleBlinkFlg;
 }
 
-void Apple::GetAppleImgClass(Image& AppleImg){
-   appleimage = AppleImg;
-}
+//void Apple::GetAppleImgClass(Image& AppleImg){
+//   appleimage = AppleImg;
+//}
 
 void Apple::GetFontClass(Font& AppleFont) {
     applefont = AppleFont;

@@ -76,9 +76,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	if (font.LoadFonts() == -1)return -1;
 
 	//extrun消し
-	player.GetImagesClass(image);
+	//player.GetImagesClass(image);
 
-    apple.GetAppleImgClass(image);
+    //apple.GetAppleImgClass(image);
     apple.GetSoundClass(sound);
     apple.GetFontClass(font);
 
@@ -104,6 +104,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_LOOP, TRUE);
 			}
 			break;
+
 		case INIT:
 			// ゲーム初期化
 			GameInit();
@@ -113,9 +114,10 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			player.SetPlayerFlg(TRUE);
 			ui.SetUI(0,60);
 			break;
+
 		case MAIN:
 			// 背景表示
-			DrawGraph(0, 0, image.title, TRUE);
+			DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 			
 			// 開発用 - Rキーで強制リザルト
 			if (CheckHitKey(KEY_INPUT_R)) {
@@ -176,10 +178,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, font.handle_1_128, 0xffffff);
 			}
 			break;
+
 		case HELP:
 			// ヘルプ画面（島袋）
 			DrawHelp();
 			break;
+
 		case RESULT:
 			//BGM
 			StopSoundMem(sound.mainbgm);
@@ -190,18 +194,22 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// リザルト画面
 			DrawResult();
 			break;
+
 		case INPUTNAME:
 			// ランキング入力画面（島袋）
 			DrawRankingNameInput();
 			break;
+
 		case RANKING:
 			// ランキング画面
 			DrawRanking();
 			break;
+
 		case END:
 			// エンド画面
 			DrawEnd();
 			break;
+
 		case TEST:
 			// テストで、画像やフォント表示（島袋）（タイトルでTを押して発動）
 			DrawTest();
