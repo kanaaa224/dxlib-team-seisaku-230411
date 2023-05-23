@@ -35,7 +35,6 @@ int rni_state = 0;
 extern Font font;
 extern Game game;
 
-
 /********************************
 * ランキング入力関数
 ********************************/
@@ -50,8 +49,8 @@ void DrawRankingNameInput() {
 	DrawStringToHandle(270, 50, "ランキングに登録", 0x000000, font.handle_1_64, 0xffffff);
 
 	// 本文
-	std::string str = "スコア：" + std::to_string(ReturnScore());
-	DrawStringToHandle(770, 70, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
+	std::string str = "スコア：" + std::to_string(apple.ReturnScore());
+	DrawStringToHandle(750, 70, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
 
 	DrawStringToHandle(140, 150, "あなたのスコアが上位５位内に入りました！おめでとうございます。", 0x000000, font.handle_1_32, 0xffffff);
 

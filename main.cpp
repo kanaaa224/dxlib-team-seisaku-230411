@@ -21,8 +21,15 @@ Sound sound;
 
 Game game;
 PLAYER player;
-//UI ui;
+
+Apple apple;
+
+int playerx;
+int playery;
+
+UI ui;
 Title title;
+
 
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
@@ -71,6 +78,10 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	//extrun消し
 	player.GetImagesClass(image);
 
+    apple.GetAppleImgClass(image);
+    apple.GetSoundClass(sound);
+    apple.GetFontClass(font);
+
 	// ランキングデータの読込
 	if (ReadRanking() == -1) return -1;
 
@@ -97,9 +108,10 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			// ゲーム初期化
 			GameInit();
 			StopSoundMem(sound.subbgm);
-			SetBlinkFlg(0);
+			apple.SetBlinkFlg(0);
 			player.SetPlayerX(600);
 			player.SetPlayerFlg(TRUE);
+			ui.SetUI(0,60);
 			break;
 		case MAIN:
 			// 背景表示
@@ -131,31 +143,37 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 				player.PlayerControll();
 				player.DrawPlayer();
-				DrawUserInterFace();
+				ui.DrawImg();
+				ui.DrawTimeLimit();
 
-				HitBoxPlayer();
+				apple.HitBoxPlayer();
 				
 				//リンゴ
-				FallApple();
+				apple.FallApple();
 				
-				GetPlayerX(player.ReturnPlayerX());
-				GetPlayerY(player.ReturnPlayerY());
+				playerx = player.ReturnPlayerX();
+				apple.GetPlayerX(playerx);
+				playery = player.ReturnPlayerY();
+				apple.GetPlayerY(playery);
+
+				apple.GetPlayerX(player.ReturnPlayerX());
+				apple.GetPlayerY(player.ReturnPlayerY());
+
 			}
 			else {
 				//BGM
 				StopSoundMem(sound.mainbgm);
 				for (int i = 0; i < 10; i++) {
-					if (ReturnAppleFlg(i) == TRUE) {
+					if (apple.ReturnAppleFlg(i) == TRUE) {
 						//リンゴの表示
-						DrawRotaGraph(ReturnAppleX(i), ReturnAppleY(i), 0.19, 0, ReturnAppleImg(i), TRUE);
+						DrawRotaGraph(apple.ReturnAppleX(i), apple.ReturnAppleY(i), 0.19, 0, apple.ReturnAppleImg(i), TRUE);
 					}
 				}
 				player.DrawPlayerPause();
-				DrawUserInterFace();
-				//HitBoxPlayer();
+				ui.DrawImg();
+				ui.DrawTimeLimit();
+                apple.DrawPause();
 				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, font.handle_1_128, 0xffffff);
-				//リンゴ
-				//FallApple();
 			}
 			break;
 		case HELP:
@@ -192,7 +210,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		// FPSの表示
 		/*SetFontSize(16);
-		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec  %d", fps, deltaTime, GetStickX());*/
+		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec", fps, deltaTime);*/
 
 		/*PlayerControll();
 		DrawPlayer();*/

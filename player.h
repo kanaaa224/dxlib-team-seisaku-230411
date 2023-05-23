@@ -58,6 +58,7 @@ public:
 	void SetPlayerFlg(int Pflg);
 	int GetPlayerBlinkFlg();
 	
+	//externè¡Ç∑
 	void GetImagesClass(Image& player);
 
 	PLAYER();
