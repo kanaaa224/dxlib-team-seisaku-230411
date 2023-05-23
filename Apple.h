@@ -226,7 +226,7 @@ public:
     *ñﬂÇËíl  ÅF
     * 
     */
-	int GetBlinkFlg();
+ 	static int GetBlinkFlg();
 
     /**
     *
@@ -250,5 +250,6 @@ public:
     void GetAppleImgClass(Image& AppleImg);
     void GetSoundClass(Sound& AppleSound);
     void GetFontClass(Font& AppleFont);
+    void DrawPause();
 };
 #endif

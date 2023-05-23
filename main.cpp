@@ -27,7 +27,7 @@ Apple apple;
 int playerx;
 int playery;
 
-//UI ui;
+UI ui;
 Title title;
 
 
@@ -172,10 +172,8 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				player.DrawPlayerPause();
 				ui.DrawImg();
 				ui.DrawTimeLimit();
-				//HitBoxPlayer();
+                apple.DrawPause();
 				DrawStringToHandle(200, 310, "-- É|Å[ÉYíÜ --", 0x000000, font.handle_1_128, 0xffffff);
-				//ÉäÉìÉS
-				//FallApple();
 			}
 			break;
 		case HELP:
