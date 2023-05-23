@@ -3,17 +3,15 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
 
-int resourceload_state;
-
 //Image image;
 //Sound sound;
 //Font font;
 
-int Image::title = 0;
-
 /********************************
 * ‰æ‘œ‚ğ“Ç‚İ‚Ş
 ********************************/
+int Image::title = 0;
+
 int Image::LoadImages(void) {
 	if ((title = LoadGraph("Resources/Images/title.png")) == -1) return -1;
 
@@ -33,9 +31,12 @@ int Image::LoadImages(void) {
 	return 0;
 };
 
-int Image::GetImages(int code, int arrayNum) {
-	switch (code) {
-	case TITLE:
+/********************************
+* ‰æ‘œ‚ğæ“¾‚·‚éŠÖ”
+********************************/
+int Image::GetImages(int num, int arrayNum) {
+	switch (num) {
+	case 0:
 		return title;
 	};
 };

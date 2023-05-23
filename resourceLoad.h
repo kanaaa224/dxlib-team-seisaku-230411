@@ -2,17 +2,6 @@
 
 #pragma once
 
-#define TITLE 0
-#define INIT 1
-#define MAIN 2
-#define HELP 3
-#define RESULT 4
-#define INPUTNAME 5
-#define RANKING 6
-#define END 7
-#define TEST 8
-#define EXIT 99
-
 class Image {
 public:
 	static int title;
