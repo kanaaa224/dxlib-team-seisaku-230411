@@ -11,20 +11,25 @@
 * âÊëúÇì«Ç›çûÇﬁ
 ********************************/
 int Image::title = 0;
+int Image::controller = 0;
+int Image::apple[] = { 0 };
+int Image::Walk[] = { 0 };
+int Image::Run[] = { 0 };
+int Image::Stop[] = { 0 };
 
 int Image::LoadImages(void) {
 	if ((title = LoadGraph("Resources/Images/title.png")) == -1) return -1;
 
 	if ((controller = LoadGraph("Resources/Images/controller.png")) == -1) return -1;
-	if ((controller_s = LoadGraph("Resources/Images/controller_sokumen.png")) == -1) return -1;
 
 	if ((apple[0] = LoadGraph("Resources/Images/REDApple.png")) == -1) return -1;
 	if ((apple[1] = LoadGraph("Resources/Images/BLUEApple.png")) == -1) return -1;
 	if ((apple[2] = LoadGraph("Resources/Images/GOLDApple.png")) == -1) return -1;
 	if ((apple[3] = LoadGraph("Resources/Images/POISONApple.png")) == -1) return -1;
 
-	LoadDivGraph("Resources/Images/Run.png", 8, 4, 2, 300, 300, Run);
 	LoadDivGraph("Resources/Images/Walk.png", 3, 3, 1, 300, 300, Walk);
+	LoadDivGraph("Resources/Images/Run.png", 8, 4, 2, 300, 300, Run);
+
 	Stop[0] = LoadGraph("Resources/Images/Stop.png");
 	Stop[1] = LoadGraph("Resources/Images/Stop2.png");
 
@@ -36,8 +41,23 @@ int Image::LoadImages(void) {
 ********************************/
 int Image::GetImages(int num, int arrayNum) {
 	switch (num) {
-	case 0:
+	case IMG_TITLE:
 		return title;
+
+	case IMG_CONTROLLER:
+		return controller;
+
+	case IMG_APPLE:
+		return apple[arrayNum];
+
+	case IMG_WALK:
+		return Walk[arrayNum];
+
+	case IMG_RUN:
+		return Run[arrayNum];
+
+	case IMG_STOP:
+		return Stop[arrayNum];
 	};
 };
 
