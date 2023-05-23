@@ -9,7 +9,6 @@ int FPScount = 0;
 int Run = 0;
 int Walk = 0;
 int FPS = 0;
-//PLAYER player;
 int BlinkFPSFlg = 0;
 
 extern Apple apple;
@@ -133,8 +132,6 @@ void PLAYER::DrawPlayer() {
 				}
 			}
 			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Walk[Walk], TRUE, TRUE);
-			/*DrawFormatString(100, 200, 0xffffff, "%d", image.Walk[0]);
-			DrawFormatString(100, 230, 0xffffff, "%d", image.Walk[1]);*/
 		}
 		//右ダッシュ
 		else if (speed > 3 && x != MOVE_RIGHT_LIMIT) {
@@ -179,12 +176,11 @@ void PLAYER::DrawPlayer() {
 
 	if (BlinkFlg == 0) {
 		FPS++;
-		apple.HitBoxPlayer();
 	}
 	
 
 	//毒リンゴ取得時の点滅
-	SetPlayerBlinkFlg(apple.GetBlinkFlg());
+	SetPlayerBlinkFlg(Apple::GetBlinkFlg());
 	if (BlinkFlg == 1) {
 		//FPSカウント初期化(一度だけ)
 		if (BlinkFPSFlg == 0) {
