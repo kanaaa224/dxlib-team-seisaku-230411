@@ -1,11 +1,9 @@
-// 作：島袋
-
+/********************************
+* リソース管理処理
+* 作者：島袋
+********************************/
 #include "DxLib.h"
 #include "resourceLoad.h"
-
-//Image image;
-//Sound sound;
-//Font font;
 
 /********************************
 * 画像を読み込む
@@ -60,6 +58,7 @@ int Image::GetImages(int num, int arrayNum) {
 		return stop[arrayNum];
 	};
 };
+
 
 /********************************
 * サウンドを読み込む
@@ -119,14 +118,6 @@ int Sound::GetSounds(int num) {
 };
 
 
-
-
-
-
-
-
-
-
 /********************************
 * フォントを読み込む
 ********************************/
@@ -137,20 +128,27 @@ int Font::LoadFonts(void) {
 		MessageBox(NULL, "フォント読込失敗", "", MB_OK);
 	};
 
-	if (state == 0) {
-		handle_0_128 = CreateFontToHandle(NULL, 128, -1, DX_FONTTYPE_NORMAL);
-		handle_0_64 = CreateFontToHandle(NULL, 64, -1, DX_FONTTYPE_NORMAL);
-		handle_0_16 = CreateFontToHandle(NULL, 16, -1, DX_FONTTYPE_NORMAL);
-		handle_0_32 = CreateFontToHandle(NULL, 32, -1, DX_FONTTYPE_NORMAL);
-		handle_1_128 = CreateFontToHandle("しょかきうたげ（無料版）", 128, 9, DX_FONTTYPE_EDGE);
-		handle_1_64 = CreateFontToHandle("しょかきうたげ（無料版）", 64, 9, DX_FONTTYPE_EDGE);
-		handle_1_32 = CreateFontToHandle("しょかきうたげ（無料版）", 32, 9, DX_FONTTYPE_EDGE);
-		handle_1_16 = CreateFontToHandle("しょかきうたげ（無料版）", 16, 9, DX_FONTTYPE_EDGE);
-		//font.handle_3_ // 追加フォントのパスとサイズ
-		state = 1;
-	};
+    handle_0_128 = CreateFontToHandle(NULL, 128, -1, DX_FONTTYPE_NORMAL);
+    handle_0_64 = CreateFontToHandle(NULL, 64, -1, DX_FONTTYPE_NORMAL);
+    handle_0_16 = CreateFontToHandle(NULL, 16, -1, DX_FONTTYPE_NORMAL);
+    handle_0_32 = CreateFontToHandle(NULL, 32, -1, DX_FONTTYPE_NORMAL);
+    handle_1_128 = CreateFontToHandle("しょかきうたげ（無料版）", 128, 9, DX_FONTTYPE_EDGE);
+    handle_1_64 = CreateFontToHandle("しょかきうたげ（無料版）", 64, 9, DX_FONTTYPE_EDGE);
+    handle_1_32 = CreateFontToHandle("しょかきうたげ（無料版）", 32, 9, DX_FONTTYPE_EDGE);
+    handle_1_16 = CreateFontToHandle("しょかきうたげ（無料版）", 16, 9, DX_FONTTYPE_EDGE);
+    //font.handle_3_ // 追加フォントのパスとサイズ
 
 	//if ((font.s = LoadFont("Resources/Fonts/syokakiutage.ttf")) == -1) return -1;
 
 	return 0;
+};
+
+/********************************
+* サウンドを取得する関数
+********************************/
+int Font::GetFonts(int num) {
+    switch (num) {
+    case 0:
+        return 0;
+    };
 };

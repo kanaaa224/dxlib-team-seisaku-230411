@@ -44,7 +44,6 @@ public:
 
 class Font {
 public:
-	int state;
 	int handle_0_128;
 	int handle_0_64;
 	int handle_0_32;
@@ -55,4 +54,5 @@ public:
 	int handle_1_16;
 public:
 	int LoadFonts(void);
+    static int GetFonts(int);
 };
