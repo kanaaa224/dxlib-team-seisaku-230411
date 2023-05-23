@@ -31,6 +31,7 @@ std::string rni_inputName = "";
 int rni_selector[] = { 90, 440, 35, 30, 0, 0 };
 int rni_state = 0;
 
+extern Apple apple;
 //extern Image image;
 extern Font font;
 extern Game game;
