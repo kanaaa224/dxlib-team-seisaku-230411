@@ -116,7 +116,6 @@ int Apple::CreateApple()
 			gApple[i].y = -50;						//ƒŠƒ“ƒS‚Ì‰ŠúYÀ•W
 			AppleSpeed(i);							//ƒŠƒ“ƒS‚Ì‘¬“x
 			gApple[i].flg = TRUE;
-			//HitBox();
 			//¬Œ÷
 			return TRUE;
 		}
@@ -215,7 +214,6 @@ int Apple::HitBoxPlayer() {
 
 				if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
 					if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
-						//player.SetPlayerBlinkFlg(1);
 						SetBlinkFlg(1);
 					}
 					gApple[i].flg = FALSE;	//íœ
@@ -230,7 +228,6 @@ int Apple::HitBoxPlayer() {
 			
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
 				if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
-					//player.SetPlayerBlinkFlg(1);
 					SetBlinkFlg(1);
 				}
 			}
