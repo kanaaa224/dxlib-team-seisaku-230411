@@ -9,6 +9,8 @@ int resourceload_state;
 //Sound sound;
 //Font font;
 
+int Image::title = 0;
+
 /********************************
 * ‰æ‘œ‚ğ“Ç‚İ‚Ş
 ********************************/
@@ -29,6 +31,13 @@ int Image::LoadImages(void) {
 	Stop[1] = LoadGraph("Resources/Images/Stop2.png");
 
 	return 0;
+};
+
+int Image::GetImages(int code, int arrayNum) {
+	switch (code) {
+	case TITLE:
+		return title;
+	};
 };
 
 /********************************
