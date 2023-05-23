@@ -13,9 +13,9 @@
 int Image::title = 0;
 int Image::controller = 0;
 int Image::apple[] = { 0 };
-int Image::Walk[] = { 0 };
-int Image::Run[] = { 0 };
-int Image::Stop[] = { 0 };
+int Image::walk[] = { 0 };
+int Image::run[] = { 0 };
+int Image::stop[] = { 0 };
 
 int Image::LoadImages(void) {
 	if ((title = LoadGraph("Resources/Images/title.png")) == -1) return -1;
@@ -27,11 +27,11 @@ int Image::LoadImages(void) {
 	if ((apple[2] = LoadGraph("Resources/Images/GOLDApple.png")) == -1) return -1;
 	if ((apple[3] = LoadGraph("Resources/Images/POISONApple.png")) == -1) return -1;
 
-	LoadDivGraph("Resources/Images/Walk.png", 3, 3, 1, 300, 300, Walk);
-	LoadDivGraph("Resources/Images/Run.png", 8, 4, 2, 300, 300, Run);
+	LoadDivGraph("Resources/Images/Walk.png", 3, 3, 1, 300, 300, walk);
+	LoadDivGraph("Resources/Images/Run.png", 8, 4, 2, 300, 300, run);
 
-	Stop[0] = LoadGraph("Resources/Images/Stop.png");
-	Stop[1] = LoadGraph("Resources/Images/Stop2.png");
+	stop[0] = LoadGraph("Resources/Images/Stop.png");
+	stop[1] = LoadGraph("Resources/Images/Stop2.png");
 
 	return 0;
 };
@@ -51,37 +51,81 @@ int Image::GetImages(int num, int arrayNum) {
 		return apple[arrayNum];
 
 	case IMG_WALK:
-		return Walk[arrayNum];
+		return walk[arrayNum];
 
 	case IMG_RUN:
-		return Run[arrayNum];
+		return run[arrayNum];
 
 	case IMG_STOP:
-		return Stop[arrayNum];
+		return stop[arrayNum];
 	};
 };
 
 /********************************
 * サウンドを読み込む
 ********************************/
+int Sound::bgm_main = 0;
+int Sound::bgm_sub = 0;
+int Sound::se_apple = 0;
+int Sound::se_poison = 0;
+int Sound::se_cursor = 0;
+int Sound::se_select = 0;
+
 int Sound::LoadSounds(void) {
-	if ((mainbgm = LoadSoundMem("Resources/BGM/Natural_Green.wav")) == -1) return -1;
-	if ((subbgm = LoadSoundMem("Resources/BGM/BGM_Odayaka.wav")) == -1) return -1;
+	if ((bgm_main = LoadSoundMem("Resources/BGM/Natural_Green.wav")) == -1) return -1;
+	if ((bgm_sub = LoadSoundMem("Resources/BGM/BGM_Odayaka.wav")) == -1) return -1;
 
 	if ((se_apple = LoadSoundMem("Resources/SE/Apple.wav")) == -1) return -1;
-	if ((se_poisonapple = LoadSoundMem("Resources/SE/PoisonApple.wav")) == -1) return -1;
-	if ((se_corsor = LoadSoundMem("Resources/SE/btn02.wav")) == -1) return -1;
-	if ((se_selct = LoadSoundMem("Resources/SE/btn10.wav")) == -1) return -1;
+	if ((se_poison = LoadSoundMem("Resources/SE/PoisonApple.wav")) == -1) return -1;
 
-	ChangeVolumeSoundMem(97, mainbgm);
+	if ((se_cursor = LoadSoundMem("Resources/SE/btn02.wav")) == -1) return -1;
+	if ((se_select = LoadSoundMem("Resources/SE/btn10.wav")) == -1) return -1;
+
+	ChangeVolumeSoundMem(97, bgm_main);
+    ChangeVolumeSoundMem(150, bgm_sub);
+
 	ChangeVolumeSoundMem(400, se_apple);
-	ChangeVolumeSoundMem(450, se_poisonapple);
-	ChangeVolumeSoundMem(150, subbgm);
-	ChangeVolumeSoundMem(170, se_corsor);
-	ChangeVolumeSoundMem(150, se_selct);
+	ChangeVolumeSoundMem(450, se_poison);
+	
+	ChangeVolumeSoundMem(170, se_cursor);
+	ChangeVolumeSoundMem(150, se_select);
 
 	return 0;
 };
+
+/********************************
+* サウンドを取得する関数
+********************************/
+int Sound::GetSounds(int num) {
+    switch (num) {
+    case SND_BGM_MAIN:
+        return bgm_main;
+
+    case SND_BGM_SUB:
+        return bgm_sub;
+
+    case SND_SE_APPLE:
+        return se_apple;
+
+    case SND_SE_POISON:
+        return se_poison;
+
+    case SND_SE_CURSOR:
+        return se_cursor;
+
+    case SND_SE_SELECT:
+        return se_select;
+    };
+};
+
+
+
+
+
+
+
+
+
 
 /********************************
 * フォントを読み込む

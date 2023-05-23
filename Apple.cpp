@@ -23,7 +23,7 @@ int AppleBlinkFlg;
 ************************************************/
 //Image appleimage;			//画像
 Font applefont;			    //フォント
-Sound applesound;			//サウンド
+//Sound applesound;			//サウンド
 
 /************************************************
 *　初期化
@@ -253,17 +253,17 @@ void Apple::ApplePoint(int i)
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, REDAPPLE)) {//赤りんご
 		gScore += 100;
 		gRACount += 1;
-		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, BLUEAPPLE)) {//青りんご
 		gScore += 200;
 		gBACount += 1;
-		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, GOLDAPPLE)) {//金りんご
 		gScore += 500;
 		gGACount += 1;
-		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {//毒りんご
 		gScore -= 750;
@@ -271,7 +271,7 @@ void Apple::ApplePoint(int i)
 		if (gScore < 0) {
 			gScore = 0;
 		}
-		PlaySoundMem(applesound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_POISON), DX_PLAYTYPE_BACK, TRUE);
 	}
 }
 
@@ -354,9 +354,9 @@ void Apple::GetFontClass(Font& AppleFont) {
     applefont = AppleFont;
 }
 
-void Apple::GetSoundClass(Sound& AppleSound) {
-    applesound = AppleSound;
-}
+//void Apple::GetSoundClass(Sound& AppleSound) {
+//    applesound = AppleSound;
+//}
 
 void Apple::DrawPause() {
     std::string str1 = std::to_string(gRACount);

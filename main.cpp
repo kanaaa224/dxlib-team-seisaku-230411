@@ -79,7 +79,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	//player.GetImagesClass(image);
 
     //apple.GetAppleImgClass(image);
-    apple.GetSoundClass(sound);
+    //apple.GetSoundClass(sound);
     apple.GetFontClass(font);
 
 	// ランキングデータの読込
@@ -100,15 +100,15 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		case TITLE:
 			// タイトル
 			title.DrawTitle();
-			if (CheckSoundMem(sound.subbgm) == 0) {
-				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_LOOP, TRUE);
+			if (CheckSoundMem(Sound::GetSounds(SND_BGM_SUB)) == 0) {
+				PlaySoundMem(Sound::GetSounds(SND_BGM_SUB), DX_PLAYTYPE_LOOP, TRUE);
 			}
 			break;
 
 		case INIT:
 			// ゲーム初期化
 			GameInit();
-			StopSoundMem(sound.subbgm);
+			StopSoundMem(Sound::GetSounds(SND_BGM_SUB));
 			apple.SetBlinkFlg(0);
 			player.SetPlayerX(600);
 			player.SetPlayerFlg(TRUE);
@@ -135,12 +135,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (GetPauseFlg() == 0) {
 				if (game.soundflg == 0) {		//最初だけはじめから再生
 					//BGM
-					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_LOOP, TRUE);
+					PlaySoundMem(Sound::GetSounds(SND_BGM_MAIN), DX_PLAYTYPE_LOOP, TRUE);
 					game.soundflg = 1;
 				}
 				else {
 					//BGM
-					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_LOOP, FALSE);
+					PlaySoundMem(Sound::GetSounds(SND_BGM_MAIN), DX_PLAYTYPE_LOOP, FALSE);
 				}
 
 				player.PlayerControll();
@@ -164,7 +164,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			}
 			else {
 				//BGM
-				StopSoundMem(sound.mainbgm);
+				StopSoundMem(Sound::GetSounds(SND_BGM_MAIN));
 				for (int i = 0; i < 10; i++) {
 					if (apple.ReturnAppleFlg(i) == TRUE) {
 						//リンゴの表示
@@ -186,9 +186,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		case RESULT:
 			//BGM
-			StopSoundMem(sound.mainbgm);
-			if (CheckSoundMem(sound.subbgm) == 0) {
-				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_LOOP, TRUE);
+			StopSoundMem(Sound::GetSounds(SND_BGM_MAIN));
+			if (CheckSoundMem(Sound::GetSounds(SND_BGM_SUB)) == 0) {
+				PlaySoundMem(Sound::GetSounds(SND_BGM_SUB), DX_PLAYTYPE_LOOP, TRUE);
 			}
 			game.soundflg = 0;
 			// リザルト画面
