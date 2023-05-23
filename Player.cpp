@@ -8,6 +8,10 @@ int Stick;
 int FPScount = 0;
 int Run = 0;
 int Walk = 0;
+int Stop = 0;
+int RunImg;
+int WalkImg;
+int StopImg;
 int FPS = 0;
 int BlinkFPSFlg = 0;
 
@@ -120,6 +124,9 @@ int PLAYER::PlayerLimit() {
 }
 
 void PLAYER::DrawPlayer() {
+    RunImg = Image::GetImages(IMG_RUN, Run);
+    WalkImg = Image::GetImages(IMG_WALK, Walk);
+    StopImg = Image::GetImages(IMG_STOP, Stop);
 	if (flg == TRUE) {
 		//右歩き
 		if (speed > 0 && speed < 3 && x != MOVE_RIGHT_LIMIT) {
@@ -129,7 +136,7 @@ void PLAYER::DrawPlayer() {
 					Walk = 0;
 				}
 			}
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Walk[Walk], TRUE, TRUE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, WalkImg, TRUE, TRUE);
 		}
 		//右ダッシュ
 		else if (speed > 3 && x != MOVE_RIGHT_LIMIT) {
@@ -139,7 +146,7 @@ void PLAYER::DrawPlayer() {
 					Run = 0;
 				}
 			}
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Run[Run], TRUE, TRUE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, RunImg, TRUE, TRUE);
 
 		}
 		//左歩き
@@ -150,7 +157,7 @@ void PLAYER::DrawPlayer() {
 					Walk = 0;
 				}
 			}
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Walk[Walk], TRUE, FALSE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, WalkImg, TRUE, FALSE);
 		}
 		//左ダッシュ
 		else if (speed < -2 && x != MOVE_LEFT_LIMIT) {
@@ -160,15 +167,17 @@ void PLAYER::DrawPlayer() {
 					Run = 0;
 				}
 			}
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Run[Run], TRUE, FALSE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, RunImg, TRUE, FALSE);
 		}
 		//左右の入れ替わりの際にちらつきがなくなるように
 		else if ((Stick < 500 && Stick > -500) || x <= MOVE_LEFT_LIMIT || x >= MOVE_RIGHT_LIMIT) {
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Stop[0], TRUE, FALSE);
+            Stop = 0;
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, StopImg, TRUE, FALSE);
 		}
 		//立ち止まり
 		else {
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Stop[1], TRUE, FALSE);
+            Stop = 1;
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, StopImg, TRUE, FALSE);
 		}
 	}
 
@@ -210,27 +219,27 @@ void PLAYER::DrawPlayerPause() {
 	if (flg == TRUE) {
 		//右歩き
 		if (speed > 0 && speed < 3 && x != MOVE_RIGHT_LIMIT) {
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Walk[Walk], TRUE, TRUE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, WalkImg, TRUE, TRUE);
 		}
 		//右ダッシュ
 		else if (speed > 2 && x != MOVE_RIGHT_LIMIT) {
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Run[Run], TRUE, TRUE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, RunImg, TRUE, TRUE);
 		}
 		//左歩き
 		else if (speed < 0 && speed > -3 && x != MOVE_LEFT_LIMIT) {
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Walk[Walk], TRUE, FALSE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, WalkImg, TRUE, FALSE);
 		}
 		//左ダッシュ
 		else if (speed < -2 && x != MOVE_LEFT_LIMIT) {
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Run[Run], TRUE, FALSE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, RunImg, TRUE, FALSE);
 		}
 		//横向き
 		else if ((Stick < 500 && Stick > -500) || x <= MOVE_LEFT_LIMIT || x >= MOVE_RIGHT_LIMIT) {
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Stop[0], TRUE, FALSE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, StopImg, TRUE, FALSE);
 		}
 		//立ち止まり
 		else {
-			DrawRotaGraph(x, y, IMAGE_RATE, 0, playerimage.Stop[1], TRUE, FALSE);
+			DrawRotaGraph(x, y, IMAGE_RATE, 0, StopImg, TRUE, FALSE);
 		}
 	}
 }
