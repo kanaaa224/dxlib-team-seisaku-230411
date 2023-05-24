@@ -12,7 +12,7 @@
 ********************************/
 int help_state = 0;
 
-extern Image image;
+//extern Image image;
 extern Font font;
 extern Game game;
 
@@ -22,7 +22,7 @@ extern Game game;
 ********************************/
 void DrawHelp() {
 	// 背景表示
-	DrawGraph(0, 0, image.title, TRUE);
+	DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
 	// タイトル表示
 	DrawStringToHandle(180, 40, "ヘルプ", 0x000000, font.handle_1_128, 0xffffff);
@@ -43,7 +43,7 @@ void DrawHelp() {
 		DrawTriangle(1065, 55, 1105, 70, 1065, 85, 0x000000, TRUE);
 
 		// コントローラー画像表示
-		DrawExtendGraph(330, 290, 630, 490, image.controller, TRUE);
+		DrawExtendGraph(330, 290, 630, 490, Image::GetImages(IMG_CONTROLLER, 0), TRUE);
 		//DrawExtendGraph(400, 500, 500, 600, image.controller_s, TRUE);
 
 		// B Btn
@@ -92,16 +92,16 @@ void DrawHelp() {
 		DrawLine(200, 520, 1080, 520, 0x000000);
 
 		// リンゴの説明
-		DrawExtendGraph(200, 440, 250, 490, image.apple[0], TRUE);
+		DrawExtendGraph(200, 440, 250, 490, Image::GetImages(IMG_APPLE, 0), TRUE);
 		DrawStringToHandle(260, 450, "赤リンゴ：ポイントUP", 0x000000, font.handle_1_32, 0xffffff);
 
-		DrawExtendGraph(670, 440, 720, 490, image.apple[1], TRUE);
+		DrawExtendGraph(670, 440, 720, 490, Image::GetImages(IMG_APPLE, 1), TRUE);
 		DrawStringToHandle(730, 450, "青リンゴ：ポイントUP", 0x000000, font.handle_1_32, 0xffffff);
 
-		DrawExtendGraph(200, 550, 250, 600, image.apple[2], TRUE);
+		DrawExtendGraph(200, 550, 250, 600, Image::GetImages(IMG_APPLE, 2), TRUE);
 		DrawStringToHandle(260, 560, "金リンゴ：ポイントUP＋", 0x000000, font.handle_1_32, 0xffffff);
 
-		DrawExtendGraph(670, 550, 720, 600, image.apple[3], TRUE);
+		DrawExtendGraph(670, 550, 720, 600, Image::GetImages(IMG_APPLE, 3), TRUE);
 		DrawStringToHandle(730, 560, "毒リンゴ：ポイントDOWN", 0x000000, font.handle_1_32, 0xffffff);
 	};
 

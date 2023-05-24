@@ -21,9 +21,9 @@ int AppleBlinkFlg;
 /************************************************
 *@ƒIƒuƒWƒFƒNƒgéŒ¾
 ************************************************/
-Image appleimage;			//‰æ‘œ
+//Image appleimage;			//‰æ‘œ
 Font applefont;			    //ƒtƒHƒ“ƒg
-Sound applesound;			//ƒTƒEƒ“ƒh
+//Sound applesound;			//ƒTƒEƒ“ƒh
 
 /************************************************
 *@‰Šú‰»
@@ -92,21 +92,21 @@ int Apple::CreateApple()
 {
 
 	//‚è‚ñ‚²Šm—¦
-	int AppleImg = appleimage.apple[0];
+	int AppleImg = Image::GetImages(IMG_APPLE, 0);
 
 	gP = GetRand(99);//100%
 
 	if (gP < 59) {
-		AppleImg = appleimage.apple[REDAPPLE];//ÔƒŠƒ“ƒS
+		AppleImg = Image::GetImages(IMG_APPLE, REDAPPLE); //ÔƒŠƒ“ƒS
 	}
 	else if (gP >= 60 && gP < 84) {
-		AppleImg = appleimage.apple[BLUEAPPLE];//ÂƒŠƒ“ƒS
+		AppleImg = Image::GetImages(IMG_APPLE, BLUEAPPLE); //ÂƒŠƒ“ƒS
 	}
 	else if (gP >= 85 && gP < 94) {
-		AppleImg = appleimage.apple[GOLDAPPLE];//‹àƒŠƒ“ƒS
+		AppleImg = Image::GetImages(IMG_APPLE, GOLDAPPLE); //‹àƒŠƒ“ƒS
 	}
 	else if (gP >= 95 && gP < 99) {
-		AppleImg = appleimage.apple[POISONAPPLE];//“ÅƒŠƒ“ƒS
+		AppleImg = Image::GetImages(IMG_APPLE, POISONAPPLE); //“ÅƒŠƒ“ƒS
 	}
 
 	for (int i = 0; i < APPLE_MAX; i++) {
@@ -116,7 +116,6 @@ int Apple::CreateApple()
 			gApple[i].y = -50;						//ƒŠƒ“ƒS‚Ì‰ŠúYÀ•W
 			AppleSpeed(i);							//ƒŠƒ“ƒS‚Ì‘¬“x
 			gApple[i].flg = TRUE;
-			//HitBox();
 			//¬Œ÷
 			return TRUE;
 		}
@@ -130,16 +129,16 @@ int Apple::CreateApple()
 ************************************************/
 void Apple::AppleSpeed(int i)
 {
-	if (gApple[i].img == appleimage.apple[REDAPPLE]) {
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, REDAPPLE)) {
 		gApple[i].speed = 1;//ÔƒŠƒ“ƒS
 	}
-	else if (gApple[i].img == appleimage.apple[BLUEAPPLE]) {
+	else if (gApple[i].img == Image::GetImages(IMG_APPLE, BLUEAPPLE)) {
 		gApple[i].speed = 2;//ÂƒŠƒ“ƒS
 	}
-	else if (gApple[i].img == appleimage.apple[GOLDAPPLE]) {
+	else if (gApple[i].img == Image::GetImages(IMG_APPLE, GOLDAPPLE)) {
 		gApple[i].speed = 3.5;//‹àƒŠƒ“ƒS
 	}
-	else if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
+	else if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {
 		gApple[i].speed = 0.5;//“ÅƒŠƒ“ƒS
 	}
 }
@@ -191,7 +190,7 @@ int Apple::HitBoxPlayer() {
 	
 
 	for (int i = 0; i < 10; i++) {
-		if (gApple[i].img == appleimage.apple[POISONAPPLE]) {//“Å‚è‚ñ‚²‚Ì“–‚½‚è”»’è
+		if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {//“Å‚è‚ñ‚²‚Ì“–‚½‚è”»’è
 			if (gApple[i].flg == TRUE) {
 				sx1[i] = gApple[i].x - 40;	//¶ã X
 				sy1[i] = gApple[i].y - 37;	//¶ã Y
@@ -214,7 +213,7 @@ int Apple::HitBoxPlayer() {
 			if (gApple[i].flg == TRUE) {
 
 				if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
-					if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
+					if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {
 						//player.SetPlayerBlinkFlg(1);
 						SetBlinkFlg(1);
 					}
@@ -229,8 +228,7 @@ int Apple::HitBoxPlayer() {
 		if (gApple[i].flg == TRUE) {
 			
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
-				if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
-					//player.SetPlayerBlinkFlg(1);
+				if (gApple[i].img == Image::GetImages(IMG_APPLE,POISONAPPLE)) {
 					SetBlinkFlg(1);
 				}
 			}
@@ -252,28 +250,28 @@ int Apple::HitBoxPlayer() {
 ************************************************/
 void Apple::ApplePoint(int i)
 {
-	if (gApple[i].img == appleimage.apple[REDAPPLE]) {//Ô‚è‚ñ‚²
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, REDAPPLE)) {//Ô‚è‚ñ‚²
 		gScore += 100;
 		gRACount += 1;
-		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == appleimage.apple[BLUEAPPLE]) {//Â‚è‚ñ‚²
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, BLUEAPPLE)) {//Â‚è‚ñ‚²
 		gScore += 200;
 		gBACount += 1;
-		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == appleimage.apple[GOLDAPPLE]) {//‹à‚è‚ñ‚²
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, GOLDAPPLE)) {//‹à‚è‚ñ‚²
 		gScore += 500;
 		gGACount += 1;
-		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == appleimage.apple[POISONAPPLE]) {//“Å‚è‚ñ‚²
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {//“Å‚è‚ñ‚²
 		gScore -= 750;
 		gPACount += 1;
 		if (gScore < 0) {
 			gScore = 0;
 		}
-		PlaySoundMem(applesound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_POISON), DX_PLAYTYPE_BACK, TRUE);
 	}
 }
 
@@ -348,17 +346,17 @@ int Apple::SetBlinkFlg(int flg) {
 	return AppleBlinkFlg;
 }
 
-void Apple::GetAppleImgClass(Image& AppleImg){
-   appleimage = AppleImg;
-}
+//void Apple::GetAppleImgClass(Image& AppleImg){
+//   appleimage = AppleImg;
+//}
 
 void Apple::GetFontClass(Font& AppleFont) {
     applefont = AppleFont;
 }
 
-void Apple::GetSoundClass(Sound& AppleSound) {
-    applesound = AppleSound;
-}
+//void Apple::GetSoundClass(Sound& AppleSound) {
+//    applesound = AppleSound;
+//}
 
 void Apple::DrawPause() {
     std::string str1 = std::to_string(gRACount);

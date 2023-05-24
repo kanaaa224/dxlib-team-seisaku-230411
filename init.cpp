@@ -8,7 +8,7 @@
 #include "ranking.h"
 #include "ranking_name_input.h"
 
-extern Image image;
+//extern Image image;
 extern Font font;
 
 extern Game game;

@@ -8,7 +8,7 @@
 #include "PadInput.h"
 #include "result.h"
 
-extern Image image;	
+//extern Image image;	
 extern Font font;
 
 extern Game game;
@@ -32,7 +32,7 @@ void DrawResult() { // 未完成
 	std::string SCORE = "スコア：" + std::to_string(apple.ReturnScore());	//SCOREにスコア：スコアの文字列を作成
 
 	// 背景表示
-	DrawGraph(0, 0, image.title, TRUE);
+	DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
 	//リザルト
 	DrawStringToHandle(320, 70, "RESULT", 0x000000, font.handle_1_64, 0xffffff);

@@ -1,12 +1,14 @@
-// 作：島袋
-
+/********************************
+* テスト
+* 作者：島袋
+********************************/
 #include "DxLib.h"
 #include "resourceLoad.h"
 
 #include "main.h"
 #include "PadInput.h"
 
-extern Image image;
+//extern Image image;
 extern Font font;
 
 extern Game game;
@@ -15,7 +17,7 @@ extern Game game;
 * テスト
 ********************************/
 void DrawTest() {
-    DrawGraph(0, 0, image.title, TRUE);
+    DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 	
 	DrawStringToHandle(400, 40, "りんごおとし", 0x000000, font.handle_1_32, 0xffffff);
 	DrawStringToHandle(400, 90, "りんごおとし", 0x000000, font.handle_1_64, 0xffffff);

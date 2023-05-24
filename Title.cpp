@@ -1,16 +1,18 @@
-// 作：島袋、玉城
-
+/********************************
+* タイトル画面
+* 作者：玉城、島袋
+********************************/
 #include "DxLib.h"
 #include "resourceLoad.h"
 #include "main.h"
 #include "PadInput.h"
 #include"Title.h"
 
-extern Image image;
+//extern Image image;
 extern Font font;
 
 extern Game game;
-extern Sound sound;
+//extern Sound sound;
 
 int title_state = 0;
 
@@ -22,7 +24,7 @@ int title_stickflg = 0;
 ********************************/
 void Title::DrawTitle() {
 	// 背景表示
-	DrawGraph(0, 0, image.title, TRUE);
+	DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
 	// タイトル表示
 	DrawStringToHandle(330, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
@@ -57,7 +59,7 @@ void Title::DrawTitle() {
 	********************************/
 	// コントローラー入力
 	if (title_selectstate = PAD_INPUT::GetStickY() > 32000 && title_stickflg == 0) {
-		PlaySoundMem(sound.se_corsor, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_CURSOR), DX_PLAYTYPE_BACK, TRUE);
 		if (title_state <= 0) {
 			title_state = 3;
 		}
@@ -67,7 +69,7 @@ void Title::DrawTitle() {
 		title_stickflg = 1;
 	}
 	else if (title_selectstate = PAD_INPUT::GetStickY() < -32000 && title_stickflg == 0) {
-		PlaySoundMem(sound.se_corsor, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_CURSOR), DX_PLAYTYPE_BACK, TRUE);
 		if (title_state >= 3) {
 			title_state = 0;
 		}
@@ -84,8 +86,8 @@ void Title::DrawTitle() {
 	};
 	// Bボタンで選択
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_B) == 1) {
-		if (CheckSoundMem(sound.se_selct) == 0) {
-			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		if (CheckSoundMem(Sound::GetSounds(SND_SE_SELECT)) == 0) {
+			PlaySoundMem(Sound::GetSounds(SND_SE_SELECT), DX_PLAYTYPE_BACK, TRUE);
 		};
 		if (title_state == 0) {
 			// スタート選択
@@ -116,8 +118,8 @@ void Title::DrawTitle() {
 		title_state = 3;
 	};
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
-		if (CheckSoundMem(sound.se_selct) == 0) {
-			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		if (CheckSoundMem(Sound::GetSounds(SND_SE_SELECT)) == 0) {
+			PlaySoundMem(Sound::GetSounds(SND_SE_SELECT), DX_PLAYTYPE_BACK, TRUE);
 		};
 		if (title_state == 0) {
 			// スタート選択
@@ -137,8 +139,8 @@ void Title::DrawTitle() {
 		};
 	};
 	if (CheckHitKey(KEY_INPUT_T)) {
-		if (CheckSoundMem(sound.se_selct) == 0) {
-			PlaySoundMem(sound.se_selct, DX_PLAYTYPE_BACK, TRUE);
+		if (CheckSoundMem(Sound::GetSounds(SND_SE_SELECT)) == 0) {
+			PlaySoundMem(Sound::GetSounds(SND_SE_SELECT), DX_PLAYTYPE_BACK, TRUE);
 		};
 		game.mode = TEST;
 	};
