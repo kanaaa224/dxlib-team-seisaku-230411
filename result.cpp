@@ -3,19 +3,15 @@
 #include <string>
 #include "Apple.h"
 #include "main.h"
-#include"UI.h"
+#include "UI.h"
 #include "ranking.h"
 #include "PadInput.h"
 #include "result.h"
 
-//extern Image image;	
-extern Font font;
-
-extern Game game;
-
 using std::string;
 using std::to_string;
 
+extern Game game;
 extern Apple apple;
 
 /********************************
@@ -35,21 +31,21 @@ void DrawResult() { // 未完成
 	DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
 	//リザルト
-	DrawStringToHandle(320, 70, "RESULT", 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(320, 70, "RESULT", 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 
 	//背景　白
 	DrawBox(300, 160, 800, 550, 0xFDF5E6, TRUE);
 	DrawBox(300, 160, 801, 551, 0x000000, FALSE);
 
 	//赤　青　黄　毒　スコア の文字列(String)を文字(Char)に変換
-	DrawStringToHandle(320, 180, RED.c_str(), 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(320, 250, BLUE.c_str(), 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(320, 320, GOLD.c_str(), 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(320, 390, POISON.c_str(), 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(320, 460, SCORE.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(320, 180, RED.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(320, 250, BLUE.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(320, 320, GOLD.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(320, 390, POISON.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(320, 460, SCORE.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 
 	// 次へ
-	DrawStringToHandle(530, 670, "Bボタンですすむ", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(530, 670, "Bボタンですすむ", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 	// 仮、ボタンで分岐させる処理
 	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
 		if (GetRankingFlg() == 1) {

@@ -80,7 +80,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
     //apple.GetAppleImgClass(image);
     //apple.GetSoundClass(sound);
-    apple.GetFontClass(font);
+    //apple.GetFontClass(font);
 
 	// ランキングデータの読込
 	if (ReadRanking() == -1) return -1;
@@ -175,7 +175,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				ui.DrawImg();
 				ui.DrawTimeLimit();
                 apple.DrawPause();
-				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, font.handle_1_128, 0xffffff);
+				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, Font::GetFonts(FONT_1_128), 0xffffff);
 			}
 			break;
 

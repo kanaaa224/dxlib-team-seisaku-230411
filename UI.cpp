@@ -27,8 +27,8 @@ void UI::DrawTimeLimit()
 		}
 	}
 	//§ŒÀŠÔ•\¦
-	DrawStringToHandle(1005, 50, "§ŒÀŠÔ", 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(1100, 150, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(1005, 50, "§ŒÀŠÔ", 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(1100, 150, str.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 	
 	//ƒŠƒUƒ‹ƒg‘JˆÚ
 	if (gTimeLimit <= 0)

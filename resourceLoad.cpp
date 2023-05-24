@@ -5,6 +5,7 @@
 #include "DxLib.h"
 #include "resourceLoad.h"
 
+
 /********************************
 * 画像を読み込む
 ********************************/
@@ -122,6 +123,13 @@ int Sound::GetSounds(int num) {
 * フォントを読み込む
 ********************************/
 int Font::handle_0_128 = 0;
+int Font::handle_0_64 = 0;
+int Font::handle_0_32 = 0;
+int Font::handle_0_16 = 0;
+int Font::handle_1_128 = 0;
+int Font::handle_1_64 = 0;
+int Font::handle_1_32 = 0;
+int Font::handle_1_16 = 0;
 
 int Font::LoadFonts(void) {
 	LPCSTR font_path = "Resources/Fonts/syokakiutage.ttf"; // 読み込むフォントファイルのパス
@@ -152,5 +160,26 @@ int Font::GetFonts(int num) {
     switch (num) {
     case FONT_0_128:
         return handle_0_128;
+
+    case FONT_0_64:
+        return handle_0_64;
+
+    case FONT_0_32:
+        return handle_0_32;
+
+    case FONT_0_16:
+        return handle_0_16;
+
+    case FONT_1_128:
+        return handle_1_128;
+
+    case FONT_1_64:
+        return handle_1_64;
+
+    case FONT_1_32:
+        return handle_1_32;
+
+    case FONT_1_16:
+        return handle_1_16;
     };
 };

@@ -6,13 +6,9 @@
 #include "resourceLoad.h"
 #include "main.h"
 #include "PadInput.h"
-#include"Title.h"
-
-//extern Image image;
-extern Font font;
+#include "Title.h"
 
 extern Game game;
-//extern Sound sound;
 
 int title_state = 0;
 
@@ -27,31 +23,31 @@ void Title::DrawTitle() {
 	DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
 	// タイトル表示
-	DrawStringToHandle(330, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
+	DrawStringToHandle(330, 150, "りんごおとし", 0x000000, Font::GetFonts(FONT_1_128), 0xffffff);
 
 	// バージョン表示（仮）
-	DrawStringToHandle(20, 690, "v1.2.3", 0x000000, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(20, 690, "v1.2.3", 0x000000, Font::GetFonts(FONT_0_16), 0xffffff);
 
 	// ゲームモードセレクトの項目
-	DrawStringToHandle(630, 350, "スタート", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 400, "ヘルプ", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 450, "ランキング", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(630, 500, "終わる", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(630, 350, "スタート", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
+	DrawStringToHandle(630, 400, "ヘルプ", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
+	DrawStringToHandle(630, 450, "ランキング", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
+	DrawStringToHandle(630, 500, "終わる", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 
-	DrawStringToHandle(380, 670, "左スティックで選たく、Bボタンで決定", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(380, 670, "左スティックで選たく、Bボタンで決定", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 	
 	// ゲームモードセレクトのカーソル処理
 	if (title_state == 0) {
-		DrawStringToHandle(570, 350, "→", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(570, 350, "→", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 	}
 	else if (title_state == 1) {
-		DrawStringToHandle(570, 400, "→", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(570, 400, "→", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 	}
 	else if (title_state == 2) {
-		DrawStringToHandle(570, 450, "→", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(570, 450, "→", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 	}
 	else if (title_state == 3) {
-		DrawStringToHandle(570, 500, "→", 0x000000, font.handle_1_32, 0xffffff);
+		DrawStringToHandle(570, 500, "→", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 	};
 
 	/********************************

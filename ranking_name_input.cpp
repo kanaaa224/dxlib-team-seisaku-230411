@@ -32,8 +32,6 @@ int rni_selector[] = { 90, 440, 35, 30, 0, 0 };
 int rni_state = 0;
 
 extern Apple apple;
-//extern Image image;
-extern Font font;
 extern Game game;
 
 /********************************
@@ -47,15 +45,15 @@ void DrawRankingNameInput() {
     DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
 	// タイトル
-	DrawStringToHandle(270, 50, "ランキングに登録", 0x000000, font.handle_1_64, 0xffffff);
+	DrawStringToHandle(270, 50, "ランキングに登録", 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 
 	// 本文
 	std::string str = "スコア：" + std::to_string(apple.ReturnScore());
-	DrawStringToHandle(750, 70, str.c_str(), 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(750, 70, str.c_str(), 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 
-	DrawStringToHandle(140, 150, "あなたのスコアが上位５位内に入りました！おめでとうございます。", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(140, 150, "あなたのスコアが上位５位内に入りました！おめでとうございます。", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 
-	DrawStringToHandle(110, 200, "ということで、ランキングに追加します。あなたの名前をどうぞ（強制）", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(110, 200, "ということで、ランキングに追加します。あなたの名前をどうぞ（強制）", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 
 	// 開発用
 	//DrawFormatString(50, 10, 0x000000, "%d - %d / %d - %d / %d - %d / %c / %d", rni_selector[0], rni_selector[1], rni_selector[2], rni_selector[3], rni_selector[4], rni_selector[5], rni_alphabet[rni_selector[4]][rni_selector[5]], strlen(rni_inputName.c_str()));
@@ -78,32 +76,32 @@ void DrawRankingNameInput() {
 	};
 	DrawBox(770, 360, inputName_Box_Width, 398, 0xffffff, FALSE);
 
-	DrawStringToHandle(760, 370, ">", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(350, 360, "名前を英数字で入力してください", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(350, 380, "十字キー・左スティックでカーソル移動、", 0xffffff, font.handle_0_16, 0xffffff);
-	DrawStringToHandle(350, 400, "Aボタンで入力、Bボタンで一字削除", 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(760, 370, ">", 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
+	DrawStringToHandle(350, 360, "名前を英数字で入力してください", 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
+	DrawStringToHandle(350, 380, "十字キー・左スティックでカーソル移動、", 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
+	DrawStringToHandle(350, 400, "Aボタンで入力、Bボタンで一字削除", 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
 
-	DrawStringToHandle(780, 370, rni_inputName.c_str(), 0xffffff, font.handle_0_16, 0xffffff);
+	DrawStringToHandle(780, 370, rni_inputName.c_str(), 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
 
 	// アルファベット大文字・小文字の表示
 	for (int i = 0; i < 26; i++) {
 		str = rni_alphabet[0][i];
-		DrawStringToHandle(100 + (i * 42), 440, str.c_str(), 0xffffff, font.handle_0_32, 0xffffff);
+		DrawStringToHandle(100 + (i * 42), 440, str.c_str(), 0xffffff, Font::GetFonts(FONT_0_32), 0xffffff);
 		str = rni_alphabet[1][i];
-		DrawStringToHandle(100 + (i * 42), 490, str.c_str(), 0xffffff, font.handle_0_32, 0xffffff);
+		DrawStringToHandle(100 + (i * 42), 490, str.c_str(), 0xffffff, Font::GetFonts(FONT_0_32), 0xffffff);
 	};
 	// 数字キーパッド表示
 	for (int i = 0; i < 10; i++) {
 		str = rni_alphabet[2][i];
-		DrawStringToHandle(435 + (i * 42), 540, str.c_str(), 0xffffff, font.handle_0_32, 0xffffff);
+		DrawStringToHandle(435 + (i * 42), 540, str.c_str(), 0xffffff, Font::GetFonts(FONT_0_32), 0xffffff);
 	};
 	// 入力確定ボタン
 	if (rni_inputName.length() > 0) {
-		DrawStringToHandle(597, 595, "入力確定", 0xffffff, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(597, 595, "入力確定", 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
 	}
 	else {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-		DrawStringToHandle(597, 595, "入力確定", 0xffffff, font.handle_0_16, 0xffffff);
+		DrawStringToHandle(597, 595, "入力確定", 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	};
 
