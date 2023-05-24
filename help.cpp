@@ -3,22 +3,24 @@
 * 作者：島袋
 ********************************/
 #include "DxLib.h"
+#include "help.h"
 #include "resourceLoad.h"
 #include "main.h"
 #include "PadInput.h"
-
-/********************************
-* 変数宣言
-********************************/
-int help_state = 0;
 
 extern Game game;
 
 
 /********************************
+* ヘルプ変数初期化
+********************************/
+int Help::state = 0;
+
+
+/********************************
 * ヘルプ画面描画
 ********************************/
-void DrawHelp() {
+void Help::Draw() {
 	// 背景表示
 	DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
@@ -33,7 +35,7 @@ void DrawHelp() {
 
 	// メンバー変数に保存されたステートで表示を分岐
 
-	if (help_state == 0) {
+	if (state == 0) {
 		// コントローラーのヘルプ表示
 
 		// サブタイトル表示
@@ -64,7 +66,7 @@ void DrawHelp() {
 		DrawLine(510, 350, 700, 300, 0x000000);
 		DrawStringToHandle(700, 290, "STARTボタン：ポーズ", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 	}
-	else if (help_state == 1) {
+	else if (state == 1) {
 		// ゲーム内容のヘルプ表示
 
 		// サブタイトル表示
@@ -108,10 +110,10 @@ void DrawHelp() {
 	********************************/
 	// コントローラー入力
 	if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_RIGHT) == 1) || (PAD_INPUT::GetStickX() > 3200)) {
-		help_state = 1;
+		state = 1;
 	}
 	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (PAD_INPUT::GetStickX() < -32000)) {
-		help_state = 0;
+		state = 0;
 	};
 	// Aボタンで終了
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_A) == 1) {
@@ -124,10 +126,10 @@ void DrawHelp() {
 
 	// キーボード入力
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
-		help_state = 0;
+		state = 0;
 	};
 	if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		help_state = 1;
+		state = 1;
 	};
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		game.mode = TITLE;

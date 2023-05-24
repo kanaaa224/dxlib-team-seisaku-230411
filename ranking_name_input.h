@@ -17,7 +17,6 @@ public:
 	char GetName();
 	int GetLength();
 	int GetState();
-	RankingNameInput();
 };
 
 void DrawRankingNameInput();

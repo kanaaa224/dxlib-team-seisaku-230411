@@ -24,7 +24,6 @@ int playerx;
 int playery;
 
 UI ui;
-Title title;
 
 
 // プログラムの開始
@@ -94,7 +93,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		switch (game.mode) {
 		case TITLE:
 			// タイトル
-			title.DrawTitle();
+			Title::Draw();
 			if (CheckSoundMem(Sound::GetSounds(SND_BGM_SUB)) == 0) {
 				PlaySoundMem(Sound::GetSounds(SND_BGM_SUB), DX_PLAYTYPE_LOOP, TRUE);
 			}
@@ -176,7 +175,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		case HELP:
 			// ヘルプ画面（島袋）
-			DrawHelp();
+			Help::Draw();
 			break;
 
 		case RESULT:
