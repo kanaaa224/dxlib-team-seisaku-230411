@@ -15,10 +15,6 @@
 #include "Apple.h"
 #include "Pause.h"
 
-Image image;
-Font font;
-Sound sound;
-
 Game game;
 PLAYER player;
 
@@ -70,10 +66,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	//game.mode = TITLE;
 
 	// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
-	//if (ResourceLoad() == -1) return -1;
-	if (image.LoadImages() == -1)return -1;
-	if (sound.LoadSounds() == -1)return -1;
-	if (font.LoadFonts() == -1)return -1;
+	if (Image::LoadImages() == -1)return -1;
+	if (Sound::LoadSounds() == -1)return -1;
+	if (Font::LoadFonts() == -1)return -1;
 
 	//extrun消し
 	//player.GetImagesClass(image);

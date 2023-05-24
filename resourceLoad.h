@@ -34,7 +34,7 @@ private:
 	static int stop[2];
 	static int controller;
 public:
-	int LoadImages(void);
+	static int LoadImages(void);
 	static int GetImages(int, int);
 };
 
@@ -47,7 +47,7 @@ private:
     static int se_cursor;
     static int se_select;
 public:
-	int LoadSounds(void);
+    static int LoadSounds(void);
     static int GetSounds(int);
 };
 
@@ -62,6 +62,6 @@ private:
     static int handle_1_32;
     static int handle_1_16;
 public:
-	int LoadFonts(void);
+    static int LoadFonts(void);
     static int GetFonts(int);
 };
