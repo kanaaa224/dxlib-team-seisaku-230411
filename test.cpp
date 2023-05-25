@@ -1,13 +1,11 @@
-// 作：島袋
-
+/********************************
+* テスト
+* 作者：島袋
+********************************/
 #include "DxLib.h"
 #include "resourceLoad.h"
-
 #include "main.h"
 #include "PadInput.h"
-
-extern Image image;
-extern Font font;
 
 extern Game game;
 
@@ -15,17 +13,16 @@ extern Game game;
 * テスト
 ********************************/
 void DrawTest() {
-    DrawGraph(0, 0, image.title, TRUE);
+    DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 	
-	DrawStringToHandle(400, 40, "りんごおとし", 0x000000, font.handle_1_32, 0xffffff);
-	DrawStringToHandle(400, 90, "りんごおとし", 0x000000, font.handle_1_64, 0xffffff);
-	DrawStringToHandle(400, 150, "りんごおとし", 0x000000, font.handle_1_128, 0xffffff);
+	DrawStringToHandle(400, 40, "りんごおとし", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
+	DrawStringToHandle(400, 90, "りんごおとし", 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(400, 150, "りんごおとし", 0x000000, Font::GetFonts(FONT_1_128), 0xffffff);
 
-	/*DrawRotaGraph(100, 150, 0.5f, 0, image.player[0], TRUE);
-	DrawRotaGraph(150, 400, 0.5f, 0, image.apple[0], TRUE);*/
+	DrawRotaGraph(150, 400, 0.5f, 0, Image::GetImages(IMG_APPLE,0), TRUE);
 
 	// 戻る表示
-	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 
 	// Aボタンで終了
 	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_A) == 1) {

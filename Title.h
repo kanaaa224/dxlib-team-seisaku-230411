@@ -1,8 +1,10 @@
 // ìF“‡‘Ü
 
 #pragma once
-class Title
-{
+
+class Title {
+private:
+    static int state;
 public:
-	void DrawTitle();
+	static void Draw();
 };

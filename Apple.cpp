@@ -21,9 +21,9 @@ int AppleBlinkFlg;
 /************************************************
 *　オブジェクト宣言
 ************************************************/
-Image appleimage;			//画像
-Font applefont;			    //フォント
-Sound applesound;			//サウンド
+//Image appleimage;			//画像
+//Font applefont;			    //フォント
+//Sound applesound;			//サウンド
 
 /************************************************
 *　初期化
@@ -92,21 +92,21 @@ int Apple::CreateApple()
 {
 
 	//りんご確率
-	int AppleImg = appleimage.apple[0];
+	int AppleImg = Image::GetImages(IMG_APPLE, 0);
 
 	gP = GetRand(99);//100%
 
 	if (gP < 59) {
-		AppleImg = appleimage.apple[REDAPPLE];//赤リンゴ
+		AppleImg = Image::GetImages(IMG_APPLE, REDAPPLE); //赤リンゴ
 	}
 	else if (gP >= 60 && gP < 84) {
-		AppleImg = appleimage.apple[BLUEAPPLE];//青リンゴ
+		AppleImg = Image::GetImages(IMG_APPLE, BLUEAPPLE); //青リンゴ
 	}
 	else if (gP >= 85 && gP < 94) {
-		AppleImg = appleimage.apple[GOLDAPPLE];//金リンゴ
+		AppleImg = Image::GetImages(IMG_APPLE, GOLDAPPLE); //金リンゴ
 	}
 	else if (gP >= 95 && gP < 99) {
-		AppleImg = appleimage.apple[POISONAPPLE];//毒リンゴ
+		AppleImg = Image::GetImages(IMG_APPLE, POISONAPPLE); //毒リンゴ
 	}
 
 	for (int i = 0; i < APPLE_MAX; i++) {
@@ -116,7 +116,6 @@ int Apple::CreateApple()
 			gApple[i].y = -50;						//リンゴの初期Y座標
 			AppleSpeed(i);							//リンゴの速度
 			gApple[i].flg = TRUE;
-			//HitBox();
 			//成功
 			return TRUE;
 		}
@@ -130,16 +129,16 @@ int Apple::CreateApple()
 ************************************************/
 void Apple::AppleSpeed(int i)
 {
-	if (gApple[i].img == appleimage.apple[REDAPPLE]) {
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, REDAPPLE)) {
 		gApple[i].speed = 1;//赤リンゴ
 	}
-	else if (gApple[i].img == appleimage.apple[BLUEAPPLE]) {
+	else if (gApple[i].img == Image::GetImages(IMG_APPLE, BLUEAPPLE)) {
 		gApple[i].speed = 2;//青リンゴ
 	}
-	else if (gApple[i].img == appleimage.apple[GOLDAPPLE]) {
+	else if (gApple[i].img == Image::GetImages(IMG_APPLE, GOLDAPPLE)) {
 		gApple[i].speed = 3.5;//金リンゴ
 	}
-	else if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
+	else if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {
 		gApple[i].speed = 0.5;//毒リンゴ
 	}
 }
@@ -191,7 +190,7 @@ int Apple::HitBoxPlayer() {
 	
 
 	for (int i = 0; i < 10; i++) {
-		if (gApple[i].img == appleimage.apple[POISONAPPLE]) {//毒りんごの当たり判定
+		if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {//毒りんごの当たり判定
 			if (gApple[i].flg == TRUE) {
 				sx1[i] = gApple[i].x - 40;	//左上 X
 				sy1[i] = gApple[i].y - 37;	//左上 Y
@@ -214,7 +213,7 @@ int Apple::HitBoxPlayer() {
 			if (gApple[i].flg == TRUE) {
 
 				if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
-					if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
+					if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {
 						//player.SetPlayerBlinkFlg(1);
 						SetBlinkFlg(1);
 					}
@@ -229,8 +228,7 @@ int Apple::HitBoxPlayer() {
 		if (gApple[i].flg == TRUE) {
 			
 			if (px1 < sx2[i] && sx1[i] < px2 && py1 < sy2[i] && sy1[i] < py2) {
-				if (gApple[i].img == appleimage.apple[POISONAPPLE]) {
-					//player.SetPlayerBlinkFlg(1);
+				if (gApple[i].img == Image::GetImages(IMG_APPLE,POISONAPPLE)) {
 					SetBlinkFlg(1);
 				}
 			}
@@ -240,9 +238,9 @@ int Apple::HitBoxPlayer() {
 	std::string str2 = std::to_string(gBACount);
 	std::string str3 = std::to_string(gGACount);
 
-	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
-	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
-	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
+	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 
 	return 0;
 }
@@ -252,28 +250,28 @@ int Apple::HitBoxPlayer() {
 ************************************************/
 void Apple::ApplePoint(int i)
 {
-	if (gApple[i].img == appleimage.apple[REDAPPLE]) {//赤りんご
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, REDAPPLE)) {//赤りんご
 		gScore += 100;
 		gRACount += 1;
-		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == appleimage.apple[BLUEAPPLE]) {//青りんご
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, BLUEAPPLE)) {//青りんご
 		gScore += 200;
 		gBACount += 1;
-		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == appleimage.apple[GOLDAPPLE]) {//金りんご
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, GOLDAPPLE)) {//金りんご
 		gScore += 500;
 		gGACount += 1;
-		PlaySoundMem(applesound.se_apple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
-	if (gApple[i].img == appleimage.apple[POISONAPPLE]) {//毒りんご
+	if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {//毒りんご
 		gScore -= 750;
 		gPACount += 1;
 		if (gScore < 0) {
 			gScore = 0;
 		}
-		PlaySoundMem(applesound.se_poisonapple, DX_PLAYTYPE_BACK, TRUE);
+		PlaySoundMem(Sound::GetSounds(SND_SE_POISON), DX_PLAYTYPE_BACK, TRUE);
 	}
 }
 
@@ -344,24 +342,24 @@ int Apple::SetBlinkFlg(int flg) {
 	return AppleBlinkFlg;
 }
 
-void Apple::GetAppleImgClass(Image& AppleImg){
-   appleimage = AppleImg;
-}
+//void Apple::GetAppleImgClass(Image& AppleImg){
+//   appleimage = AppleImg;
+//}
 
-void Apple::GetFontClass(Font& AppleFont) {
-    applefont = AppleFont;
-}
+//void Apple::GetFontClass(Font& AppleFont) {
+//    applefont = AppleFont;
+//}
 
-void Apple::GetSoundClass(Sound& AppleSound) {
-    applesound = AppleSound;
-}
+//void Apple::GetSoundClass(Sound& AppleSound) {
+//    applesound = AppleSound;
+//}
 
 void Apple::DrawPause() {
     std::string str1 = std::to_string(gRACount);
     std::string str2 = std::to_string(gBACount);
     std::string str3 = std::to_string(gGACount);
 
-    DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
-    DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
-    DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
+    DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+    DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+    DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 }

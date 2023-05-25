@@ -15,10 +15,6 @@
 #include "Apple.h"
 #include "Pause.h"
 
-Image image;
-Font font;
-Sound sound;
-
 Game game;
 PLAYER player;
 
@@ -28,7 +24,6 @@ int playerx;
 int playery;
 
 UI ui;
-Title title;
 
 
 // プログラムの開始
@@ -70,17 +65,16 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	//game.mode = TITLE;
 
 	// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
-	//if (ResourceLoad() == -1) return -1;
-	if (image.LoadImages() == -1)return -1;
-	if (sound.LoadSounds() == -1)return -1;
-	if (font.LoadFonts() == -1)return -1;
+	if (Image::LoadImages() == -1)return -1;
+	if (Sound::LoadSounds() == -1)return -1;
+	if (Font::LoadFonts() == -1)return -1;
 
 	//extrun消し
-	player.GetImagesClass(image);
+	//player.GetImagesClass(image);
 
-    apple.GetAppleImgClass(image);
-    apple.GetSoundClass(sound);
-    apple.GetFontClass(font);
+    //apple.GetAppleImgClass(image);
+    //apple.GetSoundClass(sound);
+    //apple.GetFontClass(font);
 
 	// ランキングデータの読込
 	if (ReadRanking() == -1) return -1;
@@ -99,23 +93,25 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		switch (game.mode) {
 		case TITLE:
 			// タイトル
-			title.DrawTitle();
-			if (CheckSoundMem(sound.subbgm) == 0) {
-				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_LOOP, TRUE);
+			Title::Draw();
+			if (CheckSoundMem(Sound::GetSounds(SND_BGM_SUB)) == 0) {
+				PlaySoundMem(Sound::GetSounds(SND_BGM_SUB), DX_PLAYTYPE_LOOP, TRUE);
 			}
 			break;
+
 		case INIT:
 			// ゲーム初期化
 			GameInit();
-			StopSoundMem(sound.subbgm);
+			StopSoundMem(Sound::GetSounds(SND_BGM_SUB));
 			apple.SetBlinkFlg(0);
 			player.SetPlayerX(600);
 			player.SetPlayerFlg(TRUE);
 			ui.SetUI(0,60);
 			break;
+
 		case MAIN:
 			// 背景表示
-			DrawGraph(0, 0, image.title, TRUE);
+			DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 			
 			// 開発用 - Rキーで強制リザルト
 			if (CheckHitKey(KEY_INPUT_R)) {
@@ -133,12 +129,12 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (GetPauseFlg() == 0) {
 				if (game.soundflg == 0) {		//最初だけはじめから再生
 					//BGM
-					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_LOOP, TRUE);
+					PlaySoundMem(Sound::GetSounds(SND_BGM_MAIN), DX_PLAYTYPE_LOOP, TRUE);
 					game.soundflg = 1;
 				}
 				else {
 					//BGM
-					PlaySoundMem(sound.mainbgm, DX_PLAYTYPE_LOOP, FALSE);
+					PlaySoundMem(Sound::GetSounds(SND_BGM_MAIN), DX_PLAYTYPE_LOOP, FALSE);
 				}
 
 				player.PlayerControll();
@@ -162,7 +158,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			}
 			else {
 				//BGM
-				StopSoundMem(sound.mainbgm);
+				StopSoundMem(Sound::GetSounds(SND_BGM_MAIN));
 				for (int i = 0; i < 10; i++) {
 					if (apple.ReturnAppleFlg(i) == TRUE) {
 						//リンゴの表示
@@ -173,35 +169,41 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				ui.DrawImg();
 				ui.DrawTimeLimit();
                 apple.DrawPause();
-				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, font.handle_1_128, 0xffffff);
+				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, Font::GetFonts(FONT_1_128), 0xffffff);
 			}
 			break;
+
 		case HELP:
 			// ヘルプ画面（島袋）
-			DrawHelp();
+			Help::Draw();
 			break;
+
 		case RESULT:
 			//BGM
-			StopSoundMem(sound.mainbgm);
-			if (CheckSoundMem(sound.subbgm) == 0) {
-				PlaySoundMem(sound.subbgm, DX_PLAYTYPE_LOOP, TRUE);
+			StopSoundMem(Sound::GetSounds(SND_BGM_MAIN));
+			if (CheckSoundMem(Sound::GetSounds(SND_BGM_SUB)) == 0) {
+				PlaySoundMem(Sound::GetSounds(SND_BGM_SUB), DX_PLAYTYPE_LOOP, TRUE);
 			}
 			game.soundflg = 0;
 			// リザルト画面
 			DrawResult();
 			break;
+
 		case INPUTNAME:
 			// ランキング入力画面（島袋）
 			DrawRankingNameInput();
 			break;
+
 		case RANKING:
 			// ランキング画面
 			DrawRanking();
 			break;
+
 		case END:
 			// エンド画面
 			DrawEnd();
 			break;
+
 		case TEST:
 			// テストで、画像やフォント表示（島袋）（タイトルでTを押して発動）
 			DrawTest();

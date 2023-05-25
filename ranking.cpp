@@ -12,14 +12,10 @@
 #include "main.h"
 #include "PadInput.h"
 
-//extern Image image;
-extern Font font;
-
-extern Game game;
-
 using std::string;
 using std::to_string;
 
+extern Game game;
 extern Apple apple;
 
 int gRankingImg;	//ランキング画面背景
@@ -71,20 +67,20 @@ void DrawRanking() {
 	RgScore = apple.ReturnScore();
 
     // 背景表示
-    DrawGraph(0, 0, Image::GetImages(TITLE,0), TRUE);
+    DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 
-    DrawStringToHandle(360, 10, "ランキング", 0x000000, font.handle_1_128, 0xffffff);
+    DrawStringToHandle(360, 10, "ランキング", 0x000000, Font::GetFonts(FONT_1_128), 0xffffff);
 
 	for (int i = 0; i < RANKING_DATA; i++) {
 		std::string str = std::to_string(gRanking[i].number) + "位";
-		DrawStringToHandle(200, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
-		DrawStringToHandle(380, 150 + i * 100, gRanking[i].name, 0x000000, font.handle_1_64, 0xffffff);
+		DrawStringToHandle(200, 150 + i * 100, str.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+		DrawStringToHandle(380, 150 + i * 100, gRanking[i].name, 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 		str = std::to_string(gRanking[i].score);
-		DrawStringToHandle(900, 150 + i * 100, str.c_str(), 0x000000, font.handle_1_64, 0xffffff);
+		DrawStringToHandle(900, 150 + i * 100, str.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 	};
 
 	// 戻る表示
-	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, font.handle_1_32, 0xffffff);
+	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_A) == 1) {
 		game.mode = TITLE;
 	};

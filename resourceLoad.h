@@ -2,59 +2,66 @@
 
 #pragma once
 
-#define TITLE 0
-#define INIT 1
-#define MAIN 2
-#define HELP 3
-#define RESULT 4
-#define INPUTNAME 5
-#define RANKING 6
-#define END 7
-#define TEST 8
-#define EXIT 99
+#define IMG_TITLE 0
+#define IMG_APPLE 1
+#define IMG_WALK 2
+#define IMG_RUN 3
+#define IMG_STOP 4
+#define IMG_CONTROLLER 5
+
+#define SND_BGM_MAIN 0
+#define SND_BGM_SUB 1
+#define SND_SE_APPLE 2
+#define SND_SE_POISON 3
+#define SND_SE_CURSOR 4
+#define SND_SE_SELECT 5
+
+#define FONT_0_128 0
+#define FONT_0_64 1
+#define FONT_0_32 2
+#define FONT_0_16 3
+#define FONT_1_128 4
+#define FONT_1_64 5
+#define FONT_1_32 6
+#define FONT_1_16 7
 
 class Image {
-public:
+private:
 	static int title;
-	int apple[20];
-	int Walk[3];
-	int Run[8];
-	int Stop[2];
-	int end;
-	int controller;
-	int controller_s;
+	static int apple[20];
+	static int walk[3];
+	static int run[8];
+	static int stop[2];
+	static int controller;
 public:
-	int LoadImages(void);
+	static int LoadImages(void);
 	static int GetImages(int, int);
 };
 
 class Sound {
+private:
+    static int bgm_main;
+    static int bgm_sub;
+    static int se_apple;
+    static int se_poison;
+    static int se_cursor;
+    static int se_select;
 public:
-	int mainbgm;
-	int subbgm;
-	int se_apple;
-	int se_poisonapple;
-	int se_corsor;
-	int se_selct;
-public:
-	int LoadSounds(void);
+    static int LoadSounds(void);
+    static int GetSounds(int);
 };
 
 class Font {
+private:
+	static int handle_0_128;
+    static int handle_0_64;
+    static int handle_0_32;
+    static int handle_0_16;
+    static int handle_1_128;
+    static int handle_1_64;
+    static int handle_1_32;
+    static int handle_1_16;
 public:
-	//int s;
-	int state;
-	int handle_0_128;
-	int handle_0_64;
-	int handle_0_32;
-	int handle_0_16;
-	int handle_1_128;
-	int handle_1_64;
-	int handle_1_32;
-	int handle_1_16;
-	//int handle_2_128;
-	//int handle_2_64;
-	//int handle_2_32;
-public:
-	int LoadFonts(void);
+    static int LoadFonts(void);
+    static int GetFonts(int);
 };
