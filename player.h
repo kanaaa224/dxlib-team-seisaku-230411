@@ -24,7 +24,6 @@ private:
 	int BlinkFlg;
 public:
 	
-
 	//プレイヤーの移動制限
 	//プレイヤーが左または右端出会った場合１を返す
 	//移動可能であった場合０を返しplayer.xにplayer.speedを加算する
@@ -32,12 +31,12 @@ public:
 
 	//プレイヤーの操作
 	void PlayerControll();
+
 	//プレイヤーの描画
 	void DrawPlayer();
+
 	//ポーズ中のプレイヤーの描画
 	void DrawPlayerPause();
-
-
 
 	//プレイヤーのX座標を取得
 	//戻り値でプレイヤーのX座標を返す
@@ -56,10 +55,8 @@ public:
 	void SetPlayerBlinkFlg(int x);
 
 	void SetPlayerFlg(int Pflg);
+
 	int GetPlayerBlinkFlg();
-	
-	//extern消す
-	void GetImagesClass(Image& player);
 
 	PLAYER();
 };
