@@ -25,7 +25,6 @@ int playery;
 
 UI ui;
 
-
 // プログラムの開始
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
 {
@@ -62,19 +61,10 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 	double nextTime;
 
-	//game.mode = TITLE;
-
 	// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
 	if (Image::LoadImages() == -1)return -1;
 	if (Sound::LoadSounds() == -1)return -1;
 	if (Font::LoadFonts() == -1)return -1;
-
-	//extrun消し
-	//player.GetImagesClass(image);
-
-    //apple.GetAppleImgClass(image);
-    //apple.GetSoundClass(sound);
-    //apple.GetFontClass(font);
 
 	// ランキングデータの読込
 	if (ReadRanking() == -1) return -1;
@@ -104,7 +94,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			GameInit();
 			StopSoundMem(Sound::GetSounds(SND_BGM_SUB));
 			apple.SetBlinkFlg(0);
-			player.SetPlayerX(600);
+			//player.SetPlayerX(600);
 			player.SetPlayerFlg(TRUE);
 			ui.SetUI(0,60);
 			break;

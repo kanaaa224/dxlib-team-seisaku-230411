@@ -15,9 +15,6 @@ int StopImg;
 int FPS = 0;
 int BlinkFPSFlg = 0;
 
-Image playerimage;
-
-
 void PLAYER::PlayerControll() {
 	Stick = PAD_INPUT::GetStickX();	//スティックの状態取得
 
@@ -276,6 +273,3 @@ int PLAYER::GetPlayerBlinkFlg() {
 	return BlinkFlg;
 }
 
-void PLAYER::GetImagesClass(Image& player) {
-	playerimage = player;
-}
