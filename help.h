@@ -2,4 +2,9 @@
 
 #pragma once
 
-void DrawHelp();
+class Help {
+private:
+    static int state;
+public:
+    static void Draw();
+};

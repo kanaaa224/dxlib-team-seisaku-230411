@@ -15,10 +15,6 @@
 #include "Apple.h"
 #include "Pause.h"
 
-Image image;
-Font font;
-Sound sound;
-
 Game game;
 PLAYER player;
 
@@ -28,7 +24,6 @@ int playerx;
 int playery;
 
 UI ui;
-Title title;
 
 
 // プログラムの開始
@@ -70,17 +65,16 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	//game.mode = TITLE;
 
 	// リソースを読み込んで、他の .cpp でもメンバー変数で利用可能にする関数（島袋）
-	//if (ResourceLoad() == -1) return -1;
-	if (image.LoadImages() == -1)return -1;
-	if (sound.LoadSounds() == -1)return -1;
-	if (font.LoadFonts() == -1)return -1;
+	if (Image::LoadImages() == -1)return -1;
+	if (Sound::LoadSounds() == -1)return -1;
+	if (Font::LoadFonts() == -1)return -1;
 
 	//extrun消し
 	//player.GetImagesClass(image);
 
     //apple.GetAppleImgClass(image);
     //apple.GetSoundClass(sound);
-    apple.GetFontClass(font);
+    //apple.GetFontClass(font);
 
 	// ランキングデータの読込
 	if (ReadRanking() == -1) return -1;
@@ -99,7 +93,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		switch (game.mode) {
 		case TITLE:
 			// タイトル
-			title.DrawTitle();
+			Title::Draw();
 			if (CheckSoundMem(Sound::GetSounds(SND_BGM_SUB)) == 0) {
 				PlaySoundMem(Sound::GetSounds(SND_BGM_SUB), DX_PLAYTYPE_LOOP, TRUE);
 			}
@@ -175,13 +169,13 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				ui.DrawImg();
 				ui.DrawTimeLimit();
                 apple.DrawPause();
-				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, font.handle_1_128, 0xffffff);
+				DrawStringToHandle(200, 310, "-- ポーズ中 --", 0x000000, Font::GetFonts(FONT_1_128), 0xffffff);
 			}
 			break;
 
 		case HELP:
 			// ヘルプ画面（島袋）
-			DrawHelp();
+			Help::Draw();
 			break;
 
 		case RESULT:

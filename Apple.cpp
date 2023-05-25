@@ -22,7 +22,7 @@ int AppleBlinkFlg;
 *　オブジェクト宣言
 ************************************************/
 //Image appleimage;			//画像
-Font applefont;			    //フォント
+//Font applefont;			    //フォント
 //Sound applesound;			//サウンド
 
 /************************************************
@@ -238,9 +238,9 @@ int Apple::HitBoxPlayer() {
 	std::string str2 = std::to_string(gBACount);
 	std::string str3 = std::to_string(gGACount);
 
-	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
-	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
-	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
+	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+	DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 
 	return 0;
 }
@@ -350,9 +350,9 @@ int Apple::SetBlinkFlg(int flg) {
 //   appleimage = AppleImg;
 //}
 
-void Apple::GetFontClass(Font& AppleFont) {
-    applefont = AppleFont;
-}
+//void Apple::GetFontClass(Font& AppleFont) {
+//    applefont = AppleFont;
+//}
 
 //void Apple::GetSoundClass(Sound& AppleSound) {
 //    applesound = AppleSound;
@@ -363,7 +363,7 @@ void Apple::DrawPause() {
     std::string str2 = std::to_string(gBACount);
     std::string str3 = std::to_string(gGACount);
 
-    DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
-    DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
-    DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, applefont.handle_1_64, 0xffffff);
+    DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+    DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+    DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 }
