@@ -12,7 +12,7 @@ using std::string;
 using std::to_string;
 
 extern Game game;
-extern Apple apple;
+//extern Apple apple;
 
 /********************************
 * リザルト画面
@@ -21,11 +21,11 @@ extern Apple apple;
 void DrawResult() { // 未完成
 
 	//文字列変換	個数を増分する表示はフォントが適応されないため文字列に変換
-	std::string RED = "赤リンゴ：" + std::to_string(apple.ReturnRA());		//REDに赤リンゴ：個数の文字列を作成　
-	std::string BLUE = "青リンゴ：" + std::to_string(apple.ReturnBL());		//BLUEに青リンゴ：個数の文字列を作成
-	std::string GOLD = "黄リンゴ：" + std::to_string(apple.ReturnGL());		//GOLDに金リンゴ：個数の文字列を作成
-	std::string POISON = "毒リンゴ：" + std::to_string(apple.ReturnPO());	//POISONに毒リンゴ：個数の文字列を作成
-	std::string SCORE = "スコア：" + std::to_string(apple.ReturnScore());	//SCOREにスコア：スコアの文字列を作成
+	std::string RED = "赤リンゴ：" + std::to_string(AppleCount::ReturnRA());		//REDに赤リンゴ：個数の文字列を作成　
+	std::string BLUE = "青リンゴ：" + std::to_string(AppleCount::ReturnBL());		//BLUEに青リンゴ：個数の文字列を作成
+	std::string GOLD = "黄リンゴ：" + std::to_string(AppleCount::ReturnGL());		//GOLDに金リンゴ：個数の文字列を作成
+	std::string POISON = "毒リンゴ：" + std::to_string(AppleCount::ReturnPO());	//POISONに毒リンゴ：個数の文字列を作成
+	std::string SCORE = "スコア：" + std::to_string(AppleCount::ReturnScore());	//SCOREにスコア：スコアの文字列を作成
 
 	// 背景表示
 	DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);

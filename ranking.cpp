@@ -16,7 +16,7 @@ using std::string;
 using std::to_string;
 
 extern Game game;
-extern Apple apple;
+//extern Apple apple;
 
 int gRankingImg;	//ランキング画面背景
 
@@ -48,14 +48,14 @@ void DrawRanking() {
 						gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i);
 					};
 					gRanking[RANKING_DATA - 1].name[GetInputedNameLength()] = '\0'; // Null文字付与
-					gRanking[RANKING_DATA - 1].score = apple.ReturnScore(); // ランキングデータの最下位にスコアを登録
+					gRanking[RANKING_DATA - 1].score = AppleCount::ReturnScore(); // ランキングデータの最下位にスコアを登録
 					SortRanking(); // ランキング並べ替え
 					SaveRanking(); // ランキングデータの保存
 				};
 			};
 
 			gRanking[RANKING_DATA - 1].name[GetInputedNameLength()] = '\0'; // Null文字付与
-			gRanking[RANKING_DATA - 1].score = apple.ReturnScore(); // ランキングデータの最下位にスコアを登録
+			gRanking[RANKING_DATA - 1].score = AppleCount::ReturnScore(); // ランキングデータの最下位にスコアを登録
 			SortRanking(); // ランキング並べ替え
 			SaveRanking(); // ランキングデータの保存
 
@@ -64,7 +64,7 @@ void DrawRanking() {
 	};
 
 	int RgScore = 0;
-	RgScore = apple.ReturnScore();
+	RgScore = AppleCount::ReturnScore();
 
     // 背景表示
     DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
@@ -178,7 +178,7 @@ int ReadRanking(void) {
 int GetRankingFlg() {
 	// 最下位と現在のスコアを比較
 
-	if (gRanking[RANKING_DATA - 1].score <= apple.ReturnScore()) {
+	if (gRanking[RANKING_DATA - 1].score <= AppleCount::ReturnScore()) {
 		return 1;
 	}
 	else {
