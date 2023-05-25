@@ -325,15 +325,11 @@ void Apple::SetAppleCount(int num) {
 
 void Apple::GetPlayerX(int xPos) {
 	px1 = xPos - 30;
-	/*py1 = player.ReturnPlayerY() - 90;*/
 	px2 = xPos + 30;
-	//py2 = player.ReturnPlayerY() + 120;
 }
 
 void Apple::GetPlayerY(int yPos) {
-	//px1 = player.ReturnPlayerX() - 30;
 	py1 = yPos - 90;
-	//px2 = player.ReturnPlayerX() + 30;
 	py2 = yPos + 120;
 }
 
