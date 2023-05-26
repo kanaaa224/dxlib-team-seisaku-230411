@@ -47,10 +47,6 @@ void RankingNameInput::Draw() {
 
 	DrawStringToHandle(110, 200, "ということで、ランキングに追加します。あなたの名前をどうぞ（強制）", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 
-	// 開発用
-	//DrawFormatString(50, 10, 0x000000, "%d - %d / %d - %d / %d - %d / %c / %d", selector[0], selector[1], selector[2], selector[3], selector[4], selector[5], alphabet[selector[4]][selector[5]], strlen(inputName.c_str()));
-	//DrawFormatString(50, 30, 0x000000, "%d - %d", PAD_INPUT::GetStickX(), PAD_INPUT::GetStickY());
-
 	/********************************
 	* キーボード描画
 	********************************/
