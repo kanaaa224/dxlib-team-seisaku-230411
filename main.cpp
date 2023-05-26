@@ -17,8 +17,6 @@
 
 PLAYER player;
 Apple apple;
-int playerx;
-int playery;
 UI ui;
 
 /********************************
