@@ -51,12 +51,6 @@ void DrawRanking() {
 					SaveRanking(); // ランキングデータの保存
 				};
 			};
-
-			gRanking[RANKING_DATA - 1].name[GetInputedNameLength()] = '\0'; // Null文字付与
-			gRanking[RANKING_DATA - 1].score = AppleCount::ReturnScore(); // ランキングデータの最下位にスコアを登録
-			SortRanking(); // ランキング並べ替え
-			SaveRanking(); // ランキングデータの保存
-
 		};
 		ranking_state = 1; // また実行しないように
 	};
