@@ -3,9 +3,9 @@
 
 #include "main.h"
 
-extern Game game;
 
 int FPSCount = 0;
+
 
 /********************************
 * エンド画面
@@ -48,11 +48,11 @@ void DrawEnd() {
 		DrawStringToHandle(170, 630, "タイトルでのカーソル移動時SE   効果音ラボ　https://soundeffect-lab.info/", 0x000000, Font::GetFonts(FONT_0_16), 0xffffff);
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-			game.mode = EXIT;
+            Game::ModeSet(EXIT);
 		};
 
 		if (FPSCount == 300) {
-			game.mode = EXIT;
+            Game::ModeSet(EXIT);
 		}
 	}
 };

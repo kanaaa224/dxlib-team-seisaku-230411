@@ -8,20 +8,13 @@
 #include "ranking.h"
 #include "ranking_name_input.h"
 
-extern Game game;
 extern Apple apple;
-Init ini;
 
 /********************************
 * ƒQ[ƒ€‰Šú‰»
 ********************************/
-void GameInit() { // –¢Š®¬gg
-	game.mode = MAIN;
-
-	ini.StartTime = GetNowCount();
-
-	/*SetPlayerX(600);*/
-	/*apple.AppleInit();*/
+void GameInit() {
+    Game::ModeSet(MAIN);
 	
 	apple.AppleMainInit();
 

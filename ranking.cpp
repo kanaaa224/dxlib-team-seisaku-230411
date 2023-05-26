@@ -15,8 +15,6 @@
 using std::string;
 using std::to_string;
 
-extern Game game;
-//extern Apple apple;
 
 int gRankingImg;	//ランキング画面背景
 
@@ -82,11 +80,11 @@ void DrawRanking() {
 	// 戻る表示
 	DrawStringToHandle(530, 670, "Aボタンでもどる", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_A) == 1) {
-		game.mode = TITLE;
+        Game::ModeSet(TITLE);
 	};
 	// キーボード対応
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-		game.mode = TITLE;
+        Game::ModeSet(TITLE);
 	};
 };
 

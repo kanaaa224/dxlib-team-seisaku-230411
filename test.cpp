@@ -7,7 +7,6 @@
 #include "main.h"
 #include "PadInput.h"
 
-extern Game game;
 
 /********************************
 * テスト
@@ -26,12 +25,12 @@ void DrawTest() {
 
 	// Aボタンで終了
 	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_A) == 1) {
-		game.mode = TITLE;
+        Game::ModeSet(TITLE);
 	};
 
 	// ESCキーで終了
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-		game.mode = TITLE;
+        Game::ModeSet(TITLE);
 	};
 
 	/*

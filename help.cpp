@@ -8,8 +8,6 @@
 #include "main.h"
 #include "PadInput.h"
 
-extern Game game;
-
 
 /********************************
 * ヘルプ変数初期化
@@ -117,11 +115,11 @@ void Help::Draw() {
 	};
 	// Aボタンで終了
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_A) == 1) {
-		game.mode = TITLE;
+        Game::ModeSet(TITLE);
 	};
 	// Bボタンでゲーム開始
 	if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_B) == 1) {
-		game.mode = INIT;
+        Game::ModeSet(INIT);
 	};
 
 	// キーボード入力
@@ -132,9 +130,9 @@ void Help::Draw() {
 		state = 1;
 	};
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-		game.mode = TITLE;
+        Game::ModeSet(TITLE);
 	};
 	if (CheckHitKey(KEY_INPUT_B)) {
-		game.mode = INIT;
+        Game::ModeSet(INIT);
 	};
 };

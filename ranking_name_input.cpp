@@ -14,6 +14,7 @@ int rni_selectstateY;
 int rni_stickflgX = 0;
 int rni_stickflgY = 0;
 
+
 /********************************
 * ’è”éŒ¾
 ********************************/
@@ -24,6 +25,7 @@ const char rni_alphabet[][26] = {
 };
 //const char rni_qwerty[] = { 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M' };
 
+
 /********************************
 * •Ï”éŒ¾
 ********************************/
@@ -31,7 +33,6 @@ std::string rni_inputName = "";
 int rni_selector[] = { 90, 440, 35, 30, 0, 0 };
 int rni_state = 0;
 
-extern Apple apple;
 
 /********************************
 * ƒ‰ƒ“ƒLƒ“ƒO“ü—ÍŠÖ”

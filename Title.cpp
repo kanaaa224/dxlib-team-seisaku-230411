@@ -8,7 +8,6 @@
 #include "main.h"
 #include "PadInput.h"
 
-extern Game game;
 
 int title_selectstate;
 int title_stickflg = 0;
@@ -92,19 +91,19 @@ void Title::Draw() {
 		};
 		if (state == 0) {
 			// スタート選択
-			game.mode = INIT;
+            Game::ModeSet(INIT);
 		}
 		else if (state == 1) {
 			// ヘルプ選択
-			game.mode = HELP;
+            Game::ModeSet(HELP);
 		}
 		else if (state == 2) {
 			// ランキング選択
-			game.mode = RANKING;
+            Game::ModeSet(RANKING);
 		}
 		else if (state == 3) {
 			// 終わる選択
-			game.mode = END;
+            Game::ModeSet(END);
 		};
 	};
 
@@ -124,25 +123,25 @@ void Title::Draw() {
 		};
 		if (state == 0) {
 			// スタート選択
-			game.mode = INIT;
+            Game::ModeSet(INIT);
 		}
 		else if (state == 1) {
 			// ヘルプ選択
-			game.mode = HELP;
+            Game::ModeSet(HELP);
 		}
 		else if (state == 2) {
 			// ランキング選択
-			game.mode = RANKING;
+            Game::ModeSet(RANKING);
 		}
 		else if (state == 3) {
 			// 終わる選択
-			game.mode = END;
+            Game::ModeSet(END);
 		};
 	};
 	if (CheckHitKey(KEY_INPUT_T)) {
 		if (CheckSoundMem(Sound::GetSounds(SND_SE_SELECT)) == 0) {
 			PlaySoundMem(Sound::GetSounds(SND_SE_SELECT), DX_PLAYTYPE_BACK, TRUE);
 		};
-		game.mode = TEST;
+        Game::ModeSet(TEST);
 	};
 };

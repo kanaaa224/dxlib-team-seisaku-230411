@@ -11,8 +11,6 @@
 using std::string;
 using std::to_string;
 
-extern Game game;
-//extern Apple apple;
 
 /********************************
 * リザルト画面
@@ -49,19 +47,19 @@ void DrawResult() { // 未完成
 	// 仮、ボタンで分岐させる処理
 	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
 		if (GetRankingFlg() == 1) {
-			game.mode = INPUTNAME;
+            Game::ModeSet(INPUTNAME);
 		}
 		else {
-			game.mode = RANKING;
+            Game::ModeSet(RANKING);
 		}
 	};
 	// キーボード対応
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (GetRankingFlg() == 1) {
-			game.mode = INPUTNAME;
+            Game::ModeSet(INPUTNAME);
 		}
 		else {
-			game.mode = RANKING;
+            Game::ModeSet(RANKING);
 		}
 	};
 
