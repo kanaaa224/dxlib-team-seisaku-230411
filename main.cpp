@@ -125,6 +125,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (CheckHitKey(KEY_INPUT_R)) {
                 Game::ModeSet(RESULT);
 			};
+
 			if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_START) == 1) { //É|Å[ÉY
 				if (GetPauseFlg() == 0) {
 					SetPauseFlg(1);
@@ -154,11 +155,6 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				
 				//ÉäÉìÉS
 				apple.FallApple();
-				
-				playerx = player.ReturnPlayerX();
-				apple.GetPlayerX(playerx);
-				playery = player.ReturnPlayerY();
-				apple.GetPlayerY(playery);
 
 				apple.GetPlayerX(player.ReturnPlayerX());
 				apple.GetPlayerY(player.ReturnPlayerY());
