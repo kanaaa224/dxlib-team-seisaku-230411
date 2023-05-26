@@ -241,11 +241,11 @@ void RankingNameInput::Draw() {
 		}
 		else {
 			// Char‚P•¶š‚ğ‚PƒoƒCƒg‚Æ‚µ‚Äl‚¦‚Ä‚P‚OƒoƒCƒg‚Ü‚Å
-			if (GetNameLength() < 10) {
+			if (GetNameLength() < 9) {
 				inputName += alphabet[selector[4]][selector[5]];
 			}
 			else {
-				// 10•¶š’´‚¦‚Ä‚é‚Ì‚ÅŒx
+				// 9•¶š’´‚¦‚Ä‚é‚Ì‚ÅŒx
 			};
 		};
 	};
@@ -377,11 +377,11 @@ void RankingNameInput::Draw() {
 		}
 		else {
 			// Char‚P•¶š‚ğ‚PƒoƒCƒg‚Æ‚µ‚Äl‚¦‚Ä‚P‚OƒoƒCƒg‚Ü‚Å
-			if (GetNameLength() < 10) {
+			if (GetNameLength() < 9) {
 				inputName += alphabet[selector[4]][selector[5]];
 			}
 			else {
-				// 10•¶š’´‚¦‚Ä‚é‚Ì‚ÅŒx
+				// 9•¶š’´‚¦‚Ä‚é‚Ì‚ÅŒx
 			};
 		};
 	};
@@ -422,10 +422,6 @@ void RankingNameInput::Reset() {
 ********************************/
 char RankingNameInput::GetName(int i) {
 	if (GetNameLength() > 0) {
-		char name[10];
-		for (int i = 0; i < GetNameLength() - 1; i++) {
-			name[i] = inputName[i];
-		};
 		return inputName.c_str()[i];
 	}
 	else {
