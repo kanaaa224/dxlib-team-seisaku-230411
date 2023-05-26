@@ -18,7 +18,6 @@ int BlinkFPSFlg = 0;
 
 void PLAYER::PlayerControll() {
 	Stick = PAD_INPUT::GetStickX();	//スティックの状態取得
-    DrawFormatString(100, 100, 0xffffff, "%f", speed);
 	PlayerLimit();
 
 	//右歩き
@@ -62,11 +61,9 @@ void PLAYER::PlayerControll() {
 				speed += 0.2;
 			}
 			else {
-                
 				if (FPScountRight < 30 && FPScountRight % 2 == 0) {
 					speed += SPEED_UP;
 				}
-               
 				FPScountRight++;
 			}
 		}
@@ -79,11 +76,9 @@ void PLAYER::PlayerControll() {
 				speed -= 0.2;
 			}
 			else {
-                
 				if (FPScountLeft < 30 && FPScountLeft % 2 == 0) {
 					speed -= SPEED_UP;
-				}
-               
+				}       
 				FPScountLeft++;
 			}
 		}
