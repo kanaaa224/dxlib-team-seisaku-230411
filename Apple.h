@@ -23,13 +23,13 @@ private:
 	int px2;
 	int py2;
 
-	struct  APPLE{
-		int flg;			//使用フラグ
-		int img;			//画像
-		double x, y, w, h;	//座標、幅、高さ
-		double speed;		//移動速度
-		int point;			//スコア加算ポイント
-	};
+    struct  APPLE {
+        int flg;			//使用フラグ
+        int img;			//画像
+        double x, y, w, h;	//座標、幅、高さ
+        double speed;		//移動速度
+        int point;			//スコア加算ポイント
+    };
 
 	APPLE gApple[APPLE_MAX];
 
@@ -181,16 +181,6 @@ public:
     */
 	static int SetBlinkFlg(int flg);
 
-	/**
-	*豊元一成
-	*void MainAppleInit(void)
-	*りんごの初期化
-	*引数	：なし
-	*戻り値	：なし
-	*りんごのカウント、スコア、フラグを初期化
-	*/
-	void AppleMainInit();
-
     void GetAppleImgClass(Image& AppleImg);
     void GetSoundClass(Sound& AppleSound);
     void GetFontClass(Font& AppleFont);
@@ -249,6 +239,16 @@ public:
     *戻り値	：int型　
     */
     static int ReturnScore();
+
+    /**
+    *豊元一成
+    *void MainAppleInit(void)
+    *りんごの初期化
+    *引数	：なし
+    *戻り値	：なし
+    *りんごのカウント、スコア、フラグを初期化
+    */
+    static void AppleMainInit(int RACount,int BACount,int GACount,int PACount,int Score);
 
     static void SetRA(int num);
     static void SetBL(int num);

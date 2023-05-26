@@ -8,15 +8,14 @@
 #include "ranking.h"
 #include "ranking_name_input.h"
 
-extern Apple apple;
-
 /********************************
 * ゲーム初期化
 ********************************/
 void GameInit() {
     Game::ModeSet(MAIN);
 	
-	apple.AppleMainInit();
+    AppleCount::AppleMainInit(0, 0, 0, 0, 0);
+    
 
 	// ランキングの実行済みフラグをリセット
 	SetRankingState(0);
