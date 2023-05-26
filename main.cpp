@@ -198,7 +198,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		case INPUTNAME:
 			// ランキング入力画面（島袋）
-			DrawRankingNameInput();
+            RankingNameInput::Draw();
 			break;
 
 		case RANKING:

@@ -1,5 +1,5 @@
  1 moyakino99 14750
- 2     TOYO09 11900
  2     mughic 11900
+ 2     TOYO09 11900
  4          A 7650
- 5            0
+ 5    GEFORCE 0
