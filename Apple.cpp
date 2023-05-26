@@ -46,11 +46,11 @@ void Apple::AppleInit()
 ************************************************/
 void Apple::AppleMainInit()
 {
-	gRACount = 0;
-	gBACount = 0;
-	gGACount = 0;
-	gPACount = 0;
-	gScore = 0;
+    AppleCount::SetRA(0);
+    AppleCount::SetBL(0);
+    AppleCount::SetGL(0);
+    AppleCount::SetPO(0);
+    AppleCount::SetScore(0);
 
 	for (int i = 0; i < APPLE_MAX; i++) {
 		gApple[i].flg = FALSE;
@@ -234,9 +234,9 @@ int Apple::HitBoxPlayer() {
 			}
 		}
 	}
-	std::string str1 = std::to_string(gRACount);
-	std::string str2 = std::to_string(gBACount);
-	std::string str3 = std::to_string(gGACount);
+	std::string str1 = std::to_string(AppleCount::ReturnRA());
+	std::string str2 = std::to_string(AppleCount::ReturnBL());
+	std::string str3 = std::to_string(AppleCount::ReturnGL());
 
 	DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
 	DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
@@ -251,25 +251,25 @@ int Apple::HitBoxPlayer() {
 void Apple::ApplePoint(int i)
 {
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, REDAPPLE)) {//Ô‚è‚ñ‚²
-		gScore += 100;
-		gRACount += 1;
+        AppleCount::SetScore(100);
+		AppleCount::SetRA(1);
 		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, BLUEAPPLE)) {//Â‚è‚ñ‚²
-		gScore += 200;
-		gBACount += 1;
+        AppleCount::SetScore(200);
+        AppleCount::SetBL(1);
 		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, GOLDAPPLE)) {//‹à‚è‚ñ‚²
-		gScore += 500;
-		gGACount += 1;
+        AppleCount::SetScore(500);
+        AppleCount::SetGL(1);
 		PlaySoundMem(Sound::GetSounds(SND_SE_APPLE), DX_PLAYTYPE_BACK, TRUE);
 	}
 	if (gApple[i].img == Image::GetImages(IMG_APPLE, POISONAPPLE)) {//“Å‚è‚ñ‚²
-		gScore -= 750;
-		gPACount += 1;
-		if (gScore < 0) {
-			gScore = 0;
+        AppleCount::SetScore(-750);
+        AppleCount::SetPO(1);
+		if (AppleCount::ReturnScore() < 0) {
+            AppleCount::SetScore(0);
 		}
 		PlaySoundMem(Sound::GetSounds(SND_SE_POISON), DX_PLAYTYPE_BACK, TRUE);
 	}
@@ -278,25 +278,6 @@ void Apple::ApplePoint(int i)
 /************************************************
 *@‚»‚Ì‘¼ŠÖ”
 ************************************************/
-int Apple::ReturnRA() {
-	return gRACount;
-}
-
-int Apple::ReturnBL() {
-	return gBACount;
-}
-
-int Apple::ReturnGL() {
-	return gGACount;
-}
-
-int Apple::ReturnPO() {
-	return gPACount;
-}
-
-int Apple::ReturnScore() {
-	return (int)gScore;
-}
 
 int Apple::ReturnAppleX(int num) {
 	return (int)gApple[num].x;
@@ -314,14 +295,6 @@ int Apple::ReturnAppleImg(int num) {
 int Apple::ReturnAppleFlg(int num) {
 	return gApple[num].flg;
 }
-
-void Apple::SetAppleCount(int num) {
-	gRACount = num;
-	gBACount = num;
-	gGACount = num;
-	gPACount = num;
-}
-
 
 void Apple::GetPlayerX(int xPos) {
 	px1 = xPos - 30;
@@ -359,11 +332,62 @@ int Apple::SetBlinkFlg(int flg) {
 //}
 
 void Apple::DrawPause() {
-    std::string str1 = std::to_string(gRACount);
-    std::string str2 = std::to_string(gBACount);
-    std::string str3 = std::to_string(gGACount);
+    std::string str1 = std::to_string(AppleCount::ReturnRA());
+    std::string str2 = std::to_string(AppleCount::ReturnBL());
+    std::string str3 = std::to_string(AppleCount::ReturnGL());
 
     DrawStringToHandle(1020, 400, str1.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
     DrawStringToHandle(1120, 400, str2.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
     DrawStringToHandle(1225, 400, str3.c_str(), 0x000000, Font::GetFonts(FONT_1_64), 0xffffff);
+}
+
+
+/************************************************
+*@AppleCountClass
+************************************************/
+
+int AppleCount::gRACount = 0;
+int AppleCount::gBACount = 0;
+int AppleCount::gGACount = 0;
+int AppleCount::gPACount = 0;
+int AppleCount::gScore = 0;
+
+int AppleCount::ReturnRA() {
+    return gRACount;
+}
+
+int AppleCount::ReturnBL() {
+    return gBACount;
+}
+
+int AppleCount::ReturnGL() {
+    return gGACount;
+}
+
+int AppleCount::ReturnPO() {
+    return gPACount;
+}
+
+int AppleCount::ReturnScore() {
+    return (int)gScore;
+}
+
+void AppleCount::SetRA(int num) {
+    gRACount += num;
+}
+
+void AppleCount::SetBL(int num) {
+    gBACount += num;
+}
+
+void AppleCount::SetGL(int num) {
+    gGACount += num;
+}
+
+void AppleCount::SetPO(int num) {
+    gPACount += num;
+}
+
+void AppleCount::SetScore(int num) {
+    gScore += num;
 }

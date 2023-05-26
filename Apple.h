@@ -15,11 +15,7 @@
 class Apple {
 private:
 	/*メンバ変数*/
-	int gRACount = 0;				//赤りんごの個数
-	int gBACount = 0;				//青りんごの個数
-	int gGACount = 0;				//金りんごの個数
-	int gPACount = 0;				//毒りんごの個数
-	int gScore = 0;					//スコア
+	
 	int gP = 0;						//りんごの確率	
 
 	int px1;
@@ -108,51 +104,7 @@ public:
 	*/
 	void ApplePoint(int i);
 
-	/**
-	* 新里滉規
-	*int ReternRA(void)
-	*赤りんごの個数を返す
-	*引数	：int型
-	*戻り値	：int型　
-	*/
-	int ReturnRA();
-
-	/**
-	* 新里滉規
-	*int ReternBL(void)
-	*青りんごの個数を返す
-	*引数	：int型
-	*戻り値	：int型　
-	*/
-	int ReturnBL();
-
-	/**
-	* 新里滉規
-	*int ReternGL(void)
-	*金りんごの個数を返す
-	*引数	：int型
-	*戻り値	：int型　
-	*/
-	int ReturnGL();
-
-	/**
-	* 新里滉規
-	*int ReternPO(void)
-	*毒りんごの個数を返す
-	*引数	：int型
-	*戻り値	：int型　
-	*/
-	int ReturnPO();
-
-	/**
-	* 新里滉規
-	*int ReternRA(void)
-	*スコアを返す
-	*引数	：int型
-	*戻り値	：int型　
-	*/
-	int ReturnScore();
-
+	
 	/**
 	* 北村隼士
 	*int ReternAppleX(int num)
@@ -188,14 +140,6 @@ public:
 	*戻り値	：int型　
 	*/
 	int ReturnAppleFlg(int num);
-
-	/**
-	* 北村隼士
-	*void SetAppleCount(int num)
-	*引数	：なし
-	*戻り値	：int型　
-	*/
-	void SetAppleCount(int num);
 
     /**
     *
@@ -251,5 +195,66 @@ public:
     void GetSoundClass(Sound& AppleSound);
     void GetFontClass(Font& AppleFont);
     void DrawPause();
+};
+
+class AppleCount {
+private:
+    static int gRACount;				//赤りんごの個数
+    static int gBACount;				//青りんごの個数
+    static int gGACount;				//金りんごの個数
+    static int gPACount;				//毒りんごの個数
+    static int gScore;					//スコア
+public:
+    /**
+    * 新里滉規
+    *int ReternRA(void)
+    *赤りんごの個数を返す
+    *引数	：int型
+    *戻り値	：int型　
+    */
+    static int ReturnRA();
+
+    /**
+    * 新里滉規
+    *int ReternBL(void)
+    *青りんごの個数を返す
+    *引数	：int型
+    *戻り値	：int型　
+    */
+    static int ReturnBL();
+
+    /**
+    * 新里滉規
+    *int ReternGL(void)
+    *金りんごの個数を返す
+    *引数	：int型
+    *戻り値	：int型　
+    */
+    static int ReturnGL();
+
+    /**
+    * 新里滉規
+    *int ReternPO(void)
+    *毒りんごの個数を返す
+    *引数	：int型
+    *戻り値	：int型　
+    */
+    static int ReturnPO();
+
+    /**
+    * 新里滉規
+    *int ReternRA(void)
+    *スコアを返す
+    *引数	：int型
+    *戻り値	：int型　
+    */
+    static int ReturnScore();
+
+    static void SetRA(int num);
+    static void SetBL(int num);
+    static void SetGL(int num);
+    static void SetPO(int num);
+    static void SetScore(int num);
+
 };
 #endif
