@@ -94,6 +94,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			GameInit();
 			StopSoundMem(Sound::GetSounds(SND_BGM_SUB));
 			apple.SetBlinkFlg(0);
+            apple.AppleInit();
 			//player.SetPlayerX(600);
 			player.SetPlayerFlg(TRUE);
 			ui.SetUI(0,60);

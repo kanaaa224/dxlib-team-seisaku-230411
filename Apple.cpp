@@ -42,21 +42,16 @@ void Apple::AppleInit()
 	}
 }
 /************************************************
-*　りんごのカウント、スコア、フラグ初期化
+*　りんごのカウント、スコア
 ************************************************/
-void Apple::AppleMainInit()
+void AppleCount::AppleMainInit(int RACount, int BACount, int GACount, int PACount, int Score) 
 {
-    AppleCount::SetRA(0);
-    AppleCount::SetBL(0);
-    AppleCount::SetGL(0);
-    AppleCount::SetPO(0);
-    AppleCount::SetScore(0);
-
-	for (int i = 0; i < APPLE_MAX; i++) {
-		gApple[i].flg = FALSE;
-	}
+    gRACount = RACount;
+    gBACount = BACount;
+    gGACount = GACount;
+    gPACount = PACount;
+    gScore = Score;
 }
-
 
 /************************************************
 *　リンゴ落下処理

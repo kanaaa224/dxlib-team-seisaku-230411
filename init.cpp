@@ -9,7 +9,7 @@
 #include "ranking_name_input.h"
 
 extern Game game;
-extern Apple apple;
+Apple InitApple;
 Init ini;
 
 /********************************
@@ -23,7 +23,8 @@ void GameInit() { // 未完成gg
 	/*SetPlayerX(600);*/
 	/*apple.AppleInit();*/
 	
-	apple.AppleMainInit();
+    AppleCount::AppleMainInit(0, 0, 0, 0, 0);
+    
 
 	// ランキングの実行済みフラグをリセット
 	SetRankingState(0);
