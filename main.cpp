@@ -114,6 +114,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
             apple.AppleInit();
 			//player.SetPlayerX(600);
 			player.SetPlayerFlg(TRUE);
+            player.PlayerInit();
 			ui.SetUI(0,60);
 			break;
 

@@ -257,7 +257,7 @@ void PLAYER::SetPlayerBlinkFlg(int x) {
 	BlinkFlg = x;
 }
 
-PLAYER::PLAYER() {
+void PLAYER::PlayerInit() {
 	flg = TRUE;
 	x = 600;
 	y = 600;

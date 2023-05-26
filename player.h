@@ -58,6 +58,6 @@ public:
 
 	int GetPlayerBlinkFlg();
 
-	PLAYER();
+	void PlayerInit();
 };
 
