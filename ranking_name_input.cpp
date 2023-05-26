@@ -9,37 +9,29 @@
 #include "Apple.h"
 #include "ranking.h"
 #include "PadInput.h"
-int rni_selectstateX;
-int rni_selectstateY;
-int rni_stickflgX = 0;
-int rni_stickflgY = 0;
 
 
 /********************************
-* 定数宣言
+* ランキング入力変数初期化
 ********************************/
-const char rni_alphabet[][26] = {
-	{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' },
-	{ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' },
-	{ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }
+int RankingNameInput::state = 0;
+int RankingNameInput::selector[] = { 90, 440, 35, 30, 0, 0 };
+std::string RankingNameInput::inputName = "";
+char RankingNameInput::alphabet[][26] = {
+   { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' },
+   { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' },
+   { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }
 };
 //const char rni_qwerty[] = { 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M' };
-
-
-/********************************
-* 変数宣言
-********************************/
-std::string rni_inputName = "";
-int rni_selector[] = { 90, 440, 35, 30, 0, 0 };
-int rni_state = 0;
+int RankingNameInput::ctrl_state[] = {0, 0, 0, 0};
 
 
 /********************************
 * ランキング入力関数
 ********************************/
-void DrawRankingNameInput() {
+void RankingNameInput::Draw() {
 	// 開始フラグ設定
-	rni_state = 1;
+	state = 1;
 
     // 背景表示
     DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
@@ -55,10 +47,6 @@ void DrawRankingNameInput() {
 
 	DrawStringToHandle(110, 200, "ということで、ランキングに追加します。あなたの名前をどうぞ（強制）", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
 
-	// 開発用
-	//DrawFormatString(50, 10, 0x000000, "%d - %d / %d - %d / %d - %d / %c / %d", rni_selector[0], rni_selector[1], rni_selector[2], rni_selector[3], rni_selector[4], rni_selector[5], rni_alphabet[rni_selector[4]][rni_selector[5]], strlen(rni_inputName.c_str()));
-	//DrawFormatString(50, 30, 0x000000, "%d - %d", PAD_INPUT::GetStickX(), PAD_INPUT::GetStickY());
-
 	/********************************
 	* キーボード描画
 	********************************/
@@ -70,8 +58,8 @@ void DrawRankingNameInput() {
 	// キーボードの要素を表示
 	// テキストボックスの幅を入力文字数に追従
 	int inputName_Box_Width = 900;
-	if (rni_inputName.length() > 12) {
-		int len = (rni_inputName.length()) - 12;
+	if (inputName.length() > 12) {
+		int len = (inputName.length()) - 12;
 		inputName_Box_Width += (9 * len);
 	};
 	DrawBox(770, 360, inputName_Box_Width, 398, 0xffffff, FALSE);
@@ -81,22 +69,22 @@ void DrawRankingNameInput() {
 	DrawStringToHandle(350, 380, "十字キー・左スティックでカーソル移動、", 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
 	DrawStringToHandle(350, 400, "Aボタンで入力、Bボタンで一字削除", 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
 
-	DrawStringToHandle(780, 370, rni_inputName.c_str(), 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
+	DrawStringToHandle(780, 370, inputName.c_str(), 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
 
 	// アルファベット大文字・小文字の表示
 	for (int i = 0; i < 26; i++) {
-		str = rni_alphabet[0][i];
+		str = alphabet[0][i];
 		DrawStringToHandle(100 + (i * 42), 440, str.c_str(), 0xffffff, Font::GetFonts(FONT_0_32), 0xffffff);
-		str = rni_alphabet[1][i];
+		str = alphabet[1][i];
 		DrawStringToHandle(100 + (i * 42), 490, str.c_str(), 0xffffff, Font::GetFonts(FONT_0_32), 0xffffff);
 	};
 	// 数字キーパッド表示
 	for (int i = 0; i < 10; i++) {
-		str = rni_alphabet[2][i];
+		str = alphabet[2][i];
 		DrawStringToHandle(435 + (i * 42), 540, str.c_str(), 0xffffff, Font::GetFonts(FONT_0_32), 0xffffff);
 	};
 	// 入力確定ボタン
-	if (rni_inputName.length() > 0) {
+	if (inputName.length() > 0) {
 		DrawStringToHandle(597, 595, "入力確定", 0xffffff, Font::GetFonts(FONT_0_16), 0xffffff);
 	}
 	else {
@@ -106,141 +94,141 @@ void DrawRankingNameInput() {
 	};
 
 	// セレクター表示
-	DrawBox(rni_selector[0], rni_selector[1], (rni_selector[0] + rni_selector[2]), (rni_selector[1] + rni_selector[3]), 0xffffff, FALSE);
+	DrawBox(selector[0], selector[1], (selector[0] + selector[2]), (selector[1] + selector[3]), 0xffffff, FALSE);
 
 	/********************************
 	* セレクター・入力処理
 	********************************/
-	if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_UP) == 1) || (rni_selectstateY = PAD_INPUT::GetStickY() > 20000 && rni_stickflgY == 0)) { // 左スティック上
-		if (rni_selector[1] != 440) { // 最上段じゃないなら
-			if (rni_selector[1] == 540) { // ３段目から２段目へ
-				rni_selector[5] = (rni_selector[5] + 8); // ３段目から２段目へ移動したら差を足す
+	if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_UP) == 1) || (ctrl_state[1] = PAD_INPUT::GetStickY() > 20000 && ctrl_state[3] == 0)) { // 左スティック上
+		if (selector[1] != 440) { // 最上段じゃないなら
+			if (selector[1] == 540) { // ３段目から２段目へ
+				selector[5] = (selector[5] + 8); // ３段目から２段目へ移動したら差を足す
 			}
-			else if (rni_selector[1] == 590) { // ４段目から３段目へ
-				rni_selector[2] = 35; // カーソル幅を修正
-				rni_selector[5] = 4;
+			else if (selector[1] == 590) { // ４段目から３段目へ
+				selector[2] = 35; // カーソル幅を修正
+				selector[5] = 4;
 			};
-			rni_selector[1] -= 50; // 前（上）の段へ
-			rni_selector[4] -= 1; // 文字配列指定用アドレスの更新
+			selector[1] -= 50; // 前（上）の段へ
+			selector[4] -= 1; // 文字配列指定用アドレスの更新
 		};
-		rni_stickflgY = 1;
+		ctrl_state[3] = 1;
 	}
-	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_DOWN) == 1) || (rni_selectstateY = PAD_INPUT::GetStickY() < -20000 && rni_stickflgY == 0)) { // 左スティック下
-		if (rni_selector[1] != 590) { // 最下段じゃないなら
-			if (rni_selector[1] == 490) { // ２段目から３段目へ
-				rni_selector[5] = (rni_selector[5] - 8); // ２段目から３段目へ移動したら差を引く
-				if (rni_selector[0] >= 846) {
+	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_DOWN) == 1) || (ctrl_state[1] = PAD_INPUT::GetStickY() < -20000 && ctrl_state[3] == 0)) { // 左スティック下
+		if (selector[1] != 590) { // 最下段じゃないなら
+			if (selector[1] == 490) { // ２段目から３段目へ
+				selector[5] = (selector[5] - 8); // ２段目から３段目へ移動したら差を引く
+				if (selector[0] >= 846) {
 					// ９より右にカーソルがあったら文字配列指定用アドレスを９に
-					rni_selector[0] = 804;
-					rni_selector[5] = 9;
+					selector[0] = 804;
+					selector[5] = 9;
 				}
-				else if (rni_selector[0] <= 384) {
+				else if (selector[0] <= 384) {
 					//	０より左にカーソルがあったら文字配列指定用アドレスを０に
-					rni_selector[0] = 426;
-					rni_selector[5] = 0;
+					selector[0] = 426;
+					selector[5] = 0;
 				};
 			}
-			else if (rni_selector[1] == 540) { // ３段目から４段目へ
-				rni_selector[2] = 75; // カーソル幅をボタンに合わせて更新
+			else if (selector[1] == 540) { // ３段目から４段目へ
+				selector[2] = 75; // カーソル幅をボタンに合わせて更新
 				// 「入力確定」ボタンに合わせて
-				rni_selector[0] = 594;
-				rni_selector[5] = 0;
+				selector[0] = 594;
+				selector[5] = 0;
 			};
-			rni_selector[1] += 50; // 次（下）の段へ
-			rni_selector[4] += 1; // 文字配列指定用アドレスの更新
+			selector[1] += 50; // 次（下）の段へ
+			selector[4] += 1; // 文字配列指定用アドレスの更新
 		};
-		rni_stickflgY = 1;
+		ctrl_state[3] = 1;
 	}
-	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_RIGHT) == 1) || (rni_selectstateX = PAD_INPUT::GetStickX() > 20000 && rni_stickflgX == 0)) { // 左スティック右
-		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
-				rni_selector[0] += 42;
-				rni_selector[5] += 1;
+	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_RIGHT) == 1) || (ctrl_state[0] = PAD_INPUT::GetStickX() > 20000 && ctrl_state[2] == 0)) { // 左スティック右
+		if (selector[1] == 440) { // １段目のとき
+			if (selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
+				selector[0] += 42;
+				selector[5] += 1;
 			}
 			else {
-				rni_selector[0] -= 42 * 25;
-				rni_selector[5] = 0;
+				selector[0] -= 42 * 25;
+				selector[5] = 0;
 			};
 		}
-		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
-				rni_selector[0] += 42;
-				rni_selector[5] += 1;
+		else if (selector[1] == 490) { // ２段目のとき
+			if (selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
+				selector[0] += 42;
+				selector[5] += 1;
 			}
 			else {
-				rni_selector[0] -= 42 * 25;
-				rni_selector[5] = 0;
+				selector[0] -= 42 * 25;
+				selector[5] = 0;
 			};
 		}
-		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] < 804) { // 右端ならマリオUSA、それ以外なら移動
-				rni_selector[0] += 42;
-				rni_selector[5] += 1;
+		else if (selector[1] == 540) { // ３段目のとき
+			if (selector[0] < 804) { // 右端ならマリオUSA、それ以外なら移動
+				selector[0] += 42;
+				selector[5] += 1;
 			}
 			else {
-				rni_selector[0] -= 42 * 9;
-				rni_selector[5] = 0;
+				selector[0] -= 42 * 9;
+				selector[5] = 0;
 			};
 		};
-		rni_stickflgX = 1;
+		ctrl_state[2] = 1;
 	}
-	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (rni_selectstateX = PAD_INPUT::GetStickX() < -20000 && rni_stickflgX == 0)) { // 左スティック左
-		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
-				rni_selector[0] -= 42;
-				rni_selector[5] -= 1;
+	else if ((PAD_INPUT::JudgeButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (ctrl_state[0] = PAD_INPUT::GetStickX() < -20000 && ctrl_state[2] == 0)) { // 左スティック左
+		if (selector[1] == 440) { // １段目のとき
+			if (selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
+				selector[0] -= 42;
+				selector[5] -= 1;
 			}
 			else {
-				rni_selector[0] += 42 * 25;
-				rni_selector[5] = 25;
+				selector[0] += 42 * 25;
+				selector[5] = 25;
 			};
 		}
-		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
-				rni_selector[0] -= 42;
-				rni_selector[5] -= 1;
+		else if (selector[1] == 490) { // ２段目のとき
+			if (selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
+				selector[0] -= 42;
+				selector[5] -= 1;
 			}
 			else {
-				rni_selector[0] += 42 * 25;
-				rni_selector[5] = 25;
+				selector[0] += 42 * 25;
+				selector[5] = 25;
 			};
 		}
-		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] > 426) { // 左端ならマリオUSA、それ以外なら移動
-				rni_selector[0] -= 42;
-				rni_selector[5] -= 1;
+		else if (selector[1] == 540) { // ３段目のとき
+			if (selector[0] > 426) { // 左端ならマリオUSA、それ以外なら移動
+				selector[0] -= 42;
+				selector[5] -= 1;
 			}
 			else {
-				rni_selector[0] += 42 * 9;
-				rni_selector[5] = 9;
+				selector[0] += 42 * 9;
+				selector[5] = 9;
 			};
 		};
-		rni_stickflgX = 1;
+		ctrl_state[2] = 1;
 	};
 
 	// スティックが戻ると操作受付
-	if (rni_selectstateY = PAD_INPUT::GetStickY() < 1200 && rni_stickflgY == 1) {
-		if (rni_selectstateY = PAD_INPUT::GetStickY() > -1200) {
-			rni_stickflgY = 0;
+	if (ctrl_state[1] = PAD_INPUT::GetStickY() < 1200 && ctrl_state[3] == 1) {
+		if (ctrl_state[1] = PAD_INPUT::GetStickY() > -1200) {
+			ctrl_state[3] = 0;
 		};
 	};
-	if (rni_selectstateX = PAD_INPUT::GetStickX() < 1200 && rni_stickflgX == 1) {
-		if (rni_selectstateX = PAD_INPUT::GetStickX() > -1200) {
-			rni_stickflgX = 0;
+	if (ctrl_state[0] = PAD_INPUT::GetStickX() < 1200 && ctrl_state[2] == 1) {
+		if (ctrl_state[0] = PAD_INPUT::GetStickX() > -1200) {
+			ctrl_state[2] = 0;
 		};
 	};
 
 	// 十字キーが戻ると操作受付
 	if ((PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_DPAD_UP) == 1) || (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_DPAD_DOWN) == 1) || (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_DPAD_LEFT) == 1) || (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_DPAD_RIGHT) == 1)) {
-		rni_stickflgY = 0;
-		rni_stickflgX = 0;
+		ctrl_state[3] = 0;
+		ctrl_state[2] = 0;
 	};
 
 	// Aボタンでキーボードカーソル位置ボタンの決定
 	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_A) == 1) {
 		// 入力確定が押されたら
-		if (rni_selector[4] == 3) {
-			if (rni_inputName.length() > 0) {
+		if (selector[4] == 3) {
+			if (inputName.length() > 0) {
                 Game::ModeSet(RANKING);
 			}
 			else {
@@ -249,8 +237,8 @@ void DrawRankingNameInput() {
 		}
 		else {
 			// Char１文字を１バイトとして考えて１０バイトまで
-			if (GetInputedNameLength() < 10) {
-				rni_inputName += rni_alphabet[rni_selector[4]][rni_selector[5]];
+			if (GetNameLength() < 10) {
+				inputName += alphabet[selector[4]][selector[5]];
 			}
 			else {
 				// 10文字超えてるので警告
@@ -261,8 +249,8 @@ void DrawRankingNameInput() {
 	// Bボタンで一文字削除
 	if (PAD_INPUT::JudgeReleaseButton(XINPUT_BUTTON_B) == 1) {
 		// １文字削除
-		if (rni_inputName.length() > 0) {
-			rni_inputName.erase(rni_inputName.length() - 1);
+		if (inputName.length() > 0) {
+			inputName.erase(inputName.length() - 1);
 		};
 	};
 
@@ -270,104 +258,104 @@ void DrawRankingNameInput() {
 	* セレクター・入力処理（キーボード）
 	********************************/
 	if (CheckHitKey(KEY_INPUT_UP)) { // 上
-		if (rni_selector[1] != 440) { // 最上段じゃないなら
-			if (rni_selector[1] == 540) { // ３段目から２段目へ
-				rni_selector[5] = (rni_selector[5] + 8); // ３段目から２段目へ移動したら差を足す
+		if (selector[1] != 440) { // 最上段じゃないなら
+			if (selector[1] == 540) { // ３段目から２段目へ
+				selector[5] = (selector[5] + 8); // ３段目から２段目へ移動したら差を足す
 			}
-			else if (rni_selector[1] == 590) { // ４段目から３段目へ
-				rni_selector[2] = 35; // カーソル幅を修正
-				rni_selector[5] = 4;
+			else if (selector[1] == 590) { // ４段目から３段目へ
+				selector[2] = 35; // カーソル幅を修正
+				selector[5] = 4;
 			};
-			rni_selector[1] -= 50; // 前（上）の段へ
-			rni_selector[4] -= 1; // 文字配列指定用アドレスの更新
+			selector[1] -= 50; // 前（上）の段へ
+			selector[4] -= 1; // 文字配列指定用アドレスの更新
 		};
 	}
 	else if (CheckHitKey(KEY_INPUT_DOWN)) { // 下
-		if (rni_selector[1] != 590) { // 最下段じゃないなら
-			if (rni_selector[1] == 490) { // ２段目から３段目へ
-				rni_selector[5] = (rni_selector[5] - 8); // ２段目から３段目へ移動したら差を引く
-				if (rni_selector[0] >= 846) {
+		if (selector[1] != 590) { // 最下段じゃないなら
+			if (selector[1] == 490) { // ２段目から３段目へ
+				selector[5] = (selector[5] - 8); // ２段目から３段目へ移動したら差を引く
+				if (selector[0] >= 846) {
 					// ９より右にカーソルがあったら文字配列指定用アドレスを９に
-					rni_selector[0] = 804;
-					rni_selector[5] = 9;
+					selector[0] = 804;
+					selector[5] = 9;
 				}
-				else if (rni_selector[0] <= 384) {
+				else if (selector[0] <= 384) {
 					//	０より左にカーソルがあったら文字配列指定用アドレスを０に
-					rni_selector[0] = 426;
-					rni_selector[5] = 0;
+					selector[0] = 426;
+					selector[5] = 0;
 				};
 			}
-			else if (rni_selector[1] == 540) { // ３段目から４段目へ
-				rni_selector[2] = 75; // カーソル幅をボタンに合わせて更新
+			else if (selector[1] == 540) { // ３段目から４段目へ
+				selector[2] = 75; // カーソル幅をボタンに合わせて更新
 				// 「入力確定」ボタンに合わせて
-				rni_selector[0] = 594;
-				rni_selector[5] = 0;
+				selector[0] = 594;
+				selector[5] = 0;
 			};
-			rni_selector[1] += 50; // 次（下）の段へ
-			rni_selector[4] += 1; // 文字配列指定用アドレスの更新
+			selector[1] += 50; // 次（下）の段へ
+			selector[4] += 1; // 文字配列指定用アドレスの更新
 		};
 	}
 	else if (CheckHitKey(KEY_INPUT_RIGHT)) { // 右
-		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
-				rni_selector[0] += 42;
-				rni_selector[5] += 1;
+		if (selector[1] == 440) { // １段目のとき
+			if (selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
+				selector[0] += 42;
+				selector[5] += 1;
 			}
 			else {
-				rni_selector[0] -= 42 * 25;
-				rni_selector[5] = 0;
+				selector[0] -= 42 * 25;
+				selector[5] = 0;
 			};
 		}
-		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
-				rni_selector[0] += 42;
-				rni_selector[5] += 1;
+		else if (selector[1] == 490) { // ２段目のとき
+			if (selector[0] < 1140) { // 右端ならマリオUSA、それ以外なら移動
+				selector[0] += 42;
+				selector[5] += 1;
 			}
 			else {
-				rni_selector[0] -= 42 * 25;
-				rni_selector[5] = 0;
+				selector[0] -= 42 * 25;
+				selector[5] = 0;
 			};
 		}
-		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] < 804) { // 右端ならマリオUSA、それ以外なら移動
-				rni_selector[0] += 42;
-				rni_selector[5] += 1;
+		else if (selector[1] == 540) { // ３段目のとき
+			if (selector[0] < 804) { // 右端ならマリオUSA、それ以外なら移動
+				selector[0] += 42;
+				selector[5] += 1;
 			}
 			else {
-				rni_selector[0] -= 42 * 9;
-				rni_selector[5] = 0;
+				selector[0] -= 42 * 9;
+				selector[5] = 0;
 			};
 		};
 	}
 	else if (CheckHitKey(KEY_INPUT_LEFT)) { // 左
-		if (rni_selector[1] == 440) { // １段目のとき
-			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
-				rni_selector[0] -= 42;
-				rni_selector[5] -= 1;
+		if (selector[1] == 440) { // １段目のとき
+			if (selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
+				selector[0] -= 42;
+				selector[5] -= 1;
 			}
 			else {
-				rni_selector[0] += 42 * 25;
-				rni_selector[5] = 25;
+				selector[0] += 42 * 25;
+				selector[5] = 25;
 			};
 		}
-		else if (rni_selector[1] == 490) { // ２段目のとき
-			if (rni_selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
-				rni_selector[0] -= 42;
-				rni_selector[5] -= 1;
+		else if (selector[1] == 490) { // ２段目のとき
+			if (selector[0] > 90) { // 左端ならマリオUSA、それ以外なら移動
+				selector[0] -= 42;
+				selector[5] -= 1;
 			}
 			else {
-				rni_selector[0] += 42 * 25;
-				rni_selector[5] = 25;
+				selector[0] += 42 * 25;
+				selector[5] = 25;
 			};
 		}
-		else if (rni_selector[1] == 540) { // ３段目のとき
-			if (rni_selector[0] > 426) { // 左端ならマリオUSA、それ以外なら移動
-				rni_selector[0] -= 42;
-				rni_selector[5] -= 1;
+		else if (selector[1] == 540) { // ３段目のとき
+			if (selector[0] > 426) { // 左端ならマリオUSA、それ以外なら移動
+				selector[0] -= 42;
+				selector[5] -= 1;
 			}
 			else {
-				rni_selector[0] += 42 * 9;
-				rni_selector[5] = 9;
+				selector[0] += 42 * 9;
+				selector[5] = 9;
 			};
 		};
 	};
@@ -375,8 +363,8 @@ void DrawRankingNameInput() {
 	// エンターキーでキーボードカーソル位置ボタンの決定
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		// 入力確定が押されたら
-		if (rni_selector[4] == 3) {
-			if (rni_inputName.length() > 0) {
+		if (selector[4] == 3) {
+			if (inputName.length() > 0) {
                 Game::ModeSet(RANKING);
 			}
 			else {
@@ -385,8 +373,8 @@ void DrawRankingNameInput() {
 		}
 		else {
 			// Char１文字を１バイトとして考えて１０バイトまで
-			if (GetInputedNameLength() < 10) {
-				rni_inputName += rni_alphabet[rni_selector[4]][rni_selector[5]];
+			if (GetNameLength() < 10) {
+				inputName += alphabet[selector[4]][selector[5]];
 			}
 			else {
 				// 10文字超えてるので警告
@@ -397,8 +385,8 @@ void DrawRankingNameInput() {
 	// バックキーで一文字削除
 	if (CheckHitKey(KEY_INPUT_BACK)) {
 		// １文字削除
-		if (rni_inputName.length() > 0) {
-			rni_inputName.erase(rni_inputName.length() - 1);
+		if (inputName.length() > 0) {
+			inputName.erase(inputName.length() - 1);
 		};
 	};
 
@@ -411,30 +399,30 @@ void DrawRankingNameInput() {
 /********************************
 * リセット
 ********************************/
-void ResetRankingNameInput() {
+void RankingNameInput::Reset() {
 	// 名前入力値のリセット
-	rni_inputName = "";
+	inputName = "";
 	// カーソル位置のリセット
-	rni_selector[0] = 90;
-	rni_selector[1] = 440;
-	rni_selector[2] = 35;
-	rni_selector[3] = 30;
-	rni_selector[4] = 0;
-	rni_selector[5] = 0;
+	selector[0] = 90;
+	selector[1] = 440;
+	selector[2] = 35;
+	selector[3] = 30;
+	selector[4] = 0;
+	selector[5] = 0;
 	// 開始フラグのリセット
-	rni_state = 0;
+	state = 0;
 };
 
 /********************************
 * 入力された名前の指定した文字を返す
 ********************************/
-char GetInputedName(int i) {
-	if (GetInputedNameLength() > 0) {
+char RankingNameInput::GetName(int i) {
+	if (GetNameLength() > 0) {
 		char name[10];
-		for (int i = 0; i < GetInputedNameLength() - 1; i++) {
-			name[i] = rni_inputName[i];
+		for (int i = 0; i < GetNameLength() - 1; i++) {
+			name[i] = inputName[i];
 		};
-		return rni_inputName.c_str()[i];
+		return inputName.c_str()[i];
 	}
 	else {
 		return -1;
@@ -444,13 +432,13 @@ char GetInputedName(int i) {
 /********************************
 * 入力された名前の桁数を返す
 ********************************/
-int GetInputedNameLength() {
-	return strlen(rni_inputName.c_str());
+int RankingNameInput::GetNameLength() {
+	return strlen(inputName.c_str());
 };
 
 /********************************
 * 名前入力されたか
 ********************************/
-int GetRankingNameInputState() {
-	return rni_state;
+int RankingNameInput::GetState() {
+	return state;
 };

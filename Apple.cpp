@@ -19,13 +19,6 @@ using std::to_string;
 int AppleBlinkFlg;
 
 /************************************************
-*　オブジェクト宣言
-************************************************/
-//Image appleimage;			//画像
-//Font applefont;			    //フォント
-//Sound applesound;			//サウンド
-
-/************************************************
 *　初期化
 ************************************************/
 void Apple::AppleInit() 
@@ -106,10 +99,10 @@ int Apple::CreateApple()
 
 	for (int i = 0; i < APPLE_MAX; i++) {
 		if (gApple[i].flg == FALSE) {
-			gApple[i].img = AppleImg;				//リンゴの画像
+			gApple[i].img = AppleImg;				        //リンゴの画像
 			gApple[i].x = 70 + (GetRand(6) * 130);	//りんごのレーン決定
-			gApple[i].y = -50;						//リンゴの初期Y座標
-			AppleSpeed(i);							//リンゴの速度
+			gApple[i].y = -50;						        //リンゴの初期Y座標
+			AppleSpeed(i);							    //リンゴの速度6
 			gApple[i].flg = TRUE;
 			//成功
 			return TRUE;
@@ -264,7 +257,7 @@ void Apple::ApplePoint(int i)
         AppleCount::SetScore(-750);
         AppleCount::SetPO(1);
 		if (AppleCount::ReturnScore() < 0) {
-            AppleCount::SetScore(0);
+            AppleCount::ZeroScore();
 		}
 		PlaySoundMem(Sound::GetSounds(SND_SE_POISON), DX_PLAYTYPE_BACK, TRUE);
 	}
@@ -309,18 +302,6 @@ int Apple::SetBlinkFlg(int flg) {
 	AppleBlinkFlg = flg;
 	return AppleBlinkFlg;
 }
-
-//void Apple::GetAppleImgClass(Image& AppleImg){
-//   appleimage = AppleImg;
-//}
-
-//void Apple::GetFontClass(Font& AppleFont) {
-//    applefont = AppleFont;
-//}
-
-//void Apple::GetSoundClass(Sound& AppleSound) {
-//    applesound = AppleSound;
-//}
 
 void Apple::DrawPause() {
     std::string str1 = std::to_string(AppleCount::ReturnRA());
@@ -381,4 +362,8 @@ void AppleCount::SetPO(int num) {
 
 void AppleCount::SetScore(int num) {
     gScore += num;
+}
+
+void AppleCount::ZeroScore() {
+    gScore = 0;
 }

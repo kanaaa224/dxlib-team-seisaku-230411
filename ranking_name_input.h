@@ -8,19 +8,17 @@ using std::to_string;
 
 class RankingNameInput {
 private:
-	int state;
-	int selector[6];
-	std::string inputName;
-public:
-	void Draw();
-	void Reset();
-	char GetName();
-	int GetLength();
-	int GetState();
-};
+	static int state;
+	static int selector[6];
+	static std::string inputName;
 
-void DrawRankingNameInput();
-void ResetRankingNameInput();
-char GetInputedName(int i);
-int GetInputedNameLength();
-int GetRankingNameInputState();
+    static char alphabet[][26];
+
+    static int ctrl_state[];
+public:
+	static void Draw();
+	static void Reset();
+	static char GetName(int);
+	static int GetNameLength();
+	static int GetState();
+};

@@ -200,7 +200,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		case INPUTNAME:
 			// ランキング入力画面（島袋）
-			DrawRankingNameInput();
+            RankingNameInput::Draw();
 			break;
 
 		case RANKING:
@@ -215,16 +215,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 		case TEST:
 			// テストで、画像やフォント表示（島袋）（タイトルでTを押して発動）
-			DrawTest();
+            Test::Draw();
 			break;
 		}
-
-		// FPSの表示
-		/*SetFontSize(16);
-		DrawFormatString(390, 5, 0xffffff, "FPS:%3d DELTA: %8.6fsec", fps, deltaTime);*/
-
-		/*PlayerControll();
-		DrawPlayer();*/
 		
 		// 裏画面の内容を表画面に反映する
 		ScreenFlip();

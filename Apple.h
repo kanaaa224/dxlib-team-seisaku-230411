@@ -255,6 +255,7 @@ public:
     static void SetGL(int num);
     static void SetPO(int num);
     static void SetScore(int num);
+    static void ZeroScore();
 
 };
 #endif
