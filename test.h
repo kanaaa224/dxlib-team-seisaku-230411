@@ -2,4 +2,7 @@
 
 #pragma once
 
-void DrawTest();
+class Test {
+public:
+    static void Draw();
+};
