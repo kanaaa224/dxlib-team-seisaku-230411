@@ -33,43 +33,4 @@ void Test::Draw() {
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
         Game::ModeSet(TITLE);
 	};
-
-	/*
-	ChangeFont("しょかきうたげ（無料版）");
-	ChangeFontType(DX_FONTTYPE_EDGE);
-	SetFontSize(128);
-	DrawString(340, 140, "りんごおとし", 0x000000, 0xffffff);
-
-	// 開発用
-	//DrawCircle(mirutame[0], mirutame[1], mirutame[2], 0xffffff, FALSE);
-	DrawBox(mirutame[0], mirutame[1], mirutame[0] + mirutame[2], mirutame[1] + mirutame[3], 0xffffff, FALSE);
-	DrawFormatString(mirutame[0], mirutame[1], 0xffffff, "%d - %d", mirutame[0], mirutame[1]);
-	if (CheckHitKey(KEY_INPUT_W)) {
-		mirutame[1]--;
-	};
-	if (CheckHitKey(KEY_INPUT_S)) {
-		mirutame[1]++;
-	};
-	if (CheckHitKey(KEY_INPUT_A)) {
-		mirutame[0]--;
-	};
-	if (CheckHitKey(KEY_INPUT_D)) {
-		mirutame[0]++;
-	};
-	if (CheckHitKey(KEY_INPUT_Q)) {
-		mirutame[2]--;
-	};
-	if (CheckHitKey(KEY_INPUT_E)) {
-		mirutame[2]++;
-	};
-	if (CheckHitKey(KEY_INPUT_R)) {
-		mirutame[3]--;
-	};
-	if (CheckHitKey(KEY_INPUT_F)) {
-		mirutame[3]++;
-	};
-
-	// 開発
-	int mirutame[4];
-	*/
 };
