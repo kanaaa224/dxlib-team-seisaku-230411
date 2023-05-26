@@ -5,7 +5,8 @@
 #include"Apple.h"
 
 int Stick;
-int FPScount = 0;
+int FPScountLeft = 0;
+int FPScountRight = 0;
 int Run = 0;
 int Walk = 0;
 int Stop = 0;
@@ -17,7 +18,7 @@ int BlinkFPSFlg = 0;
 
 void PLAYER::PlayerControll() {
 	Stick = PAD_INPUT::GetStickX();	//スティックの状態取得
-
+    DrawFormatString(100, 100, 0xffffff, "%f", speed);
 	PlayerLimit();
 
 	//右歩き
@@ -33,7 +34,8 @@ void PLAYER::PlayerControll() {
 				speed = WALK_SPEED;
 			}
 		}
-		FPScount = 0;
+		FPScountRight = 0;
+		FPScountLeft = 0;
 	}
 	//左歩き
 	else if (Stick < WALK_LEFT && Stick > RUN_LEFT) {
@@ -49,33 +51,40 @@ void PLAYER::PlayerControll() {
 			}
 			
 		}
-		FPScount = 0;
+        FPScountRight = 0;
+        FPScountLeft = 0;
 	}
 	//右ダッシュ
 	else if (Stick >= RUN_RIGHT) {
 		if (PlayerLimit() == 0) {
+            FPScountLeft = 0;
 			if (speed < 3) {
 				speed += 0.2;
 			}
 			else {
-				if (FPScount < 30 && FPScount % 2 == 0) {
+                
+				if (FPScountRight < 30 && FPScountRight % 2 == 0) {
 					speed += SPEED_UP;
 				}
-				FPScount++;
+               
+				FPScountRight++;
 			}
 		}
 	}
 	//左ダッシュ
 	else if(Stick <= RUN_LEFT) {
 		if (PlayerLimit() == 0) {
+            FPScountRight = 0;
 			if (speed > -3 ) {
 				speed -= 0.2;
 			}
 			else {
-				if (FPScount < 30 && FPScount % 2 == 0) {
+                
+				if (FPScountLeft < 30 && FPScountLeft % 2 == 0) {
 					speed -= SPEED_UP;
 				}
-				FPScount++;
+               
+				FPScountLeft++;
 			}
 		}
 	}
@@ -85,7 +94,8 @@ void PLAYER::PlayerControll() {
 			//慣性
 			if (speed <= 0.2 && speed >= -0.2) {
 				speed = 0;
-				FPScount = 0;
+                FPScountRight = 0;
+                FPScountLeft = 0;
 			}
 			else if (speed > 0) {
 				speed -= 0.2;
@@ -95,7 +105,8 @@ void PLAYER::PlayerControll() {
 			}
 			else{
 				speed = 0;
-				FPScount = 0;
+                FPScountRight = 0;
+                FPScountLeft = 0;
 			}
 		}
 	}

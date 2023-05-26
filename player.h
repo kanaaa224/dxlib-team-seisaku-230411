@@ -8,7 +8,7 @@
 #define MOVE_LEFT_LIMIT 30		//プレイヤーの
 #define MOVE_RIGHT_LIMIT 970	//移動制限
 
-#define WALK_SPEED 1	//歩きのスピード
+#define WALK_SPEED 1.0f	//歩きのスピード
 #define SPEED_UP 0.2		//加速度
 #define SPEED_UP1 0.2		//加速度
 #define IMAGE_RATE 0.9f	//プレイヤー画像の拡大率
