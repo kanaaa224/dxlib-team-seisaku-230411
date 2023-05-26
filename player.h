@@ -54,10 +54,15 @@ public:
 	//引数で与えられた値をBlinkFlgに設定（TRUE or FALSE）
 	void SetPlayerBlinkFlg(int x);
 
+    //プレイヤーフラグの設定
+    //引数で与えられた値をflgに設定（TRUE or FALSE）
 	void SetPlayerFlg(int Pflg);
 
+    //毒リンゴ取得時の点滅
+    //BlinkFlgを取得（TRUE or FALSE）
 	int GetPlayerBlinkFlg();
 
+    //プレイヤーの変数の初期化
 	void PlayerInit();
 };
 
