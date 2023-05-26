@@ -109,7 +109,7 @@ int Apple::CreateApple()
 			gApple[i].img = AppleImg;				//ƒŠƒ“ƒS‚Ì‰æ‘œ
 			gApple[i].x = 70 + (GetRand(6) * 130);	//‚è‚ñ‚²‚ÌƒŒ[ƒ“Œˆ’è
 			gApple[i].y = -50;						//ƒŠƒ“ƒS‚Ì‰ŠúYÀ•W
-			AppleSpeed(i);							//ƒŠƒ“ƒS‚Ì‘¬“x
+			AppleSpeed(i);							//ƒŠƒ“ƒS‚Ì‘¬“x6
 			gApple[i].flg = TRUE;
 			//¬Œ÷
 			return TRUE;
@@ -264,7 +264,7 @@ void Apple::ApplePoint(int i)
         AppleCount::SetScore(-750);
         AppleCount::SetPO(1);
 		if (AppleCount::ReturnScore() < 0) {
-            AppleCount::SetScore(0);
+            AppleCount::ZeroScore();
 		}
 		PlaySoundMem(Sound::GetSounds(SND_SE_POISON), DX_PLAYTYPE_BACK, TRUE);
 	}
@@ -381,4 +381,8 @@ void AppleCount::SetPO(int num) {
 
 void AppleCount::SetScore(int num) {
     gScore += num;
+}
+
+void AppleCount::ZeroScore() {
+    gScore = 0;
 }
