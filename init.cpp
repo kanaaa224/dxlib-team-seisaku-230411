@@ -21,5 +21,5 @@ void GameInit() {
 	SetRankingState(0);
 
 	// ランキング入力画面リセット
-	ResetRankingNameInput();
+    RankingNameInput::Reset();
 };

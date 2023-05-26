@@ -38,14 +38,14 @@ void DrawRanking() {
 		// プレイスコアがランキングの最下位スコアを超えていたら書き込み
 		if (GetRankingFlg() == 1) {
 			// 名前入力されたか
-			if (GetRankingNameInputState() == 1) {
-				if (GetInputedNameLength() > 0) {
+			if (RankingNameInput::GetState() == 1) {
+				if (RankingNameInput::GetNameLength() > 0) {
 					// スコア書き込み処理
-					for (int i = 0; i < GetInputedNameLength(); i++) {
+					for (int i = 0; i < RankingNameInput::GetNameLength(); i++) {
 						// 一文字ずつ取得
-						gRanking[RANKING_DATA - 1].name[i] = GetInputedName(i);
+						gRanking[RANKING_DATA - 1].name[i] = RankingNameInput::GetName(i);
 					};
-					gRanking[RANKING_DATA - 1].name[GetInputedNameLength()] = '\0'; // Null文字付与
+					gRanking[RANKING_DATA - 1].name[RankingNameInput::GetNameLength()] = '\0'; // Null文字付与
 					gRanking[RANKING_DATA - 1].score = AppleCount::ReturnScore(); // ランキングデータの最下位にスコアを登録
 					SortRanking(); // ランキング並べ替え
 					SaveRanking(); // ランキングデータの保存

@@ -3,6 +3,7 @@
 * 作者：島袋
 ********************************/
 #include "DxLib.h"
+#include "test.h"
 #include "resourceLoad.h"
 #include "main.h"
 #include "PadInput.h"
@@ -11,7 +12,7 @@
 /********************************
 * テスト
 ********************************/
-void DrawTest() {
+void Test::Draw() {
     DrawGraph(0, 0, Image::GetImages(IMG_TITLE, 0), TRUE);
 	
 	DrawStringToHandle(400, 40, "りんごおとし", 0x000000, Font::GetFonts(FONT_1_32), 0xffffff);
