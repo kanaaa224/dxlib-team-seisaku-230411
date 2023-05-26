@@ -32,7 +32,6 @@ int rni_selector[] = { 90, 440, 35, 30, 0, 0 };
 int rni_state = 0;
 
 extern Apple apple;
-extern Game game;
 
 /********************************
 * ランキング入力関数
@@ -241,7 +240,7 @@ void DrawRankingNameInput() {
 		// 入力確定が押されたら
 		if (rni_selector[4] == 3) {
 			if (rni_inputName.length() > 0) {
-				game.mode = RANKING;
+                Game::ModeSet(RANKING);
 			}
 			else {
 				// 何も入力されていないので警告
@@ -377,7 +376,7 @@ void DrawRankingNameInput() {
 		// 入力確定が押されたら
 		if (rni_selector[4] == 3) {
 			if (rni_inputName.length() > 0) {
-				game.mode = RANKING;
+                Game::ModeSet(RANKING);
 			}
 			else {
 				// 何も入力されていないので警告
@@ -404,7 +403,7 @@ void DrawRankingNameInput() {
 
 	// ESCキーで強制終了
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-		game.mode = TITLE;
+        Game::ModeSet(TITLE);
 	};
 };
 

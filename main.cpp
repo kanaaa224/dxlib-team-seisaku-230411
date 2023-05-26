@@ -15,7 +15,6 @@
 #include "Apple.h"
 #include "Pause.h"
 
-Game game;
 PLAYER player;
 
 Apple apple;
@@ -25,10 +24,35 @@ int playery;
 
 UI ui;
 
+/********************************
+* ゲームモード変数初期化
+********************************/
+int Game::mode = 0;
+int Game::snd_flg = 0;
 
-// プログラムの開始
-int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow)
-{
+
+/********************************
+* ゲームモード処理
+********************************/
+void Game::ModeSet(int m) {
+    mode = m;
+};
+int Game::ModeGet() {
+    return mode;
+};
+void Game::SndFlgSet(int m) {
+    snd_flg = m;
+};
+int Game::SndFlgGet() {
+    return snd_flg;
+};
+
+
+
+/********************************
+* DxLib 開始
+********************************/
+int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow) {
 	// FPSの計測と表示を行うローカル変数の宣言
 	LONGLONG nowTime = GetNowHiPerformanceCount();
 	LONGLONG oldTime = nowTime;
@@ -80,8 +104,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	if (ReadRanking() == -1) return -1;
 
 	// ゲームループ
-	while (ProcessMessage() == 0 && game.mode != 99&& !(PAD_INPUT::JudgeButton(XINPUT_BUTTON_BACK)))
-	{
+	while ((ProcessMessage() == 0) && (Game::ModeGet() != 99) && (!(PAD_INPUT::JudgeButton(XINPUT_BUTTON_BACK)))) {
 		// 画面の初期化
 		ClearDrawScreen();
 
@@ -90,7 +113,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		PAD_INPUT::InputController();
 
 		//ゲームモードと画面遷移
-		switch (game.mode) {
+		switch (Game::ModeGet()) {
 		case TITLE:
 			// タイトル
 			Title::Draw();
@@ -115,7 +138,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			
 			// 開発用 - Rキーで強制リザルト
 			if (CheckHitKey(KEY_INPUT_R)) {
-				game.mode = RESULT;
+                Game::ModeSet(RESULT);
 			};
 			if (PAD_INPUT::JudgeButton(XINPUT_BUTTON_START) == 1) { //ポーズ
 				if (GetPauseFlg() == 0) {
@@ -127,10 +150,10 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			}
 			// プレイヤー開始
 			if (GetPauseFlg() == 0) {
-				if (game.soundflg == 0) {		//最初だけはじめから再生
+				if (Game::SndFlgGet() == 0) {		//最初だけはじめから再生
 					//BGM
 					PlaySoundMem(Sound::GetSounds(SND_BGM_MAIN), DX_PLAYTYPE_LOOP, TRUE);
-					game.soundflg = 1;
+                    Game::SndFlgSet(1);
 				}
 				else {
 					//BGM
@@ -184,7 +207,7 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			if (CheckSoundMem(Sound::GetSounds(SND_BGM_SUB)) == 0) {
 				PlaySoundMem(Sound::GetSounds(SND_BGM_SUB), DX_PLAYTYPE_LOOP, TRUE);
 			}
-			game.soundflg = 0;
+            Game::SndFlgSet(0);
 			// リザルト画面
 			DrawResult();
 			break;

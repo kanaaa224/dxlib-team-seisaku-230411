@@ -13,13 +13,23 @@
 
 //ÉQÅ[ÉÄÉÇÅ[Éhä«óù
 class Game {
+private:
+    static int mode;
+    static int snd_flg;
 public:
-	//char mode[10] = "TITLE";
-	int mode = 0;
-	int soundflg = 0;
+    static void ModeSet(int);
+    static int ModeGet();
+    static void SndFlgSet(int);
+    static int SndFlgGet();
 };
 
 
+//class Game {
+//public:
+//    //char mode[10] = "TITLE";
+//    int mode = 0;
+//    int soundflg = 0;
+//};
 //static enum MODE{
 //	TITLE,
 //	INIT,
