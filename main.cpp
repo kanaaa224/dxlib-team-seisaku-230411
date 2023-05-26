@@ -27,7 +27,6 @@ UI ui;
 int Game::mode = 0;
 int Game::snd_flg = 0;
 
-
 /********************************
 * ゲームモード処理
 ********************************/
@@ -44,20 +43,10 @@ int Game::SndFlgGet() {
     return snd_flg;
 };
 
-
-
 /********************************
 * DxLib 開始
 ********************************/
 int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR LpCmdLine, _In_ int NCmdShow) {
-	// FPSの計測と表示を行うローカル変数の宣言
-	LONGLONG nowTime = GetNowHiPerformanceCount();
-	LONGLONG oldTime = nowTime;
-	LONGLONG fpsCheckTime;
-	double deltaTime = 0;
-	int fpsCounter = 0;
-	int fps = 0;
-
 	// タイトルを設定
 	SetMainWindowText("りんごおとし");
 
@@ -76,6 +65,13 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	// 描画先画面を裏にする（ダブルバッファリング）
 	SetDrawScreen(DX_SCREEN_BACK);
 
+    // FPSの計測と表示を行うローカル変数の宣言
+    LONGLONG nowTime = GetNowHiPerformanceCount();
+    LONGLONG oldTime = nowTime;
+    LONGLONG fpsCheckTime;
+    double deltaTime = 0;
+    int fpsCounter = 0;
+    int fps = 0;
 	// ループ前にFPS計測を初期化
 	fpsCheckTime = GetNowHiPerformanceCount();
 	fps = 0;
@@ -252,12 +248,11 @@ int WINAPI WinMain(_In_ HINSTANCE  hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		if (nextTime > GetNowCount()) {
 			WaitTimer(nextTime - GetNowCount());
 		}
-	}
+    };
 
 	// DXライブラリ使用の終了処理
 	DxLib_End();
 
 	// プログラムの終了
 	return 0;
-
-}
+};
