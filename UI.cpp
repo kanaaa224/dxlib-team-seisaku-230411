@@ -7,10 +7,7 @@
 #include <string>
 #include"Pause.h"
 
-extern Init ini;
 extern Game game;
-//extern Image image;
-extern Font font;
 
 using std::string;
 using std::to_string;
