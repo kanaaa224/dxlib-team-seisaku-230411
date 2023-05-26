@@ -19,28 +19,7 @@ private:
 public:
     static void ModeSet(int);
     static int ModeGet();
+
     static void SndFlgSet(int);
     static int SndFlgGet();
 };
-
-
-//class Game {
-//public:
-//    //char mode[10] = "TITLE";
-//    int mode = 0;
-//    int soundflg = 0;
-//};
-//static enum MODE{
-//	TITLE,
-//	INIT,
-//	MAIN,
-//	HELP,
-//	RESULT,
-//	INPUTNAME,
-//	RANKING,
-//	END,
-//	TEST,
-//	EXIT = 99
-//};
-//
-//MODE gGameMode;
